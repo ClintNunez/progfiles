@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<!-- saved from url=(0107)https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#4 -->
+<html lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope" content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="theme-color" content="#3ddc84">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <link rel="manifest" href="https://developer.android.com/_pwa/android/manifest.json" crossorigin="use-credentials">
+    <link rel="preconnect" href="https://www.gstatic.com/" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin="">
+    <link rel="preconnect" href="https://apis.google.com/" crossorigin="">
+    <link rel="preconnect" href="https://www.google-analytics.com/" crossorigin=""><link rel="stylesheet" href="./Practice_ Kotlin Fundamentals4_files/css">
+      <link rel="stylesheet" href="./Practice_ Kotlin Fundamentals4_files/css(1)"><link rel="stylesheet" href="./Practice_ Kotlin Fundamentals4_files/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v24d520161c9661e427a3f6fa9973bfca56d0972dca82fa8ef65c709d915e80f3/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v24d520161c9661e427a3f6fa9973bfca56d0972dca82fa8ef65c709d915e80f3/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems"><link rel="search" type="application/opensearchdescription+xml" title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Practice: Kotlin Fundamentals</title>
+
+<meta property="og:title" content="Practice: Kotlin Fundamentals  |  Android Developers"><meta name="description" content="Apply the basic concepts of the Kotlin programming language to solve the given problems.">
+  <meta property="og:description" content="Apply the basic concepts of the Kotlin programming language to solve the given problems."><meta property="og:url" content="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems"><meta property="og:locale" content="en">
+  
+    
+    
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/1IgCBqWJxsrx64ZdhOSN3fWVuUu_svdLQH4S4Q5sQoJ4/edit">
+    
+    
+    
+    
+    
+    
+  
+
+    
+      <link rel="stylesheet" href="./Practice_ Kotlin Fundamentals4_files/extras.css"><style type="text/css">:root zeus-ad, :root topadblock, :root span[id^="ezoic-pub-ad-placeholder-"], :root guj-ad, :root div[jsdata*="CarouselPLA-"][data-id^="CarouselPLA-"], :root div[id^="yandex_ad"], :root div[id^="vuukle-ad-"], :root div[id^="rc-widget-"], :root div[id^="lazyad-"], :root div[id^="js-dfp-"], :root div[id^="gtm-ad-"], :root div[id^="gpt_ad_"], :root div[id^="div-gpt-"], :root div[id^="dfp-slot-"], :root div[id^="dfp-ad-"], :root div[id^="bunyad-widget-ads-"], :root div[id^="advads_"], :root div[id^="ads300_100-widget-"], :root div[id^="ads250_250-widget-"], :root div[id^="adrotate_widgets-"], :root div[id^="adngin-"], :root div[id^="adfox_"], :root div[id^="ad_script_"], :root div[id^="ad-server-"], :root div[id^="ad-gpt-"], :root div[id^="ad-div-"], :root div[id*="ScriptRoot"], :root div[id*="MarketGid"], :root div[data-test-id="AdBannerWrapper"], :root div[data-subscript="Advertising"], :root div[data-mpu1], :root div[data-insertion], :root div[data-id-advertdfpconf], :root div[data-google-query-id], :root div[data-content="Advertisement"], :root div[data-alias="300x250 Ad 2"], :root div[data-alias="300x250 Ad 1"], :root div[data-adzone], :root div[data-adunit-path], :root div[data-adname], :root div[data-ad-wrapper], :root div[data-ad-underplayer], :root div[data-ad-targeting], :root div[data-ad-placeholder], :root div[class^="sp-adslot-"], :root div[class^="s-dfp-"], :root div[class^="pane-adsense-managed-"], :root div[class^="native-ad-"], :root div[class^="largeRectangleAd_"], :root div[data-dfp-id], :root div[class^="kiwi-ad-wrapper"], :root div[class^="index_displayAd_"], :root div[class^="index_adAfterContent_"], :root div[class^="block-openx-"], :root div[id^="adspot-"], :root div[class^="adsbutt_wrapper_"], :root div[class^="ads-partner-"], :root div[class^="adpubs-"], :root div[class^="adbanner_"], :root div[class^="ad_border_"], :root hl-adsense, :root div[data-contentexchange-widget], :root div[class^="adUnit_"], :root div[class^="StickyHeroAdWrapper-"], :root div[class^="BannerAd_"], :root div[class^="AdCard_"], :root div[class^="ad_position_"], :root div[aria-label="Ads"], :root display-ads, :root div[id^="ad-cid-"], :root aside[id^="advads_ad_widget-"], :root aside[id^="adrotate_widgets-"], :root article.ad, :root ark-top-ad, :root app-advertisement, :root app-ad, :root amp-fx-flying-carpet, :root amp-embed[type="taboola"], :root amp-ad-custom, :root ad-shield-ads, :root ad-desktop-sidebar, :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[href^="https://www.vfreecams.com/in/?track="], :root a[href^="https://www.rabbits.webcam/?id="], :root div[data-test-id="AdDisplayWrapper"], :root a[href^="https://www.purevpn.com/"][href*="&utm_source=aff-"], :root a[href^="https://www.privateinternetaccess.com/"] > img, :root a[href^="https://www.passeura.com/"], :root a[href^="https://www.oneclickroot.com/?tap_a="] > img, :root a[href^="https://www.oboom.com/ref/"], :root a[href^="https://www.nutaku.net/signup/landing/"], :root a[href^="https://www.nudeidols.com/cams/"], :root a[href^="https://www.mypornstarcams.com/landing/click/"], :root a[href^="https://www.mrskin.com/account/"], :root a[href^="https://www.kingsoffetish.com/tour?partner_id="], :root a[href^="https://www.jackery.com?aff="] > img, :root a[href^="https://www.iyalc.com/"], :root a[href^="https://www.infowarsstore.com/"] > img, :root a[href^="https://www.highperformancegate.com/"], :root a[href^="https://www.healthrangerstore.com/"] > img, :root a[href^="https://www.goldenfrog.com/vyprvpn?offer_id="][href*="&aff_id="], :root a[href^="https://www.get-express-vpn.com/offer/"], :root a[href^="https://www.financeads.net/tc.php?"], :root a[href^="https://www.clicktraceclick.com/"], :root a[href^="https://www.camsoda.com/enter.php?id="], :root a[href^="https://www.brazzersnetwork.com/landing/"], :root div[class^="Display_displayAd"], :root a[href^="https://www.sheetmusicplus.com/?aff_id="], :root a[href^="https://www.bang.com/?aff="], :root a[href^="https://www.arthrozene.com/"][href*="?tid="], :root a[href^="https://webroutetrk.com/"], :root iframe[src^="http://ad.yieldmanager.com/"], :root a[href^="https://wantopticalfreelance.com/"], :root a[href^="https://waisheph.com/"], :root a[href^="https://uncensored.game/"], :root a[href^="https://twinrdsyn.com/"], :root a[href^="https://tupitea.co/"], :root a[href^="https://ttf.trmobc.com/"], :root a[href^="https://trusted-click-host.com/"], :root a[href^="https://trk.moviesflix4k.xyz/"], :root a[href^="https://trf.bannerator.com/"], :root a[href^="https://trappist-1d.com/"], :root a[href^="https://tragency-clesburg.icu/"], :root a[href^="https://traffdaq.com/"], :root a[href^="https://tracking.trackcasino.co/"], :root a[href^="https://tracking.comfortclick.eu/"], :root a[href^="https://tracking.avapartner.com/"], :root a[href^="https://track.ultravpn.com/"], :root a[href^="https://track.totalav.com/"], :root a[href^="https://track.themadtrcker.com/"], :root a[href^="https://track.interactivegf.com/"], :root a[href^="https://vlnk.me/"], :root a[href^="https://track.healthtrader.com/"], :root a[href^="https://track.effiliation.com/servlet/effi.click?"] > img, :root a[href^="https://track.clickmoi.xyz/"], :root a[href^="https://track.afcpatrk.com/"], :root a[href^="https://torguard.net/aff.php"] > img, :root a[href^="https://tm-offers.gamingadult.com/"], :root a[href^="https://tracking.gitads.io/"], :root a[href^="https://taghaugh.com/"], :root a[href^="https://t.mobtya.com/"], :root a[href^="https://t.hrtyj.com/"], :root a[href^="https://t.adating.link/"], :root a[href^="https://topoffers.com/"][href*="/?pid="], :root a[href^="https://syndication.dynsrvtbg.com/"], :root a[href^="https://streamate.com/landing/click/"], :root a[href^="https://s.zlink2.com/"], :root a[href^="https://reachtrgt.com/"], :root a[href^="https://queersodadults.com/"], :root a[href^="https://prf.hn/click/"][href*="/camref:"] > img, :root iframe[id^="google_ads_frame"], :root a[href^="https://pb-track.com/"], :root a[href^="https://partners.fxoro.com/click.php?"], :root a[href^="https://paid.outbrain.com/network/redir?"], :root div[id^="ad_position_"], :root a[href^="http://hotcandyland.com/partner/"], :root a[href^="https://ovb.im/"], :root a[href^="https://torrentsafeguard.com/?aid="], :root a[href^="https://offers.refchamp.com/"], :root a[href^="https://ndt5.net/"], :root a[href^="https://natour.naughtyamerica.com/track/"], :root a[href^="https://cam4com.go2cloud.org/"], :root a[href^="https://my-movie.club/"], :root div[id^="ezoic-pub-ad-"], :root a[href^="https://mk-cdn.net/"], :root .trc_rbox_div .syndicatedItemUB, :root [href^="https://zone.gotrackier.com/"], :root a[href^="https://meet-to-fuck.com/"], :root a[href^="https://medleyads.com/"], :root [href^="https://www.herbanomic.com/"] > img, :root a[href^="https://maymooth-stopic.com/"], :root a[href^="https://serve.awmdelivery.com/"], :root a[href^="https://prf.hn/click/"][href*="/adref:"] > img, :root div[id^="google_dfp_"], :root a[href^="http://googleads.g.doubleclick.net/pcs/click"], :root a[href^="https://look.utndln.com/"], :root a[href^="https://www.bebi.com"], :root a[href^="https://loboclick.com"], :root a[href^="https://a.bestcontentweb.top/"], :root a[href^="https://lobimax.com/"], :root a[href^="https://lead1.pl/"], :root a[href^="https://refpazkjixes.top/"], :root a[href^="https://landing.brazzersplus.com/"], :root a[href^="https://landing.brazzersnetwork.com/"], :root a[href^="https://ads.leovegas.com/redirect.aspx?"], :root a[href^="https://land.brazzersnetwork.com/landing/"], :root a[href^="https://juicyads.in/"], :root a[href^="https://track.wg-aff.com"], :root a[href^="https://nutrientassumptionclaims.com/"], :root a[href^="https://join.virtuallust3d.com/"], :root a[href^="https://itubego.com/video-downloader/?affid="], :root a[href^="https://iqbroker.com/"][href*="?aff="], :root a[href^="https://incisivetrk.cvtr.io/click?"], :root a[href^="https://iactrivago.ampxdirect.com/"], :root a[href^="https://iac.ampxdirect.com/"], :root a[href^="https://go.zybrdr.com"], :root [href^="http://join.michelle-austin.com/"], :root a[href^="https://go.xxxiijmp.com"], :root a[href*=".zlinkm.com/"], :root a[href^="https://go.xtbaffiliates.com/"], :root a[href^="https://thaudray.com/"], :root [data-role="tile-ads-module"], :root a[href^="https://adsrv4k.com/"], :root a[href^="https://go.xlviirdr.com"], :root .card-captioned.crd > .crd--cnt > .s2nPlayer, :root [data-css-class="dfp-inarticle"], :root a[href^="https://go.tmrjmp.com"], :root a[href^="https://go.strpjmp.com/"], :root a[href^="https://go.markets.com/visit/?bta="], :root a[href^="//lambingsyddir.com/"], :root a[href^="https://billing.purevpn.com/aff.php"] > img, :root a[href^="https://go.hpyrdr.com/"], :root a[href^="https://go.goaserv.com/"], :root a[href^="https://go.ebrokerserve.com/"], :root a[href^="https://ismlks.com/"], :root a[href^="https://track.afftck.com/"], :root a[href^="https://gohere.pl/"], :root a[href^="https://go.cmrdr.com/"], :root a[href^="https://go.admjmp.com/"], :root [href^="https://kingered-banctours.com/"], :root a[href^="https://get.surfshark.net/aff_c?"][href*="&aff_id="] > img, :root a[href^="https://affiliate.rusvpn.com/click.php?"], :root a[href^="https://geniusdexchange.com/"], :root a[href^="https://aj1070.online/"], :root a[href^="https://frameworkdeserve.com/"], :root a[href^="https://www.mrskin.com/tour"], :root a[href^="https://financeads.net/tc.php?"], :root bottomadblock, :root a[href^="https://fertilitycommand.com/"], :root a[href^="https://bluedelivery.pro/"], :root a[href^="https://fast-redirecting.com/"], :root a[href^="https://fakelay.com/"], :root a[href^="https://tc.tradetracker.net/"] > img, :root a[href^="https://dianches-inchor.com/"], :root .ob_dual_right > .ob_ads_header ~ .odb_div, :root a[href^="https://deliver.tf2www.com/"], :root [href^="https://www.targetingpartner.com/"], :root [href^="https://detachedbates.com/"], :root a[href^="https://deliver.ptgncdn.com/"], :root #kt_player > a[target="_blank"], :root a[href^="https://cpartner.bdswiss.com/"], :root a[href^="https://clixtrac.com/"], :root AD-TRIPLE-BOX, :root a[href^="https://click.hoolig.app/"], :root img[src^="https://images.purevpnaffiliates.com"], :root a[href^="https://porntubemate.com/"], :root a[href^="http://www.gfrevenge.com/landing/"], :root a[href^="https://clickadilla.com/"], :root a[href^="https://click.dtiserv2.com/"], :root a[href^="https://go.xlvirdr.com"], :root a[href^="https://claring-loccelkin.com/"], :root a[href^="https://chaturbate.com/in/?track="], :root a[href^="https://chaturbate.com/in/?tour="], :root a[href^="https://aaucwbe.com/"], :root a[href^="https://cams.imagetwist.com/in/?track="], :root div[class^="AdItem-"], :root a[href^="https://mob1ledev1ces.com/"], :root a[href^="https://explore.findanswersnow.net/"], :root a[href^="https://camfapr.com/landing/click/"], :root a[href^="https://affcpatrk.com/"], :root a[href^="https://bongacams2.com/track?"], :root a[href^="https://www.sheetmusicplus.com/"][href*="?aff_id="], :root a[href^="https://bngpt.com/"], :root #topstuff > #tads, :root a[href^="https://black77854.com/"], :root a[href^="https://burpee.xyz/"], :root a[target="_blank"][onmousedown="this.href^='http://paid.outbrain.com/network/redir?"], :root a[href^="https://banners.livepartners.com/"], :root a[href^="https://m.do.co/c/"] > img, :root [href^="https://www.mypillow.com/"] > img, :root a[href^="https://azpresearch.club/"], :root div[id^="sticky_ad_"], :root div[class^="Ad__adContainer"], :root a[href^="https://avtub.click/assets/link.php"], :root a[href^="https://go.gldrdr.com/"], :root a[href^="https://as.sexad.net/"], :root a[href^="https://bestcond1tions.com/"], :root a[href^="https://as.conjectwatson.com/"], :root [href="https://masstortfinancing.com"] img, :root a[href^="https://bongacams10.com/track?"], :root [data-ez-name], :root a[href^="https://awecrptjmp.com/"], :root a[href^="https://someperceptionparade.com/"], :root a[href^="https://galaxyroms.net/?scr="], :root a[href^="https://albionsoftwares.com/"], :root display-ad-component, :root a[href^="https://ak.hetaruwg.com/"], :root a[href^="https://go.etoro.com/"] > img, :root a[href^="https://go.alxbgo.com/"], :root a[href^="https://aff-ads.stickywilds.com/"], :root a[href^="https://t.hrtye.com/"], :root a[href^="https://ads.cdn.live/"], :root a[href^="https://join.sexworld3d.com/track/"], :root a[href^="https://intenseaffiliates.com/redirect/"], :root a[href^="https://aweptjmp.com/"], :root a[href^="https://ads.ad4game.com/"], :root a[href^="https://adnetwrk.com/"], :root a[href^="https://adjoincomprise.com/"], :root a[href^="https://t.grtyi.com/"], :root a[href^="https://myusenet.xyz/"], :root [href^="http://misslinkvocation.com/"], :root a[href^="https://adclick.g.doubleclick.net/"], :root a[href^="https://www.bet365.com/"][href*="affiliate="], :root [href^="https://r.kraken.com/"], :root a[href^="https://mmwebhandler.aff-online.com/"], :root a[href^="http://secure.vivid.com/track/"], :root a[href^="https://go.nordvpn.net/aff"] > img, :root a[href^="https://misspkl.com/"], :root [href^="http://clicks.totemcash.com/"], :root a[href^="https://ad.zanox.com/ppc/"] > img, :root a[href^="https://msecure117.com/"], :root a[href^="https://ad.kubiccomps.icu/"], :root a[href^="https://adswick.com/"], :root a[href^="https://static.fleshlight.com/images/banners/"], :root a[href^="https://ad.doubleclick.net/"], :root a[href^="https://ad.atdmt.com/"], :root a[href^="https://meet-sex-here.com/"], :root [data-m-ad-id], :root a[href^="https://a-ads.com/"], :root a[href^="http://www.mrskin.com/tour"], :root a[href^="https://k2s.cc/pr/"], :root a[data-url^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://www.coiwqe.site/"], :root iframe[src^="http://www.adpeepshosted.com/"], :root a[href^="https://prf.hn/click/"][href*="/creativeref:"] > img, :root a[href^="http://www.adultempire.com/unlimited/promo?"][href*="&partner_id="], :root a[href^="https://ads-for-free.com/click.php?"], :root a[href^="http://www.FriendlyDuck.com/"], :root a[href^="http://traffic.tc-clicks.com/"], :root a[href^="http://tc.tradetracker.net/"] > img, :root .trc_rbox .syndicatedItem, :root a[href^="https://1free33style.com/"], :root a[href^="http://rs-stripe.wsj.com/stripe/redirect"], :root a[href^="http://tour.mrskin.com/"], :root a[href^="http://pubads.g.doubleclick.net/"], :root [onclick*="content.ad/"], :root a[href^="http://pityhostngco2.xyz/"], :root a[href^="http://partners.etoro.com/"], :root .commercial-unit-mobile-top .jackpot-main-content-container > .UpgKEd + .nZZLFc > div > .vci, :root a[href^="http://paid.outbrain.com/network/redir?"], :root a[data-redirect^="https://paid.outbrain.com/network/redir?"], :root [href^="https://www.reimageplus.com/"], :root a[href^="https://engine.phn.doublepimp.com/"], :root a[href^="http://intent.bingads.com/"], :root a[href^="https://join.virtualtaboo.com/track/"], :root [id^="ad_sky"], :root a[href^="http://https://www.get-express-vpn.com/offer/"], :root a[href^="https://cagothie.net/"], :root a[href^="https://watchmygirlfriend.tv/"], :root a[href^="http://go.xtbaffiliates.com/"], :root a[href^="http://www.advcashpro.com/aff/"], :root a[href^="http://deloplen.com/"], :root a[href^="http://d2.zedo.com/"], :root .rc-cta[data-target], :root [href^="http://go.cm-trk2.com/"], :root a[href^="http://click.payserve.com/"], :root a[href^="https://bs.serving-sys.com"], :root [class^="chp_ads_block"], :root a[href^="http://betahit.click/"], :root a[href^="https://promo-bc.com/"], :root a[href^="https://clicks.pipaffiliates.com/"], :root [href^="https://noqreport.com/"] > img, :root a[href^="http://adserver.adreactor.com/"], :root [href^="https://cipledecline.buzz/"], :root a[href^="https://earandmarketing.com/"], :root a[href^="http://adf.ly/?id="], :root [href^="http://homemoviestube.com/"], :root a[href^="http://ad.doubleclick.net/"], :root .commercial-unit-mobile-top .jackpot-main-content-container > .UpgKEd + .nZZLFc > .vci, :root a[href^="//syndication.dynsrvtbg.com/"], :root a[href^="//pubads.g.doubleclick.net/"], :root div.fadeInDown[id$="____equal"][class$="____equal"], :root a[href^="https://mediaserver.gvcaffiliates.com/renderBanner.do?"], :root a[href^="https://join.dreamsexworld.com/"], :root a[href^="https://click.linksynergy.com/fs-bin/"], :root a[href^="https://www.adskeeper.com"], :root [href^="https://totlnkcl.com/"], :root a[href^="//agacelebir.com/"], :root a[href^="https://dooloust.net/"], :root [href^="https://www.mypatriotsupply.com/"] > img, :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"], :root [href^="https://secure.bmtmicro.com/servlets/"], :root a[href="//rufflycouncil.com/"], :root a[href*="https://www.sweetdeals.com/"] img, :root div[data-native_ad], :root a[href*=".zlink9.com/"], :root [data-d-ad-id], :root iframe[src^="https://tpc.googlesyndication.com/"], :root a[href*=".engine.adglare.net/"], :root a[href^="https://a.bestcontentoperation.top/"], :root AFS-AD, :root a[href^="//go.xlviiirdr.com"], :root [data-dynamic-ads], :root div[class^="adunit_"], :root a[data-widget-outbrain-redirect^="http://paid.outbrain.com/network/redir?"], :root [data-ad-width], :root [href^="https://join.playboyplus.com/track/"], :root a[data-url^="http://paid.outbrain.com/network/redir?"] + .author, :root a[href^="https://axdsz.pro/"], :root a[href^="http://bodelen.com/"], :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], :root a[href^="https://ptapjmp.com/"], :root DFP-AD, :root a[href^="http://allaptair.club/"], :root a[href^="//go.eabids.com/"], :root a[data-oburl^="http://paid.outbrain.com/network/redir?"], :root [href^="https://cpa.10kfreesilver.com/"], :root a[href^="https://a.bestcontentfood.top/"], :root a[href^="https://reinstandpointdumbest.com/"], :root a[href*="http://MyPillow.com"] > img, :root a[data-obtrack^="http://paid.outbrain.com/network/redir?"], :root div[class^="BlockAdvert-"], :root a[href^="http://wct.link/"], :root [href^="https://goldforyourfuture.com/clk.trk"] img, :root [href^="https://infinitytrk.com/"], :root [onclick^="location.href='http://www.reimageplus.com"], :root a[href^="https://pl.premium4kflix.website/"], :root [id^="chp_ads_block"], :root a[href^="https://go.julrdr.com/"], :root a[href^="//chrif8kdstie.com/"], :root [id^="section-ad-banner"], :root .commercial-unit-mobile-top > div[data-pla="1"], :root a[href^="https://www.sweetdeals.com"], :root a[href^="https://track.bruceads.com/"], :root a[href^="https://t.aslnk.link/"], :root [href^="https://zstacklife.com/"] img, :root [href^="https://www.restoro.com/"], :root [data-ad-manager-id], :root a[href^="https://fleshlight.sjv.io/"], :root div[id^="zergnet-widget"], :root [href^="https://www.mystore.com/"] > img, :root [href^="https://freecourseweb.com/"] > .sitefriend, :root [href^="https://www.hostg.xyz/aff_c"] > img, :root div[id^="ad-position-"], :root a[href^="http://affiliate.glbtracker.com/"], :root a[href^="https://leg.xyz/?track="], :root a[href^="http://bc.vc/?r="], :root [href^="https://www.brighteonstore.com/products/"] img, :root a[href^="https://syndication.exoclick.com/"], :root [href^="https://track.fiverr.com/visit/"] > img, :root a[href^="https://go.trackitalltheway.com/"], :root a[href^="https://go.cmtaffiliates.com/"], :root [data-name="adaptiveConstructorAd"], :root [href^="https://optimizedelite.com/"] > img, :root a[href^="https://www.awin1.com/cread.php?awinaffid="], :root a[href^="//thaudray.com/"], :root a[href*=".trust.zone"], :root a[href^="http://trk.mdrtrck.com/"], :root [href^="https://shrugartisticelder.com"], :root div[id^="crt-"][style], :root a[href^="http://adultgames.xxx/"], :root a[href^="https://pcm.bannerator.com/"], :root a[href^="https://traffic.bannerator.com/"], :root [href^="https://shiftnetwork.infusionsoft.com/go/"] > img, :root iframe[src^="https://pagead2.googlesyndication.com/"], :root a[href^="http://www.onwebcam.com/random?t_link="], :root a[href^="https://vo2.qrlsx.com/"], :root [href^="https://www.avantlink.com/click.php"] img, :root a[href^="https://losingoldfry.com/"], :root div[id^="ad-inserter-"], :root .scroll-fixable.rail-right > .deals-rail, :root a[href^="https://see.kmisln.com/"], :root [href^="https://routewebtk.com/"], :root div[class^="ResponsiveAd-"], :root a[href^="https://oackoubs.com/"], :root a[href^="https://awptjmp.com/"], :root a[href^="https://go.goasrv.com/"], :root .commercial-unit-mobile-top > .v7hl4d, :root a[href^="https://mediaserver.entainpartners.com/renderBanner.do?"], :root [href^="https://stvkr.com/"], :root a[href^="https://tour.mrskin.com/"], :root a[href^="https://fastestvpn.com/lifetime-special-deal?a_aid="], :root ADS-RIGHT, :root [href^="https://mystore.com/"] > img, :root a[href^="https://moneynow.one/"], :root [href^="https://mypatriotsupply.com/"] > img, :root [href^="https://mylead.global/stl/"] > img, :root .vid-present > .van_vid_carousel__padding, :root a[href^="https://syndication.optimizesrv.com/"], :root [id^="google_ads_iframe"], :root [href^="https://istlnkcl.com/"], :root div[data-mediatype="advertising"], :root a[href^="https://5hjdbfjfd5.monster/"], :root .section-subheader > .section-hotel-prices-header, :root [href^="http://join.ts-dominopresley.com/"], :root a[href^="https://playuhd.host/"], :root [href^="https://go.affiliatexe.com/"], :root a[href^="https://meet-sexhere.com/"], :root [href^="https://go.4rabettraff.com/"], :root [href^="https://glersakr.com/"], :root [href="https://jdrucker.com/gold"] > img, :root a[href^="https://click.a-ads.com/"], :root a[href^="https://wittered-mainging.com/"], :root [href^="https://engine.gettopple.com/"], :root [href^="https://awbbjmp.com/"], :root a[href^="https://gghf.mobi/"], :root [href^="https://affect3dnetwork.com/track/"], :root a[href^="https://go.currency.com/"], :root [href^="http://www.mypillow.com/"] > img, :root a[href^="//coarsewary.com/"], :root a[href^="https://a.montangop.top/"], :root [href^="https://v.investologic.co.uk/"], :root a[href^="https://chaturbate.jjgirls.com/?track="], :root [class^="s2nPlayer"], :root a[href*=".flndmyiove.net/"], :root [href^="http://join.trannies-fuck.com/"], :root [href^="http://www.fleshlightgirls.com/"], :root a[href^="https://dialling-abutory.com/"], :root div[id^="div-ads-"], :root [href^="https://rapidgator.net/article/premium/ref/"], :root a[href^="https://www.sugarinstant.com/?partner_id="], :root a[href^="https://adultfriendfinder.com/go/page/landing"], :root div[id^="advads-"], :root div[data-role="sidebarAd"], :root [href^="https://join3.bannedsextapes.com"], :root div[data-spotim-slot], :root [href^="https://antiagingbed.com/discount/"] > img, :root a[href^="https://go.247traffic.com/"], :root [href^="https://join.girlsoutwest.com/"], :root [href^="http://trafficare.net/"], :root a[href^="https://adserver.adreactor.com/"], :root [href^="http://join.shemalesfromhell.com/"], :root [id^="ad_slider"], :root [href^="https://clk.right-wing-health.com/"], :root a[href^="http://www.adultdvdempire.com/?partner_id="][href*="&utm_"], :root [href^="http://join.shemale.xxx/"], :root [href^="https://ilovemyfreedoms.com/landing-"], :root a[href^="https://ads.betfair.com/redirect.aspx?"], :root a[href^="http://cam4com.go2cloud.org/aff_c?"], :root a[href^="https://www.chngtrack.com/"], :root a[href^="https://cpmspace.com/"], :root a[href^="https://ads.planetwin365affiliate.com/redirect.aspx?"], :root [href^="http://join.rodneymoore.com/"], :root a[href^="https://uncensored3d.com/"], :root a[href^="https://creacdn.top-convert.com/"], :root div[id^="ad_bigbox_"], :root [href^="https://go.xlrdr.com"], :root [id^="div-gpt-ad"], :root .ob_container .item-container-obpd, :root [href^="http://www.pingperfect.com/aff.php"], :root a[href^="https://scurewall.co/"], :root [name^="google_ads_iframe"], :root a[href^="http://go.247traffic.com/"], :root a[href^="https://porngames.adult/?SID="], :root a[href^="https://landing1.brazzersnetwork.com"], :root #slashboxes > .deals-rail, :root [href^="http://globsads.com/"], :root a[href^="https://go.xxxjmp.com"], :root a[href^="https://transfer.xe.com/signup/track/redirect?"], :root #leader-companion > a[href], :root [data-desktop-ad-id], :root [href^="https://wct.link/"], :root [href^="https://traffserve.com/"], :root [href^="http://mypillow.com/"] > img, :root a[href^="https://a.adtng.com/"], :root a[href^="http://static.fleshlight.com/images/banners/"], :root [href="https://ourgoldguy.com/contact/"] img, :root [href="https://www.masstortfinancing.com/"] > img, :root [href^="https://goldcometals.com/clk.trk"], :root [data-mobile-ad-id], :root a[href^="http://affiliates.thrixxx.com/"], :root a[href^="https://www.adultempire.com/"][href*="?partner_id="], :root [data-template-type="nativead"], :root a[data-redirect^="this.href='http://paid.outbrain.com/network/redir?"], :root a[href^="https://go.xlivrdr.com"], :root [data-freestar-ad], :root [data-ad-cls], :root [id^="ad-wrap-"], :root div[id^="taboola-stream-"], :root [href^="https://go.astutelinks.com/"], :root [href^="http://join.hardcoreshemalevideo.com/"], :root a[href^="http://ads2.williamhill.com/redirect.aspx?"], :root [href^="http://residenceseeingstanding.com/"], :root div[data-adunit], :root app-large-ad, :root [href^="https://turtlebids.irauctions.com/"] img, :root div[class^="index_adBeforeContent_"], :root a[href^="http://www.onclickmega.com/jump/next.php?"], :root .trc_rbox_border_elm .syndicatedItem, :root [class^="amp-ad-"], :root div[id^="_vdo_ads_player_ai_"], :root a[href^="http://enter.anabolic.com/track/"], :root .trc_related_container div[data-item-syndicated="true"], :root a[href^="https://delivery.porn.com/"], :root div[data-native-ad], :root AD-SLOT, :root [href^="https://click2cvs.com/"], :root div[id^="banner-ad-"], :root a[href^="https://a2.adform.net/"], :root a[data-redirect^="http://paid.outbrain.com/network/redir?"], :root [data-revive-zoneid], :root a[href^="https://googleads.g.doubleclick.net/pcs/click"], :root AMP-AD, :root a[href^="https://ausoafab.net/"], :root a[href^="//benoopto.com/"], :root [href^="https://mypillow.com/"] > img, :root [href^="https://ad.admitad.com/"], :root div[class^="AdhesionAd_"], :root .trc_rbox_div .syndicatedItem, :root a-ad, :root a[href^="http://go.fpmarkets.com/"], :root [data-ad-module], :root [href^="https://trackfin.asia/"], :root .plistaList > .plista_widget_underArticle_item[data-type="pet"], :root LEADERBOARD-AD, :root .grid > .container > #aside-promotion, :root a[href^="https://spygasm.com/track?"], :root a[href^="https://agacelebir.com/"], :root a[href*="//lkstrck2.com/"], :root .plistaList > .itemLinkPET, :root [href^="http://join.shemalepornstar.com/"], :root [href^="https://affiliate.fastcomet.com/"] > img, :root #atvcap + #tvcap > .mnr-c > .commercial-unit-mobile-top, :root [data-advadstrackid], :root a[href^="https://www.googleadservices.com/pagead/aclk?"], :root a[href^="https://awentw.com/"], :root [class^="div-gpt-ad"], :root a[href^="//voyeurhit.com/cs/"], :root a[href^="https://speedsupermarketdonut.com/"], :root #taw > .med + div > #tvcap > .mnr-c:not(.qs-ic) > .commercial-unit-mobile-top, :root [data-adblockkey], :root a[href^="https://americafirstpolls.com/"] { display: none !important; }</style><script src="./Practice_ Kotlin Fundamentals4_files/cb=gapi.loaded_0" nonce="" async=""></script><script type="text/javascript" async="" src="./Practice_ Kotlin Fundamentals4_files/linkid.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_app_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_app_custom_elements_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_a11y_announce_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_analytics_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_badger_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_book_nav_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_bookmark_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_code_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_content_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_feature_tooltip_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_footer_linkboxes_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_footer_promos_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_footer_utility_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_header_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_heading_link_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_language_selector_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_notification_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_panel_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_progress_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_recommendations_sidebar_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_search_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_sitemask_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_snackbar_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_toc_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_tooltip_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_user_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_google_codelab_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_google_codelab_about_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_google_codelab_analytics_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_google_codelab_step_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_android_fully_clickable_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/analytics.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_badge_awarded_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_dialog_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_spinner_module.js" nonce=""></script><style type="text/css"></style><style type="text/css"></style><script type="text/javascript" charset="UTF-8" nonce="" src="./Practice_ Kotlin Fundamentals4_files/api.js" gapi_processed="true"></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_dropdown_list_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_checkbox_module.js" nonce=""></script><script src="./Practice_ Kotlin Fundamentals4_files/devsite_devsite_mwc_module.js" nonce=""></script></head>
+  <body class="" template="codelab" theme="android-theme" type="codelab" layout="docs" style="--devsite-js-header-height:0px; --devsite-panel-height:0px;" ready="" codelabs-content-type="paginated">
+    <devsite-progress id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header no-lower-row="" top-row--height="0" bottom-row--height="0" bottom-tabs--height="0" bottom-row--hidden="" fixed="">
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu" class="devsite-header-icon-button button-flat material-icons gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Navigation menu button" visually-hidden="" aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="https://developer.android.com/" class="devsite-site-logo-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav" track-name="androidDevelopers" track-metadata-position="nav" track-metadata-eventdetail="nav">
+
+  
+    <img src="./Practice_ Kotlin Fundamentals4_files/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+  
+
+</a>
+
+
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+           </div>
+          
+<devsite-search aria-expanded="false" aria-haspopup="listbox" enable-signin="" enable-search="" enable-suggestions="" enable-query-completion="" tenant-name="Android Developers" role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input aria-activedescendant="" aria-autocomplete="list" aria-label="Search" aria-haspopup="false" aria-multiline="false" autocomplete="off" class="devsite-search-field devsite-search-query" name="q" placeholder="Search" role="searchbox" type="text" value="" aria-controls="devsite-search-popout-container-id-1">
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button" search-open="" class="devsite-search-button devsite-header-icon-button button-flat material-icons" aria-label="Open search"></button>
+    </div>
+  <div class="devsite-popout" id="devsite-search-popout-container-id-1"><div class="devsite-popout-result devsite-suggest-results-container" devsite-hide=""></div></div></form>
+  <button type="button" search-close="" class="devsite-search-button devsite-header-icon-button button-flat material-icons" aria-label="Close search"></button>
+</devsite-search>
+
+        <div class="devsite-search-background" style="opacity: 1;"></div></div>
+
+        
+
+        
+
+        
+
+        
+<devsite-language-selector aria-label="Select your language preference.">
+  <ul role="presentation">
+    
+    
+    <li role="presentation">
+      <a role="menuitem" lang="en" aria-current="true" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems">English</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="id" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=id">Bahasa Indonesia</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="es-419" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=es-419">Español – América Latina</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="pt-br" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=pt-br">Português – Brasil</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="vi" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=vi">Tiếng Việt</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="zh-cn" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=zh-cn">中文 – 简体</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="zh-tw" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=zh-tw">中文 – 繁體</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="ja" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=ja">日本語</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="ko" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=ko">한국어</a>
+    </li>
+    
+  </ul>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user enable-profiles="" id="devsite-user" sign-in-url="https://developer.android.com/_d/signin?continue=https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-kotlin-fundamentals-practice-problems%231&amp;prompt=select_account" sign-out-url="https://developer.android.com/_d/signout?continue=https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-kotlin-fundamentals-practice-problems%231" url="https://developer.android.com/_d/signout?continue=https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-kotlin-fundamentals-practice-problems%231"><div class="ogb-wrapper ogb-si"><a href="https://developer.android.com/_d/signin?continue=https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-kotlin-fundamentals-practice-problems%231&amp;prompt=select_account" class="devsite-user-signin button devsite-top-button" track-type="globalNav" track-name="signIn" track-metadata-eventdetail="nav" track-metadata-position="nav">
+  Sign in
+</a></div></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+  
+</devsite-header>
+      <div class="devsite-book-nav-bg" fixed="" hidden=""></div><devsite-book-nav scrollbars="" hidden="" fixed="" style="top: 0px; max-height: 810px;" top-level-nav="">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-book-nav-filter
+            hidden">
+  <input type="text" placeholder="Filter" aria-label="Type to filter" role="searchbox">
+  
+  <span class="filter-clear-button hidden" data-title="Clear filter" aria-label="Clear filter" role="button" tabindex="0"></span>
+</div>
+
+<nav class="devsite-book-nav devsite-nav nocontent" aria-label="Side menu">
+  <div class="devsite-mobile-header">
+    <button type="button" id="devsite-close-nav" class="devsite-header-icon-button button-flat material-icons gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Close navigation" aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="https://developer.android.com/" class="devsite-site-logo-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav" track-name="androidDevelopers" track-metadata-position="nav" track-metadata-eventdetail="nav">
+
+  
+    <img src="./Practice_ Kotlin Fundamentals4_files/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+  
+
+</a>
+
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav><div class="devsite-book-nav-blur" hidden="" fixed="" style="--devsite-js-book-nav-scrollbar-width:0px;"></div><button class="devsite-book-nav-toggle" aria-haspopup="menu" hidden="" fixed="" aria-label="Hide side navigation" data-title="Hide side navigation" aria-expanded="true"><span class="material-icons devsite-book-nav-toggle-icon"></span></button>
+      <section id="gc-wrapper" style="margin-top: 0px;">
+        <main role="main" class="devsite-main-content" has-sidebar="">
+          
+          <div class="devsite-sidebar" fixed="" style="--devsite-js-sidebar-max-height:762px; --devsite-js-sidebar-max-width:184.5px; --devsite-js-sidebar-offset:0;">
+            <div class="devsite-sidebar-content">
+              <devsite-toc class="devsite-nav devsite-toc" role="navigation" aria-label="On this page" depth="1" scrollbars="" visible=""><ul class="devsite-nav-list"><li class="devsite-nav-item devsite-nav-heading devsite-toc-toggle" role="heading" aria-level="2"><span class="devsite-nav-title"><span class="devsite-nav-text">On this page</span></span></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#0" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="0" track-type="navigation" track-name="rightNav" track-metadata-position="0" track-metadata-link-destination="#0"><span class="devsite-nav-text" tooltip="">Before you begin</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#prerequisites" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="1" track-type="navigation" track-name="rightNav" track-metadata-position="1" track-metadata-link-destination="#prerequisites"><span class="devsite-nav-text" tooltip="">Prerequisites</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#what-youll-need" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="2" track-type="navigation" track-name="rightNav" track-metadata-position="2" track-metadata-link-destination="#what-youll-need"><span class="devsite-nav-text" tooltip="">What you'll need</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#1" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="3" track-type="navigation" track-name="rightNav" track-metadata-position="3" track-metadata-link-destination="#1"><span class="devsite-nav-text" tooltip="">Mobile notifications</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#2" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="4" track-type="navigation" track-name="rightNav" track-metadata-position="4" track-metadata-link-destination="#2"><span class="devsite-nav-text" tooltip="">Movie-ticket price</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#3" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="5" track-type="navigation" track-name="rightNav" track-metadata-position="5" track-metadata-link-destination="#3"><span class="devsite-nav-text" tooltip="">Temperature converter</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#4" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="6" track-type="navigation" track-name="rightNav" track-metadata-position="6" track-metadata-link-destination="#4"><span class="devsite-nav-text" tooltip="">Song catalog</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#5" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="7" track-type="navigation" track-name="rightNav" track-metadata-position="7" track-metadata-link-destination="#5"><span class="devsite-nav-text" tooltip="">Internet profile</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#6" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="8" track-type="navigation" track-name="rightNav" track-metadata-position="8" track-metadata-link-destination="#6"><span class="devsite-nav-text" tooltip="">Foldable phones</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#7" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="9" track-type="navigation" track-name="rightNav" track-metadata-position="9" track-metadata-link-destination="#7"><span class="devsite-nav-text" tooltip="">Special auction</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#8" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="10" track-type="navigation" track-name="rightNav" track-metadata-position="10" track-metadata-link-destination="#8"><span class="devsite-nav-text" tooltip="">Solution code</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#mobile-notifications" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="11" track-type="navigation" track-name="rightNav" track-metadata-position="11" track-metadata-link-destination="#mobile-notifications"><span class="devsite-nav-text" tooltip="">Mobile notifications</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#movie-ticket-price" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="12" track-type="navigation" track-name="rightNav" track-metadata-position="12" track-metadata-link-destination="#movie-ticket-price"><span class="devsite-nav-text" tooltip="">Movie-ticket price</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#temperature-converter" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="13" track-type="navigation" track-name="rightNav" track-metadata-position="13" track-metadata-link-destination="#temperature-converter"><span class="devsite-nav-text" tooltip="">Temperature converter</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#song-catalog" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="14" track-type="navigation" track-name="rightNav" track-metadata-position="14" track-metadata-link-destination="#song-catalog"><span class="devsite-nav-text" tooltip="">Song catalog</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#internet-profile" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="15" track-type="navigation" track-name="rightNav" track-metadata-position="15" track-metadata-link-destination="#internet-profile"><span class="devsite-nav-text" tooltip="">Internet profile</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#foldable-phone" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="16" track-type="navigation" track-name="rightNav" track-metadata-position="16" track-metadata-link-destination="#foldable-phone"><span class="devsite-nav-text" tooltip="">Foldable phone</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#special-auction" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="17" track-type="navigation" track-name="rightNav" track-metadata-position="17" track-metadata-link-destination="#special-auction"><span class="devsite-nav-text" tooltip="">Special auction</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#9" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="18" track-type="navigation" track-name="rightNav" track-metadata-position="18" track-metadata-link-destination="#9"><span class="devsite-nav-text" tooltip="">Additional Practice</span></a></li></ul></devsite-toc>
+              <devsite-recommendations-sidebar class="nocontent devsite-nav">
+              </devsite-recommendations-sidebar>
+            </div>
+          </div>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article" has-bookmark=""><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list">
+  
+</ul>
+    
+  </div>
+  <h1 class="devsite-page-title">Practice: Kotlin Fundamentals</h1><devsite-feature-tooltip ack-key="AckCollectionsBookmarkTooltipDismiss" analytics-category="Site-Wide Custom Events" ,="" analytics-action-show="Callout Profile displayed" analytics-action-close="Callout Profile dismissed" analytics-label="Create Collection Callout" class="devsite-page-bookmark-tooltip inline-block" dismiss-button="true" id="devsite-collections-dropdown" dismiss-button-text="Dismiss" close-button-text="Got it" ready="" current-step="0" style="--devsite-popout-offset-x:32px;">
+
+        
+        <devsite-bookmark class="show"><devsite-dropdown-list ellipsis="" checkboxes="" fetchingitems="true" writable="" additemtext="New Collection" ready="" style="--devsite-popout-offset-x:0px;"><span class="material-icons bookmark-icon" slot="toggle">bookmark_border</span></devsite-dropdown-list></devsite-bookmark>
+
+        <span slot="popout-heading">
+          
+          Stay organized with collections
+        </span>
+        <span slot="popout-contents">
+          
+          Save and categorize content based on your preferences.
+        </span>
+      </devsite-feature-tooltip>
+    
+  
+  <devsite-toc class="devsite-nav devsite-toc-embedded" depth="1" devsite-toc-embedded="" expandable="" visible=""><ul class="devsite-nav-list"><li class="devsite-nav-item devsite-nav-heading devsite-toc-toggle" role="heading" aria-level="2"><span class="devsite-nav-title"><span class="devsite-nav-text">On this page</span></span><button type="button" title="Expand/collapse contents" class="devsite-nav-show-all button-transparent material-icons"></button></li><li class="devsite-nav-item" visible=""><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#0" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="0" track-type="navigation" track-name="embeddedNav" track-metadata-position="0" track-metadata-link-destination="#0"><span class="devsite-nav-text" tooltip="">Before you begin</span></a></li><li class="devsite-nav-item" visible=""><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#prerequisites" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="1" track-type="navigation" track-name="embeddedNav" track-metadata-position="1" track-metadata-link-destination="#prerequisites"><span class="devsite-nav-text" tooltip="">Prerequisites</span></a></li><li class="devsite-nav-item" visible=""><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#what-youll-need" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="2" track-type="navigation" track-name="embeddedNav" track-metadata-position="2" track-metadata-link-destination="#what-youll-need"><span class="devsite-nav-text" tooltip="">What you'll need</span></a></li><li class="devsite-nav-item" visible=""><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#1" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="3" track-type="navigation" track-name="embeddedNav" track-metadata-position="3" track-metadata-link-destination="#1"><span class="devsite-nav-text" tooltip="">Mobile notifications</span></a></li><li class="devsite-nav-item" visible=""><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#2" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="4" track-type="navigation" track-name="embeddedNav" track-metadata-position="4" track-metadata-link-destination="#2"><span class="devsite-nav-text" tooltip="">Movie-ticket price</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#3" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="5" track-type="navigation" track-name="embeddedNav" track-metadata-position="5" track-metadata-link-destination="#3"><span class="devsite-nav-text" tooltip="">Temperature converter</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#4" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="6" track-type="navigation" track-name="embeddedNav" track-metadata-position="6" track-metadata-link-destination="#4"><span class="devsite-nav-text" tooltip="">Song catalog</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#5" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="7" track-type="navigation" track-name="embeddedNav" track-metadata-position="7" track-metadata-link-destination="#5"><span class="devsite-nav-text" tooltip="">Internet profile</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#6" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="8" track-type="navigation" track-name="embeddedNav" track-metadata-position="8" track-metadata-link-destination="#6"><span class="devsite-nav-text" tooltip="">Foldable phones</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#7" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="9" track-type="navigation" track-name="embeddedNav" track-metadata-position="9" track-metadata-link-destination="#7"><span class="devsite-nav-text" tooltip="">Special auction</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#8" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="10" track-type="navigation" track-name="embeddedNav" track-metadata-position="10" track-metadata-link-destination="#8"><span class="devsite-nav-text" tooltip="">Solution code</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#mobile-notifications" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="11" track-type="navigation" track-name="embeddedNav" track-metadata-position="11" track-metadata-link-destination="#mobile-notifications"><span class="devsite-nav-text" tooltip="">Mobile notifications</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#movie-ticket-price" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="12" track-type="navigation" track-name="embeddedNav" track-metadata-position="12" track-metadata-link-destination="#movie-ticket-price"><span class="devsite-nav-text" tooltip="">Movie-ticket price</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#temperature-converter" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="13" track-type="navigation" track-name="embeddedNav" track-metadata-position="13" track-metadata-link-destination="#temperature-converter"><span class="devsite-nav-text" tooltip="">Temperature converter</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#song-catalog" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="14" track-type="navigation" track-name="embeddedNav" track-metadata-position="14" track-metadata-link-destination="#song-catalog"><span class="devsite-nav-text" tooltip="">Song catalog</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#internet-profile" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="15" track-type="navigation" track-name="embeddedNav" track-metadata-position="15" track-metadata-link-destination="#internet-profile"><span class="devsite-nav-text" tooltip="">Internet profile</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#foldable-phone" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="16" track-type="navigation" track-name="embeddedNav" track-metadata-position="16" track-metadata-link-destination="#foldable-phone"><span class="devsite-nav-text" tooltip="">Foldable phone</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#special-auction" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="17" track-type="navigation" track-name="embeddedNav" track-metadata-position="17" track-metadata-link-destination="#special-auction"><span class="devsite-nav-text" tooltip="">Special auction</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#9" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="18" track-type="navigation" track-name="embeddedNav" track-metadata-position="18" track-metadata-link-destination="#9"><span class="devsite-nav-text" tooltip="">Additional Practice</span></a></li><li class="devsite-toc-toggle"><button type="button" class="button-flat devsite-nav-more-items material-icons" track-type="navigation" track-name="embeddedNavExpand" title="Expand/collapse contents"></button></li></ul></devsite-toc>
+
+  
+
+  
+
+
+
+
+
+
+<div class="devsite-article-body clearfix
+  ">
+
+  
+    
+    <google-codelab-analytics gaid="UA-49880327-14" codelab-gaid="UA-81734179-1" codelab-id="basic-android-kotlin-compose-kotlin-fundamentals-practice-problems" environment="web" category="android,kotlin"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1" doc-id="1IgCBqWJxsrx64ZdhOSN3fWVuUu_svdLQH4S4Q5sQoJ4" id="basic-android-kotlin-compose-kotlin-fundamentals-practice-problems" environment="web" category="android,kotlin" feedback-link="https://github.com/google-developer-training/basic-android-kotlin-compose-training-dice-roller/issues/new?assignees=&amp;labels=&amp;template=practice-problems-unit-2-pathway-1-issue-template.md&amp;title=Practice+problems+Unit+2+Pathway+1%3A+Android+Basics+with+Compose" layout="paginated" anayltics-ready="anayltics-ready" selected="4" google-codelab-ready="" codelab-title="Practice: Kotlin Fundamentals"><div id="codelab-title"><div id="codelab-nav-buttons"><a href="https://developer.android.com/" id="arrow-back" class="no-return-url"><i class="material-icons">close</i></a><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#" id="menu"><i class="material-icons">menu</i></a></div><h1 is-upgraded="" class="title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems">Practice: Kotlin Fundamentals</a></h1><div class="codelab-time-container"><div class="time-remaining" tabindex="0" role="timer" title="Estimated time remaining: 61 minutes"><i class="material-icons">access_time</i>61 mins remaining</div></div><devsite-language-selector aria-label="Select your language preference.">
+  <ul role="presentation">
+    
+    
+    <li role="presentation">
+      <a role="menuitem" lang="en" aria-current="true" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#1">English</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="id" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=id#1">Bahasa Indonesia</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="es-419" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=es-419#1">Español – América Latina</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="pt-br" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=pt-br#1">Português – Brasil</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="vi" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=vi#1">Tiếng Việt</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="zh-cn" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=zh-cn#1">中文 – 简体</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="zh-tw" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=zh-tw#1">中文 – 繁體</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="ja" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=ja#1">日本語</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="ko" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=ko#1">한국어</a>
+    </li>
+    
+  </ul>
+</devsite-language-selector><devsite-user enable-profiles="" sign-in-url="https://developer.android.com/_d/signin?continue=https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-kotlin-fundamentals-practice-problems%231&amp;prompt=select_account" sign-out-url="https://developer.android.com/_d/signout?continue=https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-kotlin-fundamentals-practice-problems%231" url="https://developer.android.com/_d/signout?continue=https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-kotlin-fundamentals-practice-problems%231"><div class="ogb-wrapper ogb-si"><a href="https://developer.android.com/_d/signin?continue=https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-kotlin-fundamentals-practice-problems%231&amp;prompt=select_account" class="devsite-user-signin button devsite-top-button" track-type="globalNav" track-name="signIn" track-metadata-eventdetail="nav" track-metadata-position="nav">
+  Sign in
+</a></div></devsite-user></div><nav id="drawer"><div class="codelab-time-container"><div class="time-remaining" tabindex="0" role="timer" title="Estimated time remaining: 61 minutes"><i class="material-icons">access_time</i>61 mins remaining</div></div><div class="steps"><ol><li completed=""><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#0"><span class="step"><span>Before you begin</span></span></a></li><li completed=""><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#1"><span class="step"><span>Mobile notifications</span></span></a></li><li completed=""><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#2"><span class="step"><span>Movie-ticket price</span></span></a></li><li completed=""><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#3"><span class="step"><span>Temperature converter</span></span></a></li><li completed="" selected=""><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#4"><span class="step"><span>Song catalog</span></span></a></li><li><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#5"><span class="step"><span>Internet profile</span></span></a></li><li><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#6"><span class="step"><span>Foldable phones</span></span></a></li><li><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#7"><span class="step"><span>Special auction</span></span></a></li><li><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#8"><span class="step"><span>Solution code</span></span></a></li><li><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#9"><span class="step"><span>Additional Practice</span></span></a></li></ol></div></nav><div id="main"><div id="steps"><google-codelab-step label="Before you begin" duration="2" step="0" tabindex="-1" style="transform: translate3d(-110%, 0px, 0px);"><google-codelab-about codelab-title="Practice: Kotlin Fundamentals" authors="Google Developers Training team" last-updated="2022-09-01T16:21:34Z" duration="100"><div class="codelab-title"><div class="token">Practice:</div><div class="token"> Kotlin Fundamentals</div></div><div class="about-card"><h2 class="title">About this codelab</h2><div class="last-updated"><i class="material-icons">subject</i>Last updated Sep 2, 2022</div><div class="authors"><i class="material-icons">account_circle</i>Written by Google Developers Training team</div></div></google-codelab-about><div class="instructions"><div class="inner"><h2 is-upgraded="" class="step-title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#0">1. Before you begin</a></h2>
+          
+            
+          
+          
+          <p>Now that you put in the hard work to learn the basics of Kotlin programming, it's time to put what you learned into practice.</p>
+<p>These exercises test your understanding of the concepts that you studied. They're based on real-world use cases, some of which you probably encountered before as a user.</p>
+<p>Follow the instructions to find a solution for each exercise in  <a href="https://developer.android.com/training/kotlinplayground" target="_blank">Kotlin Playground</a>. If you get stuck, some exercises have hints that can help you. The solution code for each exercise is available at the end, but it's recommended that you solve the exercises before you check your answers.</p>
+<p>Work through the exercises at a pace that's comfortable for you. There are duration estimates for the exercises, but they're only estimates, so you don't have to adhere to them. Take as much time as you need to solve each problem thoughtfully. The solutions are only one way to solve the exercises, so feel free to experiment however you feel comfortable.</p>
+<h2 is-upgraded="" id="prerequisites" data-text="Prerequisites">Prerequisites</h2>
+<ul>
+<li>Familiarity with  <a href="https://developer.android.com/training/kotlinplayground" target="_blank">Kotlin Playground</a></li>
+<li>Ability to define and call functions.</li>
+<li>Knowledge of Kotlin programming basics, including variables, and the <code translate="no" dir="ltr">println()</code> and <code translate="no" dir="ltr">main()</code> functions</li>
+<li>Familiarity with Kotlin conditionals, including <code translate="no" dir="ltr">if/else</code> and <code translate="no" dir="ltr">when</code> statements and expressions</li>
+<li>Familiarity with Kotlin lambda expressions</li>
+<li>Knowledge of how to handle nullable variables.</li>
+<li>Knowledge of how to create Kotlin classes and objects.</li>
+<li>Completion of the  <a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-conditionals#0" target="_blank">Write conditionals in Kotlin</a>, <a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-nullability#0" target="_blank"> Use nullability in Kotlin</a>,  <a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-classes-and-objects#0" target="_blank">Use classes and objects in Kotlin</a>, and  <a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-function-types-and-lambda#0" target="_blank">Use function types and lambda expressions in Kotlin</a> codelabs.</li>
+</ul>
+<h2 is-upgraded="" id="what-youll-need" data-text="What you&#39;ll need"><strong>What you'll need</strong></h2>
+<ul>
+<li>Kotlin Playground</li>
+</ul>
+
+
+        </div></div></google-codelab-step><google-codelab-step label="Mobile notifications" duration="7" step="1" tabindex="-1" style="transform: translate3d(-110%, 0px, 0px);"><div class="instructions"><div class="inner"><h2 is-upgraded="" class="step-title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#1">2. Mobile notifications</a></h2>
+          
+          
+          <p>Typically, your phone provides you with a summary of notifications.</p>
+<p>In the initial code provided in the following code snippet, write a program that prints the summary message based on the number of notifications that you received. The message should include:</p>
+<ul>
+<li>The exact number of notifications when there are less than 100 notifications.</li>
+<li><code translate="no" dir="ltr">99+</code> as the number of notifications when there are 100 notifications or more.</li>
+</ul>
+<devsite-code data-copy-event-label="" no-copy=""><div class="devsite-code-buttons-container" role="group" aria-label="Action buttons"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Dark code theme" data-title="Dark code theme"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Light code theme" data-title="Light code theme"></button></div><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val morningNotification </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">51</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val eveningNotification </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">135</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; printNotificationSummary</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">morningNotification</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; printNotificationSummary</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">eveningNotification</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br><br>fun printNotificationSummary</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">numberOfMessages</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="com"><span class="com">// Fill in the code.</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<p>Complete the <code translate="no" dir="ltr">printNotificationSummary()</code> function so that the program prints these lines:</p>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Action buttons"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Dark code theme" data-title="Dark code theme"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Light code theme" data-title="Light code theme"></button></div><pre translate="no" dir="ltr" is-upgraded="">You have 51 notifications.
+Your phone is blowing up! You have 99+ notifications.
+</pre></devsite-code>
+
+
+        </div></div></google-codelab-step><google-codelab-step label="Movie-ticket price" duration="15" step="2" tabindex="-1" style="transform: translate3d(-110%, 0px, 0px);"><div class="instructions"><div class="inner"><h2 is-upgraded="" class="step-title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#2">3. Movie-ticket price</a></h2>
+          
+          
+          <p>Movie tickets are typically priced differently based on the age of moviegoers.</p>
+<p>In the initial code provided in the following code snippet, write a program that calculates these age-based ticket prices:</p>
+<ul>
+<li>A children's ticket price of $15 for people 12 years old or younger.</li>
+<li>A standard ticket price of $30 for people between 13 and 60 years old. On Mondays, discount the standard ticket price to $25 for this same age group.</li>
+<li>A senior ticket price of $20 for people 61 years old and older. Assume that the maximum age of a moviegoer is 100 years old.</li>
+<li>A <code translate="no" dir="ltr">-1</code> value to indicate that the price is invalid when a user inputs an age outside of the age specifications.</li>
+</ul>
+<devsite-code data-copy-event-label="" no-copy=""><div class="devsite-code-buttons-container" role="group" aria-label="Action buttons"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Dark code theme" data-title="Dark code theme"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Light code theme" data-title="Light code theme"></button></div><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val child </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">5</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val adult </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">28</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val senior </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">87</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; val isMonday </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">true</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"The movie ticket price for a person aged $child is &nbsp;\$${ticketPrice(child, isMonday)}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"The movie ticket price for a person aged $adult is \$${ticketPrice(adult, isMonday)}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"The movie ticket price for a person aged $senior is \$${ticketPrice(senior, isMonday)}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br>fun ticketPrice</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">age</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> isMonday</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Boolean</span></span><span class="pun"><span class="pun">):</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="com"><span class="com">// Fill in the code.</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<p>Complete the <code translate="no" dir="ltr">ticketPrice()</code> function so that the program prints these lines:</p>
+<devsite-code no-copy="" data-copy-event-label=""><pre translate="no" dir="ltr" is-upgraded="">The movie ticket price for a person aged 5 is $15.
+The movie ticket price for a person aged 28 is $25.
+The movie ticket price for a person aged 87 is $20.
+</pre></devsite-code>
+
+
+        </div></div></google-codelab-step><google-codelab-step label="Temperature converter" duration="15" step="3" tabindex="-1" style="transform: translate3d(-110%, 0px, 0px); transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s;" selected=""><div class="instructions"><div class="inner"><h2 is-upgraded="" class="step-title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#3">4. Temperature converter</a></h2>
+          
+          
+          <p>There are three main temperature scales used in the world: Celsius, Fahrenheit, and Kelvin.</p>
+<p>In the initial code provided in the following code snippet, write a program that converts a temperature from one scale to another with these formulas:</p>
+<ul>
+<li>Celsius to Fahrenheit: ° <em>F</em> = 9/5 (° <em>C</em>) + 32</li>
+<li>Kelvin to Celsius: ° <em>C</em> = <em>K</em> - 273.15</li>
+<li>Fahrenheit to Kelvin: <em>K</em> = 5/9 (° <em>F</em> - 32) + 273.15</li>
+</ul>
+<p>Note that the <code translate="no" dir="ltr">String.format("%.2f", /* measurement */ )</code> method is used to convert a number into a <code translate="no" dir="ltr">String</code> type with 2 decimal places.</p>
+<devsite-code data-copy-event-label="" no-copy=""><div class="devsite-code-buttons-container" role="group" aria-label="Action buttons"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Dark code theme" data-title="Dark code theme"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Light code theme" data-title="Light code theme"></button></div><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="com"><span class="com">// Fill in the code.</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br><br>fun printFinalTemperature</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; initialMeasurement</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Double</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> <br>&nbsp; &nbsp; initialUnit</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> <br>&nbsp; &nbsp; finalUnit</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> <br>&nbsp; &nbsp; conversionFormula</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">(</span></span><span class="typ"><span class="typ">Double</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">-&gt;</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Double</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val finalMeasurement </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">format</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"%.2f"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> conversionFormula</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">initialMeasurement</span></span><span class="pun"><span class="pun">))</span></span><span class="pln"><span class="pln"> </span></span><span class="com"><span class="com">// two decimal places</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"$initialMeasurement degrees $initialUnit is $finalMeasurement degrees $finalUnit."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<p>Complete the <code translate="no" dir="ltr">main()</code> function so that it calls the <code translate="no" dir="ltr">printFinalTemperature()</code> function and prints the following lines. You need to pass arguments for the temperature and conversion formula. <em>Hint:</em> you may want to use <code translate="no" dir="ltr">Double</code> values to avoid <code translate="no" dir="ltr">Integer</code> truncation during division operations.</p>
+<devsite-code no-copy="" data-copy-event-label=""><pre translate="no" dir="ltr" is-upgraded="">27.0 degrees Celsius is 80.60 degrees Fahrenheit.
+350.0 degrees Kelvin is 76.85 degrees Celsius.
+10.0 degrees Fahrenheit is 260.93 degrees Kelvin.
+</pre></devsite-code>
+
+
+        </div></div></google-codelab-step><google-codelab-step label="Song catalog" duration="10" step="4" tabindex="-1" animating="" style="transform: translate3d(0px, 0px, 0px); transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s;"><div class="instructions"><div class="inner"><h2 is-upgraded="" class="step-title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#4">5. Song catalog</a></h2>
+          
+          
+          <p>Imagine that you need to create a music-player app.</p>
+<p>Create a class that can represent the structure of a song. The <code translate="no" dir="ltr">Song</code> class must include these code elements:</p>
+<ul>
+<li>Properties for the title, artist, year published, and play count</li>
+<li>A property that indicates whether the song is popular. If the play count is less than 1,000, consider it unpopular.</li>
+<li>A method that prints a song description in this format:</li>
+</ul>
+<p>"[Title], performed by [artist], was released in [year published]."</p>
+
+
+        </div></div></google-codelab-step><google-codelab-step label="Internet profile" duration="20" step="5" tabindex="-1"><div class="instructions"><div class="inner"><h2 is-upgraded="" class="step-title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#5">6. Internet profile</a></h2>
+          
+          
+          <p>Oftentimes, you're required to complete profiles for online websites that contain mandatory and non-mandatory fields. For example, you can add your personal information and link to other people who referred you to sign up for the profile.</p>
+<p>In the initial code provided in the following code snippet, write a program which prints out a person's profile details.</p>
+<devsite-code data-copy-event-label="" no-copy=""><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"> &nbsp; &nbsp;<br>&nbsp; &nbsp; val amanda </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Person</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Amanda"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">33</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"play tennis"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">null</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val atiqah </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Person</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Atiqah"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">28</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"climb"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> amanda</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; amanda</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">showProfile</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; atiqah</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">showProfile</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br><br></span></span><span class="kwd"><span class="kwd">class</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Person</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">val name</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> val age</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> val hobby</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">?,</span></span><span class="pln"><span class="pln"> val referrer</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Person</span></span><span class="pun"><span class="pun">?)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; fun showProfile</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><span class="com"><span class="com">// Fill in code </span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<p>Complete the <code translate="no" dir="ltr">showProfile()</code> function so that the program prints these lines:</p>
+<devsite-code no-copy="" data-copy-event-label=""><pre translate="no" dir="ltr" is-upgraded="">Name: Amanda
+Age: 33
+Likes to play tennis. Doesn't have a referrer.
+
+Name: Atiqah
+Age: 28
+Likes to climb. Has a referrer named Amanda, who likes to play tennis.
+</pre></devsite-code>
+
+
+        </div></div></google-codelab-step><google-codelab-step label="Foldable phones" duration="20" step="6" tabindex="-1"><div class="instructions"><div class="inner"><h2 is-upgraded="" class="step-title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#6">7. Foldable phones</a></h2>
+          
+          
+          <p>Typically, a phone screen turns on and off when the power button is pressed. In contrast, if a foldable phone is folded, the main inner screen on a foldable phone doesn't turn on when the power button is pressed.</p>
+<p>In the initial code provided in the following code snippet, write a <code translate="no" dir="ltr">FoldablePhone</code> class that inherits from the <code translate="no" dir="ltr">Phone</code> class. It should contain the following:</p>
+<ul>
+<li>A property that indicates whether the phone is folded.</li>
+<li>A different <code translate="no" dir="ltr">switchOn()</code> function behavior than the <code translate="no" dir="ltr">Phone</code> class so that it only turns the screen on when the phone isn't folded.</li>
+<li>Methods to change the folding state.</li>
+</ul>
+<devsite-code data-copy-event-label="" no-copy=""><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="kwd"><span class="kwd">class</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Phone</span></span><span class="pun"><span class="pun">(</span></span><span class="kwd"><span class="kwd">var</span></span><span class="pln"><span class="pln"> isScreenLightOn</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Boolean</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">false</span></span><span class="pun"><span class="pun">){</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; fun switchOn</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; isScreenLightOn </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">true</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; fun switchOff</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; isScreenLightOn </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">false</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; fun checkPhoneScreenLight</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; val phoneScreenLight </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">if</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">isScreenLightOn</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"on"</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">else</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"off"</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"The phone screen's light is $phoneScreenLight."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+
+
+        </div></div></google-codelab-step><google-codelab-step label="Special auction" duration="8" step="7" tabindex="-1"><div class="instructions"><div class="inner"><h2 is-upgraded="" class="step-title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#7">8. Special auction</a></h2>
+          
+          
+          <p>Typically in an auction, the highest bidder determines the price of an item. In this special auction, if there's no bidder for an item, the item is automatically sold to the auction house at the minimum price.</p>
+<p>In the initial code provided in the following code snippet, you're given an <code translate="no" dir="ltr">auctionPrice()</code> function that accepts a nullable <code translate="no" dir="ltr">Bid?</code> type as an argument:</p>
+<devsite-code data-copy-event-label="" no-copy=""><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val winningBid </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Bid</span></span><span class="pun"><span class="pun">(</span></span><span class="lit"><span class="lit">5000</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"Private Collector"</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Item A is sold at ${auctionPrice(winningBid, 2000)}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Item B is sold at ${auctionPrice(null, 3000)}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br></span></span><span class="kwd"><span class="kwd">class</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Bid</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">val amount</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> val bidder</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp;<br>fun auctionPrice</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">bid</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Bid</span></span><span class="pun"><span class="pun">?,</span></span><span class="pln"><span class="pln"> minimumPrice</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">):</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp;</span></span><span class="com"><span class="com">// Fill in the code.</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<p>Complete the <code translate="no" dir="ltr">auctionPrice()</code> function so that the program prints these lines:</p>
+<devsite-code no-copy="" data-copy-event-label=""><pre translate="no" dir="ltr" is-upgraded="">Item A is sold at 5000.
+Item B is sold at 3000.
+</pre></devsite-code>
+
+
+        </div></div></google-codelab-step><google-codelab-step label="Solution code" duration="3" step="8" tabindex="-1"><div class="instructions"><div class="inner"><h2 is-upgraded="" class="step-title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#8">9. Solution code</a></h2>
+          
+          
+          <h2 is-upgraded="" id="mobile-notifications" data-text="Mobile notifications">Mobile notifications</h2>
+<p>The solution uses an <code translate="no" dir="ltr">if/else</code> statement to print the appropriate notification summary message based on the number of notification messages received:</p>
+<devsite-code data-copy-event-label="" no-copy=""><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val morningNotification </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">51</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val eveningNotification </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">135</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; printNotificationSummary</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">morningNotification</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; printNotificationSummary</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">eveningNotification</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br><br>fun printNotificationSummary</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">numberOfMessages</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">if</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">numberOfMessages </span></span><span class="pun"><span class="pun">&lt;</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">100</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"You have ${numberOfMessages} notifications."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">else</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Your phone is blowing up! You have 99+ notifications."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<h2 is-upgraded="" id="movie-ticket-price" data-text="Movie-ticket price"><strong>Movie-ticket price</strong></h2>
+<p>The solution uses a <code translate="no" dir="ltr">when</code> expression to return the appropriate ticket price based on the moviegoer's age. It also uses a simple <code translate="no" dir="ltr">if/else</code> expression for one of the <code translate="no" dir="ltr">when</code> expression's branches to add the additional condition for the standard ticket pricing.</p>
+<p>The ticket price in the <code translate="no" dir="ltr">else</code> branch returns a <code translate="no" dir="ltr">-1</code> value, which indicates that the price set is invalid for the <code translate="no" dir="ltr">else</code> branch. A better implementation is for the <code translate="no" dir="ltr">else</code> branch to throw an exception. You learn about exception handling in future units.</p>
+<devsite-code data-copy-event-label="" no-copy=""><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val child </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">5</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val adult </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">28</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val senior </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">87</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; val isMonday </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">true</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"The movie ticket price for a person aged $child is &nbsp;\$${ticketPrice(child, isMonday)}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"The movie ticket price for a person aged $adult is \$${ticketPrice(adult, isMonday)}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"The movie ticket price for a person aged $senior is \$${ticketPrice(senior, isMonday)}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp;<br>fun ticketPrice</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">age</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> isMonday</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Boolean</span></span><span class="pun"><span class="pun">):</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">return</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">when</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">age</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">in</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">0.</span></span><span class="pun"><span class="pun">.</span></span><span class="lit"><span class="lit">12</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">-&gt;</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">15</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">in</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">13.</span></span><span class="pun"><span class="pun">.</span></span><span class="lit"><span class="lit">60</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">-&gt;</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">if</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">isMonday</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">25</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">else</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">30</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">in</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">61.</span></span><span class="pun"><span class="pun">.</span></span><span class="lit"><span class="lit">100</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">-&gt;</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">20</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">else</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">-&gt;</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">-</span></span><span class="lit"><span class="lit">1</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<h2 is-upgraded="" id="temperature-converter" data-text="Temperature converter"><strong>Temperature converter</strong></h2>
+<p>The solution requires you to pass a function as a parameter to the <code translate="no" dir="ltr">printFinalTemperature()</code> function. The most succinct solution passes lambda expressions as the arguments, uses the <code translate="no" dir="ltr">it</code> parameter reference in place of the parameter names, and makes use of trailing lambda syntax.</p>
+<devsite-code data-copy-event-label="" no-copy=""><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"> &nbsp; &nbsp;<br>&nbsp; &nbsp; &nbsp; &nbsp; printFinalTemperature</span></span><span class="pun"><span class="pun">(</span></span><span class="lit"><span class="lit">27.0</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"Celsius"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"Fahrenheit"</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">9.0</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">/</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">5.0</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">*</span></span><span class="pln"><span class="pln"> it </span></span><span class="pun"><span class="pun">+</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">32</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; printFinalTemperature</span></span><span class="pun"><span class="pun">(</span></span><span class="lit"><span class="lit">350.0</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"Kelvin"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"Celsius"</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"> it </span></span><span class="pun"><span class="pun">-</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">273.15</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; printFinalTemperature</span></span><span class="pun"><span class="pun">(</span></span><span class="lit"><span class="lit">10.0</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"Fahrenheit"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"Kelvin"</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">5.0</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">/</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">9.0</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">*</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">it </span></span><span class="pun"><span class="pun">-</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">32</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">+</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">273.15</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br><br>fun printFinalTemperature</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; initialMeasurement</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Double</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> <br>&nbsp; &nbsp; initialUnit</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> <br>&nbsp; &nbsp; finalUnit</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> <br>&nbsp; &nbsp; conversionFormula</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">(</span></span><span class="typ"><span class="typ">Double</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">-&gt;</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Double</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val finalMeasurement </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">format</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"%.2f"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> conversionFormula</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">initialMeasurement</span></span><span class="pun"><span class="pun">))</span></span><span class="pln"><span class="pln"> </span></span><span class="com"><span class="com">// two decimal places</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"$initialMeasurement degrees $initialUnit is $finalMeasurement degrees $finalUnit."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<h2 is-upgraded="" id="song-catalog" data-text="Song catalog"><strong>Song catalog</strong></h2>
+<p>The solution contains a <code translate="no" dir="ltr">Song</code> class with a default constructor that accepts all required parameters. The <code translate="no" dir="ltr">Song</code> class also has an <code translate="no" dir="ltr">isPopular</code> property that uses a custom getter function, and a method that prints the description of itself. You can create an instance of the class in the <code translate="no" dir="ltr">main()</code> function and call its methods to test whether the implementation is correct. You can use underscores when writing large numbers such as the <code translate="no" dir="ltr">1_000_000</code> value to make it more readable.</p>
+<devsite-code data-copy-event-label="" no-copy=""><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"> &nbsp; &nbsp;<br>&nbsp; &nbsp; val brunoSong </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Song</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"We Don't Talk About Bruno"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"Encanto Cast"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">2022</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">1_000_000</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; brunoSong</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">printDescription</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">brunoSong</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">isPopular</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br><br></span></span><span class="kwd"><span class="kwd">class</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Song</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val title</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> <br>&nbsp; &nbsp; val artist</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> <br>&nbsp; &nbsp; val yearPublished</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> <br>&nbsp; &nbsp; val playCount</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">){</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val isPopular</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Boolean</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">get</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> playCount </span></span><span class="pun"><span class="pun">&gt;=</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">1000</span></span><span class="pln"><span class="pln"><br><br>&nbsp; &nbsp; fun printDescription</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"$title, performed by $artist, was released in $yearPublished."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"> &nbsp; <br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<p>When you call the <code translate="no" dir="ltr">println()</code> function on the instance's methods, the program may print this output:</p>
+<devsite-code no-copy="" data-copy-event-label=""><pre translate="no" dir="ltr" is-upgraded="">We Don't Talk About Bruno, performed by Encanto Cast, was released in 2022.
+true
+</pre></devsite-code>
+<h2 is-upgraded="" id="internet-profile" data-text="Internet profile"><strong>Internet profile</strong></h2>
+<p>The solution contains null checks in various <code translate="no" dir="ltr">if/else</code> statements to print different text based on whether various class properties are <code translate="no" dir="ltr">null</code>:</p>
+<devsite-code data-copy-event-label="" no-copy=""><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"> &nbsp; &nbsp;<br>&nbsp; &nbsp; val amanda </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Person</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Amanda"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">33</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"play tennis"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">null</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val atiqah </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Person</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Atiqah"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="lit"><span class="lit">28</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"climb"</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> amanda</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; amanda</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">showProfile</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; atiqah</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">showProfile</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br><br></span></span><span class="kwd"><span class="kwd">class</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Person</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">val name</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> val age</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> val hobby</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">?,</span></span><span class="pln"><span class="pln"> val referrer</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Person</span></span><span class="pun"><span class="pun">?)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; fun showProfile</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Name: $name"</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Age: $age"</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">if</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">hobby </span></span><span class="pun"><span class="pun">!=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">null</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">print</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Likes to $hobby. "</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">if</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">referrer </span></span><span class="pun"><span class="pun">!=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">null</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">print</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Has a referrer named ${referrer.name}"</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">if</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">referrer</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">hobby </span></span><span class="pun"><span class="pun">!=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">null</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">print</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">", who likes to ${referrer.hobby}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">else</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">print</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">else</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">print</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Doesn't have a referrer."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">print</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"\n\n"</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<h2 is-upgraded="" id="foldable-phone" data-text="Foldable phone"><strong>Foldable phone</strong></h2>
+<p>For the <code translate="no" dir="ltr">Phone</code> class to be a parent class, you need to make the class open by adding the <code translate="no" dir="ltr">open</code> keyword before the class name. To override the <code translate="no" dir="ltr">switchOn()</code> method in the <code translate="no" dir="ltr">FoldablePhone</code> class, you need to make the method in the <code translate="no" dir="ltr">Phone</code> class open by adding the <code translate="no" dir="ltr">open</code> keyword before the method.</p>
+<p>The solution contains a <code translate="no" dir="ltr">FoldablePhone</code> class with a default constructor that contains a default argument for the <code translate="no" dir="ltr">isFolded</code> parameter. The <code translate="no" dir="ltr">FoldablePhone</code> class also has two methods to change the <code translate="no" dir="ltr">isFolded</code> property to either a <code translate="no" dir="ltr">true</code> or <code translate="no" dir="ltr">false</code> value. It also overrides the <code translate="no" dir="ltr">switchOn()</code> method inherited from the <code translate="no" dir="ltr">Phone</code> class.</p>
+<p>You can create an instance of the class in the <code translate="no" dir="ltr">main()</code> function and call its methods to test if the implementation is correct.</p>
+<devsite-code data-copy-event-label="" no-copy=""><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">open </span></span><span class="kwd"><span class="kwd">class</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Phone</span></span><span class="pun"><span class="pun">(</span></span><span class="kwd"><span class="kwd">var</span></span><span class="pln"><span class="pln"> isScreenLightOn</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Boolean</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">false</span></span><span class="pun"><span class="pun">){</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; open fun switchOn</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; isScreenLightOn </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">true</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; fun switchOff</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; isScreenLightOn </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">false</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; fun checkPhoneScreenLight</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; val phoneScreenLight </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">if</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">isScreenLightOn</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"on"</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">else</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"off"</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"The phone screen's light is $phoneScreenLight."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br></span></span><span class="kwd"><span class="kwd">class</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">FoldablePhone</span></span><span class="pun"><span class="pun">(</span></span><span class="kwd"><span class="kwd">var</span></span><span class="pln"><span class="pln"> isFolded</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Boolean</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">true</span></span><span class="pun"><span class="pun">):</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Phone</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">override</span></span><span class="pln"><span class="pln"> fun switchOn</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">if</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">(!</span></span><span class="pln"><span class="pln">isFolded</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isScreenLightOn </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">true</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; fun fold</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; isFolded </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">true</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; fun unfold</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; isFolded </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="kwd"><span class="kwd">false</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br>fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"> &nbsp; &nbsp;<br>&nbsp; &nbsp; val newFoldablePhone </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">FoldablePhone</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; newFoldablePhone</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">switchOn</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; newFoldablePhone</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">checkPhoneScreenLight</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; newFoldablePhone</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">unfold</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; newFoldablePhone</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">switchOn</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; newFoldablePhone</span></span><span class="pun"><span class="pun">.</span></span><span class="pln"><span class="pln">checkPhoneScreenLight</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+<p>The output is the following:</p>
+<devsite-code no-copy="" data-copy-event-label=""><pre translate="no" dir="ltr" is-upgraded="">The phone screen's light is off.
+The phone screen's light is on.
+</pre></devsite-code>
+<h2 is-upgraded="" id="special-auction" data-text="Special auction"><strong>Special auction</strong></h2>
+<p>The solution uses a safe call and the <code translate="no" dir="ltr">?.</code> Elvis operator to return the correct price:</p>
+<devsite-code data-copy-event-label="" no-copy=""><pre class="" translate="no" dir="ltr" is-upgraded=""><code dir="ltr"><span class="pln"><span class="pln">fun main</span></span><span class="pun"><span class="pun">()</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; val winningBid </span></span><span class="pun"><span class="pun">=</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Bid</span></span><span class="pun"><span class="pun">(</span></span><span class="lit"><span class="lit">5000</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">"Private Collector"</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; <br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Item A is sold at ${auctionPrice(winningBid, 2000)}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; println</span></span><span class="pun"><span class="pun">(</span></span><span class="str"><span class="str">"Item B is sold at ${auctionPrice(null, 3000)}."</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br><br></span></span><span class="kwd"><span class="kwd">class</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Bid</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">val amount</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">,</span></span><span class="pln"><span class="pln"> val bidder</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">String</span></span><span class="pun"><span class="pun">)</span></span><span class="pln"><span class="pln"><br><br>fun auctionPrice</span></span><span class="pun"><span class="pun">(</span></span><span class="pln"><span class="pln">bid</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Bid</span></span><span class="pun"><span class="pun">?,</span></span><span class="pln"><span class="pln"> minimumPrice</span></span><span class="pun"><span class="pun">:</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pun"><span class="pun">):</span></span><span class="pln"><span class="pln"> </span></span><span class="typ"><span class="typ">Int</span></span><span class="pln"><span class="pln"> </span></span><span class="pun"><span class="pun">{</span></span><span class="pln"><span class="pln"><br>&nbsp; &nbsp; </span></span><span class="kwd"><span class="kwd">return</span></span><span class="pln"><span class="pln"> bid</span></span><span class="pun"><span class="pun">?.</span></span><span class="pln"><span class="pln">amount </span></span><span class="pun"><span class="pun">?:</span></span><span class="pln"><span class="pln"> minimumPrice<br></span></span><span class="pun"><span class="pun">}</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
+
+
+        </div></div></google-codelab-step><google-codelab-step label="Additional Practice" duration="0" step="9" tabindex="-1"><div class="instructions"><div class="inner"><h2 is-upgraded="" class="step-title"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#9">10. Additional Practice</a></h2>
+          
+          
+          <p>For more practice on the Kotlin language, check out the free  <a href="https://hyperskill.org/tracks/18" target="_blank">Kotlin Basics track</a> in JetBrains Academy. To jump to a specific topic, go to the  <a href="https://hyperskill.org/knowledge-map" target="_blank">knowledge map</a> to view the list of topics covered in the track.</p>
+
+
+        </div></div></google-codelab-step></div><div id="controls"><div id="fabs"><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#" id="previous-step" data-title="Previous step">Back</a><div class="spacer"><devsite-language-selector aria-label="Select your language preference.">
+  <ul role="presentation">
+    
+    
+    <li role="presentation">
+      <a role="menuitem" lang="en" aria-current="true" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#1">English</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="id" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=id#1">Bahasa Indonesia</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="es-419" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=es-419#1">Español – América Latina</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="pt-br" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=pt-br#1">Português – Brasil</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="vi" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=vi#1">Tiếng Việt</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="zh-cn" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=zh-cn#1">中文 – 简体</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="zh-tw" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=zh-tw#1">中文 – 繁體</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="ja" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=ja#1">日本語</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="ko" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=ko#1">한국어</a>
+    </li>
+    
+  </ul>
+</devsite-language-selector></div><a href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems#" id="next-step" data-title="Next step">Next</a><a href="https://developer.android.com/" id="done" hidden="" class="no-return-url" data-title="Codelab complete">Done</a></div></div></div><div class="metadata"><a target="_blank" href="https://github.com/google-developer-training/basic-android-kotlin-compose-training-dice-roller/issues/new?assignees=&amp;labels=&amp;template=practice-problems-unit-2-pathway-1-issue-template.md&amp;title=Practice+problems+Unit+2+Pathway+1%3A+Android+Basics+with+Compose"><i class="material-icons">bug_report</i> Report a mistake</a></div></google-codelab>
+  
+  
+
+  
+</div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+<devsite-content-footer class="nocontent">
+  <p>Except as otherwise noted, the content of this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 License</a>, and code samples are licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see the <a href="https://developers.google.com/site-policies">Google Developers Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+</devsite-content-footer>
+
+
+<devsite-notification link="https://google.qualtrics.com/jfe/form/SV_9G2lJAx8FgC5mL4" link-text="Take survey" message="Please help us improve the Android Developer experience by taking a short survey.">
+</devsite-notification>
+
+
+  
+<div class="devsite-content-data">
+  <template class="devsite-thumb-rating-down-categories"></template>
+  <template class="devsite-thumb-rating-up-categories"></template>
+  
+</div>
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promotions">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="https://twitter.com/AndroidDev" class="devsite-footer-promo-title gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Twitter Promo">
+        
+        
+          
+            <img class="devsite-footer-promo-icon" src="./Practice_ Kotlin Fundamentals4_files/logo-twitter.svg" loading="lazy" alt="Twitter">
+          
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Follow @AndroidDev on Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="https://www.youtube.com/user/androiddevelopers" class="devsite-footer-promo-title gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer YouTube Promo">
+        
+        
+          
+            <img class="devsite-footer-promo-icon" src="./Practice_ Kotlin Fundamentals4_files/youtube_48dp.png" loading="lazy" alt="YouTube">
+          
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Check out Android Developers on YouTube</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="https://www.linkedin.com/showcase/androiddev" class="devsite-footer-promo-title gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer LinkedIn Promo">
+        
+        
+          
+            <img class="devsite-footer-promo-icon" src="./Practice_ Kotlin Fundamentals4_files/logo-linkedin.svg" loading="lazy" alt="LinkedIn">
+          
+        
+        LinkedIn
+      </a>
+      <div class="devsite-footer-promo-description">Connect with the Android Developers community on LinkedIn</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Footer links">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">More Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://www.android.com/" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 1)">
+            
+          
+            Android
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://www.android.com/enterprise/" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 2)">
+            
+          
+            Android for Enterprise
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://www.android.com/security-center/" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 3)">
+            
+          
+            Security
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://source.android.com/" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 4)">
+            
+          
+            Source
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/news" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 5)">
+            
+          
+            News
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://android-developers.googleblog.com/" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 6)">
+            
+          
+            Blog
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/podcasts" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 7)">
+            
+              
+              
+            
+          
+            Podcasts
+          
+          </a>
+          
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Discover</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/games" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 1)">
+            
+          
+            Gaming
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/ml" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 2)">
+            
+          
+            Machine Learning
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/privacy" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 3)">
+            
+          
+            Privacy
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/training/connectivity/5g" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 4)">
+            
+              
+              
+            
+          
+            5G
+          
+          </a>
+          
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Android Devices</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/large-screens" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 1)">
+            
+          
+            Large screens
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/wear" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 2)">
+            
+          
+            Wear OS
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/tv" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 3)">
+            
+          
+            Android TV
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/cars" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 4)">
+            
+          
+            Android for cars
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/things" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 5)">
+            
+          
+            Android Things
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/chrome-os" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 6)">
+            
+              
+              
+            
+          
+            Chrome OS devices
+          
+          </a>
+          
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Releases</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/about/versions/11" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 1)">
+            
+          
+            Android 11
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/about/versions/10" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 2)">
+            
+          
+            Android 10
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/about/versions/pie" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 3)">
+            
+          
+            Pie
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/about/versions/oreo" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 4)">
+            
+          
+            Oreo
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/about/versions/nougat" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 5)">
+            
+          
+            Nougat
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/about/versions/marshmallow" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 6)">
+            
+          
+            Marshmallow
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/about/versions/lollipop" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 7)">
+            
+          
+            Lollipop
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/about/versions/kitkat" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 8)">
+            
+              
+              
+            
+          
+            KitKat
+          
+          </a>
+          
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Documentation and Downloads</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/studio/intro" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 1)">
+            
+          
+            Android Studio guide
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/guide" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 2)">
+            
+          
+            Developers guides
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/reference" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 3)">
+            
+          
+            API reference
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/studio" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 4)">
+            
+          
+            Download Studio
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/ndk" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 5)">
+            
+              
+              
+            
+          
+            Android NDK
+          
+          </a>
+          
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Support</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://issuetracker.google.com/issues/new?component=190923&amp;template=841312" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 1)">
+            
+          
+            Report platform bug
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://issuetracker.google.com/issues/new?component=192697" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 2)">
+            
+          
+            Report documentation bug
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://support.google.com/googleplay/android-developer" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 3)">
+            
+          
+            Google Play support
+          
+          </a>
+          
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://userresearch.google.com/developer/?utm_source=Website&amp;Q_Language=en&amp;utm_campaign=Q3&amp;campaignDate=August2022&amp;referral_code=UXRpSWH2922287" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 4)">
+            
+              
+              
+            
+          
+            Join research studies
+          
+          </a>
+          
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Other Google Developers websites">
+    <a href="https://developers.google.com/" class="devsite-footer-sites-logo-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Google Developers Link">
+      <picture>
+        <source srcset="https://www.gstatic.com/devrel-devsite/prod/v24d520161c9661e427a3f6fa9973bfca56d0972dca82fa8ef65c709d915e80f3/android/images/lockup-developers-dark-theme.svg" media="(prefers-color-scheme: none)" class="devsite-dark-theme" loading="lazy" alt="Google Developers">
+        <img class="devsite-footer-sites-logo" src="./Practice_ Kotlin Fundamentals4_files/lockup-developers.svg" loading="lazy" alt="Google Developers">
+      </picture>
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="https://developer.android.com/" class="devsite-footer-sites-link
+                  gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Android Link">
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="https://developer.chrome.com/home" class="devsite-footer-sites-link
+                  gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Chrome Link">
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="https://firebase.google.com/" class="devsite-footer-sites-link
+                  gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Firebase Link">
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="https://cloud.google.com/" class="devsite-footer-sites-link
+                  gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Google Cloud Platform Link">
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="https://developers.google.com/products/" class="devsite-footer-sites-link
+                  gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer All products Link">
+          All products
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Utility links">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event" href="https://policies.google.com/privacy" data-category="Site-Wide Custom Events" data-label="Footer Privacy link">
+          Privacy
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event" href="https://developer.android.com/license" data-category="Site-Wide Custom Events" data-label="Footer License link">
+          License
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event" href="https://developer.android.com/distribute/marketing-tools/brand-guidelines" data-category="Site-Wide Custom Events" data-label="Footer Brand guidelines link">
+          Brand guidelines
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Get news and tips by email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event" href="https://developer.android.com/updates" data-category="Site-Wide Custom Events" data-label="Footer Subscribe link">
+          Subscribe
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+<devsite-language-selector aria-label="Select your language preference.">
+  <ul role="presentation">
+    
+    
+    <li role="presentation">
+      <a role="menuitem" lang="en" aria-current="true" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems">English</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="id" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=id">Bahasa Indonesia</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="es-419" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=es-419">Español – América Latina</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="pt-br" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=pt-br">Português – Brasil</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="vi" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=vi">Tiếng Việt</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="zh-cn" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=zh-cn">中文 – 简体</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="zh-tw" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=zh-tw">中文 – 繁體</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="ja" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=ja">日本語</a>
+    </li>
+    
+    <li role="presentation">
+      <a role="menuitem" lang="ko" href="https://developer.android.com/codelabs/basic-android-kotlin-compose-kotlin-fundamentals-practice-problems?hl=ko">한국어</a>
+    </li>
+    
+  </ul>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel style="height: auto;"></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    <devsite-snackbar style="bottom: 0px;">
+</devsite-snackbar>
+    <devsite-tooltip></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics analytics-iframe="">
+      
+        <script async="" src="./Practice_ Kotlin Fundamentals4_files/app_loader.js"></script><script type="application/json" analytics="">[{&#34;dimensions&#34;: {&#34;dimension3&#34;: false, &#34;dimension6&#34;: &#34;en&#34;, &#34;dimension11&#34;: false, &#34;dimension5&#34;: &#34;en&#34;, &#34;dimension1&#34;: &#34;Signed out&#34;}, &#34;gaid&#34;: &#34;UA-5831155-1&#34;, &#34;metrics&#34;: {&#34;ratings_value&#34;: &#34;metric1&#34;, &#34;ratings_count&#34;: &#34;metric2&#34;}}]</script>
+<script type="application/json" gtm="">{&#34;parameters&#34;: {&#34;internalUser&#34;: &#34;False&#34;, &#34;language&#34;: {&#34;machineTranslated&#34;: &#34;False&#34;, &#34;requested&#34;: &#34;en&#34;, &#34;served&#34;: &#34;en&#34;}, &#34;pageType&#34;: &#34;codelab&#34;, &#34;projectName&#34;: null, &#34;signedIn&#34;: &#34;False&#34;, &#34;tenant&#34;: &#34;android&#34;, &#34;recommendations&#34;: {&#34;sourcePage&#34;: &#34;&#34;, &#34;sourceType&#34;: 0, &#34;sourceRank&#34;: 0, &#34;sourceIdenticalDescriptions&#34;: 0, &#34;sourceTitleWords&#34;: 0, &#34;sourceDescriptionWords&#34;: 0, &#34;experiment&#34;: &#34;&#34;}, &#34;experiment&#34;: {&#34;ids&#34;: &#34;&#34;}}, &#34;tags&#34;: []}</script>
+      
+    <iframe src="./Practice_ Kotlin Fundamentals4_files/analytics-iframe.html"></iframe></devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target="
+        .android-grouped-resources .devsite-landing-row-item,
+        .android-illustrated-resources-index .devsite-landing-row-item,
+        .android-illustrated-resources-primary .devsite-landing-row-item,
+        .android-illustrated-resources-secondary .devsite-landing-row-item,
+        .android-illustrated-resources-secondary-small .devsite-landing-row-item,
+        .android-illustrated-resources-tertiary .devsite-landing-row-item,
+        .android-illustrated-resources-tertiary-small .devsite-landing-row-item,
+        .android-promo .devsite-landing-row-item,
+        .android-quick-link,
+        .android-samples .devsite-card-wrapper,
+        .fully-clickable" watch=".android-samples, devsite-content"></android-fully-clickable>
+    <script nonce="">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v24d520161c9661e427a3f6fa9973bfca56d0972dca82fa8ef65c709d915e80f3/android/js/app_loader.js', '[3,"en",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v24d520161c9661e427a3f6fa9973bfca56d0972dca82fa8ef65c709d915e80f3","https://www.gstatic.com/devrel-devsite/prod/v24d520161c9661e427a3f6fa9973bfca56d0972dca82fa8ef65c709d915e80f3/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v24d520161c9661e427a3f6fa9973bfca56d0972dca82fa8ef65c709d915e80f3/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v24d520161c9661e427a3f6fa9973bfca56d0972dca82fa8ef65c709d915e80f3/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v24d520161c9661e427a3f6fa9973bfca56d0972dca82fa8ef65c709d915e80f3/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,52,63,70,75,76,80,87,91,92,93,97,98,100,101,102,103,104,105,107,108,109,110,111,112,113,115,116,117,118,120,122,124,125,126,127,129,130,131,132,133,134,135,136,138,140,141,144,147,148,149,150,151,152,154,155,156,157,158,159,161,163,164,165,168,169,170,172,173,179,180,182,183,186,190,191,193,196],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg","developer.android.com","AIzaSyAQk0fBONSGUqCNznf6Krs82Ap1-NV6J4o","AIzaSyCCxcqdrZ_7QMeLCRY20bh_SXdAYqy70KY",null,null,null,["Profiles__enable_developer_profiles_callout","Cloud__enable_cloudx_experiment_ids","Profiles__enable_developer_profiles_interests","Profiles__enable_profile_notifications_ui","Significatio__enable_by_tenant","Cloud__enable_cloud_shell_fte_user_flow","MiscFeatureFlags__enable_footprints_record_views","Cloud__enable_cloud_dlp_service","Experiments__enable_experiments","Significatio__enable_experiment_id_caching","Cloud__enable_cloud_shell","Search__enable_page_map","Badges__enable_drag_and_drop_badges","Experiments__reqs_query_experiments","Search__enable_acl_suggestions","Profiles__enable_profile_collections","MiscFeatureFlags__emergency_css","Profiles__enable_developer_profiles_dashboard_recommendations","BookNav__enable_collapsible_book_nav","Search__enable_devsite_serp","Profiles__enable_public_developer_profiles","SignIn__enable_auto_signin_oauth","Profiles__require_profile_eligibility_for_signin","Profiles__enable_page_saving","Badges__enable_delete_badges","Search__enable_suggestions_from_borg","MiscFeatureFlags__enable_tls_version_for_gaia_calls","BookNav__enable_book_nav_filtering"]]')
+  
+</script>
+    <devsite-a11y-announce aria-live="assertive" aria-atomic="true"></devsite-a11y-announce>
+  
+</body></html>
