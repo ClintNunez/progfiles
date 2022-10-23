@@ -8,6 +8,9 @@
 
 // PENDING TODO:
 // TODO Add functions for creating shapes (rectangle, triangle, parallelogram, square, trapezoid.)
+// TODO Fix printCartesian() bug in positioning of y axis
+// TODO Add printCartesian() to functions that prints the cartesian
+// TODO Add code for drawing a line
 
 const char XAXIS_LEFTEND = 17, XAXIS_LINE = '-', XAXIS_RIGHTEND = 16,
             YAXIS_TOPEND = 30, YAXIS_LINE = '|', YAXIS_BOTTOMEND = 31,
@@ -27,6 +30,17 @@ char cartesian[LIMIT][LIMIT] = {};
 int pointsList[2][10] = {};
 int currentPointPos = 0;
 
+void printCartesian(){
+  std::cout << "\n";
+  for(int y = 0; y < LIMIT; y++){
+    for(int x = 0; x < LIMIT; x++){
+      std::cout << " " << cartesian[x][y];
+      if(x == LIMIT - 1){
+        std::cout << "\n";
+      }
+    }
+  }
+}
 
 void makeCartesian_BIG(int size){
   pointsList[2][10] = {};
@@ -87,6 +101,12 @@ void plotPOINTsInCartesian(int x, int y){
     }
 }
 
+void drawLineUsingSlopeIntercept(int m, int x, int b){
+
+	
+
+	printCartesian();
+}
 
 // might be the same as drawRectangle
 void drawSquare(){
@@ -114,17 +134,7 @@ void drawShape(){
 
 }
 
-void printCartesian(){
-  std::cout << "\n";
-  for(int y = 0; y < LIMIT; y++){
-    for(int x = 0; x < LIMIT; x++){
-      std::cout << " " << cartesian[x][y];
-      if(x == LIMIT - 1){
-        std::cout << "\n";
-      }
-    }
-  }
-}
+
 
 // temporary function, might get deleted if not useful.
 void printPoints(){
@@ -153,7 +163,7 @@ int main(){
          "\tChoose action: "
       << "\n\t(1)Plot a POINT "
       << "\n\t(2)List plotted points "
-      << "\n\t(3)Draw a line between points "
+      << "\n\t(3)Draw a line using a slope-intercept "
       << "\n\t(4)Make a new cartesian plane "
       << "\n\t(0)Exit "
       << "\n\tChoice: ";
@@ -185,7 +195,11 @@ int main(){
           printPoints();
           break;
         case 3:
-          std::cout << "Currently unavailable."
+	  int m, x ,b;
+          std::cout << "Enter values for m, x, and b: ";
+	  std::cin >> m >> x >> b;
+	  drawLineUsingSlopeIntercept(m,x,b);
+	  
           break;
         case 4:
           system("CLS");
