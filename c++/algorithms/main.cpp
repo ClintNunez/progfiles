@@ -88,12 +88,10 @@ int main() {
             break;
       }
       
-      
       std::cout << "Press any key to repeat, n to exit: ";
       std::cin >> repeat;
       
    } while(repeat != 'n' || repeat != 'N'); 
-
 
    return 0;
 } 
