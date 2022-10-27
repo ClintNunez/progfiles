@@ -19,10 +19,8 @@ void SieveOfEratosthenes(int n) {
 }
 
 int main() {
-    int D;
-
     cout << "Enter dimensions of matrix: ";
-    cin >> D;
+    int D; cin >> D;
 
     int arr[D][D];
 
