@@ -3,10 +3,9 @@
 
 using namespace std;
 
-vector<int> m;
-
-void SieveOfEratosthenes(int n) {
-    bool prime[n + 1];
+// getting prime numbers
+bool prime[n + 1];
+void SieveOfEratosthenes(int n) { // Time Complexity: O(n*log(log(n)))
     memset(prime, true, sizeof(prime));
 
     for(int p = 2; p * p <= n; p++) {
@@ -18,11 +17,27 @@ void SieveOfEratosthenes(int n) {
     }
 }
 
+// create the matrix
+vector<vector<char>> m;
+void createMatrix(int D) {
+    int x, y, direction, repeat = 2;
+
+    if(D % 2 == 0) {
+        x = (D / 2) + 1; y = (D / 2) + 1;
+    } else {
+        x = D / 2; y = D / 2;
+    }
+
+    
+    
+}
+
+
 int main() {
     cout << "Enter dimensions of matrix: ";
     int D; cin >> D;
 
-    int arr[D][D];
+    createMatrix(D);
 
     int x = D/2, y = D/2, direction = 0, n = 1, repeat = 2;
     arr[x][y] = n;
