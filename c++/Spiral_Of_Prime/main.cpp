@@ -1,11 +1,11 @@
 #include<iostream>
 #include<vector>
-
+#include<bits/stdc++.h>
 using namespace std;
 
 // getting prime numbers
-bool prime[n + 1];
 void SieveOfEratosthenes(int n) { // Time Complexity: O(n*log(log(n)))
+    bool prime[n + 1];
     memset(prime, true, sizeof(prime));
 
     for(int p = 2; p * p <= n; p++) {
@@ -19,8 +19,11 @@ void SieveOfEratosthenes(int n) { // Time Complexity: O(n*log(log(n)))
 
 // create the matrix
 vector<vector<char>> m;
+//for(vector<char>::iterator itr == m.begin(); itr != m.end(); itr++) {
+    //memset(*itr, ' ', sizeof(*itr));
+//}
 void createMatrix(int D) {
-    int x, y, direction, repeat = 2;
+    int x, y, direction = 0, repeat = 2, nDim = D * 3;
 
     if(D % 2 == 0) {
         x = (D / 2) + 1; y = (D / 2) + 1;
@@ -28,67 +31,53 @@ void createMatrix(int D) {
         x = D / 2; y = D / 2;
     }
 
-    
+    for(int step = 1; step < D; step++) { // loop for number of steps
+        if(step == (D - 1)) repeat  = 3;
+        for(int j = 0; j < repeat; j++) { // loop for repeating the steps
+            for(int k = 0; k < step; k++)  { // loop for moving i number of steps
+                switch(direction) {
+                    case 0:
+                        // move up
+                        break;
+                    case 1:
+                        // move left
+                        break;
+                    case 2:
+                        // move down
+                        break;
+                    case 3:
+                        // move right
+                        break;
+
+                }
+                
+                direction = (direction == 3) ? 0 : direction++; // check
+
+            }
+            
+        }
+
+    }
     
 }
 
+// print matrix
+void printSpiral() {
+    // change to normal for loop since for each is slow
+    for(vector<char> eachVector: m) {
+        for(char element: eachVector) {
+            // print using iomanipulators
+            cout << element << " ";
+        }
+    }
+}
 
 int main() {
     cout << "Enter dimensions of matrix: ";
     int D; cin >> D;
 
+    SieveOfEratosthenes(D * D);
     createMatrix(D);
-
-    int x = D/2, y = D/2, direction = 0, n = 1, repeat = 2;
-    arr[x][y] = n;
-    
-    // Use printf or formatters
-    for(int i = 1; i < D; i++) { //very inefficient
-        if(i == (D-1)) repeat = 3;
-        for(int j = 0; j < repeat; j++) {
-            for(int k = 0; k < i; k++) {
-                switch(direction) {
-                    case 0:
-                        // move up
-                        n++;   
-                        x -= 1;
-                        arr[x][y] = n;
-                        break;
-                    case 1:
-                        // move left
-                        n++;   
-                        y -= 1;
-                        arr[x][y] = n;
-                        break;
-                    case 2:
-                        // move down
-                        n++;
-                        x += 1; 
-                        arr[x][y] = n;
-                        break;
-                    case 3:
-                        // move right
-                        n++;   
-                        y += 1;
-                        arr[x][y] = n;
-                        break;
-                }
-            }
-            if(direction == 3) {
-                    direction = 0;
-            } else {
-                    direction++;
-            }
-        }
-    }
-    
-    //print matrix
-    for(int i = 0; i < D; i++) {
-        for(int j = 0; j < D; j++) {
-            cout << arr[i][j] << " ";
-        }
-        cout << endl;
-    }
-
+   
    return 0;
 }
