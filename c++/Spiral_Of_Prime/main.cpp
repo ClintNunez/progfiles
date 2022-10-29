@@ -3,26 +3,42 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+
 // getting prime numbers
+vector<bool> primes;
 void SieveOfEratosthenes(int n) { // Time Complexity: O(n*log(log(n)))
     bool prime[n + 1];
     memset(prime, true, sizeof(prime));
 
+    for(int i = 0; i < n - 1; i++) { // removes one since 1 is not a prime number
+        primes.push_back(true);
+    }
+
     for(int p = 2; p * p <= n; p++) {
-        if(prime[p]) {
+        if(primes.at(p)) {
             for(int i = p*p; i <= n; i += p) {
-                prime[p] = false;
+                primes.at(i) = false;
             }
         }
     }
+
 }
 
 // create the matrix
 vector<vector<char>> m;
-//for(vector<char>::iterator itr == m.begin(); itr != m.end(); itr++) {
-    //memset(*itr, ' ', sizeof(*itr));
-//}
+
 void createMatrix(int D) {
+    for(int i = 0; i < D * 3; i++) {
+        vector<char> row;
+        for(int j = 0; j < D * 3; j++) {
+            row.push_back(' ');
+        }
+        m.push_back(row);
+    }
+}
+
+// create spiral
+void createSpiral(int D) {
     int x, y, direction = 0, repeat = 2, nDim = D * 3;
 
     if(D % 2 == 0) {
@@ -34,19 +50,43 @@ void createMatrix(int D) {
     for(int step = 1; step < D; step++) { // loop for number of steps
         if(step == (D - 1)) repeat  = 3;
         for(int j = 0; j < repeat; j++) { // loop for repeating the steps
-            for(int k = 0; k < step; k++)  { // loop for moving i number of steps
+            for(int k = 0; k < (step * 3); k++)  { // loop for moving i number of steps
                 switch(direction) {
                     case 0:
                         // move up
+                        if(k % 3 == 0) {
+                            // check if it is prime
+                            // if prime set '@' else set '|'
+                        } else {
+                            // assign '|'
+                        }
                         break;
                     case 1:
                         // move left
+                        if(k % 3 == 0) {
+                            // check if it is prime
+                            // if prime set '@' else set '|'
+                        } else {
+                            // assign '-'
+                        }
                         break;
                     case 2:
                         // move down
+                        if(k % 3 == 0) {
+                            // check if it is prime
+                            // if prime set '@' else set '|'
+                        } else {
+                            // assign '|'
+                        }
                         break;
                     case 3:
                         // move right
+                        if(k % 3 == 0) {
+                            // check if it is prime
+                            // if prime set '@' else set '|'
+                        } else {
+                            // assign '-'
+                        }
                         break;
 
                 }
@@ -58,7 +98,6 @@ void createMatrix(int D) {
         }
 
     }
-    
 }
 
 // print matrix
@@ -74,10 +113,8 @@ void printSpiral() {
 
 int main() {
     cout << "Enter dimensions of matrix: ";
-    int D; cin >> D;
+    int numStep; cin >> numStep;
+    int dimension = numStep * 3;
 
-    SieveOfEratosthenes(D * D);
-    createMatrix(D);
-   
    return 0;
 }
