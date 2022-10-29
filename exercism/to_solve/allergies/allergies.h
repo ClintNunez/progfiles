@@ -12,14 +12,17 @@ namespace allergies {
 
         // use bubble sort
         int low = 0, high = (sizeof(allergyList)/sizeof(int)) - 1, middle;
+        int diff, closest;
         while(low <= high) {
             middle = (low + high) / 2;
             if(allergyList[middle] == allergyScore) {
                 // set allergy to true
             } else if(allergyList[middle] > allergyScore) {
                 high = mid - 1;
-            } else {
+            } else if(allergyList[middle] < allergyScore){
                 low = mid + 1;
+            } else {
+                
             }
         }
 
