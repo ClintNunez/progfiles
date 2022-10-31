@@ -6,30 +6,21 @@
 
 // retun a map of string and boolean
 namespace allergies {
-    std::map<bool,int> allergyTest(int allergyScore) {
-        //std::set<std::string, int> allergySet = {}
-        int allergyList[] = {1,2,4,8,16,32,64,128};
-
-        // use bubble sort
-        int low = 0, high = (sizeof(allergyList)/sizeof(int)) - 1, middle;
-        int diff, closest;
-        while(low <= high) {
-            middle = (low + high) / 2;
-            if(allergyList[middle] == allergyScore) {
-                // set allergy to true
-            } else if(allergyList[middle] > allergyScore) {
-                high = mid - 1;
-            } else if(allergyList[middle] < allergyScore){
-                low = mid + 1;
-            } else {
-                
+    const int ALLERGYLIST[] = {1,2,4,8,16,32,64,128};
+    
+    class allergy_test {
+        private:
+            std::unordered_set<std::string> allergies;
+        public:
+            allergy_test(int allergyScore) {
+                // logic 
             }
-        }
 
-        
+            std::unordered_set<std::string> get_allergies() {
+                return allergies;
+            }
 
-        return "";
-    }
+    };
 }
 
 #endif
