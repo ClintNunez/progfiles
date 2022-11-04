@@ -14,9 +14,9 @@ void greeting_text() {
 int main(){
     greeting_text();
 
-	char choice;
+	 char choice;
     int actionChoice;
-	custom_binary_converter::converter Converter;
+	 custom_binary_converter::converter Converter;
 
     std::string binary;
     int decimal; 
