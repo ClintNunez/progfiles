@@ -1,9 +1,11 @@
 #if !defined(ALLERGIES_H)
 #define ALLERGIES_H
 
-#include<string>
-#include<unordered_set>
-#include<map>
+#include <string>
+#include <unordered_set>
+#include <map>
+
+#include <iostream>
 
 // use lower_bound
 namespace allergies {
