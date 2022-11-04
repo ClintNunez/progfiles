@@ -12,8 +12,8 @@
 // TODO Add printCartesian() to functions that prints the cartesian
 // TODO Add code for drawing a line
 
-const char XAXIS_LEFTEND = 17, XAXIS_LINE = '-', XAXIS_RIGHTEND = 16,
-            YAXIS_TOPEND = 30, YAXIS_LINE = '|', YAXIS_BOTTOMEND = 31,
+const char XAXIS_LEFTEND = '<', XAXIS_LINE = '-', XAXIS_RIGHTEND = '>',
+            YAXIS_TOPEND = '^', YAXIS_LINE = '|', YAXIS_BOTTOMEND = 'v',
             ORIGIN = 'o', POINT = 'O', SPACE = ' ';
 
 /*
@@ -101,11 +101,11 @@ void plotPOINTsInCartesian(int x, int y){
     }
 }
 
-void drawLineUsingSlopeIntercept(int m, int x, int b){
-
+void drawLineThroughPoints() {
+     
 	
 
-	printCartesian();
+	 printCartesian();
 }
 
 // might be the same as drawRectangle
@@ -163,7 +163,7 @@ int main(){
          "\tChoose action: "
       << "\n\t(1)Plot a POINT "
       << "\n\t(2)List plotted points "
-      << "\n\t(3)Draw a line using a slope-intercept "
+      << "\n\t(3)Draw a line through the points "
       << "\n\t(4)Make a new cartesian plane "
       << "\n\t(0)Exit "
       << "\n\tChoice: ";
@@ -195,14 +195,10 @@ int main(){
           printPoints();
           break;
         case 3:
-	  int m, x ,b;
-          std::cout << "Enter values for m, x, and b: ";
-	  std::cin >> m >> x >> b;
-	  drawLineUsingSlopeIntercept(m,x,b);
+            drawLineUsingSlopeIntercept(m,x,b);
 	  
-          break;
+            break;
         case 4:
-          system("CLS");
           std::cout << "\n\tEnter size of Cartesian Plane(15 is the limit.): ";
           std::cin >> sizeOfCartesian;
           sizeOfCartesian += 1;
