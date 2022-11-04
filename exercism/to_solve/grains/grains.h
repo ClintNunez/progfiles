@@ -1,6 +1,7 @@
 #if !defined(GRAINS_H)
 #define GRAINS_H
 
+// TODO fix, do not use powerOfTwo array, use math.h
 namespace grains {
     unsigned long long int powerOfTwo[] = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 };
 
@@ -27,7 +28,7 @@ namespace grains {
         for(int i = 0; i < 6; i++) {
             totalGrains *= powerOfTwo[10];
         }
-        totalGrains *= arr[5];
+        totalGrains *= powerOfTwo[5];
         if(totalGrains == 0) {
             totalGrains --; 
         }
