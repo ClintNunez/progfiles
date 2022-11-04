@@ -4,8 +4,6 @@
 #include <string>
 #include <math.h>
 
-#include <iostream>
-
 namespace trinary {
     int to_decimal(std::string input_trinary) {
         int decimal = 0, digit, input_trinary_length = input_trinary.length() - 1;
