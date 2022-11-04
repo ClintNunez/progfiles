@@ -38,10 +38,6 @@ namespace grade_school {
 
                 return studentNames;
             }
-
-            bool empty() {
-                return studentMap.empty();
-            }
     };
 }
 

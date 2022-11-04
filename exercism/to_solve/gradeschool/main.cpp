@@ -12,8 +12,8 @@ int main() {
     int choice; std::cin >> choice;
     
     if(choice == 1) {
-            grade_school::school school_{};
-            if(school_.empty()) {
+            const grade_school::school school_{};
+            if(school_.roster().empty()) {
                 std::cout << "Empty" << std::endl;
             }
     } else {
