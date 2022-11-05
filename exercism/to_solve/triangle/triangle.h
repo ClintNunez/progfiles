@@ -4,9 +4,9 @@
 #include<stdexcept>
 #include<string>
 
+// TODO add triangle::flavor::{equilateral, isosceles, scalene}
 namespace triangle {
     std::string kind(double s1, double s2, double s3) {
-        double sides[] = {s1, s2, s3};
         //edge cases: at least one side is zero, at least one side is negative
         if(s1 <= 0 || s2 <= 0 || s2 <= 0) { 
             throw std::domain_error("all sides should be greater than 0.");
@@ -50,14 +50,7 @@ namespace triangle {
                 return "scalene";
             }
         }
-
     }
-
-
-
-
-
-
 }
 
 #endif 
