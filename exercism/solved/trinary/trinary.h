@@ -5,8 +5,8 @@
 #include <math.h>
 
 namespace trinary {
-    int to_decimal(std::string input_trinary) {
-        int decimal = 0, digit, input_trinary_length = input_trinary.length() - 1;
+    inline int to_decimal(std::string input_trinary) {
+        int decimal = 0, input_trinary_length = input_trinary.length() - 1;
 
         for(int i = input_trinary_length; i >= 0; i--) {
             switch(input_trinary[i]) {
