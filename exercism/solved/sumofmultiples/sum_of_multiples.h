@@ -4,7 +4,7 @@
 #include<vector>
 
 namespace sum_of_multiples {
-    int to(std::vector<int> multiples, int limit) {
+    inline int to(std::vector<int> multiples, int limit) {
         int sum = 0;
         for(int i = 1; i < limit; i++) {
             for(int &eachMultiple : multiples) {
