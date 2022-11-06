@@ -4,10 +4,23 @@
 #include<stdexcept>
 #include<string>
 
-// TODO add triangle::flavor::{equilateral, isosceles, scalene}
 namespace triangle {
-    std::string kind(double s1, double s2, double s3) {
-        //edge cases: at least one side is zero, at least one side is negative
+    //enum class flavor : char {equilateral, isosceles, scalene};
+    class flavor {
+        public:
+            static int equilateral() {
+                return 1;
+            } 
+            static int isosceles() {
+                return 2;
+            } 
+            static int scalene() {
+                return 3;
+            } 
+    };
+
+    inline int* kind(double s1, double s2, double s3) {
+
         if(s1 <= 0 || s2 <= 0 || s2 <= 0) { 
             throw std::domain_error("all sides should be greater than 0.");
         } else {
@@ -43,14 +56,15 @@ namespace triangle {
             }
 
             if(s1 == s2 && s1 == s3) {
-                return "equilateral";
+                return triangle::flavor::equilateral; // equilateral
             } else if(s1 == s2 || s2 == s3 || s1 == s3) {
-                return "isosceles";
+                return 2; // isosceles
             } else {
-                return "scalene";
+                return 3; // scalene
             }
         }
     }
+
 }
 
 #endif 
