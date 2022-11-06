@@ -5,7 +5,12 @@
 #include <cctype>
 #include <iostream>
 
-// Atbash cipher adds 25 until it is in the middle
+/*
+ * Solution: get decimal value of char, charVal;
+ * decimal value of the ciphered char will be:
+ *  decimal value of z - ((difference of a - z) - decimal value of z - charVal)
+ */
+
 namespace atbash_cipher {
     std::string encode(std::string plain) {
         std::string cipher = "";
