@@ -2,33 +2,48 @@
 #define ATBASH_CIPHER_H
 
 #include <string>
-#include <cctype>
-#include <iostream>
 
-/*
- * Solution: get decimal value of char, charVal;
- * decimal value of the ciphered char will be:
- *  decimal value of z - ((difference of a - z) - decimal value of z - charVal)
- */
-
+// TODO fix error in encode. error in separating letters
 namespace atbash_cipher {
-    std::string encode(std::string plain) {
+
+    inline std::string encode(std::string plain) {
         std::string cipher = "";
         int plain_length = plain.length();  
         int char_ascii_val;
         char newChar;
         
         for(int i = 0; i < plain_length; i++) {
+            if((int) cipher.length() % 5 == 0 && (int) cipher.length() != 0) {
+                cipher.push_back(' ');
+            }
+
             if(plain[i] != ' ') {
-                char_ascii_val = (int)tolower(plain[i]);
-                newChar = (char) char_ascii_val; 
+                char_ascii_val = (int) tolower(plain[i]);
+                newChar = (char) (122 - (25 - (122 - char_ascii_val))); 
+                cipher.push_back(newChar);
             }
         }
-        return "";
+        return cipher;
     }
 
-    std::string decode(std::string cipher) {
-        return "";
+    inline std::string decode(std::string cipher) {
+        std::string plain = "";
+        int cipher_length = cipher.length();  
+        int char_ascii_val;
+        char newChar;
+        
+        for(int i = 0; i < cipher_length; i++) {
+            if(cipher[i] != ' ') {
+                if(isalpha(cipher[i])) {
+                    char_ascii_val = (int) tolower(cipher[i]);
+                    newChar = (char) (97 + (122 - char_ascii_val)); 
+                    plain.push_back(newChar);
+                } else {
+                    plain.push_back(cipher[i]);
+                }
+            } 
+        }
+        return plain;
     }
 }
 
