@@ -3,25 +3,35 @@
 
 #include <string>
 
-// TODO fix error in encode. error in separating letters
 namespace atbash_cipher {
 
     inline std::string encode(std::string plain) {
         std::string cipher = "";
         int plain_length = plain.length();  
-        int char_ascii_val;
+        int char_ascii_val, charCounter = 0;
         char newChar;
         
         for(int i = 0; i < plain_length; i++) {
-            if((int) cipher.length() % 5 == 0 && (int) cipher.length() != 0) {
-                cipher.push_back(' ');
+            if(plain[i] != ' ') {
+                
+                if(isalpha(plain[i])) {
+                    if(charCounter % 5 == 0 && i != 0) {
+                        cipher.push_back(' ');
+                    }    
+                    char_ascii_val = (int) tolower(plain[i]);
+                    newChar = (char) (97 + (122 - char_ascii_val)); 
+                    charCounter++;
+                    cipher.push_back(newChar);
+                } else if(isdigit(plain[i])){
+                    if(charCounter % 5 == 0 && i != 0) {
+                        cipher.push_back(' ');
+                    }    
+                    charCounter++;
+                    cipher.push_back(plain[i]);
+                }
+                
             }
 
-            if(plain[i] != ' ') {
-                char_ascii_val = (int) tolower(plain[i]);
-                newChar = (char) (122 - (25 - (122 - char_ascii_val))); 
-                cipher.push_back(newChar);
-            }
         }
         return cipher;
     }
