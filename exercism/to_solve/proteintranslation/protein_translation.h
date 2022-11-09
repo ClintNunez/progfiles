@@ -6,7 +6,7 @@
 #include <stdexcept>
 
 namespace protein_translation {
-    std::vector<std::string> proteins(std::string RNA) {
+    inline std::vector<std::string> proteins(std::string RNA) {
         std::vector<std::string> translated;
         std::string codon; 
         int start = 0, end = 3; 
