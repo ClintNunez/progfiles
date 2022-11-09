@@ -18,7 +18,15 @@
 namespace scrabble_score {
 
     inline int score(std::string word) {
-        std::map<std::vector<char>, int> letterScores; 
+        std::map<std::vector<char>, int> letterScores = {
+            {{}, 1},
+            {{}, 1},
+            {{}, 1},
+            {{}, 1},
+            {{}, 1},
+            {{}, 1},
+            {{}, 1},
+        }; 
         std::map<std::vector<char>, int> iterator;
 
         int word_length = word.length(), score = 0;
