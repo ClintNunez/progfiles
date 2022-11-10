@@ -20,12 +20,12 @@ void printCartesian() {
 
 void makeCartesianPlane(int size) {
     /*Insert code*/
-
     printCartesian();
 }
 
-void plotPoint(int x, int y) {
+void plotPoint(int& x, int& y) {
     /*Insert code*/
+    printCartesian();
 }
 
 void printPoints() {
@@ -51,13 +51,21 @@ int main() {
 
         switch(choice) {
             case 0:
-                /* Exit */
+                std::cout << "\n\tExiting.\n" << std::endl;
                 break;
             case 1:
                 /* Plot a Point */
+                std::cout << "\n\tPlease enter coordinates x and y: ";
+                int x; std::cin >> x; 
+                int y; std::cin >> y;
+                // Add logic for checking if coordinate is within the cartesian plane.
+
+                plotPoint(x, y)
+
                 break;
             case 2:
                 /* List Points */
+                printPoints();
                 break;
         }
 
