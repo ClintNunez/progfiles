@@ -16,9 +16,6 @@ namespace armstrong_numbers {
             result += pow((num / (int) pow(10, i)), length);   
             num %= (int) pow(10, i);
         }
-
-        
-
         
     }
 }
