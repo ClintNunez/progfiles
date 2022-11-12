@@ -14,23 +14,37 @@ namespace grade_school {
             
             void add (std::string student_name, int student_grade) {
                 std::vector<std::string> studentNames; 
-                std::map<int, std::vector<std::string>>::iterator student_data = studentMap.find(student_grade);
+                auto is_grade_available = studentMap.find(student_grade);
 
-                if(student_data == studentMap.end()) {
+                if(is_grade_available == studentMap.end()) {
                     studentNames.push_back(student_name);
-                    studentMap.insert(std::make_pair(student_grade, studentNames));
+                    studentMap.insert(std::pair(student_grade, studentNames));
                 } else {
-                    student_data->second.push_back(student_name);
+                    studentNames = is_grade_available->second;
+                    for(int i = 0; i < studentNames.size(); i++) { // for getting each name
+                        for(int j = 0; j < studentNames[i].length(); j++) { // for getting each character in the name
+                            std::string current_name = studentNames[i];
+                            if(current_name[j] == student_name[j]) {
+                                continue;
+                            } else if(current_name[j] >= student_name[j]) {
+                                studentNames[i] = student_name;
+                                studentNames.push_back(current_name);
+                            } else {
+                                studentNames.push_back(student_name);
+                            }
+                        }
+                    }
+                    studentMap.at(student_grade) = studentNames;
                 }
             }
 
-            std::map<int, std::vector<std::string>> roster() {
+            std::map<int, std::vector<std::string>> roster() const {
                 return studentMap;
             }
 
-            std::vector<std::string> grade(int student_grade) {
+            std::vector<std::string> grade(int student_grade) const {
                 std::vector<std::string> studentNames; 
-                std::map<int, std::vector<std::string>>::iterator student_data = studentMap.find(student_grade);
+                auto student_data = studentMap.find(student_grade);
 
                 if(student_data != studentMap.end()) {
                     studentNames = studentMap.at(student_grade);
