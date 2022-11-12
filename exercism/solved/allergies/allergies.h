@@ -2,41 +2,38 @@
 #define ALLERGIES_H
 
 #include <string>
+#include <vector>
 #include <unordered_set>
-#include <map>
 
-#include <iostream>
-
-// use lower_bound
 namespace allergies {
     class allergy_test {
         private:
             std::unordered_set<std::string> allergies;
 
-            std::map<std::string, int> allergyList = {
-                {"eggs", 1},
-                {"peanuts", 2},
-                {"shellfish", 4},
-                {"strawberries", 8},
-                {"tomatoes", 16},
-                {"chocolate", 32},
+            std::vector<std::pair<std::string, int>> allergyList = {
+                {"cats", 128},
                 {"pollen", 64},
-                {"cats", 128}
+                {"chocolate", 32}, 
+                {"tomatoes", 16}, 
+                {"strawberries", 8}, 
+                {"shellfish", 4}, 
+                {"peanuts", 2}, 
+                {"eggs", 1}, 
             };
+
         public:
             allergy_test(int allergyScore) {
                 if(allergyScore > 255) {
                     allergyScore -= 256;
                 }
                 while(allergyScore != 0) {  
-                    for(std::map<std::string, int>::reverse_iterator eachElement = allergyList.rbegin(); eachElement != allergyList.rend(); eachElement++) {
-                        if(allergyScore >= eachElement->second) {
-                           allergyScore -= eachElement->second;
-                           allergies.insert(eachElement->first);
+                    for(int i = 0; i < 8; i++) {
+                        if(allergyScore >= allergyList[i].second) {
+                           allergyScore -= allergyList[i].second;
+                           allergies.insert(allergyList[i].first);
                         }
                     }
                 }
-                
             }             
 
             std::unordered_set<std::string> get_allergies() {
@@ -55,13 +52,3 @@ namespace allergies {
 }
 
 #endif
-//The list of items (and their value) that were tested are:
-
-//eggs (1) 0
-//peanuts (2) 1
-//shellfish (4) 2
-//strawberries (8) 3 
-//tomatoes (16) 4
-//chocolate (32) 5
-//pollen (64) 6
-//cats (128) 7
