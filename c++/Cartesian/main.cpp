@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <map>
 #include <vector>
 
 // CURRENT TODO
@@ -8,16 +9,20 @@
 // TODO make use of different data structs like pairs etc.
 // TODO use clear screen or buffer?
 // TODO Reword prompt for getting size of cartesian plane
+// TODO FIX output for showing points
+// TODO MAKE cartesian_plane centered
 
 // FINISHED TODO
 //
 
 std::vector<std::vector<char>> cartesian_plane;
-std::vector<std::pair<int, int>> points;
+std::map<int, int> points;
+int ORIGIN_POS;
+int user_choice;
 
 const char XAXIS_LEFTEND = '<', XAXIS_LINE = '-', XAXIS_RIGHTEND = '>',
             YAXIS_TOPEND = '^', YAXIS_LINE = '|', YAXIS_BOTTOMEND = 'v',
-            ORIGIN_SIGN = 'o', Point = 'O', SPACE = ' ';
+            ORIGIN_SIGN = 'o', POINT = 'O', SPACE = ' ';
 
 void printCartesian() {
     for(int i = 0; i < cartesian_plane.size(); i++) {
@@ -32,7 +37,7 @@ void makeCartesianPlane(int size_of_side) {
     // reset data
     points.clear();
     const int size_of_cartesian = (size_of_side * 2) + 3; // * 2 for each side and 3 for origin, and 2 edges
-    const int ORIGIN_POS = size_of_cartesian / 2;
+    ORIGIN_POS = size_of_cartesian / 2;
     
     for(int y = 0; y < size_of_cartesian; y++) {
         std::vector<char> each_row;
@@ -46,7 +51,6 @@ void makeCartesianPlane(int size_of_side) {
             } else if(x == ORIGIN_POS && y == (ORIGIN_POS + (size_of_side + 1))) {
                 each_row.push_back(YAXIS_BOTTOMEND);
             } else if(x == (ORIGIN_POS - (size_of_side + 1)) && y == ORIGIN_POS) {
-                std::cout << "reached" << std::endl;
                 each_row.push_back(XAXIS_LEFTEND);
             } else if((x > 0 && x < (size_of_cartesian - 1)) && y == ORIGIN_POS) {
                 each_row.push_back(XAXIS_LINE);
@@ -64,18 +68,36 @@ void makeCartesianPlane(int size_of_side) {
 }
 
 void plotPoint(int& x, int& y) {
-    points.push_back(std::make_pair(x,y));
-    /*Insert code for plotting the actual point*/
-    // always get the back of the vector to get the recent point
+    auto does_point_exist = points.find(x);
+    if(does_point_exist == points.end()) {
+        points.emplace(x, y);
+        cartesian_plane[ORIGIN_POS - y][ORIGIN_POS + x] = POINT;
+    } else {
+        if(does_point_exist->second != y){
+            points.emplace(x, y);
+            cartesian_plane[ORIGIN_POS - y][ORIGIN_POS + x] = POINT;
+        } else {
+            std::cout << "Point already exist." << std::endl;
+        }
+    }
     printCartesian();
 }
 
 void printPoints() {
-    /*Insert code*/
+    for(auto& each_point : points) {
+        std::cout << "x: " << each_point.first << " y: " << each_point.second << std::endl;
+    }
 }
 
 void choicePrompt() {
-    /*Insert code*/
+    std::cout << "==================================================" << std::endl;
+    std::cout << "\tChoose action: "
+            << "\n\t(1)Plot a point."
+            << "\n\t(2)Show coordinates of points."
+            << "\n\t(0)Exit." << std::endl;
+    std::cout << "==================================================" << std::endl;
+    std::cout << "\n\tChoice: ";
+    std::cin >> user_choice;
 }
 
 int main() {
@@ -86,10 +108,8 @@ int main() {
 
     makeCartesianPlane(size_of_cartesian);
 
-    int user_choice;
     do {
         choicePrompt();
-        std::cin >> user_choice;
 
         switch(user_choice) {
             case 0:
