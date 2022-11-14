@@ -3,20 +3,23 @@
 #include <map>
 #include <vector>
 
+
+// BUG TODO
+// TODO fix bug in showing the list of points by converting map to vector
+
 // CURRENT TODO
-// TODO Convert past logic for array to vectors
-// TODO add contents of functions
-// TODO make use of different data structs like pairs etc.
 // TODO use clear screen or buffer?
 // TODO Reword prompt for getting size of cartesian plane
-// TODO FIX output for showing points
 // TODO MAKE cartesian_plane centered
 
 // FINISHED TODO
-//
+// TODO add contents of functions
+// TODO Convert past logic for array to vectors
+// TODO FIX output for showing points
+
 
 std::vector<std::vector<char>> cartesian_plane;
-std::map<int, int> points;
+std::vector<std::pair<int,int>> points;
 int ORIGIN_POS;
 int user_choice;
 
@@ -70,11 +73,11 @@ void makeCartesianPlane(int size_of_side) {
 void plotPoint(int& x, int& y) {
     auto does_point_exist = points.find(x);
     if(does_point_exist == points.end()) {
-        points.emplace(x, y);
+        points.insert(std::pair(x, y));
         cartesian_plane[ORIGIN_POS - y][ORIGIN_POS + x] = POINT;
     } else {
         if(does_point_exist->second != y){
-            points.emplace(x, y);
+            points.insert(std::pair(x, y));
             cartesian_plane[ORIGIN_POS - y][ORIGIN_POS + x] = POINT;
         } else {
             std::cout << "Point already exist." << std::endl;
@@ -84,9 +87,12 @@ void plotPoint(int& x, int& y) {
 }
 
 void printPoints() {
+    int point_num = 1;
     for(auto& each_point : points) {
-        std::cout << "x: " << each_point.first << " y: " << each_point.second << std::endl;
+        std::cout << "\t\t(" << point_num << ") " << "x: " << each_point.first << " y: " << each_point.second << std::endl;
+        point_num++;
     }
+
 }
 
 void choicePrompt() {
