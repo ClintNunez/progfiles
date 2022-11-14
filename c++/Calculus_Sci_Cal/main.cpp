@@ -1,6 +1,13 @@
 #include <iostream>
 #include <math.h>
 
+// CURRENT TODO
+// TODO separate code into functions
+// TODO add proper prompts
+
+// FINISHED TODO
+//
+
 const double PI = 3.14159265;
 
 int main() {
