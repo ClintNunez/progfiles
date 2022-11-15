@@ -1,8 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <map>
+#include <set>
 #include <vector>
-
 
 // BUG TODO
 // TODO fix bug in showing the list of points by converting map to vector
@@ -19,7 +19,7 @@
 
 
 std::vector<std::vector<char>> cartesian_plane;
-std::vector<std::pair<int,int>> points;
+std::set<std::pair<int,int>> points;
 int ORIGIN_POS;
 int user_choice;
 
@@ -71,6 +71,10 @@ void makeCartesianPlane(int size_of_side) {
 }
 
 void plotPoint(int& x, int& y) {
+    // use set pair
+    // use find(pair) 
+    // if exists print point already exist
+    // else add pair to set
     auto does_point_exist = points.find(x);
     if(does_point_exist == points.end()) {
         points.insert(std::pair(x, y));
@@ -87,12 +91,8 @@ void plotPoint(int& x, int& y) {
 }
 
 void printPoints() {
-    int point_num = 1;
-    for(auto& each_point : points) {
-        std::cout << "\t\t(" << point_num << ") " << "x: " << each_point.first << " y: " << each_point.second << std::endl;
-        point_num++;
-    }
-
+    // iterate over set pair using for loop with unsigned int
+    // print each point in format: (i) (x, y)
 }
 
 void choicePrompt() {
