@@ -9,6 +9,7 @@
 // TODO add formula for the last pages in the module
 // TODO allow inputs for radians like 2/3 pi
 // TODO add formulas for getting period etc
+// TODO optimize to use global variabls or addresses.
 
 // FINISHED TODO
 //
@@ -17,12 +18,38 @@ const double PI = 3.14159265;
 const std::string CLS = "\033[2J\033[1;1H";
 
 /*Functions for calculating values*/
-void Convert_Radians_To_Degrees(double radians) {
-    /*Insert code*/ 
+void Convert_Radians_To_Degrees(bool from_user_input = true) {
+    if(from_user_input) {
+        std::cout << "\tConvert Radians to Degrees" << std::endl;
+        std::cout << "\tEnter radians: "; 
+        double radians; std::cin >> radians;
+        double degrees = (radians * 180.0) PI;
+        std::cout << "\t\tEquivalent Degrees: " << degrees << std::endl;
+    } else {
+        //TODO
+        std::cout << "\tConvert Radians to Degrees" << std::endl;
+        std::cout << "\tEnter radians: "; 
+        double radians; std::cin >> radians;
+        double degrees = (radians * 180.0) PI;
+        std::cout << "\t\tEquivalent Degrees: " << degrees << std::endl;
+    }
 }
 
-void Convert_Degrees_To_Radians(double degrees) {
-    /*Insert code*/ 
+void Convert_Degrees_To_Radians(bool from_user_input = true) {
+    if(from_user_input) {
+        std::cout << "\tConvert Radians to Degrees" << std::endl;
+        std::cout << "\tEnter radians: "; 
+        double radians; std::cin >> radians;
+        degrees = degrees * PI / 180.0;
+        std::cout << "\t\tsin: " << sin(degrees) << std::endl;
+        std::cout << "\t\tcos: " << cos(degrees) << std::endl;
+        std::cout << "\t\ttan: " << tan(degrees) << std::endl;
+        std::cout << "\t\tcsc: " << 1/sin(degrees) << std::endl;
+        std::cout << "\t\tsec: " << 1/cos(degrees) << std::endl;
+        std::cout << "\t\tcot: " << 1/tan(degrees) << std::endl;
+    } else {
+
+    }
 }
 
 void Degree_Trigonometric_Functions() {
@@ -66,6 +93,8 @@ void Choice_Prompt() {
     std::cout << "\t(2) Trigonometric Functions in Radians" << std::endl;
     std::cout << "\t(3) Convert Radians to Degrees" << std::endl;
     std::cout << "\t(4) Convert Degrees to Radians" << std::endl;
+    std::cout << "\t(5) Amplitude, Phase shift, vertical shift and period for sin and cos." << std::endl;
+    std::cout << "\t(6) Amplitude, Phase shift, vertical shift and period for tan." << std::endl;
     std::cout << "\n\tGet formulas for:" << std::endl;
     std::cout << "\t(8) Arc Length" << std::endl;
     std::cout << "\t(9) Area of Sector" << std::endl;
