@@ -19,8 +19,8 @@ const std::string CLS = "\033[2J\033[1;1H";
 
 /*Functions for calculating values*/
 
-std::pair<int, int> Get_Num_From_Fraction(std::string fraction) {
-    std::pair<int, int> values;
+std::pair<double, double> Get_Pair_From_Fraction(std::string fraction) {
+    std::pair<double, double> values;
     int div_sign_pos = (int) fraction.find('/');
 
     if(div_sign_pos != std::string::npos) {
@@ -29,7 +29,7 @@ std::pair<int, int> Get_Num_From_Fraction(std::string fraction) {
         values = std::pair(numerator, denominator);
     } else {
         double digit = std::stod(fraction);
-        values = std::pair(digit, 0);
+        values = std::pair(digit, 1.0);
     }
 
     return values;
@@ -77,23 +77,31 @@ void Radians_Trigonometric_Functions() {
 }
 
 void Graph_Values_Cos_Sin() {
-    std::cout << "\tAmplitude, Phase shift, vertical shift and period for sin and cos." << std::endl;
+    std::cout << "\tAmplitude, Horizontal/Phase shift, vertical shift and period for sin and cos." << std::endl;
     std::cout << "\tInput format:" << std::endl;
     std::cout << "\ta => put positive or negative signs, doesn't matter." << std::endl;
-    std::cout << "\tb => for values with pi, it should be numerator/denominator*space*pi" << std::endl;
-    std::cout << "\tb => for values with pi, it should be numerator/denominator*space*pi" << std::endl;
+    std::cout << "\tb => for values with pi, it should be numerator/denominator*space*pi. ex: 1/2 pi\n\t     for values without pi, input " << std::endl;
+    std::cout << "\tc => numerator/denominator*space*pi. ex: 1/2 pi" << std::endl;
+    std::cout << "\td => input as is. ex: -2" << std::endl;
     std::cout << "\tEnter a, b, c, d: "; 
-    double radians; std::cin >> radians;
-    std::cout << "\t\tsin: " << sin(radians) << std::endl;
-    std::cout << "\t\tcos: " << cos(radians) << std::endl;
-    std::cout << "\t\ttan: " << tan(radians) << std::endl;
-    std::cout << "\t\tcsc: " << 1/sin(radians) << std::endl;
-    std::cout << "\t\tsec: " << 1/cos(radians) << std::endl;
-    std::cout << "\t\tcot: " << 1/tan(radians) << std::endl;
+    double a, b1, b2, c1, c2, d;
+    std::string b_fraction, c_fraction, b_pi, c_pi;
+    std::cin >> a >> b_fraction >> b_pi >> c_fraction >> c_pi >> d; 
+
+    std::pair<double, double> result = Get_Pair_From_Fraction(b_fraction);
+    b1 = result.first; b2 = result.second;
+
+    result = Get_Pair_From_Fraction(c_fraction);
+    c1 = result.first; c2 = result.second;
+
+    std::cout << "\t\tAmplitude: " << abs(a) << std::endl;
+    std::cout << "\t\tPeriod: " << b1 << std::endl;
+    std::cout << "\t\tHorizontal/Phase shift: " << b1 << std::endl;
+    std::cout << "\t\tVertical shift: " << b1 << std::endl;
 }
 
 void Graph_Values_Tan() {
-
+    
 }
 
 
