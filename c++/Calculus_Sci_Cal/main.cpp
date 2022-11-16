@@ -1,55 +1,54 @@
 #include <iostream>
 #include <math.h>
+#include <string>
 
 // CURRENT TODO
-// TODO separate code into functions
-// TODO add proper prompts
-// TODO add table of trigonometric values
 // TODO add conversion option after computing trigonometric functions
 // TODO add formula for the last pages in the module
 // TODO allow inputs for radians like 2/3 pi
 // TODO add formulas for getting period etc
 // TODO optimize to use global variabls or addresses.
+// TODO add loops for how many inputs to calculate to all functions
 
 // FINISHED TODO
-//
+// TODO separate code into functions
+// TODO add proper prompts
 
 const double PI = 3.14159265;
 const std::string CLS = "\033[2J\033[1;1H";
 
 /*Functions for calculating values*/
-void Convert_Radians_To_Degrees(bool from_user_input = true) {
-    if(from_user_input) {
-        std::cout << "\tConvert Radians to Degrees" << std::endl;
-        std::cout << "\tEnter radians: "; 
-        double radians; std::cin >> radians;
-        double degrees = (radians * 180.0) PI;
-        std::cout << "\t\tEquivalent Degrees: " << degrees << std::endl;
+
+std::pair<int, int> Get_Num_From_Fraction(std::string fraction) {
+    std::pair<int, int> values;
+    int div_sign_pos = (int) fraction.find('/');
+
+    if(div_sign_pos != std::string::npos) {
+        double numerator = std::stod(fraction.substr(0, div_sign_pos));
+        double denominator = std::stod(fraction.substr(div_sign_pos + 1, (int) fraction.length() - 1));
+        values = std::pair(numerator, denominator);
     } else {
-        //TODO
-        std::cout << "\tConvert Radians to Degrees" << std::endl;
-        std::cout << "\tEnter radians: "; 
-        double radians; std::cin >> radians;
-        double degrees = (radians * 180.0) PI;
-        std::cout << "\t\tEquivalent Degrees: " << degrees << std::endl;
+        double digit = std::stod(fraction);
+        values = std::pair(digit, 0);
     }
+
+    return values;
+} 
+
+void Convert_Radians_To_Degrees() {
+    std::cout << "\tConvert Radians to Degrees(radians should be in decimal form not fraction)" << std::endl;
+    std::cout << "\tEnter radians: "; 
+    double radians; std::cin >> radians;
+    double degrees = (radians * 180.0) / PI;
+    std::cout << "\t\tEquivalent Degrees: " << degrees << std::endl;
 }
 
-void Convert_Degrees_To_Radians(bool from_user_input = true) {
-    if(from_user_input) {
-        std::cout << "\tConvert Radians to Degrees" << std::endl;
-        std::cout << "\tEnter radians: "; 
-        double radians; std::cin >> radians;
-        degrees = degrees * PI / 180.0;
-        std::cout << "\t\tsin: " << sin(degrees) << std::endl;
-        std::cout << "\t\tcos: " << cos(degrees) << std::endl;
-        std::cout << "\t\ttan: " << tan(degrees) << std::endl;
-        std::cout << "\t\tcsc: " << 1/sin(degrees) << std::endl;
-        std::cout << "\t\tsec: " << 1/cos(degrees) << std::endl;
-        std::cout << "\t\tcot: " << 1/tan(degrees) << std::endl;
-    } else {
-
-    }
+void Convert_Degrees_To_Radians() {
+    std::cout << "\tConvert Degrees to Radians" << std::endl;
+    std::cout << "\tEnter degrees: "; 
+    double degrees; std::cin >> degrees;
+    double radians = (degrees * PI) / 180;
+    std::cout << "\t\tEquivalent Radians: " << radians << std::endl;
 }
 
 void Degree_Trigonometric_Functions() {
@@ -77,13 +76,31 @@ void Radians_Trigonometric_Functions() {
     std::cout << "\t\tcot: " << 1/tan(radians) << std::endl;
 }
 
-/*Functions for getting formulas*/
-void Arc_Length() {
-    std::cout << "\tArc Length" << std::endl;
+void Graph_Values_Cos_Sin() {
+    std::cout << "\tAmplitude, Phase shift, vertical shift and period for sin and cos." << std::endl;
+    std::cout << "\tInput format:" << std::endl;
+    std::cout << "\ta => put positive or negative signs, doesn't matter." << std::endl;
+    std::cout << "\tb => for values with pi, it should be numerator/denominator*space*pi" << std::endl;
+    std::cout << "\tb => for values with pi, it should be numerator/denominator*space*pi" << std::endl;
+    std::cout << "\tEnter a, b, c, d: "; 
+    double radians; std::cin >> radians;
+    std::cout << "\t\tsin: " << sin(radians) << std::endl;
+    std::cout << "\t\tcos: " << cos(radians) << std::endl;
+    std::cout << "\t\ttan: " << tan(radians) << std::endl;
+    std::cout << "\t\tcsc: " << 1/sin(radians) << std::endl;
+    std::cout << "\t\tsec: " << 1/cos(radians) << std::endl;
+    std::cout << "\t\tcot: " << 1/tan(radians) << std::endl;
 }
 
-void Area_of_Sector(double r, double t) {
-    std::cout << "\tArea of Sector" << std::endl;
+void Graph_Values_Tan() {
+
+}
+
+
+/*Functions for getting formulas*/
+void All_Formula() {
+    std::cout << "\tArc Length" << std::endl;
+    std::cout << "\ts = rt, where r is the radius and t is the " << std::endl;
 }
 
 void Choice_Prompt() {
@@ -93,11 +110,7 @@ void Choice_Prompt() {
     std::cout << "\t(2) Trigonometric Functions in Radians" << std::endl;
     std::cout << "\t(3) Convert Radians to Degrees" << std::endl;
     std::cout << "\t(4) Convert Degrees to Radians" << std::endl;
-    std::cout << "\t(5) Amplitude, Phase shift, vertical shift and period for sin and cos." << std::endl;
-    std::cout << "\t(6) Amplitude, Phase shift, vertical shift and period for tan." << std::endl;
-    std::cout << "\n\tGet formulas for:" << std::endl;
-    std::cout << "\t(8) Arc Length" << std::endl;
-    std::cout << "\t(9) Area of Sector" << std::endl;
+    std::cout << "\t(5) Show all formulas" << std::endl;
     std::cout << "\t(0) Exit" << std::endl;
     std::cout << "=======================================================" << std::endl;
     std::cout << "\t> ";
@@ -136,23 +149,7 @@ int main() {
                     flag = false;
                     break;
                 case 5:
-
-                    flag = false;
-                    break;
-                case 6:
-
-                    flag = false;
-                    break;
-                case 7:
-
-                    flag = false;
-                    break;
-                case 8:
-                    Arc_Length();
-                    flag = false;
-                    break;
-                case 9:
-                    Area_of_Sector();
+                    All_Formula();
                     flag = false;
                     break;
                 default:
