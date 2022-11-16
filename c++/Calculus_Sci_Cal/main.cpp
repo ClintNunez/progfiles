@@ -6,6 +6,7 @@
 // TODO add proper prompts
 // TODO add table of trigonometric values
 // TODO add conversion option after computing trigonometric functions
+// TODO add formula for the last pages in the module
 
 // FINISHED TODO
 //
