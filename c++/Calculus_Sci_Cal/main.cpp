@@ -9,6 +9,7 @@
 // TODO add formulas for getting period etc
 // TODO optimize to use global variabls or addresses.
 // TODO add loops for how many inputs to calculate to all functions
+// TODO add loops for how many inputs to calculate to all functions
 
 // FINISHED TODO
 // TODO separate code into functions
@@ -19,16 +20,16 @@ const std::string CLS = "\033[2J\033[1;1H";
 
 /*Functions for calculating values*/
 
-std::pair<double, double> Get_Pair_From_Fraction(std::string fraction, int div_pos) {
-    std::pair<double, double> values;
+std::pair<int, int> Get_Pair_From_Fraction(std::string fraction, int div_pos) {
+    std::pair<int, int> values;
 
     if(div_pos != std::string::npos) {
-        double numerator = std::stod(fraction.substr(0, div_pos));
-        double denominator = std::stod(fraction.substr(div_pos + 1, (int) fraction.length() - 1));
+        int numerator = std::stod(fraction.substr(0, div_pos));
+        int denominator = std::stod(fraction.substr(div_pos + 1, (int) fraction.length() - 1));
         values = std::pair(numerator, denominator);
     } else {
-        double digit = std::stod(fraction);
-        values = std::pair(digit, 1.0);
+        int digit = std::stod(fraction);
+        values = std::pair(digit, 1);
     }
 
     return values;
@@ -85,57 +86,72 @@ void Graph_Values_Cos_Sin() {
     std::cout << "\t   if b is a number times pi, input: number pi. ex: 3 pi" << std::endl;
     std::cout << "\t   if b is a fraction, input: numerator/denominator n. ex: 1/2 n" << std::endl;
     std::cout << "\t   if b is a fraction times pi, input: numerator/denominator pi. ex: 1/2 pi" << std::endl;
-    std::cout << "\t   Note: n means that there is no pi" << std::endl;
+    std::cout << "\t   Note: n means that there is no pi and don't put negative signs before b." << std::endl;
     std::cout << "\tFor c:" << std::endl;
     std::cout << "\t   if c is a pi, input 1 pi" << std::endl;
     std::cout << "\t   if c is fraction times pi, input: numerator/denominator pi. ex: 1/2 pi" << std::endl;
     std::cout << "\td => input as is. ex: -2" << std::endl;
     std::cout << "\tEnter a, b, c, d: "; 
-    double a, b1, b2, c1, c2, d;
+    int a, b1, b2, c1, c2, d;
     std::string b_fraction, c_fraction, b_pi, c_pi;
     std::cin >> a >> b_fraction >> b_pi >> c_fraction >> c_pi >> d; 
 
-    /*Calculate Amplitude*/
-    // find / in b_fraction
-    // get numerator and denominator from fraction
-    // initialize b1 and b2
-    // do the same to c_fraction
+    /*Calculate Period (2pi/|b|)*/
     int b_div_pos = (int) b_fraction.find('/');
-    std::pair<double, double> result = Get_Pair_From_Fraction(b_fraction, b_div_pos);
+    std::pair<int, int> result = Get_Pair_From_Fraction(b_fraction, b_div_pos);
     b1 = result.first; b2 = result.second;
 
-    std::string Amplitude;
+    std::string period;
     if(b_div_pos != std::string::npos) { // for fractions
-        if((2.0 * b2) % b1 == 0.0) {
-            Amplitude.append((2 * b2) / b1); 
+        if((2 * b2) % b1 == 0.0) {
+            period.append(std::to_string((2 * b2) / b1)); 
         } else {
-            Amplitude.append((2 * b2) + "/" + b1 + " "); 
+            period.append((2 * b2) + "/" + b1); 
         }
 
         if(b_pi == "pi") {
-            Amplitude.append(" pi");
+            period.append(" pi");
         }     
     } else { // for numbers
-        if(2.0 % b1 == 0) {
-            Amplitude.append(2 / b1); 
-        } else if(b1 % 2.0 == 0){
-            Amplitude.append("1/" + (b1 / 2)); 
+        if(2 % b1 == 0) {
+            period.append(std::to_string(2 / b1)); 
+        } else if(b1 % 2 == 0){
+            period.append("1/" + std::to_string(b1 / 2)); 
         }
 
-        if(b_pi == "pi") {
-            Amplitude.append(" pi");
+        if(b_pi != "pi") {
+            period.append(" pi");
         }     
     }
 
-    /*Calculate Period*/
+    /*Calculate Phase shift (c/b)*/
     int c_div_pos = (int) c_fraction.find('/');
     result = Get_Pair_From_Fraction(c_fraction, c_div_pos);
     c1 = result.first; c2 = result.second;
 
+    std::string phase_shift;
+    if(c_div_pos != std::string::npos && b_div_pos != std::string::npos) { // for b and c are fractions
+
+
+        if((b_pi == "pi" && c_pi != "pi") || (b_pi != "pi" && c_pi == "pi")) { 
+            period.append(" pi");
+        }     
+    } else { // for numbers
+        if(2 % b1 == 0) {
+            period.append(std::to_string(2 / b1)); 
+        } else if(b1 % 2 == 0){
+            period.append("1/" + std::to_string(b1 / 2)); 
+        }
+
+        if(b_pi == "pi") {
+            period.append(" pi");
+        }     
+    }
+
     std::cout << "\t\tAmplitude: " << abs(a) << std::endl;
-    std::cout << "\t\tPeriod: " << b1 << std::endl;
-    std::cout << "\t\tHorizontal/Phase shift: " << b1 << std::endl;
-    std::cout << "\t\tVertical shift: " << b1 << std::endl;
+    std::cout << "\t\tPeriod: " << period << std::endl;
+    std::cout << "\t\tHorizontal/Phase shift: " << phase_shift << std::endl;
+    std::cout << "\t\tVertical shift: " << d << std::endl;
 }
 
 void Graph_Values_Tan() {
