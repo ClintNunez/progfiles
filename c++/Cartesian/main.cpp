@@ -17,7 +17,6 @@
 // TODO Convert past logic for array to vectors
 // TODO FIX output for showing points
 
-
 std::vector<std::vector<char>> cartesian_plane;
 std::set<std::pair<int,int>> points;
 int ORIGIN_POS;
