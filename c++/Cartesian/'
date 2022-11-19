@@ -96,10 +96,9 @@ void plotPoint(int& x, int& y) {
 void printPoints() {
     // iterate over set pair using for loop with unsigned int
     // print each point in format: (i) (x, y)
-    std::cout << "\tCoordinates of plotted points:" << std::endl;
     int n = 1;
     for(std::set<std::pair<int, int>>::iterator each_point = points.begin(); each_point != points.end(); each_point++) {
-        printf("\t(%i) %i, %i\n", n, each_point->first, each_point->second);
+        printf("(%i) %i, %i", n, each_point->first, each_point->second);
         n++;
     }
 }
@@ -111,7 +110,7 @@ void choicePrompt() {
             << "\n\t(2)Show coordinates of points."
             << "\n\t(0)Exit." << std::endl;
     std::cout << "==================================================" << std::endl;
-    std::cout << "\t> ";
+    std::cout << "\n\t> ";
     std::cin >> user_choice;
 }
 
@@ -127,13 +126,13 @@ int main() {
     do {
         choicePrompt();
 
+        std::cout << CLS;
         switch(user_choice) {
             case 0:
                 std::cout << "\n\tExiting.\n" << std::endl;
                 break;
             case 1:
                 /* Plot a Point */
-                std::cout << CLS;
                 std::cout << "\n\tPlease enter coordinates x and y: ";
                 int x; std::cin >> x; 
                 int y; std::cin >> y;
@@ -144,7 +143,6 @@ int main() {
                 break;
             case 2:
                 /* List Points */
-                std::cout << CLS;
                 printPoints();
                 break;
         }
