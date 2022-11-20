@@ -5,8 +5,6 @@
 #include <vector>
 #include <map>
 
-#include <iostream>
-
 namespace grade_school {
     class school {
         private:
