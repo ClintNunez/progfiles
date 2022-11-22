@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace secret_handshake {
-    std::vector<std::string> commands(int decimal) {
+    inline std::vector<std::string> commands(int decimal) {
         std::vector<std::string> translated;
 
         if(decimal != 16) {
@@ -24,7 +24,7 @@ namespace secret_handshake {
             
             if(binary_length > 4) {
                 binary.substr(0, binary_length - 4);
-                binary_length = binary.length();
+                binary_length = binary.length() - 1;
             }
             
             for(int i = binary_length; i >= 0; i--) {
