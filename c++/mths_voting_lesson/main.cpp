@@ -18,7 +18,7 @@ std::vector<int> num_of_votes; // number of votes per rank
 // process inputs
 void Get_Data_From_User() {
     std::cout << "\tEnter number of candidates: ";
-    int num_of_candidates; std::cin >> num_of_candidates
+    int num_of_candidates; std::cin >> num_of_candidates;
 
     while (num_of_candidates < 2) {
         std::cout << "\tNumber of candidates should be at least 2." << std::endl;
@@ -45,19 +45,23 @@ void Get_Data_From_User() {
         std::vector<int> wrong_inputs;
         std::vector<int> valid_inputs;
         
+        /* This will process the rank per vote inputs and will print all wrong inputs if there is any and will repeat the process. */
         while (true) {
             for (int i = 0; i < total_voters; i++) {
                 std::cin >> rank_per_vote;
-                if(rank_per_vote >= 1 && rank_per_vote <= num_of_candidates) {
+                if (rank_per_vote >= 1 && rank_per_vote <= num_of_candidates) {
                     valid_inputs.push_back(rank_per_vote);
                 } else {
                     wrong_inputs.push_back(rank_per_vote);
                 }
             }
 
-            if(!wrong_inputs.empty()) {
-                // TODO loop through the wrong inputs; 
-
+            if (!wrong_inputs.empty()) {
+                std::cout << "\tWrong inputs: ";
+                for (std::vector<int>::iterator each_element = wrong_inputs.begin(); each_element != wrong_inputs.end(); each_element++) {
+                    std::cout << *each_element << " ";
+                }
+                std::cout << std::endl;
             } else {
                 break;
             }
