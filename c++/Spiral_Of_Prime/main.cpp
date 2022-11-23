@@ -62,7 +62,7 @@ void createMatrix(int D) {
 void createSpiral(int D) {
     createMatrix(D);
 
-    int x, y, direction = 0, repeat = 2, nDim = D * 3;
+    int x, y, direction = 0, repeat = 2;
 
     // Finds the center of the spiral
     if(D % 2 == 0) {
