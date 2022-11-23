@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include <iostream>
+
 namespace secret_handshake {
     inline std::vector<std::string> commands(int decimal) {
         std::vector<std::string> translated;
@@ -19,15 +21,20 @@ namespace secret_handshake {
 
                 binary.insert(0, std::to_string(remainder));
             }
+            std::cout << "binary: " << binary << std::endl;
 
-            int binary_length = binary.length() - 1;
+            int binary_length = binary.length();
             
             if(binary_length > 4) {
-                binary.substr(0, binary_length - 4);
+                binary = binary.substr(binary_length - 4, binary_length);
                 binary_length = binary.length() - 1;
+                std::cout << "binary: " << binary << std::endl;
+            } else {
+                binary_length--;
             }
             
             for(int i = binary_length; i >= 0; i--) {
+                std::cout << "i: " << i << std::endl;
                 if(binary[i] == '1') {
                     if(decimal > 16) {
                         if(!translated.empty()) {
