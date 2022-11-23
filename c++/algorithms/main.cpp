@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 
-std::vector<int> v;
+int arr[5];
 int size;
 bool sortAscending;
 // searching algorithms
@@ -12,54 +12,38 @@ bool sortAscending;
 
 // sorting algorithms
 
+void printSorted() {
+    for (int i = 0; i < 5; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+
 void printSortingAlgorithms() {
    std::cout << "1) BubbleSort" << std::endl;
 }
 
-bool isSortedAscending() {
-   if(sortAscending) {
-      for(int i = 1; i < size; i++) { // Linear Search; O(n);
-         if(v.at(i) < v.at(i - 1)) {
-            return false;
-         }
-      }
-      return true;
-   } else {
-      for(int i = 1; i < size; i++) { // Linear Search; O(n);
-         if(v.at(i) > v.at(i - 1)) {
-            return false;
-         }
-      }
-      return true;
-   }
-}
-
-void printSorted() {
-   for(int &element : v) {
-      std::cout << element << " ";
-      std::cout << std::endl;
-   }
-}
-
 
 void bubbleSort() {
-   int temp; 
-   size = v.size();
 
-   for(int i = 0; i < size; i++) {
-      for(int j = 1; j < size; j++) {
-         if(v.at(j) < v.at(j - 1)) {
-            temp = v.at(j);
-            v.at(j) = v.at(j - 1);
-            v.at(j - 1) = temp;
-         }
-      }
-      if(isSortedAscending) {
-         std::cout << "Exit loop." << std::endl;
-         break;
-      }
-   }
-
+    int i;
+    int n = 5;
+    bool isUnsorted;
+    do {
+        isUnsorted = false;
+        for (int i = 0; i < (n - 1); i++) {
+            if (arr[i] > arr[i + 1]) {
+                isUnsorted = true;
+                for (; i < (n - 1); i++) {
+                    if (arr[i] > arr[i + 1]) {
+                        std::swap(arr[i], arr[i + 1]);
+                    }
+                }
+            }
+        }
+    } while (isUnsorted);
+ 
    printSorted();
 }
 
@@ -73,7 +57,7 @@ int main() {
 
       for(int i = 0; i < N; i++) {
          std::cin >> n;
-         v.push_back(n);
+         arr[i] = n;
       }
 
       printSortingAlgorithms();
@@ -91,7 +75,7 @@ int main() {
       std::cout << "Press any key to repeat, n to exit: ";
       std::cin >> repeat;
       
-   } while(repeat != 'n' || repeat != 'N'); 
+   } while(repeat != 'n'); 
 
    return 0;
 } 
