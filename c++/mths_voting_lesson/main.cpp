@@ -68,6 +68,7 @@ void Get_Data_From_User() {
         if (!repeat_flag)  {
             candidates.push_back(std::pair(candidate_name, rankings));
         }
+        rankings.clear();
     }
 
     std::cout << "\tNumber of votes: ";
