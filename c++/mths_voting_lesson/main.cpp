@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 #include <map>
 
 // CURRENT TODO
@@ -80,6 +81,17 @@ void Get_Data_From_User() {
 }
 
 void Get_Data_From_File() {
+
+}
+
+void pluarity() {
+    /*Insert code*/
+
+
+
+}
+
+void pairwise() {
 
 }
 
