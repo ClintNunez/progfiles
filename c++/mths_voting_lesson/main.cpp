@@ -13,7 +13,8 @@
 //
 
 std::vector<std::pair<std::string, std::vector<int>>> candidates;
-std::vector<int> votes_per_group; // number of votes per group
+std::vector<int> votes_per_group; // number of votes per groups
+std::vector<std::string> result;
 int num_of_candidates;                                  
 int num_of_voting_groups; 
 
@@ -84,8 +85,16 @@ void Get_Data_From_File() {
 
 }
 
-void pluarity() {
+//loop through each rank and find 1
+//if rank is 1, get num of voters and add to votes
+//after looping through all the candidates
+//loop through the plurality vector and find the largest, 1st
+//remove that to plurality and loop again, 2nd, 3rd, 4th...
+vector<std::pair<std::string,int>> plurality;
+void plurality() {
     /*Insert code*/
+
+    
 
 
 
