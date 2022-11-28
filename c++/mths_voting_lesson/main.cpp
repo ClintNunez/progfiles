@@ -85,19 +85,21 @@ void Get_Data_From_File() {
 
 }
 
-//loop through each rank and find 1
-//if rank is 1, get num of voters and add to votes
-//after looping through all the candidates
-//loop through the plurality vector and find the largest, 1st
-//remove that to plurality and loop again, 2nd, 3rd, 4th...
-vector<std::pair<std::string,int>> plurality;
+std::vector<std::pair<std::string,int>> plurality_res;
 void plurality() {
-    /*Insert code*/
-
-    
-
-
-
+    // Process the data 
+    int votes = 0;
+    for(int i=0; i<num_of_candidates;i++){
+        std::vector<int>check = candidates[i].second;
+        for(int j=0;j<num_of_voting_groups;j++){
+            if(check[j]==i+1){
+                votes+=votes_per_group[j];
+            }
+        }
+        plurality_res.push_back(std::pair(candidates[i].first,votes));
+        votes=0;
+    }
+    //find the rankings
 }
 
 void pairwise() {
