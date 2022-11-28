@@ -61,6 +61,29 @@ void plurality_method() {
     }
 }
 
+void getplurality_ranking() {
+    /* output format:
+     * 1. name - votes(won in 1st rankings)
+     * 2. name - votes(won in 2nd rankings)
+     * 3. name - votes(won in 3rd rankings)
+     * */
+
+    int high, curr_rank=1;
+    string name;
+    for(int i=0;i<candidates_num;i++) {
+        high = plurality_result[0].second[i];
+        name = plurality_result[0].first;
+        for(int j=1;j<candidates_num;j++) {
+            if(high < plurality_result[j].second[i]){
+                high = plurality_result[j].second[i];
+                name = plurality_result[j].first;
+            }
+                
+        }
+        printf("%i. %s - %i\n", curr_rank, name, high);
+    }
+}
+
 int main() {
 
 
