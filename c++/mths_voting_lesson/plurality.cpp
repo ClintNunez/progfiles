@@ -4,8 +4,10 @@
 #include <vector>
 #include <string>
 using std::cout; using std::cin;
+using std::getline; using std::ifstream;
 using std::endl; using std::vector;
 using std::string; using std::pair;
+
 
 // variables globaly used
 vector<pair<string, vector<int>>> candidates;
@@ -45,7 +47,15 @@ void get_inputs_user() {
 }
 
 void get_inputs_file(){
-
+    string line;
+    ifstream inputFile("plurality.input");
+    if(inputFile.is_open()){
+        while(getline(cin, line)){
+            /*Inser code*/
+        }
+    } else {
+        cout << "File not available." << endl;
+    }
 }
 
 vector<pair<string,int*>> plurality_result;
