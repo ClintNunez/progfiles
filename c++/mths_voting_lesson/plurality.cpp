@@ -34,6 +34,7 @@ void get_inputs_user() {
         }
 
         candidates.push_back(pair(name,rankings));
+        rankings.clear();
     }
 
     cout << "Number of votes: ";
@@ -47,7 +48,6 @@ void get_inputs_file(){
 
 }
 
-
 vector<pair<string,int*>> plurality_result;
 vector<int> each_candidate_rank;
 void plurality_method() {
@@ -60,6 +60,23 @@ void plurality_method() {
             
         plurality_result.push_back(pair(candidates[i].first, votes_per_rank));
     }
+}
+
+void testprint() {
+    vector<int> each_rank;
+    for(int i=0;i<candidates_num;i++) {
+        cout << candidates[i].first << " ";
+        each_rank = candidates[i].second;
+        for(int j=0;j<voting_groups_num;j++) {
+            cout << each_rank[j] << " ";
+        }
+        cout << endl;
+    }
+
+    cout << "number of votes: ";
+    for(int i=0;i<voting_groups_num;i++)
+        cout << votes_per_group[i] << " ";
+    cout << endl;
 }
 
 void getplurality_ranking() {
@@ -89,6 +106,7 @@ void getplurality_ranking() {
 int main() {
     get_inputs_user();
     plurality_method();
+    testprint();
     getplurality_ranking();
 
     return 0;
