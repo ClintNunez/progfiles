@@ -27,6 +27,7 @@ void get_inputs_user() {
         cout << "candidate name: ";
         cin >> name;
 
+        cout << "ranks: ";
         for(int j=0;j<voting_groups_num;j++){
             cin >> rank;
             rankings.push_back(rank);
@@ -54,7 +55,7 @@ void plurality_method() {
     for(int i=0;i<candidates_num;i++){
         memset(votes_per_rank,0,voting_groups_num);
         each_candidate_rank = candidates[i].second;
-        for(int j=0;j<voting_groups_num;i++)
+        for(int j=0;j<voting_groups_num;j++)
             votes_per_rank[each_candidate_rank[j]-1]+=votes_per_group[j];
             
         plurality_result.push_back(pair(candidates[i].first, votes_per_rank));
@@ -78,14 +79,17 @@ void getplurality_ranking() {
                 high = plurality_result[j].second[i];
                 name = plurality_result[j].first;
             }
-                
         }
-        printf("%i. %s - %i\n", curr_rank, name, high);
+        //printf("%i. %s - %i\n", curr_rank, name, high);
+        cout << curr_rank << ". " << name << " - " << high << endl;
+        curr_rank++;
     }
 }
 
 int main() {
-
+    get_inputs_user();
+    plurality_method();
+    getplurality_ranking();
 
     return 0;
 }
