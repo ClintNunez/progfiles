@@ -10,6 +10,7 @@
 //
 
 int main() {
+    //input from file
     std::string n;
     std::ifstream testFile("input.txt");
     
@@ -21,5 +22,9 @@ int main() {
         std::cout << "File not available" << std::endl;
     }
 
+    //output file
+    std::ofstream out("out.txt");
+    out << "HELLO I AM AN OUTPUT";
+    out.close();
     return 0;
 }
