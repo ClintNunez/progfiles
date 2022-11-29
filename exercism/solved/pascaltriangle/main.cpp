@@ -7,7 +7,7 @@ int main() {
     int rows; std::cin >> rows;
 
     std::vector<std::vector<int>> result = pascals_triangle::generate_rows(rows);
-
+    
     std::vector<std::vector<int>>::iterator each_row;
     for(each_row = result.begin(); each_row != result.end(); each_row++) {
         std::vector<int> row = *each_row;
