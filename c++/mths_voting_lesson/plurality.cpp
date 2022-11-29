@@ -58,17 +58,30 @@ void get_inputs_file(){
     }
 }
 
-vector<pair<string,int*>> plurality_result;
+vector<pair<string,vector<int>>> plurality_result;
 vector<int> each_candidate_rank;
 void plurality_method() {
-    int votes_per_rank[voting_groups_num];
+    vector<int> votes_per_rank;
     for(int i=0;i<candidates_num;i++){
-        memset(votes_per_rank,0,voting_groups_num);
+        votes_per_rank.assign(voting_groups_num, 0);
         each_candidate_rank = candidates[i].second;
-        for(int j=0;j<voting_groups_num;j++)
+        for(int j=0;j<voting_groups_num;j++){
             votes_per_rank[each_candidate_rank[j]-1]+=votes_per_group[j];
+        }
             
         plurality_result.push_back(pair(candidates[i].first, votes_per_rank));
+    }
+}
+
+void ptestprint() {
+    vector<int> each_res;
+    for(int i=0;i<candidates_num;i++) {
+        cout << plurality_result[i].first << " ";
+        each_res = plurality_result[i].second;
+        for(int j=0;j<voting_groups_num;j++) {
+            cout << each_res[j] << " ";
+        }
+        cout << endl;
     }
 }
 
@@ -95,7 +108,6 @@ void getplurality_ranking() {
      * 2. name - votes(won in 2nd rankings)
      * 3. name - votes(won in 3rd rankings)
      * */
-
     int high, curr_rank=1;
     string name;
     for(int i=0;i<candidates_num;i++) {
@@ -116,7 +128,8 @@ void getplurality_ranking() {
 int main() {
     get_inputs_user();
     plurality_method();
-    testprint();
+    //ptestprint();
+    //testprint();
     getplurality_ranking();
 
     return 0;
