@@ -8,7 +8,6 @@ using std::getline; using std::ifstream;
 using std::endl; using std::vector;
 using std::string; using std::pair;
 
-
 // variables globaly used
 vector<pair<string, vector<int>>> candidates;
 vector<int> votes_per_group;
@@ -50,8 +49,34 @@ void get_inputs_file(){
     string line;
     ifstream inputFile("plurality.input");
     if(inputFile.is_open()){
-        while(getline(cin, line)){
-            /*Inser code*/
+        getline(inputFile, line);
+        candidates_num = std::stoi(line);
+        getline(inputFile, line);
+        voting_groups_num = std::stoi(line);
+
+        int rank, votes;
+        string name;
+        vector<int> rankings;
+
+
+        for(int i=0;i<candidates_num;i++){
+            getline(inputFile, line);
+            name = line;
+
+            for(int j=0;j<voting_groups_num;j++){
+                getline(inputFile, line);
+                rank = std::stoi(line);
+                rankings.push_back(rank);
+            }
+
+            candidates.push_back(pair(name,rankings));
+            rankings.clear();
+        }
+
+        for(int i=0;i<voting_groups_num;i++) {
+            getline(inputFile, line);
+            votes = std::stoi(line);
+            votes_per_group.push_back(votes);
         }
     } else {
         cout << "File not available." << endl;
@@ -126,7 +151,8 @@ void getplurality_ranking() {
 }
 
 int main() {
-    get_inputs_user();
+    //get_inputs_user();
+    get_inputs_file();
     plurality_method();
     //ptestprint();
     //testprint();
