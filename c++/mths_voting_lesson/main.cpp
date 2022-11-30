@@ -1,134 +1,149 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
-#include <fstream>
-#include <map>
+using std::cout; using std::endl;
+using std::cin; using std::getline; 
+using std::ifstream; using std::string;
+using std::pair; using std::vector;
 
 // CURRENT TODO
 // TODO add functions for all methods of voting
-// TODO add test in Get_Data_From_User and Get_Data_From_File to check if candidates are >= 2. less than 2 candidates are not allowed
 // TODO test using files
 
 // FINISHED TODO
-//
+// TODO add test in Get_Data_From_User and Get_Data_From_File to check if candidates are >= 2. less than 2 candidates are not allowed
 
-std::vector<std::pair<std::string, std::vector<int>>> candidates;
-std::vector<int> votes_per_group; // number of votes per groups
-std::vector<std::string> result;
-int num_of_candidates;                                  
-int num_of_voting_groups; 
+vector<pair<string, vector<int>>> candidates;
+vector<int> votes_per_group;
+int candidates_num;
+int voting_groups;
 
 // process inputs
-void Get_Data_From_User() {
-    std::cout << "Enter number of candidates: ";
-    std::cin >> num_of_candidates;
+void Get_User_Input() {
+    cout << "Number of candidates: ";
+    cin >> candidates_num;
 
-    while (num_of_candidates < 2) {
-        std::cout << "Number of candidates should be at least 2." << std::endl;
-        std::cout << "Enter number of candidates: ";
-        std::cin >> num_of_candidates;
+    while (candidates_num < 2) {
+        cout << "Number of candidates should be at least 2." << endl;
+        cout << "Number of candidates: ";
+        cin >> candidates_num;
     }
 
-    std::cout << "Enter number of voting groups: ";
-    std::cin >> num_of_voting_groups;
+    cout << "Number of voting groups: ";
+    cin >> voting_groups;
 
-    while (num_of_voting_groups <= 0) {
-        std::cout << "Total number of voters should be at least 1." << std::endl;
-        std::cout << "Enter total number of voters: ";
-        std::cin >> num_of_voting_groups;
+    while (voting_groups <= 0) {
+        cout << "Voting groups should be at least 1." << endl;
+        cout << "Number of voting groups: ";
+        cin >> voting_groups;
     }
 
-    int rank_per_vote;
-    std::string candidate_name;
-    std::vector<int> rankings;
+    int rank, votes;
+    string name;
+    vector<int> rankings;
     bool repeat_flag = false;
 
-    std::cout << "Enter candidate name and rankings:" << std::endl;
-    for(int i = 0; i < num_of_candidates; i++) {
-        if (!repeat_flag) {
-            std::cin >> candidate_name;
-        } else {
-            std::cout << candidate_name;
-        }
+    for(int i = 0; i < candidates_num; i++) {
+        cout << "Candidate name: ";
+        cin >> name;
 
-        for (int j = 0; j < num_of_voting_groups; j++) {
-            std::cin >> rank_per_vote;
+        cout << "Ranks: ";
+        for (int j = 0; j < voting_groups; j++) {
+            cin >> rank;
 
-            if (rank_per_vote >= 1 && rank_per_vote <= num_of_candidates) {
-                rankings.push_back(rank_per_vote);
-                repeat_flag = false;
-            } else {
-                std::cout << "Rank should be at least 1 and up to the number of candidates." << std::endl;
-                // reset variables and input stream
-                rankings.clear();
-                i--;
-                repeat_flag = true;
-                break;
+            // this should print out all the valid ranks before the invalid
+            while(rank < 1 || rank > candidates_num) {
+                cout << "Rank should be at least 1 and up to the number of candidates." << endl;
+                cout << "Ranks: ";
+
+                for(int i = 0; i < (int) rankings.size(); i++)
+                    cout << rankings[i] << " ";
+
+                cin >> rank;
             }
+
+            rankings.push_back(rank);
         }
         
-        if (!repeat_flag)  {
-            candidates.push_back(std::pair(candidate_name, rankings));
-        }
+        candidates.push_back(pair(name, rankings));
         rankings.clear();
     }
 
-    std::cout << "\tNumber of votes: ";
-    int num_of_voters;
-    for (int i = 0; i < num_of_voting_groups; i++) {
-        std::cin >> num_of_voters;
-        votes_per_group.push_back(num_of_voters);
+    cout << "Number of votes: ";
+    for (int i = 0; i < voting_groups; i++) {
+        cin >> votes;
+        votes_per_group.push_back(votes);
     }
 }
 
-void Get_Data_From_File() {
+void Get_File_Input() {
 
 }
 
-std::vector<std::pair<std::string,int>> plurality_res;
-void plurality() {
-    // Process the data 
-    int votes = 0;
-    for(int i=0; i<num_of_candidates;i++){
-        std::vector<int>check = candidates[i].second;
-        for(int j=0;j<num_of_voting_groups;j++){
-            if(check[j]==i+1){
-                votes+=votes_per_group[j];
+vector<pair<string,vector<int>>> plurality_result;
+vector<int> each_candidate_rank;
+void plurality_method() {
+    vector<int> votes_per_rank;
+    for(int i=0;i<candidates_num;i++){
+        votes_per_rank.assign(voting_groups, 0); // set vector to 0
+        each_candidate_rank = candidates[i].second;
+        for(int j=0;j<voting_groups;j++){
+            votes_per_rank[each_candidate_rank[j]-1]+=votes_per_group[j];
+        }
+            
+        plurality_result.push_back(pair(candidates[i].first, votes_per_rank));
+    }
+}
+
+void getplurality_ranking() {
+    /* output format:
+     * 1. name - votes(won in 1st rankings)
+     * 2. name - votes(won in 2nd rankings)
+     * 3. name - votes(won in 3rd rankings)
+     * */
+    int high, curr_rank=1;
+    string name;
+    for(int i=0;i<candidates_num;i++) {
+        high = plurality_result[0].second[i];
+        name = plurality_result[0].first;
+        for(int j=1;j<candidates_num;j++) {
+            if(high < plurality_result[j].second[i]){
+                high = plurality_result[j].second[i];
+                name = plurality_result[j].first;
             }
         }
-        plurality_res.push_back(std::pair(candidates[i].first,votes));
-        votes=0;
+
+        cout << curr_rank << ". " << name << " - " << high << endl;
+        curr_rank++;
     }
-    //find the rankings
 }
 
 void pairwise() {
 
 }
 
-// for testing
-void print() {
-    // print candidates and their ranks
-    for (int i = 0; i < num_of_candidates; i++) {
-        std::cout << candidates[i].first << " ";
-        std::vector<int> ranks = candidates[i].second;
-        for(int j = 0; j < num_of_voting_groups; j++) {
-            std::cout << ranks[j] << " ";
+void testprint() {
+    vector<int> each_rank;
+    for(int i=0;i<candidates_num;i++) {
+        cout << candidates[i].first << " ";
+        each_rank = candidates[i].second;
+        for(int j=0;j<voting_groups;j++) {
+            cout << each_rank[j] << " ";
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 
-    // print number of voters
-    std::cout << "Number of voters: ";
-    for(int i = 0; i < num_of_voting_groups; i++) {
-        std::cout << votes_per_group[i] << " ";
-    }
-    std::cout << std::endl;
+    cout << "number of votes: ";
+    for(int i=0;i<voting_groups;i++)
+        cout << votes_per_group[i] << " ";
+    cout << endl;
 }
 
 int main() {
-    Get_Data_From_User();
-    print();
+    Get_User_Input();
+    plurality_method();
+    getplurality_ranking();
 
     return 0;
 }
