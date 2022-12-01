@@ -13,6 +13,7 @@ using std::pair; using std::vector;
 // TODO test using files
 // TODO add function in getting file input that allows "1 2 3 4" inputs instead of separated lines
 // TODO format output for the input data (just like the table) and use iomanip
+// TODO implement try catch
 
 // FINISHED TODO
 // TODO add test in Get_Data_From_User and Get_Data_From_File to check if candidates are >= 2. less than 2 candidates are not allowed
@@ -231,28 +232,33 @@ int main() {
         Methods_Prompt();
 
         while(input_loop) {
-            cin >> choice;
+            try{
+                cin >> choice;
 
-            switch(choice){
-                case 0:
-                    cout << "Exiting" << endl;
-                    return 0;
-                case 1:
-                    if(plurality_result.empty()) {
-                        cout << "plurality method reached" << endl;
-                        Plurality_Method();
-                    }
-                    Print_Plurality_Result();
-                    input_loop = false;
-                    break;
-                case 2:
-                    cout << "To implement" << endl;
-                    input_loop = false;
-                    break; 
-                default:
-                    std::cout << "Input number that is within the choices.\n\t> "; 
-                    std::cin.clear();
-                    std::cin.ignore(10000, '\n');
+                switch(choice){
+                    case 0:
+                        cout << "Exiting" << endl;
+                        return 0;
+                    case 1:
+                        if(plurality_result.empty()) {
+                            cout << "plurality method reached" << endl;
+                            Plurality_Method();
+                        }
+                        Print_Plurality_Result();
+                        input_loop = false;
+                        break;
+                    case 2:
+                        cout << "To implement" << endl;
+                        input_loop = false;
+                        break; 
+                    default:
+                        cout << "Input number that is within the choices.\n\t> "; 
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+                }
+            } catch(...) {
+                //@test this
+                cout << "Please input integers only" << endl;
             }
         }
 
