@@ -3,21 +3,25 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <exception>
+#include <stdexcept>
+
 using std::cout; using std::endl;
 using std::cin; using std::getline; 
 using std::ifstream; using std::string;
 using std::pair; using std::vector;
+using std::setw; using std::setfill;
 
 // CURRENT TODO
 // TODO add functions for all methods of voting
 // TODO test using files
 // TODO add function in getting file input that allows "1 2 3 4" inputs instead of separated lines
-// TODO format output for the input data (just like the table) and use iomanip
 // TODO implement try catch
-
+// TODO format output for plurality result
+ 
 // FINISHED TODO
 // TODO add test in Get_Data_From_User and Get_Data_From_File to check if candidates are >= 2. less than 2 candidates are not allowed
-//
+// TODO format output for the input data (just like the table) and use iomanip
 
 const string CLS = "\033[2J\033[1;1H";
 
@@ -30,6 +34,9 @@ int voting_groups;
 int rank, votes;
 string name;
 vector<int> rankings;
+
+// for printing Data
+int longest_name_len = -1, longest_num_len = -1;
 void Get_User_Input() {
     cout << "Number of candidates: ";
     cin >> candidates_num;
@@ -52,6 +59,8 @@ void Get_User_Input() {
     for(int i = 0; i < candidates_num; i++) {
         cout << "Candidate name: ";
         cin >> name;
+        if(longest_name_len < (int)name.size())
+            longest_name_len = name.size();
 
         cout << "Ranks: ";
         for (int j = 0; j < voting_groups; j++) {
@@ -78,6 +87,10 @@ void Get_User_Input() {
     cout << "Number of votes: ";
     for (int i = 0; i < voting_groups; i++) {
         cin >> votes;
+
+        if(longest_num_len < std::to_string(votes).size())
+            longest_num_len = std::to_string(votes).size();
+
         votes_per_group.push_back(votes);
     }
 }
@@ -158,20 +171,27 @@ void Borda_Method() {
 
 }
 
-void testprint() {
+void Print_Data_Table() {
+    cout << setw(20) << "Data" << endl;
+    cout << setw(40) << setfill('-') << "-" << endl;
     vector<int> each_rank;
+
+    if(longest_name_len < 17)
+        longest_name_len = 17;
+
+    cout << setfill(' ');
     for(int i=0;i<candidates_num;i++) {
-        cout << candidates[i].first << " ";
+        cout << setw(longest_name_len+2) << candidates[i].first;
         each_rank = candidates[i].second;
         for(int j=0;j<voting_groups;j++) {
-            cout << each_rank[j] << " ";
+            cout << setw(longest_num_len+4) << each_rank[j];
         }
         cout << endl;
     }
 
-    cout << "number of votes: ";
+    cout << setw(longest_name_len+2) << "number of votes:";
     for(int i=0;i<voting_groups;i++)
-        cout << votes_per_group[i] << " ";
+        cout << setw(longest_num_len+4) << votes_per_group[i];
     cout << "\n\n";
 
 }
@@ -196,80 +216,61 @@ void Methods_Prompt(){
 int main() {
     int choice;
     char continue_choice;
-    bool input_loop = true;
 
     cout << CLS;
 
     Opening_Prompt(); 
-    while(input_loop) { 
+    while(true) { 
         cin >> choice;
 
-        switch(choice){
-            case 0:
-                cout << "Exiting" << endl;
-                return 0;
-            case 1:
-                Get_User_Input();
-                input_loop = false;
-                break;
-            case 2:
-                Get_File_Input();
-                input_loop = false;
-                break; 
-            default:
-                std::cout << "Input number that is within the choices.\n\t> "; 
-                std::cin.clear();
-                std::cin.ignore(10000, '\n');
+        if(choice == 0) {
+            cout << "Exiting" << endl;
+            return 0;
+        } else if(choice == 1) {
+            Get_User_Input();
+            break;
+        } else if(choice == 2) {
+            Get_File_Input();
+            break; 
+        } else {
+            std::cout << "input number that is within the choices.\n\t> "; 
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
         }
     }
     cout << CLS;
 
-    testprint();
-
-    input_loop = true; // reset input_loop
+    Print_Data_Table();
 
     do {
         Methods_Prompt();
 
-        while(input_loop) {
-            try{
-                cin >> choice;
+        while(true) {
+            cin >> choice;
 
-                switch(choice){
-                    case 0:
-                        cout << "Exiting" << endl;
-                        return 0;
-                    case 1:
-                        if(plurality_result.empty()) {
-                            cout << "plurality method reached" << endl;
-                            Plurality_Method();
-                        }
-                        Print_Plurality_Result();
-                        input_loop = false;
-                        break;
-                    case 2:
-                        cout << "To implement" << endl;
-                        input_loop = false;
-                        break; 
-                    default:
-                        cout << "Input number that is within the choices.\n\t> "; 
-                        cin.clear();
-                        cin.ignore(10000, '\n');
+            if(choice == 0) {
+                cout << "Exiting" << endl;
+                return 0;
+            } else if(choice == 1) {
+                if(plurality_result.empty()) {
+                    Plurality_Method();
                 }
-            } catch(...) {
-                //@test this
-                cout << "Please input integers only" << endl;
+                Print_Plurality_Result();
+                break;
+            } else if(choice == 2) {
+                cout << "To implement" << endl;
+                break; 
+            } else {
+                std::cout << "input number that is within the choices.\n\t> "; 
+                std::cin.clear();
+                std::cin.ignore(10000, '\n');
             }
         }
-
-        input_loop = true; // reset input_loop
 
         cout << "Continue[y/n]?\n> ";
         cin >> continue_choice;
 
-        //if(isalpha(continue_choice)) 
-            tolower(continue_choice);
-        
+        tolower(continue_choice);
         while(continue_choice != 'y' && continue_choice != 'n') {
             cout << "Please enter y/Y or n/N only.\n> ";
             cin >> continue_choice;
