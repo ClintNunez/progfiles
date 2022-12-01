@@ -1,5 +1,4 @@
 #include "isogram.h"
-#include <iostream>
 #include <ifstream>
 #include <string>
 
