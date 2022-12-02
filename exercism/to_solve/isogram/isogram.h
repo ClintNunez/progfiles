@@ -2,35 +2,34 @@
 #define ISOGRAM_H
 
 #include <string>
-
-/*
-Determine if a word or phrase is an isogram.
-
-An isogram (also known as a "nonpattern word") is a word or phrase without a repeating letter, however spaces and hyphens are allowed to appear multiple times.
-
-Examples of isograms:
-
-lumberjacks
-background
-downstream
-six-year-old
-The word isograms, however, is not an isogram, because the s repeats.
-*/
-
-
-
-/* Idea for initial solution 
- * 
- * use same code for finding dublicates in the ateneo comp
- *
- * */
-
+#include <cstring>
 
 namespace isogram {
+    inline bool arr[27];
     inline bool is_isogram(std::string word) {
+        int len = word.size();
         
-        return false;
+        if(len == 0) {
+            return true;
+        }
+
+        for(int i = 0; i < len; i++) {
+            if(!isalpha(word[i])) continue;
+
+            word[i] = tolower(word[i]);
+            if(!arr[word[i] - 'a']) {
+                arr[word[i] - 'a'] = 1;
+            }
+            else {
+                memset(arr, 0, 27);
+                return false;
+            }
+        }
+
+        memset(arr, 0, 27);
+        return true;
     }
+    
 }
 
 #endif
