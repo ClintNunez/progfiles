@@ -7,6 +7,7 @@ namespace beer_song {
 
     const std::string last = "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n";
     const std::string verse_1 = "1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n";
+    const std::string verse_2 = "2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n";
 
     inline std::string verse(int n) {
         std::string nth_verse;
@@ -29,6 +30,8 @@ namespace beer_song {
                 song_from_start_to_end += last;
             } else if(i == 1) {
                 song_from_start_to_end += verse_1;
+            } else if(i == 2) {
+                song_from_start_to_end += verse_2;
             } else {
                 song_from_start_to_end += std::to_string(i) + " bottles of beer on the wall, " + std::to_string(i) + " bottles of beer.\nTake one down and pass it around, " + std::to_string(i-1) + " bottles of beer on the wall.\n";
             }
