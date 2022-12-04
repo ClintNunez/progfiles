@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <map>
 #include <exception>
 #include <stdexcept>
 
@@ -10,18 +11,21 @@ using std::cout; using std::endl;
 using std::cin; using std::getline; 
 using std::ifstream; using std::string;
 using std::pair; using std::vector;
+using std::map;
 using std::setw; using std::setfill;
 
 // CURRENT TODO
 // TODO add functions for all methods of voting
-// TODO test using files
 // TODO add function in getting file input that allows "1 2 3 4" inputs instead of separated lines
 // TODO implement try catch
-// TODO format output for plurality result
  
 // FINISHED TODO
 // TODO add test in Get_Data_From_User and Get_Data_From_File to check if candidates are >= 2. less than 2 candidates are not allowed
 // TODO format output for the input data (just like the table) and use iomanip
+// TODO format output for the input data (just like the table) and use iomanip
+// TODO test using files
+//
+//
 
 const string CLS = "\033[2J\033[1;1H";
 
@@ -225,6 +229,56 @@ void Print_Borda_Result() {
     cout << endl;
 }
 
+map<string, int> pairwise_result; 
+void Pairwise_Method() {
+    int candidate1_votes, candidate2_votes;
+    vector<int> each_candidate2_rank;
+
+    // initialize pairwise map to (name, 0) for each candidate
+    for(int i = 0; i < candidates_num; i++) {
+        pairwise_result.insert(pair(candidates[i].first, 0));
+    }
+
+    for(int i = 0; i < candidates_num - 1; i++) { // loops from 0 to candidates_num - 2 | a b c d
+        each_candidate_rank = candidates[i].second;
+
+        for(int j = i + 1; j < candidates_num; j++) { // loops from 1 to candidates_num | b c d e
+            candidate1_votes = 0;
+            candidate2_votes = 0;
+            each_candidate2_rank = candidates[j].second;
+
+            for(int k = 0; k < voting_groups; k++) {
+                if(each_candidate_rank[k] < each_candidate2_rank[k]) {
+                    candidate1_votes += votes_per_group[k];
+                } else {
+                    candidate2_votes += votes_per_group[k];
+                }
+            }
+
+            if(candidate1_votes > candidate2_votes)
+                pairwise_result[candidates[i].first]++;
+            else
+                pairwise_result[candidates[j].first]++;
+        }
+    } 
+}
+
+void Print_Pairwise_Result() {
+    /* output format:
+     * name - total_wins
+     * name - total_wins
+     * name - total_wins
+     * ...
+     * */
+
+    cout << "\nPairwise Method Result(Not in order): " << endl;
+
+    for(auto each_candidate = pairwise_result.begin(); each_candidate != pairwise_result.end(); each_candidate++) {
+        cout << each_candidate->first << " - total wins: " << each_candidate->second << endl;
+    }
+    cout << endl;
+}
+
 void Print_Data_Table() {
     cout << endl;
     cout << setw(20) << "Data" << endl;
@@ -264,6 +318,7 @@ void Methods_Prompt(){
     cout << "Choose method to use:" << endl;
     cout << "1) Plurality Method" << endl;
     cout << "2) Borda Count Method" << endl;
+    cout << "3) Pairwise Method" << endl;
     cout << "0) Exit" << endl;
     cout << "> ";
 }
@@ -316,6 +371,12 @@ int main() {
                     Borda_Method();
                 }
                 Print_Borda_Result();
+                break; 
+            } else if(choice == 3) {
+                if(pairwise_result.empty()) {
+                    Pairwise_Method();
+                }
+                Print_Pairwise_Result();
                 break; 
             } else {
                 std::cout << "input number that is within the choices.\n> "; 
