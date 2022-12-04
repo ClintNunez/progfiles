@@ -118,7 +118,7 @@ void Get_File_Input() {
             rankings.clear();
         }
 
-        for(int i=0;i<voting_groups;i++) {
+        for(int i = 0; i < voting_groups; i++) {
             getline(inputFile, line);
             votes = std::stoi(line);
             votes_per_group.push_back(votes);
@@ -129,14 +129,18 @@ void Get_File_Input() {
 
 }
 
-vector<pair<string,vector<int>>> plurality_result;
+// used by most of the methods inorder to iterate through the rankings of each candidate
 vector<int> each_candidate_rank;
+
+vector<pair<string,vector<int>>> plurality_result;
 void Plurality_Method() {
     vector<int> votes_per_rank;
-    for(int i=0;i<candidates_num;i++){
+
+    for(int i = 0; i < candidates_num;i++) {
         votes_per_rank.assign(voting_groups, 0); // set vector to 0
         each_candidate_rank = candidates[i].second;
-        for(int j=0;j<voting_groups;j++){
+
+        for(int j=0;j<voting_groups;j++) {
             votes_per_rank[each_candidate_rank[j]-1]+=votes_per_group[j];
         }
             
@@ -149,29 +153,80 @@ void Print_Plurality_Result() {
      * 1. name - votes(won in 1st rankings)
      * 2. name - votes(won in 2nd rankings)
      * 3. name - votes(won in 3rd rankings)
+     * ...
      * */
+
     int high, curr_rank=1;
     string name;
-    for(int i=0;i<candidates_num;i++) {
+    
+    cout << "\nPlurality Method Result: " << endl;
+    for(int i=0; i < candidates_num; i++) {
         high = plurality_result[0].second[i];
         name = plurality_result[0].first;
-        for(int j=1;j<candidates_num;j++) {
+
+        for(int j = 1;j < candidates_num; j++) {
             if(high < plurality_result[j].second[i]){
                 high = plurality_result[j].second[i];
                 name = plurality_result[j].first;
             }
         }
 
-        cout << curr_rank << ". " << name << " - " << high << endl;
+        cout << curr_rank << ". " << name << " - total rank " << curr_rank << " votes: " << high << endl;
         curr_rank++;
+    }
+    cout << endl;
+}
+
+vector<pair<string,int>> borda_result;
+void Borda_Method() {
+    int total_votes;
+     
+    for(int i = 0; i < candidates_num; i++) {
+        total_votes = 0;
+        each_candidate_rank = candidates[i].second;
+
+        for(int j = 0; j < voting_groups; j++) {
+            total_votes += votes_per_group[j] * ((candidates_num - each_candidate_rank[j]) + 1);
+        }
+
+        if(borda_result.empty()) {
+            borda_result.push_back(pair(candidates[i].first, total_votes));
+        } else {
+            for(int j = 0; j < (int)borda_result.size(); j++) {
+                if(j + 1 == (int) borda_result.size()) {
+                    borda_result.push_back(pair(candidates[i].first, total_votes));
+                    break;
+                } else if(total_votes > borda_result[j].second) {
+                    borda_result.insert(borda_result.begin() + j, pair(candidates[i].first, total_votes));
+                    break;
+                }
+            }
+
+
+        }
     }
 }
 
-void Borda_Method() {
+void Print_Borda_Result() {
+    /* output format:
+     * 1. name - total_votes(1st rankings)
+     * 2. name - total_votes(2nd rankings)
+     * 3. name - total_votes(3rd rankings)
+     * ...
+     * */
 
+    cout << "\nBorda Method Result: " << endl;
+    int curr_rank=1;
+
+    for(int i = 0; i < candidates_num; i++) {
+        cout << curr_rank << ". " << borda_result[i].first << " - total_votes: " << borda_result[i].second << endl;
+        curr_rank++;
+    }
+    cout << endl;
 }
 
 void Print_Data_Table() {
+    cout << endl;
     cout << setw(20) << "Data" << endl;
     cout << setw(40) << setfill('-') << "-" << endl;
     vector<int> each_rank;
@@ -233,16 +288,15 @@ int main() {
             Get_File_Input();
             break; 
         } else {
-            std::cout << "input number that is within the choices.\n\t> "; 
+            std::cout << "input number that is within the choices.\n> "; 
             std::cin.clear();
             std::cin.ignore(10000, '\n');
         }
     }
     cout << CLS;
 
-    Print_Data_Table();
-
     do {
+        Print_Data_Table();
         Methods_Prompt();
 
         while(true) {
@@ -258,10 +312,13 @@ int main() {
                 Print_Plurality_Result();
                 break;
             } else if(choice == 2) {
-                cout << "To implement" << endl;
+                if(borda_result.empty()) {
+                    Borda_Method();
+                }
+                Print_Borda_Result();
                 break; 
             } else {
-                std::cout << "input number that is within the choices.\n\t> "; 
+                std::cout << "input number that is within the choices.\n> "; 
                 std::cin.clear();
                 std::cin.ignore(10000, '\n');
             }
