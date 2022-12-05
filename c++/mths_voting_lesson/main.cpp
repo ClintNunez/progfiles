@@ -15,16 +15,16 @@ using std::map;
 using std::setw; using std::setfill;
 
 // CURRENT TODO
-// TODO add ISBN
-// TODO add UPC
+// TODO add user input
+// TODO clear vectors for input each time you get inputs maybe use a function that clears all data
  
 // FINISHED TODO
 // TODO add test in Get_Data_From_User and Get_Data_From_File to check if candidates are >= 2. less than 2 candidates are not allowed
 // TODO format output for the input data (just like the table) and use iomanip
 // TODO format output for the input data (just like the table) and use iomanip
 // TODO test using files
-//
-//
+// TODO add ISBN
+// TODO add UPC
 
 const string CLS = "\033[2J\033[1;1H";
 const string VOTING_FILE = "voting.txt";
@@ -45,7 +45,7 @@ vector<int> rankings;
 int longest_name_len = -1, longest_num_len = -1;
 
 //----------------Inputs------------------
-void Get_User_Input() {
+void Get_Voting_User_Input() {
     cout << "Number of candidates: ";
     cin >> candidates_num;
 
@@ -106,36 +106,36 @@ void Get_User_Input() {
 void Get_Voting_File_Input() {
     string line;
     ifstream inputFile(VOTING_FILE);
-    // TODO learn how to close ifstream
-    if(inputFile.is_open()){
-        getline(inputFile, line);
-        candidates_num = std::stoi(line);
-        getline(inputFile, line);
-        voting_groups = std::stoi(line);
-
-        for(int i = 0; i < candidates_num; i++){
+    if(candidates.empty()) {
+        if(inputFile.is_open()){
             getline(inputFile, line);
-            name = line;
+            candidates_num = std::stoi(line);
+            getline(inputFile, line);
+            voting_groups = std::stoi(line);
 
-            for(int j = 0; j < voting_groups; j++){
+            for(int i = 0; i < candidates_num; i++){
                 getline(inputFile, line);
-                rank = std::stoi(line);
-                rankings.push_back(rank);
+                name = line;
+
+                for(int j = 0; j < voting_groups; j++){
+                    getline(inputFile, line);
+                    rank = std::stoi(line);
+                    rankings.push_back(rank);
+                }
+
+                candidates.push_back(pair(name,rankings));
+                rankings.clear();
             }
 
-            candidates.push_back(pair(name,rankings));
-            rankings.clear();
+            for(int i = 0; i < voting_groups; i++) {
+                getline(inputFile, line);
+                votes = std::stoi(line);
+                votes_per_group.push_back(votes);
+            }
+        } else {
+            cout << "File not available." << endl;
         }
-
-        for(int i = 0; i < voting_groups; i++) {
-            getline(inputFile, line);
-            votes = std::stoi(line);
-            votes_per_group.push_back(votes);
-        }
-    } else {
-        cout << "File not available." << endl;
     }
-
 }
 
 vector<string> isbn_check;
@@ -150,40 +150,45 @@ void Get_IBSN_UPC_File_Input(string file_name) {
     string line;
     int input_ctr;
     if(file_name == "isbn.txt") {
-        ifstream isbn_input(file_name);
-        while(getline(isbn_input, line)) {
-            if(line == "c") {
-                getline(isbn_input, line);
-                input_ctr = std::stoi(line);
-                for(int i = 0; i < input_ctr; i++) {
-                    getline(isbn_check, line);
-                    isbn_check.push_back(line);
-                }
-            }else if(line == "f") {
-                getline(isbn_input, line);
-                input_ctr = std::stoi(line);
-                for(int i = 0; i < input_ctr; i++) {
-                    getline(isbn_check, line);
-                    isbn_find.push_back(line);
+
+        if(isbn_check.empty() && isbn_find.empty()) {
+            ifstream isbn_input(file_name);
+            while(getline(isbn_input, line)) {
+                if(line == "c") {
+                    getline(isbn_input, line);
+                    input_ctr = std::stoi(line);
+                    for(int i = 0; i < input_ctr; i++) {
+                        getline(isbn_input, line);
+                        isbn_check.push_back(line);
+                    }
+                }else if(line == "f") {
+                    getline(isbn_input, line);
+                    input_ctr = std::stoi(line);
+                    for(int i = 0; i < input_ctr; i++) {
+                        getline(isbn_input, line);
+                        isbn_find.push_back(line);
+                    }
                 }
             }
         }
     } else if(file_name == "upc.txt") {
-        ifstream upc_input(file_name);
-        while(getline(upc_input, line)) {
-            if(line == "c") {
-                getline(upc_input, line);
-                input_ctr = std::stoi(line);
-                for(int i = 0; i < input_ctr; i++) {
+        if(upc_check.empty() && upc_find.empty()) {
+            ifstream upc_input(file_name);
+            while(getline(upc_input, line)) {
+                if(line == "c") {
                     getline(upc_input, line);
-                    upc_check.push_back(line);
-                }
-            }else if(line == "f") {
-                getline(upc_input, line);
-                input_ctr = std::stoi(line);
-                for(int i = 0; i < input_ctr; i++) {
+                    input_ctr = std::stoi(line);
+                    for(int i = 0; i < input_ctr; i++) {
+                        getline(upc_input, line);
+                        upc_check.push_back(line);
+                    }
+                }else if(line == "f") {
                     getline(upc_input, line);
-                    upc_find.push_back(line);
+                    input_ctr = std::stoi(line);
+                    for(int i = 0; i < input_ctr; i++) {
+                        getline(upc_input, line);
+                        upc_find.push_back(line);
+                    }
                 }
             }
         }
@@ -194,9 +199,11 @@ void Get_IBSN_UPC_File_Input(string file_name) {
 
 
 //----------------Voting Methods------------------
-// used by most of the methods inorder to iterate through the rankings of each candidate vector<int> each_candidate_rank;
 
+// used by most of the methods inorder to iterate through the rankings of each candidate 
+vector<int> each_candidate_rank;
 vector<pair<string,vector<int>>> plurality_result;
+
 void Plurality_Method() {
     vector<int> votes_per_rank;
 
@@ -372,44 +379,48 @@ int isbn_length;
 int sum_of_12_digits;
 int digit_13;
 int computed_d13;
+string isbn_string;
 
 void isbn_check_validity() {
     for(auto each_isbn = isbn_check.begin(); each_isbn != isbn_check.end(); each_isbn++) {
-        cout << "Check if ISBN: " << *each_isbn << " is valid" << endl;
-
-        isbn_length = *each_isbn.size();
+        isbn_string = *each_isbn;
+        isbn_length = isbn_string.size();
         sum_of_12_digits = 0;
-        digit_13 = (int)*each_isbn[12] - '0';
+        digit_13 = (int)isbn_string[12] - '0';
+
+        cout << "\nCheck if " << isbn_string << " is valid:" << endl;
+
         for(int i = 1; i <= isbn_length - 1; i++) {
             if(i % 2 == 0)
-                sum_of_12_digits += 3 * ((int)*each_isbn[i - 1] - '0');
+                sum_of_12_digits += 3 * ((int)isbn_string[i - 1] - '0');
             else 
-                sum_of_12_digits += ((int)*each_isbn[i - 1] - '0');
+                sum_of_12_digits += ((int)isbn_string[i - 1] - '0');
         }
         computed_d13 = 10 - (sum_of_12_digits % 10);
 
         if(computed_d13 == digit_13) {
-            cout << computed_d13 << " == " << digit_13 << endl;
-            cout << "Therefore, ISBN: " << *each_isbn << " is VALID." << endl;
+            cout << "Computed check digit -> " << computed_d13 << " == " << digit_13 << " <- Given check digit"<< endl;
+            cout << "Therefore, ISBN: " << isbn_string << " is VALID." << endl;
         } else {
-            cout << computed_d13 << " != " << digit_13 << endl;
-            cout << "Therefore, ISBN: " << *each_isbn << " is INVALID." << endl;
+            cout << "Computed check digit -> " << computed_d13 << " != " << digit_13 << " <- Given check digit"<< endl;
+            cout << "Therefore, ISBN: " << isbn_string << " is INVALID." << endl;
         }
     }
 }
 
 void isbn_find_last_digit() {
     for(auto each_isbn = isbn_find.begin(); each_isbn != isbn_find.end(); each_isbn++) {
-        cout << "Check if ISBN: " << *each_isbn << " is valid" << endl;
-
-        isbn_length = *each_isbn.size();
+        isbn_string = *each_isbn;
+        isbn_length = isbn_string.size();
         sum_of_12_digits = 0;
+
+        cout << "\nCheck if " << isbn_string << " is valid:" << endl;
 
         for(int i = 1; i <= isbn_length; i++) {
             if(i % 2 == 0)
-                sum_of_12_digits += 3 * ((int)*each_isbn[i - 1] - '0');
+                sum_of_12_digits += 3 * ((int)isbn_string[i - 1] - '0');
             else 
-                sum_of_12_digits += ((int)*each_isbn[i - 1] - '0');
+                sum_of_12_digits += ((int)isbn_string[i - 1] - '0');
         }
         computed_d13 = 10 - (sum_of_12_digits % 10);
 
@@ -423,44 +434,48 @@ int upc_length;
 int sum_of_11_digits;
 int digit_12;
 int computed_d12;
+string upc_string;
 
 void upc_check_validity() {
     for(auto each_upc = upc_check.begin(); each_upc != upc_check.end(); each_upc++) {
-        cout << "Check if UPC: " << *each_upc << " is valid" << endl;
-
-        upc_length = *each_upc.size();
+        upc_string = *each_upc;
+        upc_length = upc_string.size();
         sum_of_11_digits = 0;
-        digit_12 = (int)*each_upc[12] - '0';
+        digit_12 = (int)upc_string[12] - '0';
+
+        cout << "\nCheck if " << upc_string << " is valid:" << endl;
+
         for(int i = 1; i <= upc_length - 1; i++) {
             if(i % 2 != 0)
-                sum_of_11_digits += 3 * ((int)*each_upc[i - 1] - '0');
+                sum_of_11_digits += 3 * ((int)upc_string[i - 1] - '0');
             else 
-                sum_of_11_digits += ((int)*each_upc[i - 1] - '0');
+                sum_of_11_digits += ((int)upc_string[i - 1] - '0');
         }
         computed_d12 = 10 - (sum_of_11_digits % 10);
 
         if(computed_d12 == digit_12) {
-            cout << computed_d12 << " == " << digit_12 << endl;
-            cout << "Therefore, UPC: " << *each_upc << " is VALID." << endl;
+            cout << "Computed check digit -> " << computed_d12 << " == " << digit_12 << " <- Given check digit"<< endl;
+            cout << "Therefore, UPC: " << upc_string << " is VALID." << endl;
         } else {
-            cout << computed_d12 << " != " << digit_12 << endl;
-            cout << "Therefore, UPC: " << *each_upc << " is INVALID." << endl;
+            cout << "Computed check digit -> " << computed_d12 << " != " << digit_12 << " <- Given check digit"<< endl;
+            cout << "Therefore, UPC: " << upc_string << " is INVALID." << endl;
         }
     }
 }
 
 void upc_find_last_digit() {
     for(auto each_upc = upc_find.begin(); each_upc != upc_find.end(); each_upc++) {
-        cout << "Check if UPC: " << *each_upc << " is valid" << endl;
-
-        upc_length = *each_upc.size();
+        upc_string = *each_upc;
+        upc_length = upc_string.size();
         sum_of_11_digits = 0;
+
+        cout << "\nCheck if " << upc_string << " is valid:" << endl;
 
         for(int i = 1; i <= upc_length; i++) {
             if(i % 2 != 0)
-                sum_of_11_digits += 3 * ((int)*each_upc[i - 1] - '0');
+                sum_of_11_digits += 3 * ((int)upc_string[i - 1] - '0');
             else 
-                sum_of_11_digits += ((int)*each_upc[i - 1] - '0');
+                sum_of_11_digits += ((int)upc_string[i - 1] - '0');
         }
         computed_d12 = 10 - (sum_of_11_digits % 10);
 
@@ -471,7 +486,7 @@ void upc_find_last_digit() {
 
 //-------------------Prompts-------------------
 void Main_Menu() {
-    cout << "Choose Topic:\n" << endl;
+    cout << "Choose Topic:" << endl;
     cout << "1) Voting" << endl;
     cout << "2) ISBN" << endl;
     cout << "3) UPC" << endl;
@@ -480,6 +495,13 @@ void Main_Menu() {
 }
 
 void Input_Method(string file_name) {
+    if(file_name == VOTING_FILE)
+        cout << setw(20) << "TOPIC: VOTING\n" << endl;
+    else if(file_name == ISBN_FILE)
+        cout << setw(20) << "TOPIC: ISBN\n" << endl;
+    else if(file_name == UPC_FILE)
+        cout << setw(20) << "TOPIC: UPC\n" << endl;
+    
     cout << "Choose input format:" << endl;
     cout << "1) User Input" << endl;
     cout << "2) File Input(Make sure to name the file \"" << file_name << "\" and have it placed in the same folder as this cpp file)" << endl;
@@ -488,22 +510,36 @@ void Input_Method(string file_name) {
     cout << "> ";
 }
 
-void Voting_Methods_Prompt() {
+void Voting_Methods_Prompt(string file_name) {
+    if(file_name == VOTING_FILE)
+        cout << setw(20) << "TOPIC: VOTING\n" << endl;
+    else if(file_name == ISBN_FILE)
+        cout << setw(20) << "TOPIC: ISBN\n" << endl;
+    else if(file_name == UPC_FILE)
+        cout << setw(20) << "TOPIC: UPC\n" << endl;
+    
     cout << "Choose method to use:" << endl;
     cout << "1) Plurality Method" << endl;
     cout << "2) Borda Count Method" << endl;
     cout << "3) Pairwise Method" << endl;
-    cout << "0) Back" << endl;
-    cout << "-1) Exit"
+    cout << "0) Back to Topics" << endl;
+    cout << "-1) Exit" << endl;
     cout << "> ";
 }
 
-void ISBN_UPC_Method_Prompt() {
+void ISBN_UPC_Method_Prompt(string file_name) {
+    if(file_name == VOTING_FILE)
+        cout << setw(20) << "TOPIC: VOTING\n" << endl;
+    else if(file_name == ISBN_FILE)
+        cout << setw(20) << "TOPIC: ISBN\n" << endl;
+    else if(file_name == UPC_FILE)
+        cout << setw(20) << "TOPIC: UPC\n" << endl;
+
     cout << "Choose method to use:" << endl;
     cout << "1) Check Validity" << endl;
     cout << "2) Find Check Digit" << endl;
-    cout << "0) Back" << endl;
-    cout << "-1) Exit"
+    cout << "0) Back to Topics" << endl;
+    cout << "-1) Exit" << endl;
     cout << "> ";
 }
 //---------------------------------------------
@@ -514,9 +550,9 @@ int main() {
     char continue_choice;
     bool back, valid_input;
 
-    cout << CLS;
 
-    do { 
+    while(true) { 
+        cout << CLS;
         Main_Menu(); 
         back = false;
         valid_input = false;
@@ -529,6 +565,7 @@ int main() {
             // Voting topic
 
             // Get input
+            cout << CLS;
             do {
                 Input_Method(VOTING_FILE);
                 
@@ -543,11 +580,11 @@ int main() {
                         valid_input = true;
                         break;
                     } else if(choice == 1) {
-                        Get_User_Input();
+                        Get_Voting_User_Input();
                         valid_input = true;
                         break;
                     } else if(choice == 2) {
-                        Get_File_Input(VOTING_FILE);
+                        Get_Voting_File_Input();
                         valid_input = true;
                         break;
                     } else {
@@ -559,11 +596,13 @@ int main() {
                 }
             } while(!valid_input);
 
+            cout << CLS;
             valid_input = false;
 
             // Choose Methods
             while(!back) { // !back so that when the user wants to go back, the code will not run this.
-                Voting_Methods_Prompt();
+                Print_Data_Table();
+                Voting_Methods_Prompt(VOTING_FILE);
 
                 while(true) {
                     cin >> choice;
@@ -599,26 +638,31 @@ int main() {
                     }
                 }
                 
-                cout << "Continue[y/n]?\n> ";
-                cin >> continue_choice;
-
-                tolower(continue_choice);
-                while(continue_choice != 'y' && continue_choice != 'n') {
-                    cout << "Please enter y/Y or n/N only.\n> ";
+                if(!back) {
+                    cout << "\nContinue[y/n]?\n> ";
                     cin >> continue_choice;
-                }
 
-                if(continue_choice == 'y') {
-                    cout << CLS;
+                    tolower(continue_choice);
+                    while(continue_choice != 'y' && continue_choice != 'n') {
+                        cout << "Please enter y/Y or n/N only.\n> ";
+                        cin >> continue_choice;
+                    }
+
+                    if(continue_choice == 'y') {
+                        cout << CLS;
+                    } else {
+                        break; // will go back to the main menu
+                    } 
                 } else {
-                    break; // will go back to the main menu
-                } 
+                    cout << CLS;
+                }
             }
 
         } else if(choice == 2) {
             // ISBN
 
             // Get input
+            cout << CLS;
             do {
                 Input_Method(ISBN_FILE);
 
@@ -649,11 +693,12 @@ int main() {
                 }
             } while(!valid_input);
 
+            cout << CLS;
             valid_input = false;
             
             // Execute methods
             while(!back) {
-                ISBN_UPC_Method_Prompt();
+                ISBN_UPC_Method_Prompt(ISBN_FILE);
 
                 while(true) {
                     cin >> choice;
@@ -669,6 +714,7 @@ int main() {
                         break;
                     } else if(choice == 2) {
                         isbn_find_last_digit();
+                        break;
                     } else {
                         std::cout << "input number that is within the choices.\n> "; 
                         std::cin.clear();
@@ -676,20 +722,24 @@ int main() {
                     }
                 }
                 
-                cout << "Continue[y/n]?\n> ";
-                cin >> continue_choice;
-
-                tolower(continue_choice);
-                while(continue_choice != 'y' && continue_choice != 'n') {
-                    cout << "Please enter y/Y or n/N only.\n> ";
+                if(!back) {
+                    cout << "\nContinue[y/n]?\n> ";
                     cin >> continue_choice;
-                }
 
-                if(continue_choice == 'y') {
-                    cout << CLS;
+                    tolower(continue_choice);
+                    while(continue_choice != 'y' && continue_choice != 'n') {
+                        cout << "Please enter y/Y or n/N only.\n> ";
+                        cin >> continue_choice;
+                    }
+
+                    if(continue_choice == 'y') {
+                        cout << CLS;
+                    } else {
+                        break; // will go back to the main menu
+                    } 
                 } else {
-                    break; // will go back to the main menu
-                } 
+                    cout << CLS;
+                }
 
             }
 
@@ -697,6 +747,7 @@ int main() {
             // UPC
 
             // Get input
+            cout << CLS;
             do {
                 Input_Method(UPC_FILE);
 
@@ -727,11 +778,12 @@ int main() {
                 }
             } while(!valid_input);
 
+            cout << CLS;
             valid_input = false;
             
             // Execute methods
             while(!back) {
-                ISBN_UPC_Method_Prompt();
+                ISBN_UPC_Method_Prompt(UPC_FILE);
 
                 while(true) {
                     cin >> choice;
@@ -755,29 +807,31 @@ int main() {
                     }
                 }
                 
-                cout << "Continue[y/n]?\n> ";
-                cin >> continue_choice;
-
-                tolower(continue_choice);
-                while(continue_choice != 'y' && continue_choice != 'n') {
-                    cout << "Please enter y/Y or n/N only.\n> ";
+                if(!back) {
+                    cout << "\nContinue[y/n]?\n> ";
                     cin >> continue_choice;
-                }
 
-                if(continue_choice == 'y') {
-                    cout << CLS;
+                    tolower(continue_choice);
+                    while(continue_choice != 'y' && continue_choice != 'n') {
+                        cout << "Please enter y/Y or n/N only.\n> ";
+                        cin >> continue_choice;
+                    }
+
+                    if(continue_choice == 'y') {
+                        cout << CLS;
+                    } else {
+                        break; // will go back to the main menu
+                    } 
                 } else {
-                    break; // will go back to the main menu
-                } 
-
+                    cout << CLS;
+                }
             }
         } else {
             std::cout << "input number that is within the choices.\n> "; 
             std::cin.clear();
             std::cin.ignore(10000, '\n');
         }
-
-    } while(true);
+    } 
 
     return 0;
 }
