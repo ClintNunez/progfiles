@@ -141,6 +141,9 @@ vector<string> isbn_check;
 vector<string> isbn_find;
 vector<string> upc_check;
 vector<string> upc_find;
+void Get_ISBN_UPC_File_Input() {
+    /*Insert a good method of getting inputs*/
+}
 
 void Get_IBSN_UPC_File_Input(string file_name) {
     string line;
@@ -187,6 +190,7 @@ void Get_IBSN_UPC_File_Input(string file_name) {
 }
 
 //---------------------------------------------
+
 
 //----------------Voting Methods------------------
 // used by most of the methods inorder to iterate through the rankings of each candidate vector<int> each_candidate_rank;
@@ -361,8 +365,37 @@ void Print_Data_Table() {
 }
 //---------------------------------------------
 
-//----------------ISBN Methods------------------
 
+//----------------ISBN Methods------------------
+int isbn_length;
+int sum_of_12_digits;
+int digit_13;
+int computed_d13;
+
+void isbn_check_validity() {
+    for(auto each_isbn = isbn_check.begin(); each_isbn != isbn_check.end(); each_isbn++) {
+        cout << "Check if ISBN: " << *each_isbn << " is valid" << endl;
+
+        isbn_length = *each_isbn.size();
+        sum_of_12_digits = 0;
+        digit_13 = (int)*each_isbn[12] - '0';
+        for(int i = 1; i <= isbn_length; i++) {
+            if(i % 2 == 0)
+                sum_of_12_digits += 3 * ((int)*each_isbn[i - 1] - '0');
+            else 
+                sum_of_12_digits += ((int)*each_isbn[i - 1] - '0');
+        }
+        computed_d13 = 10 - (sum_of_12_digits % 10);
+
+        if(computed_d13 == digit_13) {
+            cout << computed_d13 << " == " << digit_13 << endl;
+            cout << "Therefore, ISBN: " << *each_isbn << " is VALID." << endl;
+        } else {
+            cout << computed_d13 << " != " << digit_13 << endl;
+            cout << "Therefore, ISBN: " << *each_isbn << " is INVALID." << endl;
+        }
+    }
+}
 
 
 
