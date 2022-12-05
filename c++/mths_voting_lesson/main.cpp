@@ -43,6 +43,7 @@ vector<int> rankings;
 
 // for printing Data
 int longest_name_len = -1, longest_num_len = -1;
+
 //----------------Inputs------------------
 void Get_User_Input() {
     cout << "Number of candidates: ";
@@ -141,7 +142,7 @@ vector<string> isbn_check;
 vector<string> isbn_find;
 vector<string> upc_check;
 vector<string> upc_find;
-void Get_ISBN_UPC_File_Input() {
+void Get_ISBN_UPC_User_Input() {
     /*Insert a good method of getting inputs*/
 }
 
@@ -379,7 +380,7 @@ void isbn_check_validity() {
         isbn_length = *each_isbn.size();
         sum_of_12_digits = 0;
         digit_13 = (int)*each_isbn[12] - '0';
-        for(int i = 1; i <= isbn_length; i++) {
+        for(int i = 1; i <= isbn_length - 1; i++) {
             if(i % 2 == 0)
                 sum_of_12_digits += 3 * ((int)*each_isbn[i - 1] - '0');
             else 
@@ -397,11 +398,78 @@ void isbn_check_validity() {
     }
 }
 
+void isbn_find_last_digit() {
+    for(auto each_isbn = isbn_find.begin(); each_isbn != isbn_find.end(); each_isbn++) {
+        cout << "Check if ISBN: " << *each_isbn << " is valid" << endl;
 
+        isbn_length = *each_isbn.size();
+        sum_of_12_digits = 0;
+
+        for(int i = 1; i <= isbn_length; i++) {
+            if(i % 2 == 0)
+                sum_of_12_digits += 3 * ((int)*each_isbn[i - 1] - '0');
+            else 
+                sum_of_12_digits += ((int)*each_isbn[i - 1] - '0');
+        }
+        computed_d13 = 10 - (sum_of_12_digits % 10);
+
+        cout << "Check Digit is " << computed_d13 << endl;
+    }
+}
+//---------------------------------------------
 
 //----------------UPC Methods------------------
+int upc_length;
+int sum_of_11_digits;
+int digit_12;
+int computed_d12;
 
+void upc_check_validity() {
+    for(auto each_upc = upc_check.begin(); each_upc != upc_check.end(); each_upc++) {
+        cout << "Check if UPC: " << *each_upc << " is valid" << endl;
+
+        upc_length = *each_upc.size();
+        sum_of_11_digits = 0;
+        digit_12 = (int)*each_upc[12] - '0';
+        for(int i = 1; i <= upc_length - 1; i++) {
+            if(i % 2 != 0)
+                sum_of_11_digits += 3 * ((int)*each_upc[i - 1] - '0');
+            else 
+                sum_of_11_digits += ((int)*each_upc[i - 1] - '0');
+        }
+        computed_d12 = 10 - (sum_of_11_digits % 10);
+
+        if(computed_d12 == digit_12) {
+            cout << computed_d12 << " == " << digit_12 << endl;
+            cout << "Therefore, UPC: " << *each_upc << " is VALID." << endl;
+        } else {
+            cout << computed_d12 << " != " << digit_12 << endl;
+            cout << "Therefore, UPC: " << *each_upc << " is INVALID." << endl;
+        }
+    }
+}
+
+void upc_find_last_digit() {
+    for(auto each_upc = upc_find.begin(); each_upc != upc_find.end(); each_upc++) {
+        cout << "Check if UPC: " << *each_upc << " is valid" << endl;
+
+        upc_length = *each_upc.size();
+        sum_of_11_digits = 0;
+
+        for(int i = 1; i <= upc_length; i++) {
+            if(i % 2 != 0)
+                sum_of_11_digits += 3 * ((int)*each_upc[i - 1] - '0');
+            else 
+                sum_of_11_digits += ((int)*each_upc[i - 1] - '0');
+        }
+        computed_d12 = 10 - (sum_of_11_digits % 10);
+
+        cout << "Check Digit is " << computed_d12 << endl;
+    }
+}
 //---------------------------------------------
+
+//-------------------Prompts-------------------
 void Main_Menu() {
     cout << "Choose Topic:\n" << endl;
     cout << "1) Voting" << endl;
@@ -438,7 +506,9 @@ void ISBN_UPC_Method_Prompt() {
     cout << "-1) Exit"
     cout << "> ";
 }
+//---------------------------------------------
 
+//-------------------Main----------------------
 int main() {
     int choice;
     char continue_choice;
@@ -563,11 +633,11 @@ int main() {
                         valid_input = true;
                         break;
                     } else if(choice == 1) {
-                        Get_User_Input();
+                        Get_ISBN_UPC_User_Input();
                         valid_input = true;
                         break;
                     } else if(choice == 2) {
-                        Get_File_Input(ISBN_FILE);
+                        Get_IBSN_UPC_File_Input(ISBN_FILE);
                         valid_input = true;
                         break;
                     } else {
@@ -595,11 +665,10 @@ int main() {
                         back = true;
                         break;
                     } else if(choice == 1) {
-                        // insert method for validity checking
+                        isbn_check_validity();
                         break;
                     } else if(choice == 2) {
-                        // insert method for finding check digit 
-                        break; 
+                        isbn_find_last_digit();
                     } else {
                         std::cout << "input number that is within the choices.\n> "; 
                         std::cin.clear();
@@ -642,11 +711,11 @@ int main() {
                         valid_input = true;
                         break;
                     } else if(choice == 1) {
-                        Get_User_Input();
+                        Get_ISBN_UPC_User_Input();
                         valid_input = true;
                         break;
                     } else if(choice == 2) {
-                        Get_File_Input(UPC_FILE);
+                        Get_IBSN_UPC_File_Input(UPC_FILE);
                         valid_input = true;
                         break;
                     } else {
@@ -674,10 +743,10 @@ int main() {
                         back = true;
                         break;
                     } else if(choice == 1) {
-                        // insert method for validity checking
+                        upc_check_validity();
                         break;
                     } else if(choice == 2) {
-                        // insert method for finding check digit 
+                        upc_find_last_digit();
                         break; 
                     } else {
                         std::cout << "input number that is within the choices.\n> "; 
@@ -708,7 +777,7 @@ int main() {
             std::cin.ignore(10000, '\n');
         }
 
-    } while(continue_choice != 'n');
+    } while(true);
 
     return 0;
 }
