@@ -15,8 +15,7 @@ using std::map;
 using std::setw; using std::setfill;
 
 // CURRENT TODO
-// TODO add user input
-// TODO clear vectors for input each time you get inputs maybe use a function that clears all data
+//
  
 // FINISHED TODO
 // TODO add test in Get_Data_From_User and Get_Data_From_File to check if candidates are >= 2. less than 2 candidates are not allowed
@@ -25,6 +24,8 @@ using std::setw; using std::setfill;
 // TODO test using files
 // TODO add ISBN
 // TODO add UPC
+// TODO add user input
+// TODO clear vectors for input each time you get inputs maybe use a function that clears all data
 
 const string CLS = "\033[2J\033[1;1H";
 const string VOTING_FILE = "voting.txt";
@@ -46,6 +47,8 @@ int longest_name_len = -1, longest_num_len = -1;
 
 //----------------Inputs------------------
 void Get_Voting_User_Input() {
+    cout << setw(20) << "TOPIC: VOTING\n" << endl;
+
     cout << "Number of candidates: ";
     cin >> candidates_num;
 
@@ -142,13 +145,79 @@ vector<string> isbn_check;
 vector<string> isbn_find;
 vector<string> upc_check;
 vector<string> upc_find;
-void Get_ISBN_UPC_User_Input() {
-    /*Insert a good method of getting inputs*/
+string isbn_string;
+string upc_string;
+int input_ctr; 
+
+void Get_ISBN_UPC_User_Input(string file_name) {
+    if(file_name == VOTING_FILE)
+        cout << setw(20) << "TOPIC: VOTING\n" << endl;
+    else if(file_name == ISBN_FILE)
+        cout << setw(20) << "TOPIC: ISBN\n" << endl;
+    else if(file_name == UPC_FILE)
+        cout << setw(20) << "TOPIC: UPC\n" << endl;
+
+    if(file_name == ISBN_FILE) {
+        cout << "Enter how many ISBN to check validity:" << endl;
+        cin >> input_ctr;
+        for(int i = 0; i < input_ctr; i++) {
+            cout << "Enter ISBN: ";
+            cin >> isbn_string;
+            while((int)isbn_string.size() != 13) {
+                cout << "ISBN should be 13 digits." << endl;
+                cout << "Enter ISBN: ";
+                cin >> isbn_string;
+            }
+
+            isbn_check.push_back(isbn_string);
+        }
+        
+        cout << "Enter how many ISBN to find check digit:" << endl;
+        cin >> input_ctr;
+        for(int i = 0; i < input_ctr; i++) {
+            cout << "Enter ISBN: ";
+            cin >> isbn_string;
+            while((int)isbn_string.size() != 12) {
+                cout << "ISBN should be 12 digits." << endl;
+                cout << "Enter ISBN: ";
+                cin >> isbn_string;
+            }
+
+            isbn_find.push_back(isbn_string);
+        }
+    } else if(file_name == UPC_FILE) {
+        cout << "Enter how many UPC to check validity:" << endl;
+        cin >> input_ctr;
+        for(int i = 0; i < input_ctr; i++) {
+            cout << "Enter UPC: ";
+            cin >> upc_string;
+            while((int)upc_string.size() != 12) {
+                cout << "UPC should be 12 digits." << endl;
+                cout << "Enter UPC: ";
+                cin >> upc_string;
+            }
+
+            upc_check.push_back(upc_string);
+        }
+        
+        cout << "Enter how many UPC to find check digit:" << endl;
+        cin >> input_ctr;
+        for(int i = 0; i < input_ctr; i++) {
+            cout << "Enter UPC: ";
+            cin >> upc_string;
+            while((int)upc_string.size() != 11) {
+                cout << "UPC should be 11 digits." << endl;
+                cout << "Enter UPC: ";
+                cin >> upc_string;
+            }
+
+            upc_find.push_back(upc_string);
+        }
+    }
 }
 
 void Get_IBSN_UPC_File_Input(string file_name) {
     string line;
-    int input_ctr;
     if(file_name == "isbn.txt") {
 
         if(isbn_check.empty() && isbn_find.empty()) {
@@ -379,9 +448,8 @@ int isbn_length;
 int sum_of_12_digits;
 int digit_13;
 int computed_d13;
-string isbn_string;
 
-void isbn_check_validity() {
+void Isbn_Check_Validity() {
     for(auto each_isbn = isbn_check.begin(); each_isbn != isbn_check.end(); each_isbn++) {
         isbn_string = *each_isbn;
         isbn_length = isbn_string.size();
@@ -408,7 +476,7 @@ void isbn_check_validity() {
     }
 }
 
-void isbn_find_last_digit() {
+void Isbn_Find_Last_Digit() {
     for(auto each_isbn = isbn_find.begin(); each_isbn != isbn_find.end(); each_isbn++) {
         isbn_string = *each_isbn;
         isbn_length = isbn_string.size();
@@ -434,14 +502,13 @@ int upc_length;
 int sum_of_11_digits;
 int digit_12;
 int computed_d12;
-string upc_string;
 
-void upc_check_validity() {
+void Upc_Check_Validity() {
     for(auto each_upc = upc_check.begin(); each_upc != upc_check.end(); each_upc++) {
         upc_string = *each_upc;
         upc_length = upc_string.size();
         sum_of_11_digits = 0;
-        digit_12 = (int)upc_string[12] - '0';
+        digit_12 = (int)upc_string[11] - '0';
 
         cout << "\nCheck if " << upc_string << " is valid:" << endl;
 
@@ -463,7 +530,7 @@ void upc_check_validity() {
     }
 }
 
-void upc_find_last_digit() {
+void Upc_Find_Last_Digit() {
     for(auto each_upc = upc_find.begin(); each_upc != upc_find.end(); each_upc++) {
         upc_string = *each_upc;
         upc_length = upc_string.size();
@@ -544,6 +611,20 @@ void ISBN_UPC_Method_Prompt(string file_name) {
 }
 //---------------------------------------------
 
+//--------------Some function idk--------------
+
+void Delete_Inputs() {
+    candidates.clear();
+    votes_per_group.clear(); 
+
+    isbn_check.clear();
+    isbn_find.clear();
+
+    upc_check.clear();
+    upc_find.clear();
+}
+//---------------------------------------------
+
 //-------------------Main----------------------
 int main() {
     int choice;
@@ -553,6 +634,7 @@ int main() {
 
     while(true) { 
         cout << CLS;
+        Delete_Inputs();
         Main_Menu(); 
         back = false;
         valid_input = false;
@@ -580,6 +662,7 @@ int main() {
                         valid_input = true;
                         break;
                     } else if(choice == 1) {
+                        cout << CLS;
                         Get_Voting_User_Input();
                         valid_input = true;
                         break;
@@ -677,7 +760,8 @@ int main() {
                         valid_input = true;
                         break;
                     } else if(choice == 1) {
-                        Get_ISBN_UPC_User_Input();
+                        cout << CLS;
+                        Get_ISBN_UPC_User_Input(ISBN_FILE);
                         valid_input = true;
                         break;
                     } else if(choice == 2) {
@@ -710,10 +794,10 @@ int main() {
                         back = true;
                         break;
                     } else if(choice == 1) {
-                        isbn_check_validity();
+                        Isbn_Check_Validity();
                         break;
                     } else if(choice == 2) {
-                        isbn_find_last_digit();
+                        Isbn_Find_Last_Digit();
                         break;
                     } else {
                         std::cout << "input number that is within the choices.\n> "; 
@@ -762,7 +846,8 @@ int main() {
                         valid_input = true;
                         break;
                     } else if(choice == 1) {
-                        Get_ISBN_UPC_User_Input();
+                        cout << CLS;
+                        Get_ISBN_UPC_User_Input(UPC_FILE);
                         valid_input = true;
                         break;
                     } else if(choice == 2) {
@@ -795,10 +880,10 @@ int main() {
                         back = true;
                         break;
                     } else if(choice == 1) {
-                        upc_check_validity();
+                        Upc_Check_Validity();
                         break;
                     } else if(choice == 2) {
-                        upc_find_last_digit();
+                        Upc_Find_Last_Digit();
                         break; 
                     } else {
                         std::cout << "input number that is within the choices.\n> "; 
