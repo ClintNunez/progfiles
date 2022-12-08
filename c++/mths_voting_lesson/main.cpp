@@ -482,7 +482,7 @@ void Isbn_Find_Last_Digit() {
         isbn_length = isbn_string.size();
         sum_of_12_digits = 0;
 
-        cout << "\nCheck if " << isbn_string << " is valid:" << endl;
+        cout << "\nFind check digit of " << isbn_string << endl;
 
         for(int i = 1; i <= isbn_length; i++) {
             if(i % 2 == 0)
@@ -536,7 +536,7 @@ void Upc_Find_Last_Digit() {
         upc_length = upc_string.size();
         sum_of_11_digits = 0;
 
-        cout << "\nCheck if " << upc_string << " is valid:" << endl;
+        cout << "\nFind check digit of " << upc_string << endl;
 
         for(int i = 1; i <= upc_length; i++) {
             if(i % 2 != 0)
