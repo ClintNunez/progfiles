@@ -3,38 +3,40 @@
 
 #include <string>
 #include <stdexcept>
-#include <sstream>
 
 namespace phone_number {
 
     class phone_number {
         private:
-            std::string extracted_digits;
-            char country_code;
-            bool check_validity();
+            std::string extracted_digits = "";
         public:
-            phone_number(std::string& input_number) {
-                for(char c : input_number) {
-                    if(std::isdigit[c]) 
+            phone_number() {}
+
+            phone_number(std::string input_number) {
+                // gets all digits
+                for(auto& c : input_number) {
+                    if(std::isdigit(c)) 
                         extracted_digits.push_back(c);
                 }
 
-                if(extracted_digits.size() == 11) {
-                    country_code = extracted_digits[0];
-                    extracted_digits.erase(begin(extracted_digits));
+                // if digits are 11 and the first digit(country code) is not 1 then invalid
+                // if digits are not 10 or 11 then invalid 
+                //  meaning that digits are lessthan 10 or greater than 11
+                if((extracted_digits.size() == 11 && extracted_digits[0] != '1') || (extracted_digits.size() != 10 && extracted_digits.size() != 11)) {
+                    throw std::domain_error("");
+                } 
+
+                // remove country code if 11 digits | 11 - 10 = index 1
+                //                     if 10 digits | 10 - 10 = index 0 
+                extracted_digits = extracted_digits.substr(extracted_digits.size() - 10);
+
+                // if first digit of area code and exchange code should be 2 - 9
+                if(extracted_digits[0] < '2'  || extracted_digits[3] < '2') {
+                    throw std::domain_error("");
                 }
 
-                if(!check_validity()) 
-                    throw std::domain_error("");
             }
-
-            bool check_validity() {
-                return extracted_digits.size() == 10
-                    && std::stoi(area_code()) >= 200
-                    && std::stoi(exchange_code()) >= 200
-                    && country_code == '1';
-            }
-            
+                
             std::string number() {
                 return extracted_digits;
             }
@@ -43,18 +45,9 @@ namespace phone_number {
                 return extracted_digits.substr(0, 3);
             }
 
-            std::string exchange_code() {
-                return extracted_digits.substr(3,3);
-            }
-
-            std::string subscriber_num() {
-                return extracted_digits.substr(6,4);
-            }
-
-            phone_number::operator std::string() {
-                std::stringstream output{""};
-                output << '(' << area_code() << ') ' << exchange_code() << '-' << subscriber_num();
-                return output.str();
+            // returns a formatted phone number with country code removed
+            operator std::string() const {
+                return "(" + extracted_digits.substr(0, 3) + ") " + extracted_digits.substr(3,3) + '-' + extracted_digits.substr(6,4);
             }
     };
 }
