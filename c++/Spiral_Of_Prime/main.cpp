@@ -8,6 +8,7 @@ using namespace std;
 // TODO Use logic from spiral of prime by coding train for identifying prime numbers
 // TODO Make the matrix size * 3 example: dimension is 3,    _ 1 _ | _ 2 _ | _ 3 _ | _ 1 _ | _ 2 _ | _ 3 _ | _ 1 _ | _ 2 _ | _ 3 _
 // TODO Make a function to see the prime numbers or the dots
+// TODO User Pointers
 
 // FINISHED TODO
 
