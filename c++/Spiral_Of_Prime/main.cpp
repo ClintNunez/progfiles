@@ -31,7 +31,6 @@ void SieveOfEratosthenes(int n) { // Time Complexity: O(n*log(log(n)))
             }
         }
     }
-
 }
 
 // getting prime numbers
