@@ -73,18 +73,18 @@ void makeCartesianPlane(int size_of_side) {
     printCartesian();
 }
 
-void plotPoint(int& x, int& y) {
+void plotPoint(int x, int y) {
     // use set pair
     // use find(pair) 
     // if exists print point already exist
     // else add pair to set
-    auto does_point_exist = points.find(std::pair(x, y));
+    auto does_point_exist = points.find(std::pair<double, double>(x, y));
     if(does_point_exist == points.end()) {
-        points.insert(std::pair(x, y));
+        points.insert(std::pair<double, double>(x, y));
         cartesian_plane[ORIGIN_POS - y][ORIGIN_POS + x] = POINT;
     } else {
         if(does_point_exist->second != y){
-            points.insert(std::pair(x, y));
+            points.insert(std::pair<double, double>(x, y));
             cartesian_plane[ORIGIN_POS - y][ORIGIN_POS + x] = POINT;
         } else {
             std::cout << "Point already exist." << std::endl;
