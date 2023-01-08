@@ -1,166 +1,173 @@
 #include <iostream>
 #include <vector>
-#include <bits/stdc++.h>
+#include <math.h>
 
 using namespace std;
 
 // CURRENT TODO
 // TODO Use logic from spiral of prime by coding train for identifying prime numbers
-// TODO Make the matrix size * 3 example: dimension is 3,    _ 1 _ | _ 2 _ | _ 3 _ | _ 1 _ | _ 2 _ | _ 3 _ | _ 1 _ | _ 2 _ | _ 3 _
+// TODO Make the rMatrix size * 3 example: dimension is 3,    _ 1 _ | _ 2 _ | _ 3 _ | _ 1 _ | _ 2 _ | _ 3 _ | _ 1 _ | _ 2 _ | _ 3 _
 // TODO Make a function to see the prime numbers or the dots
 // TODO User Pointers
 
 // FINISHED TODO
 
-// Global variables
-char hor_path = '-', vert_path = '|', not_prime = 'o', prime = 'O';
 
-// TODO use this later on
-vector<bool> primes;
-void SieveOfEratosthenes(int n) { // Time Complexity: O(n*log(log(n)))
-    bool prime[n + 1];
-    memset(prime, true, sizeof(prime));
-
-    for (int i = 0; i < n - 1; i++) { // removes one since 1 is not a prime number
-        primes.push_back(true);
-    }
-
-    for (int p = 2; p * p <= n; p++) {
-        if (primes.at(p)) {
-            for (int i = p*p; i <= n; i += p) {
-                primes.at(i) = false;
+void create_list_of_primes(int &rDimension, vector<bool> &rPrimes) { // Time Complexity: O(n*log(log(n)))
+    for (int p = 2; p * p <= rDimension; p++) {
+        if (rPrimes.at(p)) {
+            for (int i = p * p; i <= rDimension; i += p) {
+                rPrimes.at(i) = false;
             }
         }
     }
 }
 
-// getting prime numbers
-bool prime_check(double num) {
-    for (int i = 2; i <= sqrt(num); i++) {
-        if ((int) num % i == 0) {
-            return false;
-        }
-    }
-    return true;
-}
-
-// create the matrix
-vector<vector<char>> m;
-
-void createMatrix(int D) {
-    m.clear();
-    for(int i = 0; i < D; i++) {
-        vector<char> row;
-        for(int j = 0; j < D; j++) {
-            row.push_back(' ');
-        }
-        m.push_back(row);
-    }
-}
 
 // create spiral
-void createSpiral(int D) {
-    createMatrix(D);
+void createSpiral(int &rDimension, vector<bool> &rPrimes ,vector<vector<char>> &rMatrix) {
+    const char PATH_LEFT = '<', PATH_RIGHT = '>', PATH_UP = '^', 
+          PATH_DOWN = 'v', NOT_PRIME = 'o', PRIME = 'O';
 
-    int x, y, direction = 0, repeat = 2;
-
-    // Finds the center of the spiral
-    if(D % 2 == 0) {
-        x = (D / 2) - 2; y = (D / 2) + 1;
+    int x, y, direction = 0, orig_dimension = rDimension / 3, overall_cells = pow((rDimension / 3), 2),
+        step = 0, number_of_steps = 1, repeated_steps = 0;
+    
+    // finds the center of the 2d vector by checking if the dimension is even or odd
+    // if even, the center is x = (dimension / 2) - 2 and y = (dimension / 2) + 1
+    // if odd, the center is x = dimension / 2 and y = dimension / 2
+    if(rDimension % 2 == 0) {
+        x = (rDimension / 2) - 2; y = (rDimension / 2) + 1;
     } else {
-        x = (D / 2); y = (D / 2);
+        x = (rDimension / 2); y = (rDimension / 2);
     }
-    
-    int max_step = 1, curr_step = 0, max_reached = 0;
-    int total_moves = (D - 2) * 3 + 4;
-    /*
-     * 0 -> right
-     * 1 -> up
-     * 2 -> left
-     * 3 -> down
-     * */
-    char path = hor_path;
-    int num = 1;
-    int curr_move = 1;
 
-    /* For 1st move and last move:
-     *      Have a conditional statement where if i is 1 or num is D
-     *      
-     *      if(i == D) check if num is a prime and stop moving?
-     *      if(i == 1) just put the path
-     * */
-    
-    for(int i = 1; i <= total_moves; i++) {
-        if(curr_move % 4 == 0) {
-            num++;
-            if(prime_check(num)) {
-                m[y][x] = prime;
-            } else {
-                m[y][x] = not_prime;
+    // loops for the number of cells in the original dimension(dimension given by user without multiplying by 3) 
+    for(int i = 1; i <= overall_cells; i++) {
+
+        if(i == 1) {
+            rMatrix[x][y] = NOT_PRIME;
+            y++;
+            rMatrix[x][y] = PATH_RIGHT;
+            y++;
+
+            step++;
+        } if(i == overall_cells) {
+
+            switch(direction) {
+                case 0:
+                    rMatrix[x][y] = PATH_RIGHT;
+                    y++;
+                    break;
+                case 1:
+                    rMatrix[x][y] = PATH_UP;
+                    x--;
+                    break;
+                case 2:
+                    rMatrix[x][y] = PATH_LEFT;
+                    y--;
+                    break;
+                case 3:
+                    rMatrix[x][y] = PATH_DOWN;
+                    x++;
+                    break;
             }
-            curr_move = 1;
+
+            if(rPrimes[i - 2])
+                rMatrix[x][y] = PRIME;
+            else 
+                rMatrix[x][y] = NOT_PRIME;
+
         } else {
-            m[y][x] = path;
-        }
+            for(int j = 0; j < 3; j++) {
+                if(j == 1) {
+                    if(rPrimes[i - 2])
+                        rMatrix[x][y] = PRIME;
+                    else 
+                        rMatrix[x][y] = NOT_PRIME;
 
-        curr_move++;
-        curr_step++;
-
-        // change direction
-        if(curr_step == max_step) {
-            max_reached++;
-            if(direction == 3) {
-                direction = 0;
-            } else {
-                direction++;
+                    // move current index
+                    switch(direction) {
+                        case 0:
+                            y++; // right
+                            break;
+                        case 1:
+                            x--; // up
+                            break;
+                        case 2:
+                            y--; // left
+                            break;
+                        case 3:
+                            x++; // down
+                            break;
+                    }
+                    
+                    // change directions
+                    if(step == number_of_steps) {
+                        direction = (direction == 3) ? 0 : direction + 1;
+                    }
+                } else {
+                    switch(direction) {
+                        case 0:
+                            rMatrix[x][y] = PATH_RIGHT;
+                            y++;
+                            break;
+                        case 1:
+                            rMatrix[x][y] = PATH_UP;
+                            x--;
+                            break;
+                        case 2:
+                            rMatrix[x][y] = PATH_LEFT;
+                            y--;
+                            break;
+                        case 3:
+                            rMatrix[x][y] = PATH_DOWN;
+                            x++;
+                            break;
+                    }
+                }
             }
-            curr_step = 0;
-        }
-        
-        if(max_reached == 2 && max_step < (D / 3) - 1) {
-            max_step++;
+
+            step++;
         }
 
-        // move to direction
-        switch(direction) {
-            case 0:
-                x += 1;
-                path = hor_path;
-                break;
-            case 1:
-                y -= 1;
-                path = vert_path;
-                break;
-            case 2:
-                x -= 1;
-                path = hor_path;
-                break;
-            case 3:
-                y += 1;
-                path = vert_path;
-                break;
-       }
 
+        if(number_of_steps != orig_dimension - 1) {
+            if(step == number_of_steps) {
+                step = 0;
+                repeated_steps++;
+
+                if(repeated_steps == 2) {
+                    repeated_steps = 0;
+                    number_of_steps++;
+                }
+            }
+        }
     }
 }
 
-// print matrix
-void printSpiral() {
-    // change to normal for loop since for each is slow
-    for(vector<char> eachVector: m) {
-        for(char element: eachVector) {
-            // print using iomanipulators
-            cout << element << " ";
+// print rMatrix
+void printSpiral(vector<vector<char>> &rMatrix) {
+    for(vector<char> row : rMatrix) {
+        for(char element : row) {
+            cout << element;
         }
+        cout << endl;
     }
 }
 
 int main() {
-    cout << "Enter dimensions of matrix: ";
-    int numStep; cin >> numStep;
-    int dimension = numStep * 3;
-    createSpiral(dimension);
+    cout << "Enter dimensions of rMatrix: ";
+    int dimension; cin >> dimension;
+    dimension *= 3;
 
-    printSpiral();
+    vector<bool> primes(dimension + 1, true); // +1 for good measure, remove after testing
+    create_list_of_primes(dimension, primes);
+
+    // Initialize a 2d vector and set its elements to ' '
+    vector<vector<char>> rMatrix(dimension, vector<char>(dimension, ' '));
+
+    createSpiral(dimension, primes, rMatrix);
+
+    printSpiral(rMatrix);
     return 0;
 }
