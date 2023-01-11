@@ -21,10 +21,9 @@ void createSpiral(int &rDimension, vector<bool> &rPrimes ,vector<vector<char>> &
     const char PATH_LEFT = '<', PATH_RIGHT = '>', PATH_UP = '^', 
           PATH_DOWN = 'v', NOT_PRIME = 'o', PRIME = '@';
 
-    // x,y is equal to 1 since it is the index of the center if the dimension is 3 by 3
     // direction starts at 0(right) then 1(up), 2(left), 3(down) and then resets
     // overall_cells is the number of cells using the original dimension given by the user
-    int x = 1, y = 1, direction = 0, orig_dimension = rDimension / 3, overall_cells = pow((rDimension / 3), 2),
+    int x = 0, y = 0, direction = 0, orig_dimension = rDimension / 3, overall_cells = pow((rDimension / 3), 2),
         step = 0, max_steps = 1, max_step_reached = 0;
     
     // finds the starting index in the 2d vector
