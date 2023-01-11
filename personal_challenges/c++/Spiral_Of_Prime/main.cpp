@@ -4,15 +4,7 @@
 
 using namespace std;
 
-// CURRENT TODO
-// TODO Use logic from spiral of prime by coding train for identifying prime numbers
-// TODO Make the rMatrix size * 3 example: dimension is 3,    _ 1 _ | _ 2 _ | _ 3 _ | _ 1 _ | _ 2 _ | _ 3 _ | _ 1 _ | _ 2 _ | _ 3 _
-// TODO Make a function to see the prime numbers or the dots
-// TODO User Pointers
-
-// FINISHED TODO
-
-
+// Sieve of Eratosthenes
 void create_list_of_primes(int &rDimension, vector<bool> &rPrimes) { // Time Complexity: O(n*log(log(n)))
     for (int p = 2; p * p <= rDimension * rDimension; p++) {
         if (rPrimes.at(p)) {
@@ -29,12 +21,13 @@ void createSpiral(int &rDimension, vector<bool> &rPrimes ,vector<vector<char>> &
     const char PATH_LEFT = '<', PATH_RIGHT = '>', PATH_UP = '^', 
           PATH_DOWN = 'v', NOT_PRIME = 'o', PRIME = '@';
 
+    // x,y is equal to 1 since it is the index of the center if the dimension is 3 by 3
+    // direction starts at 0(right) then 1(up), 2(left), 3(down) and then resets
+    // overall_cells is the number of cells using the original dimension given by the user
     int x = 1, y = 1, direction = 0, orig_dimension = rDimension / 3, overall_cells = pow((rDimension / 3), 2),
-        step = 0, number_of_steps = 1, repeated_steps = 0;
+        step = 0, max_steps = 1, max_step_reached = 0;
     
-    // finds the center of the 2d vector by checking if the dimension is even or odd
-    // if even, the center is x = (dimension / 2) - 2 and y = (dimension / 2) + 1
-    // if odd, the center is x = dimension / 2 and y = dimension / 2
+    // finds the starting index in the 2d vector
     if(rDimension % 2 == 0) {
         x += (rDimension / 2) - 3; y += (rDimension / 2);
     } else {
@@ -86,32 +79,31 @@ void createSpiral(int &rDimension, vector<bool> &rPrimes ,vector<vector<char>> &
 
                     // change directions
                     step++;
-                    if(step == number_of_steps) {
-                        repeated_steps++;
+                    if(step == max_steps) {
+                        max_step_reached++;
                         direction = (direction == 3) ? 0 : direction + 1;
                         step = 0;
                     }
 
-                    if(number_of_steps != orig_dimension - 1) {
-                        if(repeated_steps == 2) {
-                            repeated_steps = 0;
-                            number_of_steps++;
+                    if(max_steps != orig_dimension - 1) {
+                        if(max_step_reached == 2) {
+                            max_step_reached = 0;
+                            max_steps++;
                         }
                     }
 
-                    // move current index
                     switch(direction) {
                         case 0:
-                            x++; // right
+                            x++; 
                             break;
                         case 1:
-                            y--; // up
+                            y--;
                             break;
                         case 2:
-                            x--; // left
+                            x--;
                             break;
                         case 3:
-                            y++; // down
+                            y++;
                             break;
                     }
                     
