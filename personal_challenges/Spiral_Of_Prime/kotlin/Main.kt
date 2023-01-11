@@ -60,8 +60,8 @@ fun create_spiral(
 
     // find starting index in the matrix
     if(dimension % 2 == 0) {
-        x += final_dimension / 2 - 3
-        y += final_dimension / 2
+        x += final_dimension / 2 - 2
+        y += final_dimension / 2 + 1
     } else {
         x += final_dimension / 2
         y += final_dimension / 2

@@ -1,3 +1,8 @@
+// Author: Clint Patrick M. Nunez
+// Date created: 01/09/2023
+//
+// Spiral of prime in terminal. Uses sieve of eratosthenes to make a list of prime numbers.
+
 #include <iostream>
 #include <vector>
 #include <math.h>
@@ -28,7 +33,7 @@ void createSpiral(int &rDimension, vector<bool> &rPrimes ,vector<vector<char>> &
     
     // finds the starting index in the 2d vector
     if(rDimension % 2 == 0) {
-        x += (rDimension / 2) - 3; y += (rDimension / 2);
+        x += (rDimension / 2) - 2; y += (rDimension / 2) + 1;
     } else {
         x += (rDimension / 2); y += (rDimension / 2);
     }
@@ -76,7 +81,6 @@ void createSpiral(int &rDimension, vector<bool> &rPrimes ,vector<vector<char>> &
                     else 
                         rMatrix[y][x] = NOT_PRIME;
 
-                    // change directions
                     step++;
                     if(step == max_steps) {
                         max_step_reached++;
