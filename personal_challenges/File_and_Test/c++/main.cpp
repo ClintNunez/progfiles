@@ -8,9 +8,14 @@ int main() {
     std::ifstream testFile("input.txt");
     
     if(testFile.is_open()){
-        while(std::getline(testFile,n)) {
-            std::cout << n << std::endl;
+        if(testFile.peek() == '*') {
+            testFile.ignore();
+        } else {
+            while(std::getline(testFile, n)) {
+                // idk anymore
+            }
         }
+        
     } else {
         std::cout << "File not available" << std::endl;
     }
