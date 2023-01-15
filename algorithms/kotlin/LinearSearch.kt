@@ -23,6 +23,9 @@ fun main() {
     }
 }
 
+// Linear search looks for the data it needs to find by comparing it to each element of the list
+// starting from the first element to the last element. If the current element is equal to the data
+// it is looking then it is on the list, else it is not on the list
 fun Linear_Search(data : Array<Int>, num_to_find : Int) : Int {
 
     // loops for n number of times, where n is the size of data
