@@ -1,16 +1,15 @@
 #include <iostream>
 #include <vector>
 
+// Linear search looks for the data it needs to find by comparing it to each element of the list
+// starting from the first element to the last element. If the current element is equal to the data
+// it is looking then it is on the list, else it is not on the list
 int linear_search(std::vector<int> data, int &element_to_find) {
 
     // loops n number of times, where n is the size of data.
-    // and compares each element of data to element_to_find.
-    // if the current element is equal to element_to_find then 
-    // return the current index.
-    // else return -1 in this case
     for(int i = 0; i < data.size(); i++) { // n
+        // compare the current elemnet at index i to element_to_find. If it is equal then return i
         if(data.at(i) == element_to_find) // 1
-            // returns the index where data.at(i) is equal to element_to_find
             return i; // 1
     }
 
