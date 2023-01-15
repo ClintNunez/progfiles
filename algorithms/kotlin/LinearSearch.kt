@@ -29,10 +29,8 @@ fun main() {
 fun Linear_Search(data : Array<Int>, num_to_find : Int) : Int {
 
     // loops for n number of times, where n is the size of data
-    // and compares each element of data to num_to_find.
-    // if the current element is equal then return the current index
-    // else return -1 in this case
     for(i in data.indices) { // n
+        // compare the element at index i to num_to_find. If it is equal then return i
         if(data[i] == num_to_find) { // 1
             return i // 1
         }
