@@ -120,7 +120,6 @@ int main() {
     std::cout << "\n\tEnter size of Cartesian Plane: "; //reword
     int size_of_cartesian; std::cin >> size_of_cartesian;
 
-    size_of_cartesian; // adds an offset for edge characters: '<' & '>'
 
     makeCartesianPlane(size_of_cartesian);
 
