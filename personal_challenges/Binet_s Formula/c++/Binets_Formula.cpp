@@ -10,7 +10,7 @@ double binet_formula(unsigned int n){
 
 int main(){
     int nth_Fibonacci = 0;
-    int choice = 0;
+    char choice = 0;
     double result = 0;
         while(true){
             std::cout << "Enter position of the Fibonacci number: " ;
@@ -22,7 +22,7 @@ int main(){
             std::cout << "repeat? ";
             std::cin >> choice;
 
-            if(choice == 1){
+            if(choice == 'n'){
                 break;
             }
         }
