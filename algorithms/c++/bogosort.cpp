@@ -6,7 +6,7 @@
 // check yt video for no return value for a function with a data type
 bool is_sorted(std::vector<int> data) {
     for(int i = 0; i < data.size() - 1; i++) {
-        if(data.at(i) < data.at(i + 1)) {
+        if(data.at(i) > data.at(i + 1)) {
             return false;
         }
     }
@@ -16,25 +16,34 @@ bool is_sorted(std::vector<int> data) {
 std::vector<int> bogosort(std::vector<int> data) {
     // seed
     srand(unsigned(time(NULL)));
-    int random_index;
-    std::vector<bool> indexes(data.size(), false);
+    int random_index1, random_index2, temp;
 
-    while(!is_sorted) {
-        random_index = 1 + (rand() % data.size() - 1);
+    while(!is_sorted(data)) {
+        random_index1 = 1 + (rand() % data.size() - 1);
+        random_index2 = 1 + (rand() % data.size() - 1);
 
-        // maybe use the same logic for binary sort to remove a used index from indexes
-        // use swap and another variable to get another random index != the first random index, indexes[random_index] is not false
-    
-
-
-
+        temp = data.at(random_index1);
+        data.at(random_index1) = data.at(random_index2);
+        data.at(random_index2) = temp;
     }
-
 
     return data;
 }
 
 int main() {
+    std::vector<int> data = { 2, 3, 1 };
+
+    for(int element : data) {
+        std::cout << element << " ";
+    }
+    std::cout << std::endl;
+    
+    std::vector<int> result = bogosort(data);
+
+    for(int element : result) {
+        std::cout << element << " ";
+    }
+    std::cout << std::endl;
 
     return 0;
 }
