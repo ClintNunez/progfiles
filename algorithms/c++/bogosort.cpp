@@ -4,6 +4,7 @@
 #include <vector>
 
 // check yt video for no return value for a function with a data type
+// data -> &data
 bool is_sorted(std::vector<int> data) {
     for(int i = 0; i < data.size() - 1; i++) {
         if(data.at(i) > data.at(i + 1)) {
@@ -13,6 +14,7 @@ bool is_sorted(std::vector<int> data) {
     return true; 
 }
 
+// turn to void and make data -> &data
 std::vector<int> bogosort(std::vector<int> data) {
     // seed
     srand(unsigned(time(NULL)));
