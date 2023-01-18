@@ -11,14 +11,11 @@ bool is_sorted(std::vector<int> &data) {
 }
 
 void bubblesort(std::vector<int> &data) {
-    int index, temp;
     while(!is_sorted(data)) {
-        index = 0;
-        while(index < data.size() - 1 && data.at(index) > data.at(index + 1)) {
-            temp = data.at(index);
-            data.at(index) = data.at(index + 1);
-            data.at(index + 1) = temp;
-            index++;
+        for(int i = 0; i < data.size() - 1; i++) {
+            if(data.at(i) > data.at(i + 1)) {
+                std::swap(data.at(i), data.at(i + 1));
+            }
         }
     }
 }
