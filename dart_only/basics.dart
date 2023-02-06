@@ -10,7 +10,7 @@
 */
 
 void main() {
-    
+    T_List();
 }
 
 void G_Variables() {
@@ -25,9 +25,6 @@ void G_Variables() {
     print('test = $test');
     test = "string";
     print('test = $test');
-
-    // constant variables can be initialized using a value or expilicity adding the type
-    const num aConstNum = 0;
 
 }
 
@@ -159,4 +156,18 @@ void T_List() {
     // Array = List
     var list = [1, 2, 3];
 
+    var constList = const [1, 2, 3];
+
+    var initListUsingSpread = [0, ...list];
+
+    // null-aware spread operator (...?) avoids exceptions when the content of a list might be nulla
+    var initListUsingNullSpread = [0, ...?list];
+
+    // collection if can be used to create 
+    var promoActive = true;
+    var nav = ['Home', 'Furniture', 'Plants', if (promoActive) {'Outlet', 'Extra'} , 'hello'];
+    for(int i = 0; i < 4; i++) {
+        print("${nav[i]}");
+    }
+    
 }
