@@ -26,6 +26,8 @@ void G_Variables() {
     test = "string";
     print('test = $test');
 
+    // difference between const and final
+    // https://stackoverflow.com/questions/50431055/what-is-the-difference-between-the-const-and-final-keywords-in-dart
 }
 
 void G_Arithmetic() {
@@ -153,9 +155,11 @@ void T_Boolean() {
 }
 
 void T_List() {
-    // Array = List
+    // List is the same as Arrays in other languages
+
     var list = [1, 2, 3];
 
+    // compile-time constant list
     var constList = const [1, 2, 3];
 
     var initListUsingSpread = [0, ...list];
@@ -163,11 +167,46 @@ void T_List() {
     // null-aware spread operator (...?) avoids exceptions when the content of a list might be nulla
     var initListUsingNullSpread = [0, ...?list];
 
-    // collection if can be used to create 
+    // collection if can be used to create a list with n or n + 1 elements where n is the number of elements (I don't know the use case of this)
     var promoActive = true;
-    var nav = ['Home', 'Furniture', 'Plants', if (promoActive) {'Outlet', 'Extra'} , 'hello'];
-    for(int i = 0; i < 4; i++) {
-        print("${nav[i]}");
-    }
+    var nav = ['Home', 'Furniture', 'Plants', if (promoActive) 'Outlet', 'Extra', 'hello'];
+        
+    // collection for can be used to create a list. this example creates a string list using an int list
+    var listOfInts = [1, 2, 3];
+    var listOfStrings = ['#0', for (var i in listOfInts) '#$i'];
+
+    // useful methods
     
+    // fold - sums a collection to a single value, fold(initialValue, (previousValue, element) => null)     
+    int sum = 0;
+    int result = list.fold(sum, (previousValue, element) => previousValue + element);
+    print(result); // 1 + 2 + 3 = 6
+
+    // insert - insert an element at given index 
+    list.insert(0, 4); // list = [4, 1, 2, 3];
+    print(list);
+}
+
+void T_Sets() {
+    // set in dart is an unordered collection of unique items
+    
+    var fruits = {'apple', 'banana', 'orange'};
+
+    // To create an empty set, use {} preceded by a type argument, or assign {} to a variable of type Set:
+    var emptySet1 = <String>{};
+    Set<String> emptySet2 = {};
+    // var mapNotSet = {}; Creates a map not a set.
+
+    // add elements to an existing set using add() or addAll();
+    emptySet1.add('New');
+    emptySet2.addAll(fruits);
+    
+    // compile-time constant set
+    Set<String> constantSet = const {
+        'I',
+        'Am',
+        'A',
+        'Constant', 
+        'Set.',
+    };
 }
