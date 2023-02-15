@@ -12,12 +12,33 @@
 * - Use seek? for finding the right info
 * - FileReader Class
 * - Make a table to know the searchable terms for the user. IDK Where to put it.
+* - use delays
+* - rename prompts to screens
 *
 * DONE
 * - Learn how to use separate files for the animals class
 */
 
-#include "AnimalGuide.hpp"
+/*
+ * ###Program flow
+ * 
+ * Splash Screen of the animals (Delay for a bit)
+ *
+ * ##Main Screen
+ * - Get the EduAnimal Choice 
+ *
+ * ##Show EduAnimal
+ * 1 if user did not choose the edu animal previously then the animal will ask a name; "You haven't given me a name yet, please give me one." or something.
+ *   if the user already named the animal then mention that the user already gave them one.
+ * 2 show the table of contents and the animal below the table asking for questions. make the user type on a text bubble if possible.
+ * 3 typing, check for the validity of the word. if it does not match then make an algo for looking for the closest word and say "<input word> not found, providing info for <closest word>"
+ * 4 ask the user if they want to search more, change animal or exit; changing animals will go back to the home screen
+ *
+ * ## Exit
+ * - Provide an exit screen;
+ */
+
+#include "EduAnimal.hpp"
 #include "Prompts.hpp"
 #include <iostream>
 #include <fstream>
@@ -41,7 +62,7 @@ int main() {
         do {
             correct_choice = true;
 
-            prompts.Home();
+            prompts.HomeScreen();
 
             if(prompts.Get_Animal_Choice() == 'e') {
                 std::cout << "Exit" << std::endl;
@@ -70,7 +91,7 @@ int main() {
 
         } while(!correct_choice);
 
-        prompts.Continue();
+        prompts.ContinuePrompt();
 
         if(prompts.Get_Continue_Choice() == 'n') {
             std::cout << "Thank you." << std::endl;

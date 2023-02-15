@@ -1,15 +1,15 @@
 #include <string>
 
-class AnimalGuide {
+class EduAnimal {
     private:
     
     public:
-        AnimalGuide();
+        EduAnimal();
         void Display(std::string pattern);
         void Greetings(std::string greetings);
 };
 
-class EduDog : public AnimalGuide {
+class EduDog : public EduAnimal {
 
     private:
         const std::string DOG_PATTERN = "  ___#(|. .|)# ((Y))# ()_()_/#";
@@ -22,7 +22,7 @@ class EduDog : public AnimalGuide {
         void Greetings();
 };
 
-class EduCat : public AnimalGuide {
+class EduCat : public EduAnimal {
 
     private: 
         const std::string CAT_PATTERN = " ^___^#(='x'=)# ()_()_/#";
@@ -35,7 +35,7 @@ class EduCat : public AnimalGuide {
         void Greetings();
 };
 
-class EduBird : public AnimalGuide {
+class EduBird : public EduAnimal {
 
     private: 
         const std::string BIRD_PATTERN = " ___#('v')#((_))# ^ ^#";
