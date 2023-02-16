@@ -210,3 +210,37 @@ void T_Sets() {
         'Set.',
     };
 }
+
+void T_Maps() {
+    // keys and values
+    // both keys and values can be any type of object
+    // each key can only occur once but same values is allowed
+
+    var gifts = {
+        'first' : 'partridge',
+        'second' : 'turtledoves',
+        'third' : 'golden rings',
+        //'third' : 'box' // shows a warning
+    };
+    
+    // making a map object using a map constructor
+    var nobleGases = Map<int, String>();
+    // [<key>] not an index
+    nobleGases[2] = 'helium';
+    nobleGases[10] = 'neon';
+    nobleGases[18] = 'argon';
+
+    // retrieve a value from a key using [<key>]
+    print(nobleGases[2]);
+
+    if(nobleGases[3] == null) {
+        print("3 does not exist");
+    }
+    
+    // compile-time constant map
+    final constantMap = const {
+        'first' : 'partridge',
+        'second' : 'turtledoves',
+        'third' : 'golden rings',
+    };
+}
