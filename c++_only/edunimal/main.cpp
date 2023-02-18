@@ -51,9 +51,9 @@ int main() {
     EduCat eduCat;
     EduBird eduBird;
 
-    while(true) {
+    screens.SplashScreen();
 
-        screens.SplashScreen();
+    while(true) {
 
         screens.HomeScreen();
 
@@ -61,16 +61,18 @@ int main() {
             std::cout << "Exit" << std::endl;
             return 0;
         } else {
-            screens.InfoScreen(screens.Get_Animal_Choice());
+            screens.AnimalIntroScreen(screens.Get_Animal_Choice());
+
+            do {
+                screens.InfoScreen(screens.Get_Animal_Choice());
+                screens.ContinueScreen();
+            } while(screens.Get_Continue_Choice() == '1');
         }
 
-        screens.ContinuePrompt();
-
-        if(screens.Get_Continue_Choice() == 'n') {
+        if(screens.Get_Continue_Choice() == '3') {
             screens.SplashScreen();
             break;
         }
-
     }
 
     return 0; 
