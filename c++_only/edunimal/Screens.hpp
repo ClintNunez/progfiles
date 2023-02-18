@@ -8,15 +8,17 @@ class Screens {
     private:
         std::string animal_choice;
         std::string continue_choice;
+        std::string search_Input; // find a better name
 
     public:
         Screens();  // constructor
 
         void SplashScreen();
         void HomeScreen();
+        void AnimalIntroduction(char animal_ID);
         void DefinitionScreen(std::string search_Term);
         void InfoScreen(char animal_ID);
-        void ContinuePrompt();
+        void ContinueScreen();
 
         char Get_Animal_Choice();
         char Get_Continue_Choice();
