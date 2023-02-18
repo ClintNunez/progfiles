@@ -1,7 +1,11 @@
 #include "EduAnimal.hpp"
 #include <iostream>
+#include <string>
+#include <time.h>
 
-EduAnimal::EduAnimal() {}
+EduAnimal::EduAnimal() {
+    srand(time(0));
+}
 
 void EduAnimal::Display(std::string pattern) {
     while(pattern.length() != 0) {
@@ -10,8 +14,8 @@ void EduAnimal::Display(std::string pattern) {
     }
 }
 
-void EduAnimal::Greetings(std::string greetings) {
-    std::cout << greetings << std::endl;
+void EduAnimal::Greetings(std::vector<std::string> animal_Sounds) {
+    std::cout<< "Good day! " << animal_Sounds.at(rand() % animal_Sounds.size()) << std::endl;
 }
 
 EduDog::EduDog() {}
@@ -21,7 +25,7 @@ void EduDog::Display() {
 }
 
 void EduDog::Greetings() {
-    EduAnimal::Greetings(DOG_GREETINGS);
+    return EduAnimal::Greetings(DOG_BARKS);
 }
 
 EduCat::EduCat() {}
@@ -31,7 +35,7 @@ void EduCat::Display() {
 }
 
 void EduCat::Greetings() {
-    EduAnimal::Greetings(CAT_GREETINGS);
+    return EduAnimal::Greetings(CAT_MEOWS);
 }
 
 EduBird::EduBird() {}
@@ -41,5 +45,5 @@ void EduBird::Display() {
 }
 
 void EduBird::Greetings() {
-    EduAnimal::Greetings(BIRD_GREETINGS);
+    return EduAnimal::Greetings(BIRD_TWEETS);
 }
