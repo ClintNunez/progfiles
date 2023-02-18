@@ -43,7 +43,7 @@ char Screens::Get_Animal_Choice() {
     return animal_choice[0];
 }
 
-void Screens::AnimalIntroduction(char animal_ID) {
+void Screens::AnimalIntroScreen(char animal_ID) {
     // this will ask for a name for each animal. if it already exists show the given name of the current animal.
     helper::CLS();
 

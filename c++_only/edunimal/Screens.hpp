@@ -15,7 +15,7 @@ class Screens {
 
         void SplashScreen();
         void HomeScreen();
-        void AnimalIntroduction(char animal_ID);
+        void AnimalIntroScreen(char animal_ID);
         void DefinitionScreen(std::string search_Term);
         void InfoScreen(char animal_ID);
         void ContinueScreen();
