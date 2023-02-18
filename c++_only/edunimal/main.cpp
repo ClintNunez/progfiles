@@ -7,18 +7,18 @@
  */
 
 /* TODO 
-* - Learn to use menus
-* - Use the ascii character art to create the EDUNIMAL Title
-* - Use seek? for finding the right info
-* - FileReader Class
-* - Make a table to know the searchable terms for the user. IDK Where to put it.
-* - use delays
-* - Properly use std::cin.ignore()
-*
-* DONE
-* - Learn how to use separate files for the animals class
-* - rename prompts to screens
-*/
+ * - Learn to use menus
+ * - Use the ascii character art to create the EDUNIMAL Title
+ * - Use seek? for finding the right info
+ * - FileReader Class
+ * - Make a table to know the searchable terms for the user. (Screens.hpp/.cpp)
+ * - use delays
+ * - Properly use std::cin.ignore()
+ *
+ * DONE
+ * - Learn how to use separate files for the animals class
+ * - rename prompts to screens
+ */
 
 /*
  * ###Program flow
@@ -46,53 +46,25 @@
 #include <fstream>
 
 int main() {
-    bool correct_choice;
-
     Screens screens;
     EduDog eduDog;
     EduCat eduCat;
     EduBird eduBird;
 
     while(true) {
-        
+
         screens.SplashScreen();
 
-        do {
-            correct_choice = true;
+        screens.HomeScreen();
 
-            screens.HomeScreen();
-
-            if(screens.Get_Animal_Choice() == 'e') {
-                std::cout << "Exit" << std::endl;
-                return 0;
-            } else {
-                 
-
-                switch(screens.Get_Animal_Choice()) {
-                    case 'a':
-                        eduDog.Display();
-                        eduDog.Greetings();
-                        break;
-                    case 'b':
-                        eduCat.Display();
-                        eduCat.Greetings();
-                        break;
-                    case 'c':
-                        eduBird.Display();
-                        eduBird.Greetings();
-                        break;
-                    default:
-                        std::cout << "Choice is not within the given options. Press [Enter] to redo." << std::endl;
-                        correct_choice = false;
-                        std::cin.ignore();
-                        break;
-                }
-            }
-
-        } while(!correct_choice);
+        if(screens.Get_Animal_Choice() == '4') {
+            std::cout << "Exit" << std::endl;
+            return 0;
+        } else {
+            screens.InfoScreen(screens.Get_Animal_Choice());
+        }
 
         screens.ContinuePrompt();
-        helper::CLS();
 
         if(screens.Get_Continue_Choice() == 'n') {
             screens.SplashScreen();
