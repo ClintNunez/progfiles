@@ -13,10 +13,11 @@
 * - FileReader Class
 * - Make a table to know the searchable terms for the user. IDK Where to put it.
 * - use delays
-* - rename prompts to screens
+* - Properly use std::cin.ignore()
 *
 * DONE
 * - Learn how to use separate files for the animals class
+* - rename prompts to screens
 */
 
 /*
@@ -39,37 +40,35 @@
  */
 
 #include "EduAnimal.hpp"
-#include "Prompts.hpp"
+#include "Screens.hpp"
+#include "Helper.h"
 #include <iostream>
 #include <fstream>
 
-
-const std::string CLS = "\033[2J\033[1;1H";
-
 int main() {
-    std::cout << "Enter";
-    std::cin.ignore(); // allows for pressing any keys
-                       
     bool correct_choice;
 
-    Prompts prompts;
+    Screens screens;
     EduDog eduDog;
     EduCat eduCat;
     EduBird eduBird;
 
     while(true) {
+        
+        screens.SplashScreen();
 
         do {
             correct_choice = true;
 
-            prompts.HomeScreen();
+            screens.HomeScreen();
 
-            if(prompts.Get_Animal_Choice() == 'e') {
+            if(screens.Get_Animal_Choice() == 'e') {
                 std::cout << "Exit" << std::endl;
                 return 0;
             } else {
+                 
 
-                switch(prompts.Get_Animal_Choice()) {
+                switch(screens.Get_Animal_Choice()) {
                     case 'a':
                         eduDog.Display();
                         eduDog.Greetings();
@@ -85,16 +84,18 @@ int main() {
                     default:
                         std::cout << "Choice is not within the given options. Press [Enter] to redo." << std::endl;
                         correct_choice = false;
+                        std::cin.ignore();
                         break;
                 }
             }
 
         } while(!correct_choice);
 
-        prompts.ContinuePrompt();
+        screens.ContinuePrompt();
+        helper::CLS();
 
-        if(prompts.Get_Continue_Choice() == 'n') {
-            std::cout << "Thank you." << std::endl;
+        if(screens.Get_Continue_Choice() == 'n') {
+            screens.SplashScreen();
             break;
         }
 
