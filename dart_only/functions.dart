@@ -1,6 +1,8 @@
 /*
 ### GENERAL RULES
-    G_ + Functions
+    Search description using:
+    G_ + Functions 
+    main for calling functions
 
 ### PARAMETERS
     Search functions using:
@@ -9,7 +11,11 @@
 
 */
 
+//TODO search for trailing commas
+
 void main() {
+    // you can specify named arguments using paramName: value:
+    NamedParameter(is_true: true, is_false: false);
 
 }
 
@@ -29,5 +35,10 @@ OmittedFunctionType(bool is_true) {
 // the => expression is a shorthand for { return expr; }. => is sometimes referred to as arrow syntax
 // only an expression can be used after the => expression. Example, you can't use if statement but you can use a conditional expression ( (condition) ? true : false )
 bool isShortHand(bool is_true) => is_true != false;
+
+// If you don't provide a value or mark a named parameter as required, their types must me nullable as ther default value will be null
+bool NamedParameter({bool? is_true, bool? is_false}) {
+    return is_true == is_false;
+}
 
 
