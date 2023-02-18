@@ -13,6 +13,10 @@ void main() {
     T_List();
 }
 
+
+// sample of a top-level variable with a late modifier, usage and description in line 44
+late String lateString;
+
 void G_Variables() {
     // variables declared without an explicit type and is not initialized can get multiple data types (wat)
     var test;
@@ -26,8 +30,36 @@ void G_Variables() {
     test = "string";
     print('test = $test');
 
-    // difference between const and final
-    // https://stackoverflow.com/questions/50431055/what-is-the-difference-between-the-const-and-final-keywords-in-dart
+    // Same behaviour for Object types except that you can initialize the variable
+    Object test1 = 1.1;
+    test1 = 1;
+    test1 = "String";
+
+   
+    // uninitialized variables that have a nullable have an initial value of null. Even numeric types are initially null
+    int? nullabeInt;
+
+    // late modifier use cases:
+    // - Declaring a non-nullable variable that's initialized after its declaration.
+    // - Laziliy initializing a variable.
+    // When you mark a variable as late but initialize it at its declaration, then the initializer runs the first time the variable is used
+    // This lazy initialization is handy in a couple of cases:
+    // - variable might not be needed, and initializing it is costyl.
+    // - You're initializing an instance variable, and its initializer needs access to this.
+    lateString = "hello";
+    print(lateString);
+     
+
+    // a final variable can only be set/initialized once. 
+    final int n;
+    n = 1;
+    //n = 2; error since n is already initialized once
+
+    // a const variable is a compile-time constant (const variables are implicitly final)
+    const int m = 1;
+    //const int m; wrong since const variables should be compile-time constants
+
+    // more info on final vs const(?) https://stackoverflow.com/questions/50431055/what-is-the-difference-between-the-const-and-final-keywords-in-dart
 }
 
 void G_Arithmetic() {
