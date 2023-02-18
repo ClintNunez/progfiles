@@ -18,32 +18,60 @@ void EduAnimal::Greetings(std::vector<std::string> animal_Sounds) {
     std::cout<< "Good day! " << animal_Sounds.at(rand() % animal_Sounds.size()) << std::endl;
 }
 
-EduDog::EduDog() {}
+std::string EduAnimal::AskForName(std::vector<std::string> animal_Sounds) {
+    std::cout << "Please give me a name. " << animal_Sounds.at(rand() % animal_Sounds.size()) << std::endl;
+    std::getline(std::cin, given_name);
+    
+    return given_name;
+}
+
+EduDog::EduDog() {
+    /*Get name of dog from file*/
+}
 
 void EduDog::Display() {
     EduAnimal::Display(DOG_PATTERN);
 }
 
 void EduDog::Greetings() {
-    return EduAnimal::Greetings(DOG_BARKS);
+    EduAnimal::Greetings(DOG_BARKS);
 }
 
-EduCat::EduCat() {}
+void EduDog::AskForName() {
+    given_name = EduAnimal::AskForName(DOG_BARKS);
+    // add code for saving the name in file
+}
+
+EduCat::EduCat() {
+    /*Get name of cat from file*/
+}
 
 void EduCat::Display() {
     EduAnimal::Display(CAT_PATTERN);
 }
 
 void EduCat::Greetings() {
-    return EduAnimal::Greetings(CAT_MEOWS);
+    EduAnimal::Greetings(CAT_MEOWS);
 }
 
-EduBird::EduBird() {}
+void EduCat::AskForName() {
+    given_name = EduAnimal::AskForName(CAT_MEOWS);
+    // add code for saving the name in file
+}
+
+EduBird::EduBird() {
+    /*Get name of bird from file*/
+}
 
 void EduBird::Display() {
     EduAnimal::Display(BIRD_PATTERN);
 }
 
 void EduBird::Greetings() {
-    return EduAnimal::Greetings(BIRD_TWEETS);
+    EduAnimal::Greetings(BIRD_TWEETS);
+}
+
+void EduBird::AskForName() {
+    given_name = EduAnimal::AskForName(BIRD_TWEETS);
+    // add code for saving the name in file
 }
