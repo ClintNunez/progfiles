@@ -1,3 +1,6 @@
+#ifndef SCREENS_HPP
+#define SCREENS_HPP
+#include "EduAnimal.hpp"
 #include <string>
 // TODO 
 // make a prompt for searching more in the current animal, switching animal or exit. (this happens after successfuly searching a term in the current animal)
@@ -11,8 +14,13 @@ class Screens {
 
         void SplashScreen();
         void HomeScreen();
-        char Get_Animal_Choice();
+        void DefinitionScreen(std::string search_Term);
+        void InfoScreen(char animal_ID);
         void ContinuePrompt();
+
+        char Get_Animal_Choice();
         char Get_Continue_Choice();
 
 };
+
+#endif
