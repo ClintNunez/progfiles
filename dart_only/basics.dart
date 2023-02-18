@@ -39,13 +39,16 @@ void G_Variables() {
     // uninitialized variables that have a nullable have an initial value of null. Even numeric types are initially null
     int? nullabeInt;
 
-    // late modifier use cases:
-    // - Declaring a non-nullable variable that's initialized after its declaration.
-    // - Laziliy initializing a variable.
-    // When you mark a variable as late but initialize it at its declaration, then the initializer runs the first time the variable is used
-    // This lazy initialization is handy in a couple of cases:
-    // - variable might not be needed, and initializing it is costyl.
-    // - You're initializing an instance variable, and its initializer needs access to this.
+    /*
+       late modifier use cases:
+       - Declaring a non-nullable variable that's initialized after its declaration.
+       - Laziliy initializing a variable.
+       When you mark a variable as late but initialize it at its declaration, then the initializer runs the first time the variable is used
+       This lazy initialization is handy in a couple of cases:
+       - variable might not be needed, and initializing it is costyl.
+       - You're initializing an instance variable, and its initializer needs access to this.
+    */
+
     lateString = "hello";
     print(lateString);
      
