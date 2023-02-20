@@ -14,7 +14,7 @@ Screens::Screens() {}
 
 void Screens::SplashScreen() {
     helper::CLS();
-    std::cout << "House" << std::endl;
+    std::cout << "House\n";
     helper::Ignore();
 }
 
@@ -70,29 +70,24 @@ void Screens::AnimalIntroScreen(char animal_ID) {
     switch(animal_ID) {
         case '1':
             EduAnimals.eduDog.Display();
-            EduAnimals.eduDog.AskForName();
+            EduAnimals.eduDog.AskForName(animal_ID);
             break;
         case '2':
             EduAnimals.eduCat.Display();
-            EduAnimals.eduCat.AskForName();
+            EduAnimals.eduCat.AskForName(animal_ID);
             break;
         case '3':
             EduAnimals.eduBird.Display();
-            EduAnimals.eduBird.AskForName();
+            EduAnimals.eduBird.AskForName(animal_ID);
             break;
     }
 
 }
 
-void Screens::DefinitionScreen(std::string search_Term) {
-    // this will display the definition and will use the file searching function from the helper class
-    helper::CLS();
-    std::cout << search_Term << std::endl;
-    helper::Ignore();
-}
-
 void Screens::InfoScreen(char animal_ID) {
     helper::CLS();
+
+    ShowTable(animal_ID);
 
     switch(animal_ID) {
         case '1':
@@ -105,14 +100,37 @@ void Screens::InfoScreen(char animal_ID) {
             EduAnimals.eduBird.Display();
             break;
     }
-
-    // Show table
-    std::cout << "Table" << std::endl;
+    
 
     std::cout << "Enter what you want to search: ";
     std::getline(std::cin, search_Input);
 
     DefinitionScreen(search_Input);
+}
+
+void Screens::ShowTable(char animal_ID) {
+    // CLS is called in InforScreen() 
+    // will show the table for each animals
+    
+    switch(animal_ID) {
+        case '1':
+            std::cout << "Table for Dog\n";
+            break;
+        case '2':
+            std::cout << "Table for Cat\n";
+            break;
+        case '3':
+            std::cout << "Table for Bird\n";
+            break;
+    }
+    
+}
+
+void Screens::DefinitionScreen(std::string search_Term) {
+    // this will display the definition and will use the file searching function from the helper class
+    helper::CLS();
+    std::cout << search_Term << std::endl;
+    helper::Ignore();
 }
 
 void Screens::ContinueScreen() {

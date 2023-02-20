@@ -13,6 +13,7 @@ class Screens {
     public:
         Screens();  // constructor
 
+        // Screens
         void SplashScreen();
         void HomeScreen();
         void AnimalIntroScreen(char animal_ID);
@@ -20,6 +21,9 @@ class Screens {
         void InfoScreen(char animal_ID);
         void ContinueScreen();
 
+        // Design?
+        void ShowTable(char animal_ID);
+    
         char Get_Animal_Choice();
         char Get_Continue_Choice();
 
