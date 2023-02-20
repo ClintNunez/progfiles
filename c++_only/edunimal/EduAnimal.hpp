@@ -11,7 +11,7 @@ class EduAnimal {
         EduAnimal();
         void Display(std::string pattern);
         void Greetings(std::vector<std::string> animal_Sounds);
-        std::string AskForName(std::vector<std::string> animal_Sounds);
+        std::string AskForName(std::vector<std::string> animal_Sounds, char animal_ID);
         std::string GetName(); // get the name from file for checking if the current animal is already named
 };
 
@@ -27,7 +27,8 @@ class EduDog : public EduAnimal {
     
         void Display(); 
         void Greetings();
-        void AskForName();
+        void AskForName(char animal_ID);
+        std::string GetName();
 };
 
 class EduCat : public EduAnimal {
@@ -42,7 +43,8 @@ class EduCat : public EduAnimal {
 
         void Display(); 
         void Greetings();
-        void AskForName();
+        void AskForName(char animal_ID);
+        std::string GetName();
 };
 
 class EduBird : public EduAnimal {
@@ -57,7 +59,8 @@ class EduBird : public EduAnimal {
 
         void Display(); 
         void Greetings();
-        void AskForName();
+        void AskForName(char animal_ID);
+        std::string GetName();
 };
 
 static struct {
