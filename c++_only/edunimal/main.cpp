@@ -7,7 +7,7 @@
  */
 
 /* TODO 
- * - Learn to use menus
+ * - Refactor: from std::endl to '\n'
  * - Use the ascii character art to create the EDUNIMAL Title
  * - Use seek? for finding the right info
  * - FileReader Class
@@ -58,7 +58,7 @@ int main() {
         screens.HomeScreen();
 
         if(screens.Get_Animal_Choice() == '4') {
-            std::cout << "Exit" << std::endl;
+            screens.SplashScreen();
             return 0;
         } else {
             screens.AnimalIntroScreen(screens.Get_Animal_Choice());
