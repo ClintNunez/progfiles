@@ -1,4 +1,16 @@
 {
     "name" : "clint",
-    "age" : 19
+    "age" : 19,
+    "array" : [1, 2, 3, 4, 5],
+    "objarray" : [
+        {
+            "obj1" : "name1"
+        },
+        {
+            "obj2" : "name2"
+        },
+        {
+            "obj3" : "name3"
+        }
+    ]
 }
