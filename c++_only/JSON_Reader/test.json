@@ -1,16 +1,22 @@
 {
-    "name" : "clint",
-    "age" : 19,
-    "array" : [1, 2, 3, 4, 5],
-    "objarray" : [
+    "age": 19,
+    "array": [
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "name": "patrick",
+    "objarray": [
         {
-            "obj1" : "name1"
+            "obj1": "name1"
         },
         {
-            "obj2" : "name2"
+            "obj2": "name2"
         },
         {
-            "obj3" : "name3"
+            "obj3": "name3"
         }
     ]
 }
