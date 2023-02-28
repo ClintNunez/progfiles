@@ -5,8 +5,9 @@
 using json = nlohmann::json;
 
 int main() {
-    std::fstream f("test.json");
+    std::fstream f;
 
+    f.open("test.json", std::ios::in);
     // parse the whole json file to data
     json data = json::parse(f);    
 
@@ -50,6 +51,18 @@ int main() {
         */
         std::cout << obj["obj" + std::to_string(i)] << std::endl;
     }
+
+    // change the value of a key in the json file
+    json newdata = data;
+    newdata["name"] = "patrick";
+
+    f.open("test.json", std::ios::out);
+
+    f << std::setw(4) << newdata << '\n';
+
+    f.close();
+    
+    std::cout << std::setw(4) << data << '\n';
 
     return 0;
 }
