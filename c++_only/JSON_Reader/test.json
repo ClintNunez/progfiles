@@ -18,5 +18,9 @@
         {
             "obj3": "name3"
         }
-    ]
+    ],
+    "name1": {
+        "hell": "hell",
+        "array1": ["s1", "s2"]
+    }
 }

@@ -52,6 +52,13 @@ int main() {
         std::cout << obj["obj" + std::to_string(i)] << std::endl;
     }
 
+    std::cout << data["name1"]["array1"].size() << std::endl;
+
+    for(int i = 0; i < data["name1"]["array1"].size(); i++) {
+        std::cout << data["name1"]["array1"][i] << std::endl;
+    }
+
+    /*
     // change the value of a key in the json file
     json newdata = data;
     newdata["name"] = "patrick";
@@ -63,6 +70,7 @@ int main() {
     f.close();
     
     std::cout << std::setw(4) << data << '\n';
+    */
 
     return 0;
 }
