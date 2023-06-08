@@ -4,24 +4,27 @@ import 'dart:io';
 class Survey {
     final String title;
     final String description;
-    final String filePath;
+    final List<dynamic> questions;
 
-    Survey(this.title, this.description, this.filePath);
+    Survey(this.title, this.description, this.questions);
 
     // This could be Map<String, String>
-    Survey.fromJson(Map<String, dynamic> json): title = json['title'], description = json['description'], filePath = json['filePath'];
+    Survey.fromJson(Map<String, dynamic> json): title = json['title'], description = json['description'], questions = json['questions'];
 
     Map<String, dynamic> toJson() => {
         'title': title,
-            'description': description,
-            'filepath': filePath
+        'description': description,
+        'questions': questions
     };
+}
+
+class Question {
+
 }
 
 void main() {
     final String fileName = 'surveylist.json';
     final File file = File(fileName);
-
 
     if (file.existsSync()) {
         stdout.writeln('File exists!'); 
@@ -37,10 +40,16 @@ void main() {
     final String content = file.readAsStringSync();
     final Map<String, dynamic> data = json.decode(content);
 
+
+    final String updatedSurveyList = json.encode(data);
+    file.writeAsStringSync(updatedSurveyList);
+
+    /*
     final List<dynamic> survey = data['survey'];
 
     stdout.write('Add(1) or Edit(2) a survey?');
     String? choice = stdin.readLineSync();
+
 
     switch(choice) {
         case '1':
@@ -49,11 +58,10 @@ void main() {
         case '2':
             int index = 0;
 
-            survey.where((eachSurvey) => eachSurvey['title'])
-                .forEach((element) {
-                    print(element);
-                    index++;
-            });
+            survey.forEach((element) {
+                stdout.writeln('$index) ${element['title']}');
+                index++;
+                });
 
             stdout.write('Write the index of survey you want to edit: ');
             String? surveyIndex = stdin.readLineSync();
@@ -61,6 +69,7 @@ void main() {
             EditSurvey(file, data, survey, surveyIndex);
             break;
     }
+    */
 }
 
 void AddSurvey(File file, Map<String, dynamic> data) {
@@ -69,11 +78,11 @@ void AddSurvey(File file, Map<String, dynamic> data) {
     stdout.write('Description: ');
     String? description = stdin.readLineSync();
 
-    final String filePath = 'survey_response_json/${title!.toLowerCase()}';
+    final String filePath = 'survey_response_json/$title';
 
-    Survey newSurvey = Survey(title, description!, filePath);
+//    Survey newSurvey = Survey(title!, description!, filePath);
 
-    data['survey'].add(newSurvey.toJson());
+ //   data['survey'].add(newSurvey.toJson());
 
     final String updatedSurveyList = json.encode(data);
     file.writeAsStringSync(updatedSurveyList);
@@ -81,7 +90,11 @@ void AddSurvey(File file, Map<String, dynamic> data) {
 
 void EditSurvey(File file, Map<String, dynamic> data, List<dynamic> survey, String? surveyIndex) {
     stdout.writeln('Previous data: ');
-    print(data['survey'][int.tryParse(surveyIndex!)]);
+    
+    var currentSurvey = Survey.fromJson(survey.elementAt(int.parse(surveyIndex!)));
+
+    print(currentSurvey.title);
+    print(currentSurvey.description);
 
     stdout.writeln('New data: ');
     stdout.write('Title: ');
@@ -89,11 +102,23 @@ void EditSurvey(File file, Map<String, dynamic> data, List<dynamic> survey, Stri
     stdout.write('Description: ');
     String? description = stdin.readLineSync();
 
-    Survey editedSurvey = Survey(title!, description!, survey.elementAt(int.tryParse(surveyIndex)!)['filepath']);
+    final String newfilePath = 'survey_response_json/$title}';
 
-    survey.removeAt(int.tryParse(surveyIndex)!);
+    /*
+    Survey editedSurvey = Survey(title!, description!, newfilePath);
+
+    renameFile(currentSurvey.filePath, newfilePath);
+
+    survey.removeAt(int.parse(surveyIndex));
     survey.add(editedSurvey.toJson());
 
     final String updatedSurveyList = json.encode(data);
     file.writeAsStringSync(updatedSurveyList);
+    */
+}
+
+void renameFile(String oldPath, String newPath) {
+  final file = File(oldPath);
+  file.renameSync(newPath);
+  print('File renamed successfully.');
 }
