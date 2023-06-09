@@ -97,6 +97,9 @@ void AddSurvey(File file, List<dynamic> data) {
     int numOfQuestions = 0;
     late String? repeat;
 
+    
+    // TODO add code for making the responses template for each question added. This will make it easier to update the data when adding responses
+    List<Map<String, Map<String, int>>> responses = [];
     List<dynamic> questionsList = [];
     do {
         List<String> choices = [];
@@ -127,8 +130,7 @@ void AddSurvey(File file, List<dynamic> data) {
         repeat = stdin.readLineSync();
     } while (repeat == 'y');
 
-    List<Map<String, Map<String, int>>> responsesSample = [];
-    Survey newSurvey = Survey(title!, description!, questionsList, responsesSample);
+    Survey newSurvey = Survey(title!, description!, questionsList, responses);
 
     data.add(newSurvey.toJson());
 
@@ -179,7 +181,8 @@ void AddResponse(File file, List<dynamic> data, int index) {
 
 
     */
-    List<Map<String, Map<String, int>>> currentResponses;
+    List<Map<String, Map<String, int>>> currentResponses; // might not be needed if I am just going to update the responses
+    List<Map<String, Map<String, int>>> resonsesFromJson = data.elementAt(index)['responses'];
     
     List<dynamic> currentQuestions = data.elementAt(index)['questions'];
 
