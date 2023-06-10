@@ -1,21 +1,65 @@
 import 'dart:convert';
 import 'dart:io';
-// change all dynamics to explicit
 
+/*
+   can only be used in flutter
+   import 'package:flutter/services.dart' show rootBundle;
+
+   Future<dynamic> readJsonData() async {
+   String jsonString = await rootBundle.loadString('assets/data.json');
+   return jsonDecode(jsonString);
+   }
+   */
+
+/* // previous
+   class Survey { final String title; final String description;
+   final List<dynamic> questions;
+   final List<Map<String, Map<String, int>>> responses;
+
+   Survey(this.title, this.description, this.questions, this.responses);
+
+   Survey.fromJson(Map<String, dynamic> json): title = json['title'], description = json['description'], questions = json['questions'], responses = json['responses'];
+
+   Map<String, dynamic> toJson() => {
+   'title': title,
+   'description': description,
+   'questions': questions,
+   'responses': responses,
+   };
+   }
+   */
+
+// chat gpt
 class Survey {
     final String title;
     final String description;
-    final List<dynamic> questions;
+    final List<Question> questions;
     final List<Map<String, Map<String, int>>> responses;
 
     Survey(this.title, this.description, this.questions, this.responses);
 
-    Survey.fromJson(Map<String, dynamic> json): title = json['title'], description = json['description'], questions = json['questions'], responses = json['responses'];
+    Survey.fromJson(Map<String, dynamic> json)
+        : title = json['title'] as String,
+        description = json['description'] as String,
+        questions = (json['questions'] as List<dynamic>)
+          .map((question) => Question.fromJson(question as Map<String, dynamic>))
+          .toList(),
+          responses = (json['responses'] as List<dynamic>)
+          .map((response) => _convertResponse(response as Map<String, dynamic>))
+          .toList();
+
+    static Map<String, Map<String, int>> _convertResponse(Map<String, dynamic> response) {
+        Map<String, Map<String, int>> convertedResponse = {};
+        response.forEach((key, value) {
+                convertedResponse[key] = value.cast<String, int>();
+                });
+        return convertedResponse;
+    }
 
     Map<String, dynamic> toJson() => {
         'title': title,
             'description': description,
-            'questions': questions,
+            'questions': questions.map((question) => question.toJson()).toList(),
             'responses': responses,
     };
 }
@@ -33,13 +77,18 @@ class Question {
 
     Question(this.questionType, this.problem, this.choices);
 
-    Question.fromJson(Map<String, dynamic> json): questionType = json['questionType'], problem = json['problem'], choices = json['choices'];
+    Question.fromJson(Map<String, dynamic> json)
+        : questionType = json['questionType'],
+        problem = json['problem'],
+        choices = (json['choices'] as List<dynamic>)
+          .map((choice) => choice as String)
+          .toList();
 
-    Map<String, dynamic> toJson() => {
-        'questionType': questionType,
-            'problem': problem,
-            'choices': choices,
-    };
+        Map<String, dynamic> toJson() => {
+            'questionType': questionType,
+                'problem': problem,
+                'choices': choices,
+        };
 }
 
 
@@ -97,10 +146,11 @@ void AddSurvey(File file, List<dynamic> data) {
     int numOfQuestions = 0;
     late String? repeat;
 
-    
     // TODO add code for making the responses template for each question added. This will make it easier to update the data when adding responses
     List<Map<String, Map<String, int>>> responses = [];
-    List<dynamic> questionsList = [];
+    //List<dynamic> questionsList = [];
+    List<Question> questionsList = [];
+
     do {
         List<String> choices = [];
         stdout.writeln('Number of questions: $numOfQuestions');
@@ -121,6 +171,17 @@ void AddSurvey(File file, List<dynamic> data) {
                 repeat = stdin.readLineSync();
             }
         } while(choices.length < 2 || repeat == 'y');
+
+        Map<String, int> choicesResponeSetup = {};
+        choices.forEach((element) {
+                //choicesResponeSetup.addAll({'$element': 0});
+                choicesResponeSetup['$element'] = 0;
+                });
+
+        Map<String, Map<String, int>> problemResponesSetup = {};
+        problemResponesSetup['$problem'] = choicesResponeSetup;
+
+        responses.add(problemResponesSetup);
 
         questionsList.add(Question(questionType, problem!, choices));
 
@@ -165,33 +226,31 @@ void EditSurvey(File file, Map<String, dynamic> data, List<dynamic> survey, Stri
        final String updatedSurveyList = json.encode(data);
        file.writeAsStringSync(updatedSurveyList);
        */
-}
+    }
 
 // TODO try getting the title of the survey instead of the index
 void AddResponse(File file, List<dynamic> data, int index) {
-    /*
-        update?
-        get the responses from the json file
+    //List<Map<String, Map<String, int>>> responsesFromJson = data.elementAt(index)['responses'];
+    //List<dynamic> responsesFromJson = data.elementAt(index)['responses'];
+    Survey currentSurvey = Survey.fromJson(data.elementAt(index));
+    String? answer;
 
-        get the questions from the json file
-         - loop through each question:
-            - get the problem
-            - get the choices
-            - 
-
-
-    */
-    List<Map<String, Map<String, int>>> currentResponses; // might not be needed if I am just going to update the responses
-    List<Map<String, Map<String, int>>> resonsesFromJson = data.elementAt(index)['responses'];
-    
-    List<dynamic> currentQuestions = data.elementAt(index)['questions'];
-
-    currentQuestions.forEach((element) {
-        print(element['problem']);
-        element['choices'].forEach((element) {
+    currentSurvey.responses.forEach((problems) {
+        problems.keys.forEach((element) {
             print(element);
+            problems['$element']!.keys.forEach((choices) {
+                print(choices);
+            });       
 
-            stdout.writeln('input answer:');
+            stdout.writeln('Answer:');
+            answer = stdin.readLineSync();
+            
+            problems['$element']!['$answer'] = problems['$element']!['$answer']! + 1;
         });
     });
+    
+    print(currentSurvey.responses);
+    //final String encodedData = JsonEncoder.withIndent('  ').convert(currentSurvey.toJson());
+    final String encodedData = JsonEncoder.withIndent('  ').convert(data);
+    file.writeAsStringSync(encodedData);
 }

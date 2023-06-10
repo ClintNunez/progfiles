@@ -4,37 +4,78 @@
     "description": "test hehe",
     "questions": [
       {
+        "questionType": "MultipleChoice",
+        "problem": "who?",
+        "choices": [
+          "a",
+          "b"
+        ]
+      },
+      {
         "questionType": "CheckBox",
+        "problem": "who?????",
+        "choices": [
+          "c",
+          "d"
+        ]
+      }
+    ],
+    "responses": [
+      {
+        "who?": {
+          "a": 2,
+          "b": 1
+        }
+      },
+      {
+        "who?????": {
+          "c": 2,
+          "d": 1
+        }
+      }
+    ]
+  },
+  {
+    "title": "hello",
+    "description": "helo hehe",
+    "questions": [
+      {
+        "questionType": "MultipleChoice",
+        "problem": "why?",
+        "choices": [
+          "a",
+          "b"
+        ]
+      }
+    ],
+    "responses": [
+      {
+        "why?": {
+          "a": 1,
+          "b": 0
+        }
+      }
+    ]
+  },
+  {
+    "title": "a",
+    "description": "a",
+    "questions": [
+      {
+        "questionType": "MultipleChoice",
         "problem": "a",
         "choices": [
           "a",
           "a"
         ]
-      },
-      {
-        "questionType": "Sentence",
-        "problem": "b",
-        "choices": [
-          "b",
-          "b"
-        ]
       }
     ],
-    "responses": []
-  },
-  {
-    "title": "test1",
-    "description": "test1 huehue",
-    "questions": [
+    "responses": [
       {
-        "questionType": "MultipleChoice",
-        "problem": "d",
-        "choices": [
-          "d",
-          "d"
-        ]
+        "a": {
+          "a": 0
+        }
       }
-    ],
-    "responses": []
+    ]
   }
 ]
