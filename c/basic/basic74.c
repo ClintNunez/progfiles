@@ -2,7 +2,7 @@
 
 int main() {
     char letter = 'a';
-    int i = 1;
+    int i = 0;
 
     do {
         printf("%i ", (int) letter);

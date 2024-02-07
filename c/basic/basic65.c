@@ -12,16 +12,19 @@ bool isPrime(int n) {
 }
 
 int main() {
-    int limit = 200, n = 2;
-    while(n < limit) {
-        for(int j = 0; j < 20; j++) {
-            if(isPrime(n)) {
-                printf("%i ", n);
-            }
-            n++;
-        }    
+    int limit = 200, n = 2, i = 0;
 
-        printf("\n");
+    while(n < limit) {
+        if(isPrime(n)) {
+            printf("%5i", n);
+            i++;
+        }
+        n++;
+
+        if(i == 10){
+            printf("\n");
+            i = 0;
+        }
     }
     
     return 0;
