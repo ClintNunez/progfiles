@@ -1,25 +1,40 @@
 #include <stdio.h>
 
 int main() {
+    int n;
+
     for(int i = 1; i <= 100; i++) {
-        while(i >= 0) {
-            if(i - 100 >= 0) {
+        n = i;
+        printf("%-6i ", n);
+        while(n > 0) {
+            if(n == 100) {
                 printf("C");
-                i -= 100;
-            } else if(i - 50 >= 0) {
+                n -= 100;
+            } else if(n >= 50) {
                 printf("L");
-                i -= 50;
-            } else if(i - 10 >= 0) {
+                n -= 50;
+            } else if(n >= 10) {
                 printf("X");
-                i -= 10;
-            } else if(i - 5 >= 0) {
-                printf("V");
-                i -= 5;
-            } else if(i - 1 >= 0) {
-                printf("C");
-                i -= 1;
-            } 
+                n -= 10;
+            } else if(n >= 5) {
+                if(n == 9) {
+                    printf("IX");
+                    n = -1;
+                } else {
+                    printf("V");
+                    n -= 5;
+                }
+            } else if(n > 0) {
+                if(n == 4) {
+                    printf("IV");
+                    n = -1;
+                } else {
+                    printf("I");
+                    n -= 1;
+                }
+            }         
         }
+        printf("\n");
     }
 
     return 0;
