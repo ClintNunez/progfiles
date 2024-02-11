@@ -4,10 +4,10 @@ int main() {
     int arr[7], n;
 
     printf("Input the first element of the array: ");
-    scanf("%i", &n);
+    scanf("%i", &arr[0]);
 
-    for(int i = 0; i < 7; i++) {
-        arr[i] = n * (i * 2);
+    for(int i = 1; i < 7; i++) {
+        arr[i] = arr[i - 1] * 2;
     }
 
     printf("Array elements:\n");
