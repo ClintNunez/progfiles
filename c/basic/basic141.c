@@ -1,59 +1,38 @@
-#include <stdio.h>
+#include<stdio.h>
 
-int sumArr(int arr[9], int n) {
-    int sum = 0;
-    for(int i = 0; i < n; i++) {
-        sum += arr[i];
+// Recursive function to find combinations
+int combination(int n, int s, int a) {
+    int i, result = 0;
+
+    // Base case: if n is 1, check if s is within valid range
+    if (n == 1) {
+        if (s >= a && s <= 9) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
-    
-    return sum;
+
+    // Iterate through possible values (a to 9)
+    for (i = a; i <= 9; i++) {
+        // Recursively call combination for (n-1) and adjust s and a values
+        result += combination(n - 1, s - i, i + 1);
+    }
+
+    return result; // Return the total combinations
 }
 
-int sumArrDec(int arr[9], int n) {
-    int sum = 0;
-    for(int i = 0; i < n; i++) {
-        sum += arr[i];
-    }
-    
-    return sum;
-}
 int main() {
-    int n, s, nComb = 0;
-    printf("Input the number: ");
-    scanf("%i", &n);
-    printf("Sum of the digits: ");
-    scanf("%i", &s);
+    int n, s;
 
-    int digits[n], existingComb[];
+    printf("Input the number:\n");
+    scanf("%d", &n);
+    printf("\nSum of the digits:\n");
+    scanf("%d", &s);
 
-    
-    while(sumArr(digits, n) < (9 * n)) { // checks if limit is reached
-        
-        if(n == sumArr(digits, n)) {
-            if()
-            nComb++;
-        }
-    }
-    while((arr[0] + arr[1] + arr[2] + arr[3]) < 36) {
-
-        arr[3]++;
-        if(arr[3] == 10) {
-            arr[3] = 0;
-            arr[2]++;
-            if(arr[2] == 10) {
-                arr[2] = 0;
-                arr[1]++;
-                if(arr[1] == 10) {
-                    arr[1] = 0;
-                    arr[0]++;
-                }
-            }
-        }
-
-
+    if (n != 0 && s != 0) {
+        printf("Number of combinations: %d\n", combination(n, s, 0));
     }
 
-    printf("Number of combinations: %i", nComb);
-    
     return 0;
 }
