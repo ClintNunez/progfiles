@@ -1,1 +1,5 @@
 make header files for algorithms so other data structures can use it
+
+search element
+linear search (unsorted)
+binary search (sorted)

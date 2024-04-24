@@ -1,12 +1,64 @@
 #include <stdio.h>
+ 
+void RotateLeft(int arr[],int arrSize, int nRotation) {
+    int temp;
+    for(int i = 0; i < nRotation; i++) {
+        temp = arr[0];
+        for(int i = 0; i < arrSize - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        arr[arrSize - 1] = temp;
+    }
+}
 
-// arrays will always be passed as pointers in c
-void InsertElement(int arr[], int index, int e) {
+void RotateRight(int arr[],int arrSize, int nRotation) {
+    int temp;
+    for(int i = 0; i < nRotation; i++) {
+        temp = arr[arrSize - 1];
+        for(int i = arrSize - 1; i > 0; i--) {
+            arr[i] = arr[i - 1];
+        }
+        arr[0] = temp;
+    }
+}
+
+int SearchIndexOfElement(int arr[], int arrSize, int e) {
+    for(int i = 0; i < arrSize; i++) {
+        if(arr[i] == e) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int InsertElement(int arr[], int arrSize, int n, int e) {
+    if(n + 1 >= arrSize) {
+        printf("Error");
+    } else {
+        arr[n + 1] = e;
+        return n + 1;
+    }
+
+    return -1;
+}
+
+void ReplaceElement(int arr[], int index, int e) {
     arr[index] = e;
 }
 
-void RemoveElement(int arr[], int index) {
-    arr[index] = 0;
+void RemoveElement(int arr[], int arrSize, int e) {
+    int index = SearchIndexOfElement(arr, arrSize, e);
+    
+    for(int i = index; i < arrSize - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+}
+
+void RemoveElementAtIndex(int arr[], int arrSize, int index) {
+    for(int i = index; i < arrSize - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
 }
 
 void TraverseArray(int arr[], int arrSize) {
@@ -27,41 +79,47 @@ void TraverseArrayFromLastIndex(int arr[], int arrSize) {
     printf("\n");
 }
 
-int SearchIndexOfElement(int arr[], int arrSize, int e) {
-    for(int i = 0; i < arrSize; i++) {
-        if(arr[i] == e) {
-            return i;
-        }
-    }
-
-    return -1;
-}
-
 int main() {
     int arr[10] = {1, 2, 3};
+    int n = 2; // index of last element
     int arrSize = sizeof(arr) / sizeof(arr[0]);
 
     TraverseArray(arr, arrSize);
 
     TraverseArrayFromLastIndex(arr, arrSize);
 
-    InsertElement(arr,3,4);
+    printf("Insert element a new element\n");
+    n = InsertElement(arr, arrSize, n, 5);
+
+    TraverseArray(arr, arrSize);
+    
+    printf("Replace element\n");
+    ReplaceElement(arr,2,4);
 
     TraverseArray(arr, arrSize);
 
-    RemoveElement(arr, 0);
+    printf("Remove element\n");
+    RemoveElement(arr, arrSize, 2);
 
     TraverseArray(arr, arrSize);
 
-    int e = 3, searchResult = SearchIndexOfElement(arr, arrSize, e);
+    int e = 5, searchResult = SearchIndexOfElement(arr, arrSize, e);
     switch (searchResult) {
         case -1:
-            printf("%i does not exist", e);
+            printf("%i does not exist\n", e);
         break;
         default:
-            printf("%i is at index %i", e, searchResult);
+            printf("%i is at index %i\n", e, searchResult);
         break;
     }
+
+    RotateLeft(arr, arrSize, 1);
     
+    TraverseArray(arr, arrSize);
+
+    RotateRight(arr, arrSize, 2);
+    
+    TraverseArray(arr, arrSize);
+
     return 0;
 }
