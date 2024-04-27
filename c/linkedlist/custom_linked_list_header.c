@@ -4,7 +4,7 @@
 #include "custom_linked_list_header.h"
 
 // starts at the head
-void traverse_Linked_List_From_Head(struct node *nodeP) {
+void traverse_SLL_From_Head(struct sll_node *nodeP) {
     while(nodeP != NULL) {
         printf("%i ", nodeP->data);
         nodeP = nodeP->next;
@@ -12,7 +12,7 @@ void traverse_Linked_List_From_Head(struct node *nodeP) {
     printf("\n");
 }
 
-int get_Length_Of_Linked_List(struct node *nodeP) {
+int get_Length_Of_SLL(struct sll_node *nodeP) {
     int i = 0;
     for(; nodeP != NULL; i++) {
         nodeP = nodeP->next;
@@ -21,7 +21,7 @@ int get_Length_Of_Linked_List(struct node *nodeP) {
     return i;
 }
 
-bool search_Element_In_Linked_List(struct node *nodeP, int element) {
+bool search_Element_In_SLL(struct sll_node *nodeP, int element) {
     while(nodeP != NULL) {
         if(nodeP->data == element) {
             return true;
@@ -32,7 +32,7 @@ bool search_Element_In_Linked_List(struct node *nodeP, int element) {
     return false;
 }
 
-int get_Element_Index_In_Linked_List(struct node *nodeP, int element) {
+int get_Element_Index_In_SLL(struct sll_node *nodeP, int element) {
 
     for(int i = 0; nodeP != NULL; i++) {
         if(nodeP->data == element) {
@@ -44,8 +44,8 @@ int get_Element_Index_In_Linked_List(struct node *nodeP, int element) {
     return -1;
 }
 
-void insert_At_Head(struct node **headNode, int newData) {
-    struct node *newNode = (struct node*) malloc(sizeof(struct node)); 
+void insert_At_Head(struct sll_node **headNode, int newData) {
+    struct sll_node *newNode = (struct sll_node*) malloc(sizeof(struct sll_node)); 
 
     newNode->data = newData;
 
@@ -56,9 +56,9 @@ void insert_At_Head(struct node **headNode, int newData) {
     *headNode = newNode;
 }
 
-void insert_At_Tail(struct node **headNode, int newData) {
-    struct node *newNode = (struct node*) malloc(sizeof(struct node)); 
-    struct node *tail = *headNode; 
+void insert_At_Tail(struct sll_node **headNode, int newData) {
+    struct sll_node *newNode = (struct sll_node*) malloc(sizeof(struct sll_node)); 
+    struct sll_node *tail = *headNode; 
 
     newNode->data = newData;
     newNode->next = NULL;
@@ -74,8 +74,8 @@ void insert_At_Tail(struct node **headNode, int newData) {
     tail->next = newNode;
 }
 
-void insert_At_Position(struct node **headNode, int newData, int pos) {
-    struct node *newNode = (struct node*) malloc(sizeof(struct node)); 
+void insert_At_Position(struct sll_node **headNode, int newData, int pos) {
+    struct sll_node *newNode = (struct sll_node*) malloc(sizeof(struct sll_node)); 
 
     newNode->data = newData;
 
@@ -86,7 +86,7 @@ void insert_At_Position(struct node **headNode, int newData, int pos) {
         return;
     }
 
-    struct node *current = *headNode; 
+    struct sll_node *current = *headNode; 
 
     for(int i = 1; i < pos && current->next != NULL; i++) {
         current = current->next;
@@ -96,40 +96,40 @@ void insert_At_Position(struct node **headNode, int newData, int pos) {
     current->next = newNode;
 }
 
-void delete_Head(struct node **headNode) {
+void delete_Head(struct sll_node **headNode) {
     if(*headNode == NULL) {
         printf("Linked list is already empty.\n");
         return;
     } 
 
-    struct node *temp = *headNode;
+    struct sll_node *temp = *headNode;
 
     *headNode = (*headNode)->next;
 
     free(temp);
 }
 
-void delete_Tail(struct node **headNode) {
+void delete_Tail(struct sll_node **headNode) {
     if(*headNode == NULL) {
         printf("Linked list is already empty.\n");
         return;
     } 
 
-    struct node *temp = *headNode;
+    struct sll_node *temp = *headNode;
 
     while(temp->next->next != NULL) {
         temp = temp->next;
     }
 
-    struct node *tail = temp->next;
+    struct sll_node *tail = temp->next;
 
     temp->next = NULL;
 
     free(tail);
 }
 
-void delete_At_Position(struct node **headNode, int pos) {
-    struct node *temp = *headNode;
+void delete_At_Position(struct sll_node **headNode, int pos) {
+    struct sll_node *temp = *headNode;
 
     if(*headNode == NULL) {
         printf("Linked list is already empty.\n");
@@ -142,12 +142,12 @@ void delete_At_Position(struct node **headNode, int pos) {
 
     // temp is a pointer to the headnode 
     // *temp = *temp->next removes the previous nodes since instead of only changing the pointer,
-    // the value of the headnode is directly changed to what is the next node; 
+    // the value of the headnode is directly changed to what is the next sll_node; 
     for(int i = 1; i < pos && temp->next != NULL; i++) {
         temp = temp->next;  
     } 
 
-    struct node *remove = temp->next;
+    struct sll_node *remove = temp->next;
 
     temp->next = temp->next->next;
 
