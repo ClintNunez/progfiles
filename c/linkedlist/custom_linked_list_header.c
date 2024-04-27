@@ -153,3 +153,111 @@ void delete_At_Position(struct sll_node **headNode, int pos) {
 
     free(remove);
 }
+
+void traverse_DLL_From_Head(struct dll_node *nodeP) {
+    while(nodeP != NULL) {
+        printf("%i ", nodeP->data);
+        nodeP = nodeP->next;
+    }
+    printf("\n");
+}
+
+void traverse_DLL_From_Tail(struct dll_node *nodeP) {
+    while(nodeP != NULL) {
+        printf("%i ", nodeP->data);
+        nodeP = nodeP->prev;
+    }
+    printf("\n");
+}
+
+int get_Length_Of_DLL(struct dll_node *nodeP) {
+    int i = 0;
+    for(; nodeP != NULL; i++) {
+        nodeP = nodeP->next;
+    }
+
+    return i;
+}
+
+// search for ascending and descending
+bool search_Element_In_DLL(struct dll_node *nodeP, int element) {
+    while(nodeP != NULL) {
+        if(nodeP->data == element) {
+            return true;
+        }
+        nodeP = nodeP->next;
+    }    
+
+    return false;
+}
+
+int get_Element_Index_In_DLL(struct dll_node *nodeP, int element) {
+
+    for(int i = 0; nodeP != NULL; i++) {
+        if(nodeP->data == element) {
+            return i;
+        }
+        nodeP = nodeP->next;
+    }
+
+    return -1;
+}
+
+void insert_At_Head_DLL(struct dll_node **headNode, int newData) {
+    struct dll_node *newNode = (struct dll_node*) malloc(sizeof(struct dll_node));
+    
+    newNode->data = newData;
+    newNode->prev = NULL;
+
+    if(*headNode == NULL) {
+        newNode->next = NULL;
+        *headNode = newNode;
+    } else {
+        newNode->next = *headNode;
+        (*headNode)->prev = newNode;
+        *headNode = newNode;
+    }
+}
+
+void insert_At_Tail_DLL(struct dll_node **headNode, int newData) {
+    struct dll_node *newNode = (struct dll_node*) malloc(sizeof(struct dll_node)); 
+
+    newNode->data = newData;
+    newNode->next = NULL;
+
+    if(*headNode == NULL) {
+        newNode->prev = NULL;
+        *headNode = newNode;
+    } else {
+        struct dll_node *tail = *headNode;
+
+        while(tail->next != NULL) {
+            tail = tail->next;
+        }
+
+        tail->next = newNode;
+        newNode->prev = tail;
+    }
+}
+
+void insert_At_Position_DLL(struct dll_node **headNode, int newData, int pos) {
+    struct dll_node *newNode = (struct dll_node*) malloc(sizeof(struct dll_node));
+    newNode->data = newData;
+    
+    if(pos == 0 || *headNode == NULL) {
+        newNode->next = *headNode;
+        newNode->prev = NULL;
+        (*headNode)->prev = newNode;
+        *headNode = newNode;
+    } else {
+        struct dll_node *temp = *headNode;  
+        
+        for(int i = 1; i < pos && temp->next != NULL; i++) {
+            temp = temp->next;
+        }
+
+        newNode->next = temp->next;
+        newNode->prev = temp;
+        temp->next = newNode;
+    }
+}
