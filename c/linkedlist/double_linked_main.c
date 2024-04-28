@@ -14,6 +14,8 @@ int main() {
 
     traverse_DLL_From_Head(head);
     insert_At_Tail_DLL(&head, 4);
+    insert_At_Tail_DLL(&head, 5);
+    insert_At_Tail_DLL(&head, 6);
 
     traverse_DLL_From_Head(head);
 
@@ -36,6 +38,17 @@ int main() {
     printf("length of doubly linked list: %i\n", get_Length_Of_DLL(head));
 
     insert_At_Position_DLL(&head, 200, 2);
+    traverse_DLL_From_Head(head);
+
+    delete_Head_DLL(&head);
+    traverse_DLL_From_Head(head);
+
+    struct dll_node *tail = get_Tail_In_DLL(&head);
+
+    delete_Tail_DLL(&head, &tail);
+    traverse_DLL_From_Head(head);
+
+    delete_At_Position_DLL(&head, 1);
     traverse_DLL_From_Head(head);
 
     return 0;

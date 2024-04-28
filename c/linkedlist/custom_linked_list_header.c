@@ -203,9 +203,24 @@ int get_Element_Index_In_DLL(struct dll_node *nodeP, int element) {
     return -1;
 }
 
+struct dll_node *get_Tail_In_DLL(struct dll_node **headNode) {
+    struct dll_node *temp = *headNode;
+    if(temp == NULL) {
+        return NULL;
+    } else if(temp->next == NULL) {
+        return temp;
+    } else {
+        while(temp->next != NULL) {
+            temp = temp->next;
+        }
+
+        return temp;
+    }
+}
+
 void insert_At_Head_DLL(struct dll_node **headNode, int newData) {
     struct dll_node *newNode = (struct dll_node*) malloc(sizeof(struct dll_node));
-    
+
     newNode->data = newData;
     newNode->prev = NULL;
 
@@ -243,7 +258,7 @@ void insert_At_Tail_DLL(struct dll_node **headNode, int newData) {
 void insert_At_Position_DLL(struct dll_node **headNode, int newData, int pos) {
     struct dll_node *newNode = (struct dll_node*) malloc(sizeof(struct dll_node));
     newNode->data = newData;
-    
+
     if(pos == 0 || *headNode == NULL) {
         newNode->next = *headNode;
         newNode->prev = NULL;
@@ -251,7 +266,7 @@ void insert_At_Position_DLL(struct dll_node **headNode, int newData, int pos) {
         *headNode = newNode;
     } else {
         struct dll_node *temp = *headNode;  
-        
+
         for(int i = 1; i < pos && temp->next != NULL; i++) {
             temp = temp->next;
         }
@@ -259,5 +274,51 @@ void insert_At_Position_DLL(struct dll_node **headNode, int newData, int pos) {
         newNode->next = temp->next;
         newNode->prev = temp;
         temp->next = newNode;
+    }
+}
+
+// idk if I should also add the tailNode as a parameter
+void delete_Head_DLL(struct dll_node **headNode) {
+    if((*headNode) == NULL) { // empty
+        return;
+    } else if((*headNode)->next == NULL) { // one node
+        (*headNode) = NULL; 
+    } else {
+        struct dll_node *oldHead = *headNode;
+        (*headNode) = (*headNode)->next;
+        (*headNode)->prev = NULL;
+        free(oldHead);
+    }
+}
+
+void delete_Tail_DLL(struct dll_node **headNode, struct dll_node **tailNode) {
+    if((*headNode) == NULL) { // empty
+        return;
+    } else if((*tailNode)->prev == NULL) { // one element
+        *headNode = *tailNode = NULL;
+    } else {
+        struct dll_node *oldTail = *tailNode;   
+        (*tailNode) = (*tailNode)->prev;
+        (*tailNode)->next = NULL;
+        free(oldTail);
+    }
+}
+
+void delete_At_Position_DLL(struct dll_node **headNode, int pos) {
+    if((*headNode) == NULL) {
+        return;
+    }
+
+    int length = get_Length_Of_DLL(*headNode);
+    if(pos > length || pos < 0) {
+        return;
+    } else {
+        struct dll_node *temp = *headNode;
+        for(int i = 1; i < pos; i++) {
+            temp = temp->next;
+        }
+        struct dll_node *currentNode = temp->next; 
+        temp->next = currentNode->next;
+        free(currentNode);
     }
 }
