@@ -322,3 +322,132 @@ void delete_At_Position_DLL(struct dll_node **headNode, int pos) {
         free(currentNode);
     }
 }
+
+void traverse_CSLL_From_Head(struct csll_node *tailNode) {
+    if(tailNode != NULL) {
+        struct csll_node *start = tailNode->next;
+
+        // the end point is the node that points to the start;
+        do {
+            tailNode = tailNode->next;
+            printf("%i ", tailNode->data);
+        } while(start != tailNode->next);
+    }
+
+    printf("\n");
+}
+
+int get_Length_Of_CSLL(struct csll_node *nodeP) {
+    if(nodeP != NULL) {
+        int i = 0;
+        struct csll_node *start = nodeP;
+
+        do {
+            i++;
+            nodeP = nodeP->next;
+        } while(nodeP != start);
+
+        return i;
+    }
+
+    return 0;
+}
+
+bool search_Element_In_CSLL(struct csll_node *tailNode, int element) {
+    while(tailNode != NULL) {
+        if(tailNode->data == element) {
+            return true;
+        }
+        tailNode = tailNode->next;
+    }
+
+    return false;
+}
+
+void insert_At_Head_CSLL(struct csll_node **tailNode, int newData) {
+    struct csll_node *newNode = (struct csll_node*) malloc(sizeof(struct csll_node));
+    newNode->data = newData;
+
+    if((*tailNode) == NULL) { // no element
+        newNode->next = newNode;
+        (*tailNode) = newNode;
+    } else if((*tailNode)->next == (*tailNode)){ // one node (head)
+        (*tailNode)->next = newNode;
+        newNode->next = (*tailNode);
+    } else {
+        newNode->next = (*tailNode)->next;
+        (*tailNode)->next = newNode;
+    }
+}
+
+void insert_At_Tail_CSLL(struct csll_node **tailNode, int newData) {
+    struct csll_node *newNode = (struct csll_node*) malloc(sizeof(struct csll_node));
+    newNode->data = newData;
+
+    if((*tailNode) == NULL) { // no nodes
+        newNode->next = newNode;
+        (*tailNode) = newNode;
+    } else if((*tailNode)->next == (*tailNode)) { // one node
+        (*tailNode)->next = newNode; 
+        newNode->next = (*tailNode);
+        (*tailNode) = newNode;
+    } else {
+        newNode->next = (*tailNode)->next;
+        (*tailNode)->next = newNode;
+        (*tailNode) = newNode;
+    }
+}
+
+void insert_Before_Node_CSLL(struct csll_node **tailNode, int newData, int flag) {
+    struct csll_node *newNode = (struct csll_node*) malloc(sizeof(struct csll_node));
+    newNode->data = newData;
+
+    if((*tailNode) == NULL) { // no nodes
+        newNode->next = newNode;
+        (*tailNode) = newNode;
+    } else if((*tailNode)->next == (*tailNode)) {
+        (*tailNode)->next = newNode;
+        newNode->next = (*tailNode);
+    } else {
+        struct csll_node *currentNode = *tailNode;
+        
+        while(currentNode->next->data != flag) {
+            currentNode = currentNode->next;
+        }
+
+        newNode->next = currentNode->next;
+        currentNode->next = newNode;
+
+        if(currentNode == (*tailNode)) // if newNode will be placed at the last position
+            (*tailNode) = newNode;
+    }
+}
+
+// change temp to current
+void insert_After_Node_CSLL(struct csll_node **tailNode, int newData, int flag) {
+    struct csll_node *newNode = (struct csll_node*) malloc(sizeof(struct csll_node));
+    newNode->data = newData;
+
+    if((*tailNode) == NULL) { // no nodes
+        newNode->next = newNode;
+        (*tailNode) = newNode;
+    } else if((*tailNode)->next == (*tailNode)) { // one node 
+        (*tailNode)->next = newNode;
+        newNode->next = (*tailNode);
+        (*tailNode) = newNode;
+    } else {
+        struct csll_node *temp = (*tailNode);
+
+        while(temp->data != flag) {
+            temp = temp->next; 
+        }
+
+        newNode->next = temp->next;
+        temp->next = newNode;
+
+        if(temp == (*tailNode)) {
+            (*tailNode) = newNode;
+        }
+    }
+
+}
