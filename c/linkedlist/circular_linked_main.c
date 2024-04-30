@@ -31,5 +31,14 @@ int main() {
         printf("%i not found\n", e);
     }
 
+    delete_Head_CSLL(&tail);
+    delete_Tail_CSLL(&tail);
+    traverse_CSLL_From_Head(tail);
+
+    delete_Node_By_Data_CSLL(&tail, 3);
+    delete_Before_Node_CSLL(&tail, 4);
+    delete_After_Node_CSLL(&tail, 4);
+    traverse_CSLL_From_Head(tail);
+
     return 0;
 }

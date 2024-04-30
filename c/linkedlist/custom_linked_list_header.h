@@ -63,6 +63,7 @@ void insert_After_Node_CSLL(struct csll_node **tailNode, int newData, int flag);
 
 void delete_Head_CSLL(struct csll_node **tailNode);
 void delete_Tail_CSLL(struct csll_node **tailNode);
+void delete_Node_By_Data_CSLL(struct csll_node **tailNode, int flag);
 void delete_Before_Node_CSLL(struct csll_node **tailNode, int flag);
 void delete_After_Node_CSLL(struct csll_node **tailNode, int flag);
 

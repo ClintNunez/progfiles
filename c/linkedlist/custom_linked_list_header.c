@@ -451,3 +451,108 @@ void insert_After_Node_CSLL(struct csll_node **tailNode, int newData, int flag) 
     }
 
 }
+
+void delete_Head_CSLL(struct csll_node **tailNode) {
+    if((*tailNode) == NULL) {
+        return;
+    } else if((*tailNode)->next == (*tailNode)) {
+       (*tailNode) = NULL; 
+    } else {
+        struct csll_node *oldHead = (*tailNode)->next;
+
+        (*tailNode)->next = oldHead->next;
+        free(oldHead);
+    }
+}
+
+void delete_Tail_CSLL(struct csll_node **tailNode) {
+    if((*tailNode) == NULL) {
+        return;
+    } else if((*tailNode)->next == (*tailNode)) {
+        (*tailNode) = NULL;
+    } else {
+        struct csll_node *oldTail = (*tailNode);
+        struct csll_node *newTail = (*tailNode);
+
+        while(newTail->next != oldTail) {
+            newTail = newTail->next;
+        }
+
+        newTail->next = oldTail->next;
+        (*tailNode) = newTail;
+        free(oldTail);
+    }
+}
+
+// add check for removing node will result to only one remaining node
+void delete_Node_By_Data_CSLL(struct csll_node **tailNode, int flag) {
+    if((*tailNode) == NULL) {
+        return;
+    } else if((*tailNode)->next == (*tailNode)) {
+        (*tailNode) = NULL;
+    } else {
+        struct csll_node *head = (*tailNode)->next;
+        struct csll_node *currentNode = (*tailNode);
+        struct csll_node *oldNode;
+
+        while(currentNode->next->data != flag) {
+            currentNode = currentNode->next;
+        }
+        oldNode = currentNode->next;
+        currentNode->next = oldNode->next;
+        free(oldNode);
+
+        if(currentNode->next == head) {
+            (*tailNode) = currentNode;
+        }
+
+    }
+}
+
+void delete_Before_Node_CSLL(struct csll_node **tailNode, int flag) {
+    if((*tailNode) == NULL) {
+        return;
+    } else if((*tailNode)->next == (*tailNode)) {
+        (*tailNode) = NULL;
+    } else {
+        struct csll_node *head = (*tailNode)->next;
+        struct csll_node *currentNode = (*tailNode);
+        struct csll_node *oldNode;
+
+        while(currentNode->next->next->data != flag)  {
+            currentNode = currentNode->next; 
+        }
+
+        oldNode = currentNode->next;
+        currentNode->next = oldNode->next;
+        free(oldNode);
+
+        if(currentNode->next == head) {
+            (*tailNode) = currentNode;
+        }
+    }
+}
+
+void delete_After_Node_CSLL(struct csll_node **tailNode, int flag) {
+    if((*tailNode) == NULL) {
+        return;
+    } else if((*tailNode)->next == (*tailNode)) {
+        (*tailNode) = NULL;
+    } else {
+        struct csll_node *head = (*tailNode)->next;
+        struct csll_node *currentNode = (*tailNode);
+        struct csll_node *oldNode;
+
+        while(currentNode->data != flag)  {
+            currentNode = currentNode->next; 
+        }
+
+        oldNode = currentNode->next;
+        currentNode->next = oldNode->next;
+        free(oldNode);
+
+        if(currentNode->next == head) {
+            (*tailNode) = currentNode;
+        }
+    }
+}
