@@ -12,17 +12,17 @@ int main() {
     insert_At_Head_CSLL(&tail, 2);
     insert_At_Head_CSLL(&tail, 1);
     insert_At_Head_CSLL(&tail, 8);
-    traverse_CSLL_From_Head(tail);
+    traverse_CSLL_From_Tail(tail);
 
     insert_At_Tail_CSLL(&tail, 4);
-    traverse_CSLL_From_Head(tail);
+    traverse_CSLL_From_Tail(tail);
 
     insert_Before_Node_CSLL(&tail, 200, 4);
     insert_Before_Node_CSLL(&tail, 2500, 8);
-    traverse_CSLL_From_Head(tail);
+    traverse_CSLL_From_Tail(tail);
 
     insert_After_Node_CSLL(&tail, 70, 2500);
-    traverse_CSLL_From_Head(tail);
+    traverse_CSLL_From_Tail(tail);
 
     int e = 4;
     if(search_Element_In_CSLL(tail, e)) {
@@ -33,12 +33,12 @@ int main() {
 
     delete_Head_CSLL(&tail);
     delete_Tail_CSLL(&tail);
-    traverse_CSLL_From_Head(tail);
+    traverse_CSLL_From_Tail(tail);
 
     delete_Node_By_Data_CSLL(&tail, 3);
     delete_Before_Node_CSLL(&tail, 4);
     delete_After_Node_CSLL(&tail, 4);
-    traverse_CSLL_From_Head(tail);
+    traverse_CSLL_From_Tail(tail);
 
     return 0;
 }

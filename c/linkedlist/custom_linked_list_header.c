@@ -3,6 +3,10 @@
 #include <stdbool.h>
 #include "custom_linked_list_header.h"
 
+// TODO
+// change temp to current
+// change nodeP to current
+
 // starts at the head
 void traverse_SLL_From_Head(struct sll_node *nodeP) {
     while(nodeP != NULL) {
@@ -323,7 +327,7 @@ void delete_At_Position_DLL(struct dll_node **headNode, int pos) {
     }
 }
 
-void traverse_CSLL_From_Head(struct csll_node *tailNode) {
+void traverse_CSLL_From_Tail(struct csll_node *tailNode) {
     if(tailNode != NULL) {
         struct csll_node *start = tailNode->next;
 
@@ -353,6 +357,7 @@ int get_Length_Of_CSLL(struct csll_node *nodeP) {
     return 0;
 }
 
+// TODO fix this to not loop indefinitely
 bool search_Element_In_CSLL(struct csll_node *tailNode, int element) {
     while(tailNode != NULL) {
         if(tailNode->data == element) {
@@ -423,7 +428,6 @@ void insert_Before_Node_CSLL(struct csll_node **tailNode, int newData, int flag)
     }
 }
 
-// change temp to current
 void insert_After_Node_CSLL(struct csll_node **tailNode, int newData, int flag) {
     struct csll_node *newNode = (struct csll_node*) malloc(sizeof(struct csll_node));
     newNode->data = newData;
@@ -452,6 +456,7 @@ void insert_After_Node_CSLL(struct csll_node **tailNode, int newData, int flag) 
 
 }
 
+// TODO add free if there is only tail node
 void delete_Head_CSLL(struct csll_node **tailNode) {
     if((*tailNode) == NULL) {
         return;
@@ -554,5 +559,293 @@ void delete_After_Node_CSLL(struct csll_node **tailNode, int flag) {
         if(currentNode->next == head) {
             (*tailNode) = currentNode;
         }
+    }
+}
+
+// TODO find a better way for traversal
+void traverse_CDLL_From_Head(struct cdll_node *nodeP) {
+    if(nodeP != NULL) {
+        struct cdll_node *start = nodeP;
+        
+        do {
+            printf("%i ", nodeP->data);
+            nodeP = nodeP->next;
+        } while(nodeP != start);
+    }
+    
+    printf("\n");
+}
+
+int get_Length_Of_CDLL(struct cdll_node *nodeP) {
+    int i = 0;
+    
+    if(nodeP != NULL) {
+        struct cdll_node *head = nodeP;
+        do {
+            i++;
+            nodeP = nodeP->next;
+        } while(nodeP != head);
+    }
+
+    return i;
+}
+
+bool search_Element_In_CDLL(struct cdll_node *nodeP, int data) {
+    if(nodeP != NULL) {
+        struct cdll_node *head = nodeP;
+        do {
+            if(nodeP->data == data) 
+                return true;
+            nodeP = nodeP->next;
+        } while(nodeP != head);
+    }
+
+    return false;
+}
+
+void insert_At_Head_CDLL(struct cdll_node **headNode, int newData) {
+    struct cdll_node *newNode = (struct cdll_node*) malloc(sizeof(struct cdll_node));
+    newNode->data = newData;
+
+    if((*headNode) == NULL) {
+        newNode->next = newNode;
+        newNode->prev = newNode;
+        (*headNode) = newNode;
+    } else if((*headNode)->next == (*headNode)) {
+        newNode->next = (*headNode);
+        newNode->prev = (*headNode);
+        (*headNode)->next = newNode;
+        (*headNode)->prev = newNode;
+        (*headNode) = newNode;
+    } else {
+        struct cdll_node *currentNode = (*headNode);
+        
+        do { // go to the last node
+            currentNode = currentNode->next;
+        } while(currentNode->next != (*headNode));
+        
+        newNode->next = (*headNode);
+        newNode->prev = currentNode;
+        currentNode->next = newNode; 
+        (*headNode)->prev = newNode;
+        
+        (*headNode) = newNode;
+    }
+}
+
+void insert_At_Tail_CDLL(struct cdll_node **headNode, int newData) {
+    struct cdll_node *newNode = (struct cdll_node*) malloc(sizeof(struct cdll_node));
+    newNode->data = newData;
+
+    if((*headNode) == NULL) {
+        newNode->next = newNode;
+        newNode->prev = newNode;
+        (*headNode) = newNode;
+    } else if((*headNode)->next == (*headNode)) {
+        (*headNode)->next = newNode;
+        (*headNode)->prev = newNode;
+        newNode->next = (*headNode);
+        newNode->prev = (*headNode);
+    } else {
+        struct cdll_node *currentNode = (*headNode);
+        
+        do { // go to the last node
+            currentNode = currentNode->next;
+        } while(currentNode != (*headNode)->prev);
+        
+        currentNode->next = newNode; 
+        newNode->prev = currentNode;
+        newNode->next = (*headNode);
+        (*headNode)->prev = newNode;
+    }
+}
+
+void insert_Before_Node_CDLL(struct cdll_node **headNode, int newData, int flag) {
+    struct cdll_node *newNode = (struct cdll_node*) malloc(sizeof(struct cdll_node));
+    newNode->data = newData;
+
+    if((*headNode) == NULL) {
+        newNode->next = newNode;
+        newNode->prev = newNode;
+        (*headNode) = newNode;
+    } else if((*headNode)->next == (*headNode)) {
+        newNode->next = (*headNode);
+        newNode->prev = (*headNode);
+        (*headNode)->next = newNode;
+        (*headNode)->prev = newNode;
+        (*headNode) = newNode;
+    } else {
+        struct cdll_node *currentNode = (*headNode);
+        
+        while(currentNode->next->data != flag) {
+            currentNode = currentNode->next;
+        }
+        
+        newNode->next = currentNode->next;
+        newNode->prev = currentNode;
+        currentNode->next->prev = newNode;
+        currentNode->next = newNode; 
+
+        if(newNode->next == (*headNode)) {
+            (*headNode) = newNode;
+        }
+    }
+}
+
+void insert_After_Node_CDLL(struct cdll_node **headNode, int newData, int flag) {
+    struct cdll_node *newNode = (struct cdll_node*) malloc(sizeof(struct cdll_node));
+    newNode->data = newData;
+
+    if((*headNode) == NULL) {
+        newNode->next = newNode;
+        newNode->prev = newNode;
+        (*headNode) = newNode;
+    } else if((*headNode)->next == (*headNode)) {
+        newNode->next = (*headNode);
+        newNode->prev = (*headNode);
+        (*headNode)->next = newNode;
+        (*headNode)->prev = newNode;
+    } else {
+        struct cdll_node *currentNode = (*headNode);
+        
+        while(currentNode->data != flag) {
+            currentNode = currentNode->next;
+        }
+        
+        newNode->next = currentNode->next;
+        newNode->prev = currentNode;
+        currentNode->next->prev = newNode;
+        currentNode->next = newNode; 
+
+        if(newNode->next == (*headNode)) {
+            (*headNode) = newNode;
+        }
+    }
+}
+
+void delete_Head_CDLL(struct cdll_node **headNode) {
+    if((*headNode) == NULL) {
+        return;
+    } else if((*headNode)->next == (*headNode)) {
+        struct cdll_node *oldHead = (*headNode);
+        (*headNode) = NULL;
+        free(oldHead);
+    } else {
+        struct cdll_node *oldHead = (*headNode);
+        struct cdll_node *newHead = (*headNode)->next;
+        
+        newHead->prev = oldHead->prev;
+        oldHead->prev->next = newHead;
+        (*headNode) = newHead;
+
+        free(oldHead);
+    }
+}
+
+void delete_Tail_CDLL(struct cdll_node **headNode) {
+    if((*headNode) == NULL) {
+        return;
+    } else if((*headNode)->next == (*headNode)) {
+        struct cdll_node *oldHead = (*headNode);
+        (*headNode) = NULL;
+        free(oldHead);
+    } else {
+        struct cdll_node *oldTail = (*headNode);
+        struct cdll_node *newTail;
+
+        while(oldTail->next != (*headNode)) {
+            oldTail = oldTail->next;
+        }
+        
+        newTail = oldTail->prev;
+        newTail->next = oldTail->next;
+        oldTail->next->prev = newTail;
+        
+        free(oldTail);
+    }
+}
+
+void delete_Node_By_Data_CDLL(struct cdll_node **headNode, int flag) {
+    if((*headNode) == NULL) {
+        return;
+    } else if((*headNode)->next == (*headNode)) {
+        struct cdll_node *oldHead = (*headNode);
+        (*headNode) = NULL;
+        free(oldHead);
+    } else {
+        struct cdll_node *oldNode = (*headNode);
+        struct cdll_node *newNode;
+
+        while(oldNode->data != flag) {
+            oldNode = oldNode->next;
+        }
+
+        newNode = oldNode->next;
+        newNode->prev = oldNode->prev;
+        oldNode->prev->next = newNode;
+
+        if(oldNode == (*headNode)) {
+            (*headNode) = newNode;
+        }
+
+        free(oldNode);
+    }
+}
+
+void delete_Before_Node_CDLL(struct cdll_node **headNode, int flag) {
+    if((*headNode) == NULL) {
+        return;
+    } else if((*headNode)->next == (*headNode)) {
+        struct cdll_node *oldHead = (*headNode);
+        (*headNode) = NULL;
+        free(oldHead);
+    } else {
+        struct cdll_node *currentNode = (*headNode);
+        struct cdll_node *oldNode;
+        struct cdll_node *newNode;
+
+        while(currentNode->data != flag) {
+            currentNode = currentNode->next;
+        }
+        
+        if(currentNode->prev == (*headNode)) {
+            (*headNode) = newNode;
+        }
+
+        oldNode = currentNode->prev;
+        newNode = currentNode->prev->prev;
+        newNode->next = currentNode;
+        currentNode->prev = newNode;
+
+        free(oldNode);
+   }
+}
+
+void delete_After_Node_CDLL(struct cdll_node **headNode, int flag) {
+    if((*headNode) == NULL) {
+        return;
+    } else if((*headNode)->next == (*headNode)) {
+        struct cdll_node *oldHead = (*headNode);
+        (*headNode) = NULL;
+        free(oldHead);
+    } else {
+        struct cdll_node *currentNode = (*headNode);
+        struct cdll_node *oldNode;
+        struct cdll_node *newNode;
+
+        while(currentNode->data != flag) {
+            currentNode = currentNode->next;
+        }
+        
+        if(currentNode->next == (*headNode)) {
+            (*headNode) = newNode;
+        }
+
+        oldNode = currentNode->next;
+        newNode = currentNode->next->next;
+        newNode->prev = currentNode;
+        currentNode->next = newNode;
+
+        free(oldNode);
     }
 }
