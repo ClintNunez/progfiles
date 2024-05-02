@@ -342,19 +342,17 @@ void traverse_CSLL_From_Tail(struct csll_node *tailNode) {
 }
 
 int get_Length_Of_CSLL(struct csll_node *nodeP) {
+    int i = 0;
+    
     if(nodeP != NULL) {
-        int i = 0;
         struct csll_node *start = nodeP;
-
         do {
             i++;
             nodeP = nodeP->next;
         } while(nodeP != start);
-
-        return i;
     }
 
-    return 0;
+    return i;
 }
 
 // TODO fix this to not loop indefinitely

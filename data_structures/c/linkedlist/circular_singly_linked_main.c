@@ -5,7 +5,6 @@
 #include "custom_linked_list_header.h"
 
 int main() {
-    struct csll_node *head = NULL;
     struct csll_node *tail = NULL;
     
     insert_At_Head_CSLL(&tail, 3);
@@ -24,6 +23,8 @@ int main() {
     insert_After_Node_CSLL(&tail, 70, 2500);
     traverse_CSLL_From_Tail(tail);
 
+    printf("Length of CSLL: %i\n", get_Length_Of_CSLL(tail));
+
     int e = 4;
     if(search_Element_In_CSLL(tail, e)) {
         printf("%i found\n", e);
@@ -36,9 +37,12 @@ int main() {
     traverse_CSLL_From_Tail(tail);
 
     delete_Node_By_Data_CSLL(&tail, 3);
+    traverse_CSLL_From_Tail(tail);
+
     delete_Before_Node_CSLL(&tail, 4);
     delete_After_Node_CSLL(&tail, 4);
     traverse_CSLL_From_Tail(tail);
+    printf("Length of CSLL after deletion: %i\n", get_Length_Of_CSLL(tail));
 
     return 0;
 }
