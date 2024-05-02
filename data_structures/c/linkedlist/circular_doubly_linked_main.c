@@ -49,5 +49,7 @@ int main() {
     delete_After_Node_CDLL(&head, 3);
     traverse_CDLL_From_Head(head);
 
+    printf("length of cdll after deletion: %i\n", get_Length_Of_CDLL(head));
+
     return 0;
 }

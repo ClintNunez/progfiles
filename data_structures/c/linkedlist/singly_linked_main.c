@@ -24,15 +24,30 @@ int main() {
     if(search_Element_In_SLL(head, e)) {
         printf("%i found\n", e);
     } else {
-        printf("not found\n");
+        printf("%i not found\n", e);
+    }
+
+    e = 999;
+    if(search_Element_In_SLL(head, e)) {
+        printf("%i found\n", e);
+    } else {
+        printf("%i not found\n", e);
     }
 
     e = 2;
-    int res = get_Element_Index_In_SLL(head, 2);
+    int res = get_Element_Index_In_SLL(head, e);
     if(res >= 0) {
         printf("%i at index %i\n", e, res);
     } else {
         printf("Not found\n");
+    }
+    
+    e = 777;
+    res = get_Element_Index_In_SLL(head, e);
+    if(res >= 0) {
+        printf("%i at index %i\n", e, res);
+    } else {
+        printf("%i not found\n", e);
     }
     
     printf("Size of linked list: %i\n", get_Length_Of_SLL(head));

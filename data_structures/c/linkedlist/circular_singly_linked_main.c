@@ -32,6 +32,13 @@ int main() {
         printf("%i not found\n", e);
     }
 
+    e = 999;
+    if(search_Element_In_CSLL(tail, e)) {
+        printf("%i found\n", e);
+    } else {
+        printf("%i not found\n", e);
+    }
+
     delete_Head_CSLL(&tail);
     delete_Tail_CSLL(&tail);
     traverse_CSLL_From_Tail(tail);

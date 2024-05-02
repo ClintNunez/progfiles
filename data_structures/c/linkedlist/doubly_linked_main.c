@@ -24,9 +24,23 @@ int main() {
         printf("%i not found\n", e);
     }
 
+    e = 400;
+    if(search_Element_In_DLL(head, e)) {
+        printf("%i found\n", e);
+    } else {
+        printf("%i not found\n", e);
+    }
+
     e = 2;
     result = get_Element_Index_In_DLL(head, e);
+    if(result >= 0) {
+        printf("%i found at index %i\n", e, result);
+    } else {
+        printf("%i not found\n", e);
+    }
 
+    e = 999;
+    result = get_Element_Index_In_DLL(head, e);
     if(result >= 0) {
         printf("%i found at index %i\n", e, result);
     } else {
