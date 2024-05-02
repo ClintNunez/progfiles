@@ -1,6 +1,3 @@
-// Author: Clint Patrick M. Nunez
-// Date created: 01/09/2023
-//
 // Spiral of prime in terminal. Uses sieve of eratosthenes to make a list of prime numbers.
 
 #include <iostream>
@@ -10,7 +7,7 @@
 using namespace std;
 
 // Sieve of Eratosthenes
-void create_list_of_primes(int &rDimension, vector<bool> &rPrimes) { // Time Complexity: O(n*log(log(n)))
+void create_list_of_primes(int &rDimension, vector<bool> &rPrimes) { 
     for (int p = 2; p * p <= rDimension * rDimension; p++) {
         if (rPrimes.at(p)) {
             for (int i = p * p; i <= rDimension * rDimension; i += p) {
