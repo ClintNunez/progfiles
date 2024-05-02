@@ -10,6 +10,10 @@ int main() {
 
     TraverseArrayFromLastIndex(arr, arrSize);
 
+    /*
+        keep track of index of the last element 
+        to prevent out of bounds
+    */
     printf("Insert element a new element\n");
     n = InsertElement(arr, arrSize, n, 5);
 
@@ -26,13 +30,10 @@ int main() {
     TraverseArray(arr, arrSize);
 
     int e = 5, searchResult = SearchIndexOfElement(arr, arrSize, e);
-    switch (searchResult) {
-        case -1:
-            printf("%i does not exist\n", e);
-        break;
-        default:
-            printf("%i is at index %i\n", e, searchResult);
-        break;
+    if(searchResult == -1) {
+        printf("%i does not exist\n", e);
+    } else {
+        printf("%i is at index %i\n", e, searchResult);
     }
 
     RotateLeft(arr, arrSize, 1);
