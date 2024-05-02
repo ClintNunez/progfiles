@@ -25,14 +25,14 @@ int main() {
     printf("length of cdll: %i\n", get_Length_Of_CDLL(head));
 
     int e = 1;
-    if(search_Element_In_CDLL(head, e)) {
+    if(search_Node_In_CDLL(head, e)) {
         printf("%i found\n", e);
     } else {
         printf("%i not found\n", e);
     }
     
     e = 9;
-    if(search_Element_In_CDLL(head, e)) {
+    if(search_Node_In_CDLL(head, e)) {
         printf("%i found\n", e);
     } else {
         printf("%i not found\n", e);

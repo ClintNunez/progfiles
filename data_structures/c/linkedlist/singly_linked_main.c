@@ -21,21 +21,21 @@ int main() {
     traverse_SLL_From_Head(head);
 
     int e = 3;
-    if(search_Element_In_SLL(head, e)) {
+    if(search_Node_In_SLL(head, e)) {
         printf("%i found\n", e);
     } else {
         printf("%i not found\n", e);
     }
 
     e = 999;
-    if(search_Element_In_SLL(head, e)) {
+    if(search_Node_In_SLL(head, e)) {
         printf("%i found\n", e);
     } else {
         printf("%i not found\n", e);
     }
 
     e = 2;
-    int res = get_Element_Index_In_SLL(head, e);
+    int res = get_Node_Index_In_SLL(head, e);
     if(res >= 0) {
         printf("%i at index %i\n", e, res);
     } else {
@@ -43,7 +43,7 @@ int main() {
     }
     
     e = 777;
-    res = get_Element_Index_In_SLL(head, e);
+    res = get_Node_Index_In_SLL(head, e);
     if(res >= 0) {
         printf("%i at index %i\n", e, res);
     } else {
@@ -59,6 +59,9 @@ int main() {
     traverse_SLL_From_Head(head);
 
     delete_At_Position(&head, 3);
+    traverse_SLL_From_Head(head);
+
+    delete_At_Position(&head, 0);
     traverse_SLL_From_Head(head);
 
     printf("Size of linked list after deletion: %i\n", get_Length_Of_SLL(head));

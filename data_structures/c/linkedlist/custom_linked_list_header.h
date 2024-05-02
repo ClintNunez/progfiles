@@ -1,26 +1,25 @@
 #ifndef CUSTOM_LINKEDLIST_HEADER
 #define CUSTOM_LINKEDLIST_HEADER
 
-// TODO change element to data in searching nodes;
 struct sll_node {
     int data;
     struct sll_node *next;
 };
 
-void traverse_SLL_From_Head(struct sll_node *nodeP);
+void traverse_SLL_From_Head(struct sll_node *headRef);
 
-int get_Length_Of_SLL(struct sll_node *nodeP);
+int get_Length_Of_SLL(struct sll_node *headRef);
 
-bool search_Element_In_SLL(struct sll_node *nodeP, int element);
-int get_Element_Index_In_SLL(struct sll_node *nodeP, int element);
+bool search_Node_In_SLL(struct sll_node *headRef, int data);
+int get_Node_Index_In_SLL(struct sll_node *headRef, int data);
 
-void insert_At_Head(struct sll_node **headNode, int newData);
-void insert_At_Tail(struct sll_node **headNode, int newData);
-void insert_At_Position(struct sll_node **headNode, int newData, int pos);
+void insert_At_Head(struct sll_node **headRef, int newData);
+void insert_At_Tail(struct sll_node **headRef, int newData);
+void insert_At_Position(struct sll_node **headRef, int newData, int pos);
 
-void delete_Head(struct sll_node **headNode);
-void delete_Tail(struct sll_node **headNode);
-void delete_At_Position(struct sll_node **headNode, int pos);
+void delete_Head(struct sll_node **headRef);
+void delete_Tail(struct sll_node **headRef);
+void delete_At_Position(struct sll_node **headRef, int pos);
 
 struct dll_node {
     int data;
@@ -28,45 +27,45 @@ struct dll_node {
     struct dll_node *prev;
 };
 
-struct dll_node *get_Tail_In_DLL(struct dll_node **headNode);
+struct dll_node *get_Tail_In_DLL(struct dll_node **headRef);
 
-void traverse_DLL_From_Head(struct dll_node *nodeP);
-void traverse_DLL_From_Tail(struct dll_node *nodeP);
+void traverse_DLL_From_Head(struct dll_node *headRef);
+void traverse_DLL_From_Tail(struct dll_node *headRef);
 
-int get_Length_Of_DLL(struct dll_node *nodeP);
+int get_Length_Of_DLL(struct dll_node *headRef);
 
-bool search_Element_In_DLL(struct dll_node *nodeP, int element);
-int get_Element_Index_In_DLL(struct dll_node *nodeP, int element);
+bool search_Node_In_DLL(struct dll_node *headRef, int data);
+int get_Node_Index_In_DLL(struct dll_node *headRef, int data);
 
-void insert_At_Head_DLL(struct dll_node **headNode, int newData);
-void insert_At_Tail_DLL(struct dll_node **headNode, int newData);
-void insert_At_Position_DLL(struct dll_node **headNode, int newData, int pos);
+void insert_At_Head_DLL(struct dll_node **headRef, int newData);
+void insert_At_Tail_DLL(struct dll_node **headRef, int newData);
+void insert_At_Position_DLL(struct dll_node **headRef, int newData, int pos);
 
-void delete_Head_DLL(struct dll_node **headNode);
-void delete_Tail_DLL(struct dll_node **headNode, struct dll_node **tailNode);
-void delete_At_Position_DLL(struct dll_node **headNode, int pos);
+void delete_Head_DLL(struct dll_node **headRef);
+void delete_Tail_DLL(struct dll_node **headRef, struct dll_node **tailRef);
+void delete_At_Position_DLL(struct dll_node **headRef, int pos);
 
 struct csll_node {
     int data;
     struct csll_node *next;
 };
 
-void traverse_CSLL_From_Tail(struct csll_node *nodeP);
+void traverse_CSLL_From_Tail(struct csll_node *tailRef);
 
-int get_Length_Of_CSLL(struct csll_node *nodeP);
+int get_Length_Of_CSLL(struct csll_node *tailRef);
 
-bool search_Element_In_CSLL(struct csll_node *nodeP, int element);
+bool search_Node_In_CSLL(struct csll_node *tailRef, int data);
 
-void insert_At_Head_CSLL(struct csll_node **tailNode, int newData);
-void insert_At_Tail_CSLL(struct csll_node **tailNode, int newData);
-void insert_Before_Node_CSLL(struct csll_node **tailNode, int newData, int flag);
-void insert_After_Node_CSLL(struct csll_node **tailNode, int newData, int flag);
+void insert_At_Head_CSLL(struct csll_node **tailRef, int newData);
+void insert_At_Tail_CSLL(struct csll_node **tailRef, int newData);
+void insert_Before_Node_CSLL(struct csll_node **tailRef, int newData, int flag);
+void insert_After_Node_CSLL(struct csll_node **tailRef, int newData, int flag);
 
-void delete_Head_CSLL(struct csll_node **tailNode);
-void delete_Tail_CSLL(struct csll_node **tailNode);
-void delete_Node_By_Data_CSLL(struct csll_node **tailNode, int flag);
-void delete_Before_Node_CSLL(struct csll_node **tailNode, int flag);
-void delete_After_Node_CSLL(struct csll_node **tailNode, int flag);
+void delete_Head_CSLL(struct csll_node **tailRef);
+void delete_Tail_CSLL(struct csll_node **tailRef);
+void delete_Node_By_Data_CSLL(struct csll_node **tailRef, int flag);
+void delete_Before_Node_CSLL(struct csll_node **tailRef, int flag);
+void delete_After_Node_CSLL(struct csll_node **tailRef, int flag);
 
 struct cdll_node {
     int data;
@@ -74,21 +73,21 @@ struct cdll_node {
     struct cdll_node *prev;
 };
 
-void traverse_CDLL_From_Head(struct cdll_node *nodeP);
+void traverse_CDLL_From_Head(struct cdll_node *headRef);
 
-int get_Length_Of_CDLL(struct cdll_node *nodeP);
+int get_Length_Of_CDLL(struct cdll_node *headRef);
 
-bool search_Element_In_CDLL(struct cdll_node *nodeP, int data);
+bool search_Node_In_CDLL(struct cdll_node *headRef, int data);
 
-void insert_At_Head_CDLL(struct cdll_node **headNode, int newData);
-void insert_At_Tail_CDLL(struct cdll_node **headNode, int newData);
-void insert_Before_Node_CDLL(struct cdll_node **headNode, int newData, int flag);
-void insert_After_Node_CDLL(struct cdll_node **headNode, int newData, int flag);
+void insert_At_Head_CDLL(struct cdll_node **headRef, int newData);
+void insert_At_Tail_CDLL(struct cdll_node **headRef, int newData);
+void insert_Before_Node_CDLL(struct cdll_node **headRef, int newData, int flag);
+void insert_After_Node_CDLL(struct cdll_node **headRef, int newData, int flag);
 
-void delete_Head_CDLL(struct cdll_node **headNode);
-void delete_Tail_CDLL(struct cdll_node **headNode);
-void delete_Node_By_Data_CDLL(struct cdll_node **headNode, int flag);
-void delete_Before_Node_CDLL(struct cdll_node **headNode, int flag);
-void delete_After_Node_CDLL(struct cdll_node **headNode, int flag);
+void delete_Head_CDLL(struct cdll_node **headRef);
+void delete_Tail_CDLL(struct cdll_node **headRef);
+void delete_Node_By_Data_CDLL(struct cdll_node **headRef, int flag);
+void delete_Before_Node_CDLL(struct cdll_node **headRef, int flag);
+void delete_After_Node_CDLL(struct cdll_node **headRef, int flag);
 
 #endif

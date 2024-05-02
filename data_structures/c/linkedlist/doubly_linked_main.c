@@ -17,22 +17,27 @@ int main() {
     insert_At_Tail_DLL(&head, 6);
     traverse_DLL_From_Head(head);
 
+    insert_At_Position_DLL(&head, 200, 2);
+    traverse_DLL_From_Head(head);
+
+    printf("length of doubly linked list: %i\n", get_Length_Of_DLL(head));
+
     int e = 3, result;
-    if(search_Element_In_DLL(head, e)) {
+    if(search_Node_In_DLL(head, e)) {
         printf("%i found\n", e);
     } else {
         printf("%i not found\n", e);
     }
 
     e = 400;
-    if(search_Element_In_DLL(head, e)) {
+    if(search_Node_In_DLL(head, e)) {
         printf("%i found\n", e);
     } else {
         printf("%i not found\n", e);
     }
 
     e = 2;
-    result = get_Element_Index_In_DLL(head, e);
+    result = get_Node_Index_In_DLL(head, e);
     if(result >= 0) {
         printf("%i found at index %i\n", e, result);
     } else {
@@ -40,17 +45,12 @@ int main() {
     }
 
     e = 999;
-    result = get_Element_Index_In_DLL(head, e);
+    result = get_Node_Index_In_DLL(head, e);
     if(result >= 0) {
         printf("%i found at index %i\n", e, result);
     } else {
         printf("%i not found\n", e);
     }
-
-    printf("length of doubly linked list: %i\n", get_Length_Of_DLL(head));
-
-    insert_At_Position_DLL(&head, 200, 2);
-    traverse_DLL_From_Head(head);
 
     delete_Head_DLL(&head);
     traverse_DLL_From_Head(head);

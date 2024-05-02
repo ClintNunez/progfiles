@@ -26,14 +26,14 @@ int main() {
     printf("Length of CSLL: %i\n", get_Length_Of_CSLL(tail));
 
     int e = 4;
-    if(search_Element_In_CSLL(tail, e)) {
+    if(search_Node_In_CSLL(tail, e)) {
         printf("%i found\n", e);
     } else {
         printf("%i not found\n", e);
     }
 
     e = 999;
-    if(search_Element_In_CSLL(tail, e)) {
+    if(search_Node_In_CSLL(tail, e)) {
         printf("%i found\n", e);
     } else {
         printf("%i not found\n", e);
