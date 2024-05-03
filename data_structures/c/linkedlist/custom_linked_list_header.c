@@ -4,9 +4,6 @@
 #include "custom_linked_list_header.h"
 
 // TODO
-// change temp to currentNode
-// change headRef to currentNode
-// replace return with print statements
 // try catch for error
 // make global variables for frequently initialized nodes
 // test insert at position 0 or last
@@ -14,13 +11,26 @@
 //      that the node will actually have the index of the given insert pos
 // clean up ){
 
-void traverse_SLL_From_Head(struct sll_node *headRef) {
-    while(headRef != NULL) {
-        printf("%i ", headRef->data);
-        headRef = headRef->next;
-    }
+struct sll_node *currentNode_SLL;
+struct sll_node *newHead_SLL;
+struct sll_node *newNode_SLL;
+struct sll_node *newTail_SLL;
 
-    printf("\n");
+struct sll_node *oldHead_SLL;
+struct sll_node *oldNode_SLL;
+struct sll_node *oldTail_SLL;
+
+void traverse_SLL_From_Head(struct sll_node *headRef) {
+    if(headRef == NULL) {
+        printf("\tList empty\n");
+    } else {
+        printf("\t");
+        while(headRef != NULL) {
+            printf("%i ", headRef->data);
+            headRef = headRef->next;
+        }
+        printf("\n");
+    }
 }
 
 int get_Length_Of_SLL(struct sll_node *headRef) {
@@ -56,111 +66,115 @@ int get_Node_Index_In_SLL(struct sll_node *headRef, int data) {
 }
 
 void insert_At_Head(struct sll_node **headRef, int newData) {
-    struct sll_node *newNode = (struct sll_node*) malloc(sizeof(struct sll_node)); 
+    newNode_SLL = (struct sll_node*) malloc(sizeof(struct sll_node)); 
 
-    newNode->data = newData;
-    newNode->next = *headRef;
+    newNode_SLL->data = newData;
+    newNode_SLL->next = *headRef;
 
-    *headRef = newNode;
+    *headRef = newNode_SLL;
 }
 
 void insert_At_Tail(struct sll_node **headRef, int newData) {
-    struct sll_node *newNode = (struct sll_node*) malloc(sizeof(struct sll_node)); 
-    struct sll_node *tail = *headRef; 
+    newNode_SLL = (struct sll_node*) malloc(sizeof(struct sll_node)); 
+    newTail_SLL = *headRef; 
 
-    newNode->data = newData;
-    newNode->next = NULL;
+    newNode_SLL->data = newData;
+    newNode_SLL->next = NULL;
 
     if(*headRef == NULL)  {
-        *headRef = newNode;
+        *headRef = newNode_SLL;
         return;
     }
 
-    while(tail->next != NULL) 
-        tail = tail->next;
+    while(newTail_SLL->next != NULL) 
+        newTail_SLL = newTail_SLL->next;
 
-    tail->next = newNode;
+    newTail_SLL->next = newNode_SLL;
 }
 
 void insert_At_Position(struct sll_node **headRef, int newData, int pos) {
-    struct sll_node *newNode = (struct sll_node*) malloc(sizeof(struct sll_node)); 
+    newNode_SLL = (struct sll_node*) malloc(sizeof(struct sll_node)); 
 
-    newNode->data = newData;
+    newNode_SLL->data = newData;
 
-    if(pos == 0 || *headRef == NULL) {
-        newNode->next = *headRef;
-        *headRef = newNode;
+    if(pos > get_Length_Of_SLL(*headRef)) {
+        printf("\tGiven position is greater than the length of list\n");
+    } else if(*headRef == NULL || pos == 0) {
+        newNode_SLL->next = *headRef;
+        *headRef = newNode_SLL;
     } else {
-        struct sll_node *currentNode = *headRef; 
+        currentNode_SLL = *headRef; 
 
-        for(int i = 1; i < pos && currentNode->next != NULL; i++) {
-            currentNode = currentNode->next;
+        for(int i = 1; i < pos; i++) {
+            currentNode_SLL = currentNode_SLL->next;
         }
 
-        newNode->next = currentNode->next;
-        currentNode->next = newNode;
+        newNode_SLL->next = currentNode_SLL->next;
+        currentNode_SLL->next = newNode_SLL;
     }
 }
 
 void delete_Head(struct sll_node **headRef) {
     if((*headRef) == NULL) {
-        printf("Linked list is already empty.\n");
+        printf("\tLinked list is already empty.\n");
     } else if((*headRef)->next == NULL) {
-        struct sll_node *oldHead = (*headRef);
+        oldHead_SLL = (*headRef);
         (*headRef) = NULL;
-        free(oldHead);
+        free(oldHead_SLL);
     } else {
-        struct sll_node *oldHead = *headRef;
+        oldHead_SLL = *headRef;
         *headRef = (*headRef)->next;
 
-        free(oldHead);
+        free(oldHead_SLL);
     }
 }
 
 void delete_Tail(struct sll_node **headRef) {
     if((*headRef) == NULL) {
-        printf("Linked list is already empty.\n");
+        printf("\tLinked list is already empty.\n");
     } else if((*headRef)->next == NULL) {
-        struct sll_node *oldHead = (*headRef);
+        oldHead_SLL = (*headRef);
         (*headRef) = NULL;
-        free(oldHead);
+        free(oldHead_SLL);
     } else {
-        struct sll_node *currentNode = *headRef;
+        currentNode_SLL = *headRef;
 
-        while(currentNode->next->next != NULL) {
-            currentNode = currentNode->next;
+        while(currentNode_SLL->next->next != NULL) {
+            currentNode_SLL = currentNode_SLL->next;
         }
 
-        struct sll_node *oldTail = currentNode->next;
+        struct sll_node *oldTail = currentNode_SLL->next;
 
-        currentNode->next = NULL;
+        currentNode_SLL->next = NULL;
 
         free(oldTail);
     }
 }
 
 void delete_At_Position(struct sll_node **headRef, int pos) {
-    struct sll_node *currentNode = *headRef;
+    currentNode_SLL = *headRef;
 
-    if(*headRef == NULL) {
-        printf("Linked list is already empty.\n");
+    if(pos > get_Length_Of_SLL(*headRef)) {
+        printf("\tGiven position is greater than the length of list\n");
+    } else if(*headRef == NULL) {
+        printf("\tLinked list is already empty.\n");
     } else if((*headRef)->next == NULL) {
-        struct sll_node *oldHead = (*headRef);
+        oldHead_SLL = (*headRef);
         (*headRef) = NULL;
-        free(oldHead);
+        free(oldHead_SLL);
     } else if(pos == 0) {
-        (*headRef) = currentNode->next;    
-        free(currentNode);
+        (*headRef) = currentNode_SLL->next;    
+        free(currentNode_SLL);
     } else {
-        for(int i = 1; i < pos && currentNode->next != NULL; i++) {
-            currentNode = currentNode->next;
+        for(int i = 1; i < pos; i++) {
+            currentNode_SLL = currentNode_SLL->next;
         } 
 
-        struct sll_node *oldNode = currentNode->next;
+        oldNode_SLL = currentNode_SLL->next;
 
-        currentNode->next = currentNode->next->next;
+        currentNode_SLL->next = currentNode_SLL->next->next;
 
-        free(oldNode);
+        free(oldNode_SLL);
     }
 }
 
@@ -290,7 +304,7 @@ void delete_Head_DLL(struct dll_node **headRef) {
     struct dll_node *oldHead = (*headRef);
 
     if((*headRef) == NULL) { 
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*headRef)->next == NULL) { 
         (*headRef) = NULL; 
         free(oldHead);
@@ -303,7 +317,7 @@ void delete_Head_DLL(struct dll_node **headRef) {
 
 void delete_Tail_DLL(struct dll_node **headRef, struct dll_node **tailRef) {
     if((*headRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*tailRef)->prev == NULL) { 
         struct dll_node *oldHead = (*headRef);
         (*headRef) = (*tailRef) = NULL;
@@ -320,7 +334,7 @@ void delete_At_Position_DLL(struct dll_node **headRef, int pos) {
     struct dll_node *currentNode = *headRef;
 
     if((*headRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*headRef)->next == NULL) {
         struct dll_node *oldHead = (*headRef);
         (*headRef) = NULL;
@@ -475,7 +489,7 @@ void insert_After_Node_CSLL(struct csll_node **tailRef, int newData, int flag) {
 
 void delete_Head_CSLL(struct csll_node **tailRef) {
     if((*tailRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*tailRef)->next == (*tailRef)) {
         struct csll_node *oldTail = (*tailRef);
         (*tailRef) = NULL; 
@@ -490,7 +504,7 @@ void delete_Head_CSLL(struct csll_node **tailRef) {
 
 void delete_Tail_CSLL(struct csll_node **tailRef) {
     if((*tailRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*tailRef)->next == (*tailRef)) {
         struct csll_node *oldTail = (*tailRef);
         (*tailRef) = NULL; 
@@ -512,7 +526,7 @@ void delete_Tail_CSLL(struct csll_node **tailRef) {
 // add check for removing node will result to only one remaining node
 void delete_Node_By_Data_CSLL(struct csll_node **tailRef, int flag) {
     if((*tailRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*tailRef)->next == (*tailRef)) {
         struct csll_node *oldTail = (*tailRef);
         (*tailRef) = NULL; 
@@ -538,7 +552,7 @@ void delete_Node_By_Data_CSLL(struct csll_node **tailRef, int flag) {
 
 void delete_Before_Node_CSLL(struct csll_node **tailRef, int flag) {
     if((*tailRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*tailRef)->next == (*tailRef)) {
         struct csll_node *oldTail = (*tailRef);
         (*tailRef) = NULL; 
@@ -564,7 +578,7 @@ void delete_Before_Node_CSLL(struct csll_node **tailRef, int flag) {
 
 void delete_After_Node_CSLL(struct csll_node **tailRef, int flag) {
     if((*tailRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*tailRef)->next == (*tailRef)) {
         struct csll_node *oldTail = (*tailRef);
         (*tailRef) = NULL; 
@@ -751,7 +765,7 @@ void insert_After_Node_CDLL(struct cdll_node **headRef, int newData, int flag) {
 
 void delete_Head_CDLL(struct cdll_node **headRef) {
     if((*headRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*headRef)->next == (*headRef)) {
         struct cdll_node *oldHead = (*headRef);
         (*headRef) = NULL;
@@ -770,7 +784,7 @@ void delete_Head_CDLL(struct cdll_node **headRef) {
 
 void delete_Tail_CDLL(struct cdll_node **headRef) {
     if((*headRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*headRef)->next == (*headRef)) {
         struct cdll_node *oldHead = (*headRef);
         (*headRef) = NULL;
@@ -793,7 +807,7 @@ void delete_Tail_CDLL(struct cdll_node **headRef) {
 
 void delete_Node_By_Data_CDLL(struct cdll_node **headRef, int flag) {
     if((*headRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*headRef)->next == (*headRef)) {
         struct cdll_node *oldHead = (*headRef);
         (*headRef) = NULL;
@@ -820,7 +834,7 @@ void delete_Node_By_Data_CDLL(struct cdll_node **headRef, int flag) {
 
 void delete_Before_Node_CDLL(struct cdll_node **headRef, int flag) {
     if((*headRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*headRef)->next == (*headRef)) {
         struct cdll_node *oldHead = (*headRef);
         (*headRef) = NULL;
@@ -849,7 +863,7 @@ void delete_Before_Node_CDLL(struct cdll_node **headRef, int flag) {
 
 void delete_After_Node_CDLL(struct cdll_node **headRef, int flag) {
     if((*headRef) == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else if((*headRef)->next == (*headRef)) {
         struct cdll_node *oldHead = (*headRef);
         (*headRef) = NULL;
@@ -878,7 +892,7 @@ void delete_After_Node_CDLL(struct cdll_node **headRef, int flag) {
 
 void traverse_Header_SLL_From_Head(struct header_node_sll *headerRef) {
     if(headerRef->next == NULL) {
-        return;
+        printf("Linked list is already empty.\n");
     } else {
         struct sll_node *currentNode = headerRef->next;
         while(currentNode != NULL) {
@@ -955,11 +969,7 @@ void insert_At_Position_Header_SLL(struct header_node_sll **headerRef, int newDa
 
     newNode->data = newData;
 
-    if((*headerRef)->next == NULL) {
-        (*headerRef)->next = newNode;
-        newNode->next = NULL;
-        (*headerRef)->length++;
-    } else if(pos == 0) {
+    if((*headerRef)->next == NULL || pos == 0) {
         newNode->next = (*headerRef)->next;
         (*headerRef)->next = newNode;
         (*headerRef)->length++;
