@@ -90,4 +90,22 @@ void delete_Node_By_Data_CDLL(struct cdll_node **headRef, int flag);
 void delete_Before_Node_CDLL(struct cdll_node **headRef, int flag);
 void delete_After_Node_CDLL(struct cdll_node **headRef, int flag);
 
+struct header_node_sll {
+    int length;
+    struct sll_node *next;
+};
+
+void traverse_Header_SLL_From_Head(struct header_node_sll *headerRef);
+
+bool search_Node_In_Header_SLL(struct header_node_sll *headerRef, int data);
+int get_Node_Index_In_Header_SLL(struct header_node_sll *headerRef, int data);
+
+void insert_At_Head_Header_SLL(struct header_node_sll **headerRef, int newData);
+void insert_At_Tail_Header_SLL(struct header_node_sll **headerRef, int newData);
+void insert_At_Position_Header_SLL(struct header_node_sll **headerRef, int newData, int pos);
+
+void delete_Head_Header_SLL(struct header_node_sll **headerRef);
+void delete_Tail_Header_SLL(struct header_node_sll **headerRef);
+void delete_At_Position_Header_SLL(struct header_node_sll **headerRef, int pos);
+
 #endif

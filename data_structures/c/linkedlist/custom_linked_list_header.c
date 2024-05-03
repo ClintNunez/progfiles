@@ -6,6 +6,13 @@
 // TODO
 // change temp to currentNode
 // change headRef to currentNode
+// replace return with print statements
+// try catch for error
+// make global variables for frequently initialized nodes
+// test insert at position 0 or last
+// change insert at position methods so 
+//      that the node will actually have the index of the given insert pos
+// clean up ){
 
 void traverse_SLL_From_Head(struct sll_node *headRef) {
     while(headRef != NULL) {
@@ -77,7 +84,7 @@ void insert_At_Tail(struct sll_node **headRef, int newData) {
 
 void insert_At_Position(struct sll_node **headRef, int newData, int pos) {
     struct sll_node *newNode = (struct sll_node*) malloc(sizeof(struct sll_node)); 
-    
+
     newNode->data = newData;
 
     if(pos == 0 || *headRef == NULL) {
@@ -354,7 +361,7 @@ void traverse_CSLL_From_Tail(struct csll_node *tailRef) {
 
 int get_Length_Of_CSLL(struct csll_node *headRef) {
     int i = 0;
-    
+
     if(headRef != NULL) {
         struct csll_node *start = headRef;
         do {
@@ -425,7 +432,7 @@ void insert_Before_Node_CSLL(struct csll_node **tailRef, int newData, int flag) 
         newNode->next = (*tailRef);
     } else {
         struct csll_node *currentNode = *tailRef;
-        
+
         while(currentNode->next->data != flag) {
             currentNode = currentNode->next;
         }
@@ -585,19 +592,19 @@ void delete_After_Node_CSLL(struct csll_node **tailRef, int flag) {
 void traverse_CDLL_From_Head(struct cdll_node *headRef) {
     if(headRef != NULL) {
         struct cdll_node *start = headRef;
-        
+
         do {
             printf("%i ", headRef->data);
             headRef = headRef->next;
         } while(headRef != start);
     }
-    
+
     printf("\n");
 }
 
 int get_Length_Of_CDLL(struct cdll_node *headRef) {
     int i = 0;
-    
+
     if(headRef != NULL) {
         struct cdll_node *head = headRef;
         do {
@@ -638,16 +645,16 @@ void insert_At_Head_CDLL(struct cdll_node **headRef, int newData) {
         (*headRef) = newNode;
     } else {
         struct cdll_node *currentNode = (*headRef);
-        
+
         do { // go to the last node
             currentNode = currentNode->next;
         } while(currentNode->next != (*headRef));
-        
+
         newNode->next = (*headRef);
         newNode->prev = currentNode;
         currentNode->next = newNode; 
         (*headRef)->prev = newNode;
-        
+
         (*headRef) = newNode;
     }
 }
@@ -667,11 +674,11 @@ void insert_At_Tail_CDLL(struct cdll_node **headRef, int newData) {
         newNode->prev = (*headRef);
     } else {
         struct cdll_node *currentNode = (*headRef);
-        
+
         do { 
             currentNode = currentNode->next;
         } while(currentNode != (*headRef)->prev);
-        
+
         currentNode->next = newNode; 
         newNode->prev = currentNode;
         newNode->next = (*headRef);
@@ -695,11 +702,11 @@ void insert_Before_Node_CDLL(struct cdll_node **headRef, int newData, int flag) 
         (*headRef) = newNode;
     } else {
         struct cdll_node *currentNode = (*headRef);
-        
+
         while(currentNode->next->data != flag) {
             currentNode = currentNode->next;
         }
-        
+
         newNode->next = currentNode->next;
         newNode->prev = currentNode;
         currentNode->next->prev = newNode;
@@ -726,11 +733,11 @@ void insert_After_Node_CDLL(struct cdll_node **headRef, int newData, int flag) {
         (*headRef)->prev = newNode;
     } else {
         struct cdll_node *currentNode = (*headRef);
-        
+
         while(currentNode->data != flag) {
             currentNode = currentNode->next;
         }
-        
+
         newNode->next = currentNode->next;
         newNode->prev = currentNode;
         currentNode->next->prev = newNode;
@@ -752,7 +759,7 @@ void delete_Head_CDLL(struct cdll_node **headRef) {
     } else {
         struct cdll_node *oldHead = (*headRef);
         struct cdll_node *newHead = (*headRef)->next;
-        
+
         newHead->prev = oldHead->prev;
         oldHead->prev->next = newHead;
         (*headRef) = newHead;
@@ -775,11 +782,11 @@ void delete_Tail_CDLL(struct cdll_node **headRef) {
         while(oldTail->next != (*headRef)) {
             oldTail = oldTail->next;
         }
-        
+
         newTail = oldTail->prev;
         newTail->next = oldTail->next;
         oldTail->next->prev = newTail;
-        
+
         free(oldTail);
     }
 }
@@ -826,7 +833,7 @@ void delete_Before_Node_CDLL(struct cdll_node **headRef, int flag) {
         while(currentNode->data != flag) {
             currentNode = currentNode->next;
         }
-        
+
         if(currentNode->prev == (*headRef)) {
             (*headRef) = newNode;
         }
@@ -837,7 +844,7 @@ void delete_Before_Node_CDLL(struct cdll_node **headRef, int flag) {
         currentNode->prev = newNode;
 
         free(oldNode);
-   }
+    }
 }
 
 void delete_After_Node_CDLL(struct cdll_node **headRef, int flag) {
@@ -855,7 +862,7 @@ void delete_After_Node_CDLL(struct cdll_node **headRef, int flag) {
         while(currentNode->data != flag) {
             currentNode = currentNode->next;
         }
-        
+
         if(currentNode->next == (*headRef)) {
             (*headRef) = newNode;
         }
@@ -866,5 +873,176 @@ void delete_After_Node_CDLL(struct cdll_node **headRef, int flag) {
         currentNode->next = newNode;
 
         free(oldNode);
+    }
+}
+
+void traverse_Header_SLL_From_Head(struct header_node_sll *headerRef) {
+    if(headerRef->next == NULL) {
+        return;
+    } else {
+        struct sll_node *currentNode = headerRef->next;
+        while(currentNode != NULL) {
+            printf("%i ", currentNode->data);
+            currentNode = currentNode->next;
+        }
+        printf("\n");
+    }
+}
+
+bool search_Node_In_Header_SLL(struct header_node_sll *headerRef, int data) {
+    struct sll_node *currentNode = headerRef->next;
+
+    while(currentNode != NULL) {
+        if(currentNode->data == data) {
+            return true;
+        }
+        currentNode = currentNode->next;
+    }
+
+    return false;
+}
+
+int get_Node_Index_In_Header_SLL(struct header_node_sll *headerRef, int data) {
+    struct sll_node *currentNode = headerRef->next;
+
+    for(int i = 0; i < headerRef->length; i++) {
+        if(currentNode->data == data) {
+            return i;
+        }
+        currentNode = currentNode->next;
+    }
+
+    return -1;
+}
+
+void insert_At_Head_Header_SLL(struct header_node_sll **headerRef, int newData) {
+    struct sll_node *newHead = (struct sll_node*) malloc(sizeof(struct sll_node));
+
+    newHead->data = newData;
+
+    if((*headerRef)->length == 0) {
+        newHead->next = NULL;
+        (*headerRef)->next = newHead;
+        (*headerRef)->length++;
+    } else {
+        newHead->next = (*headerRef)->next;
+        (*headerRef)->next = newHead;
+        (*headerRef)->length++;
+    }
+}
+
+void insert_At_Tail_Header_SLL(struct header_node_sll **headerRef, int newData) {
+    struct sll_node *newTail = (struct sll_node*) malloc(sizeof(struct sll_node));
+
+    newTail->data = newData;
+    newTail->next = NULL;
+
+    if((*headerRef)->length == 0) {
+        (*headerRef)->next = newTail;
+        (*headerRef)->length++;
+    } else {
+        struct sll_node *currentNode = (*headerRef)->next;
+        while(currentNode->next != NULL) {
+            currentNode = currentNode->next;
+        }
+        currentNode->next = newTail;
+        (*headerRef)->length++;
+    }
+}
+
+void insert_At_Position_Header_SLL(struct header_node_sll **headerRef, int newData, int pos) {
+    struct sll_node *newNode = (struct sll_node*) malloc(sizeof(struct sll_node)); 
+
+    newNode->data = newData;
+
+    if((*headerRef)->next == NULL) {
+        (*headerRef)->next = newNode;
+        newNode->next = NULL;
+        (*headerRef)->length++;
+    } else if(pos == 0) {
+        newNode->next = (*headerRef)->next;
+        (*headerRef)->next = newNode;
+        (*headerRef)->length++;
+    } else {
+        struct sll_node *currentNode = (*headerRef)->next;
+
+        for(int i = 1; i < pos; i++) {
+            currentNode = currentNode->next;
+        }
+
+        newNode->next = currentNode->next;
+        currentNode->next = newNode;                
+        (*headerRef)->length++;
+    }
+}
+
+void delete_Head_Header_SLL(struct header_node_sll **headerRef) {
+    if((*headerRef)->next == NULL) {
+        printf("Linked list is already empty.\n");
+    } else if((*headerRef)->next->next == NULL){
+        struct sll_node *oldHead = (*headerRef)->next;
+        (*headerRef)->next = NULL;
+        
+        free(oldHead);
+        (*headerRef)->length--;
+    } else {
+        struct sll_node *oldHead = (*headerRef)->next;
+        (*headerRef)->next = oldHead->next;
+
+        free(oldHead);
+        (*headerRef)->length--;
+    }
+}
+
+void delete_Tail_Header_SLL(struct header_node_sll **headerRef) {
+    if((*headerRef)->next == NULL) {
+        printf("Linked list is already empty.\n");
+    } else if((*headerRef)->next->next == NULL) {
+        struct sll_node *oldHead = (*headerRef)->next;
+        (*headerRef)->next = NULL;
+        
+        free(oldHead);
+        (*headerRef)->length--;
+    } else {
+        struct sll_node *currentNode = (*headerRef)->next;
+        while(currentNode->next->next != NULL) {
+            currentNode = currentNode->next;
+        }
+
+        struct sll_node *oldHead = currentNode->next;
+        currentNode->next = NULL;
+
+        free(oldHead);
+        (*headerRef)->length--;
+    }
+}
+
+void delete_At_Position_Header_SLL(struct header_node_sll **headerRef, int pos) {
+    if(pos >= (*headerRef)->length) {
+        printf("Given delete index is out of bounds");
+    } else if((*headerRef)->next == NULL) {
+        printf("Linked list is already empty.\n");
+    } else if((*headerRef)->next->next == NULL) {
+        struct sll_node *oldHead = (*headerRef)->next;
+        (*headerRef)->next = NULL;
+        
+        free(oldHead);
+        (*headerRef)->length--;
+    } else if(pos == 0) {
+        struct sll_node *oldHead = (*headerRef)->next;
+        (*headerRef)->next = oldHead->next;
+
+        free(oldHead);
+        (*headerRef)->length--;
+    } else {
+        struct sll_node *currentNode = (*headerRef)->next;
+        for(int i = 1; i < pos; i++) {
+            currentNode = currentNode->next;
+        }
+
+        struct sll_node *oldNode = currentNode->next;
+        currentNode->next = oldNode->next;
+        free(oldNode);
+        (*headerRef)->length--;
     }
 }
