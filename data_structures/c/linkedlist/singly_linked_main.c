@@ -43,7 +43,7 @@ int main() {
         printf("\t%i not found\n", e);
     }
 
-    printf("Get node of index:\n");
+    printf("Get index of node:\n");
     e = 2;
     int res = get_Node_Index_In_SLL(head, e);
     if(res >= 0) {
