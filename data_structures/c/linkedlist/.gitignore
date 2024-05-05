@@ -1,0 +1,6 @@
+# ignore object code
+sll
+dll
+csll
+cdll
+hsll
