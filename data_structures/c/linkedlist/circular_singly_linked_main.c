@@ -7,49 +7,90 @@
 int main() {
     struct csll_node *tail = NULL;
     
+    printf("Insert at head:\n");
+    insert_At_Head_CSLL(&tail, 4);
     insert_At_Head_CSLL(&tail, 3);
     insert_At_Head_CSLL(&tail, 2);
     insert_At_Head_CSLL(&tail, 1);
-    insert_At_Head_CSLL(&tail, 8);
     traverse_CSLL_From_Tail(tail);
 
-    insert_At_Tail_CSLL(&tail, 4);
+    printf("Insert at head:\n");
+    insert_At_Tail_CSLL(&tail, 5);
+    insert_At_Tail_CSLL(&tail, 6);
+    insert_At_Tail_CSLL(&tail, 7);
+    insert_At_Tail_CSLL(&tail, 8);
     traverse_CSLL_From_Tail(tail);
 
-    insert_Before_Node_CSLL(&tail, 200, 4);
-    insert_Before_Node_CSLL(&tail, 2500, 8);
+    printf("Insert before the given node:\n");
+    insert_Before_Node_CSLL(&tail, 10, 5);
+    insert_Before_Node_CSLL(&tail, 10, 1);
+    insert_Before_Node_CSLL(&tail, 10, 8);
     traverse_CSLL_From_Tail(tail);
 
-    insert_After_Node_CSLL(&tail, 70, 2500);
+    printf("Insert after the given node:\n");
+    insert_After_Node_CSLL(&tail, 20, 5);
+    insert_After_Node_CSLL(&tail, 20, 1);
+    insert_After_Node_CSLL(&tail, 20, 8);
     traverse_CSLL_From_Tail(tail);
 
     printf("Length of CSLL: %i\n", get_Length_Of_CSLL(tail));
 
     int e = 4;
     if(search_Node_In_CSLL(tail, e)) {
-        printf("%i found\n", e);
+        printf("\t%i found\n", e);
     } else {
-        printf("%i not found\n", e);
+        printf("\t%i not found\n", e);
     }
 
     e = 999;
     if(search_Node_In_CSLL(tail, e)) {
-        printf("%i found\n", e);
+        printf("\t%i found\n", e);
     } else {
-        printf("%i not found\n", e);
+        printf("\t%i not found\n", e);
     }
 
+    printf("Delete head:\n");
     delete_Head_CSLL(&tail);
+    traverse_CSLL_From_Tail(tail);
+
+    printf("Delete head:\n");
     delete_Tail_CSLL(&tail);
     traverse_CSLL_From_Tail(tail);
 
+    printf("Delete using given data:\n");
     delete_Node_By_Data_CSLL(&tail, 3);
     traverse_CSLL_From_Tail(tail);
 
+    printf("Delete node using given data:\n");
+    delete_Node_By_Data_CSLL(&tail, 6);
+    traverse_CSLL_From_Tail(tail);
+
+    printf("Delete before and after given node:\n");
     delete_Before_Node_CSLL(&tail, 4);
     delete_After_Node_CSLL(&tail, 4);
     traverse_CSLL_From_Tail(tail);
+
     printf("Length of CSLL after deletion: %i\n", get_Length_Of_CSLL(tail));
+    
+    printf("Test for edge cases\n");
+    struct csll_node *tail1 = NULL;
+    traverse_CSLL_From_Tail(tail1);
+
+    printf("Delete function on empty list:\n");
+    delete_Head_CSLL(&tail1);
+    delete_Tail_CSLL(&tail1);
+    delete_Node_By_Data_CSLL(&tail1, 1);
+    delete_Before_Node_CSLL(&tail1, 1);
+    delete_After_Node_CSLL(&tail1, 1);
+
+
+    printf("Normal insert:\n");
+    insert_At_Head_CSLL(&tail1, 1);
+    traverse_CSLL_From_Tail(tail1);
+
+    printf("Delete single node to make list null:\n");
+    delete_Head_CSLL(&tail1);
+    traverse_CSLL_From_Tail(tail1);
 
     return 0;
 }
