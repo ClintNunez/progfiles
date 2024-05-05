@@ -30,7 +30,6 @@ struct dll_node {
 struct dll_node *get_Tail_In_DLL(struct dll_node **headRef);
 
 void traverse_DLL_From_Head(struct dll_node *headRef);
-void traverse_DLL_From_Tail(struct dll_node *headRef);
 
 int get_Length_Of_DLL(struct dll_node *headRef);
 

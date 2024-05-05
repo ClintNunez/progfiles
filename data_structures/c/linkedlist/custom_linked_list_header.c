@@ -12,13 +12,36 @@
 // clean up ){
 
 struct sll_node *currentNode_SLL;
-struct sll_node *newHead_SLL;
 struct sll_node *newNode_SLL;
-struct sll_node *newTail_SLL;
 
 struct sll_node *oldHead_SLL;
 struct sll_node *oldNode_SLL;
 struct sll_node *oldTail_SLL;
+
+struct dll_node *currentNode_DLL;
+struct dll_node *newNode_DLL;
+
+struct dll_node *oldHead_DLL;
+struct dll_node *oldNode_DLL;
+struct dll_node *oldTail_DLL;
+
+struct sll_node *currentNode_CSLL;
+struct sll_node *newHead_CSLL;
+struct sll_node *newNode_CSLL;
+struct sll_node *newTail_CSLL;
+
+struct sll_node *oldHead_CSLL;
+struct sll_node *oldNode_CSLL;
+struct sll_node *oldTail_CSLL;
+
+struct sll_node *currentNode_CDLL;
+struct sll_node *newHead_CDLL;
+struct sll_node *newNode_CDLL;
+struct sll_node *newTail_CDLL;
+
+struct sll_node *oldHead_CDLL;
+struct sll_node *oldNode_CDLL;
+struct sll_node *oldTail_CDLL;
 
 void traverse_SLL_From_Head(struct sll_node *headRef) {
     if(headRef == NULL) {
@@ -59,6 +82,7 @@ int get_Node_Index_In_SLL(struct sll_node *headRef, int data) {
         if(headRef->data == data) {
             return i;
         }
+
         headRef = headRef->next;
     }
 
@@ -76,20 +100,19 @@ void insert_At_Head(struct sll_node **headRef, int newData) {
 
 void insert_At_Tail(struct sll_node **headRef, int newData) {
     newNode_SLL = (struct sll_node*) malloc(sizeof(struct sll_node)); 
-    newTail_SLL = *headRef; 
+    currentNode_SLL = *headRef; 
 
     newNode_SLL->data = newData;
     newNode_SLL->next = NULL;
 
     if(*headRef == NULL)  {
         *headRef = newNode_SLL;
-        return;
+    } else {
+        while(currentNode_SLL->next != NULL) 
+            currentNode_SLL = currentNode_SLL->next;
+
+        currentNode_SLL->next = newNode_SLL;
     }
-
-    while(newTail_SLL->next != NULL) 
-        newTail_SLL = newTail_SLL->next;
-
-    newTail_SLL->next = newNode_SLL;
 }
 
 void insert_At_Position(struct sll_node **headRef, int newData, int pos) {
@@ -143,21 +166,21 @@ void delete_Tail(struct sll_node **headRef) {
             currentNode_SLL = currentNode_SLL->next;
         }
 
-        struct sll_node *oldTail = currentNode_SLL->next;
+        oldTail_SLL = currentNode_SLL->next;
 
         currentNode_SLL->next = NULL;
 
-        free(oldTail);
+        free(oldTail_SLL);
     }
 }
 
 void delete_At_Position(struct sll_node **headRef, int pos) {
     currentNode_SLL = *headRef;
 
-    if(pos > get_Length_Of_SLL(*headRef)) {
-        printf("\tGiven position is greater than the length of list\n");
-    } else if(*headRef == NULL) {
+    if(*headRef == NULL) {
         printf("\tLinked list is already empty.\n");
+    } else if(pos > get_Length_Of_SLL(*headRef)) {
+        printf("\tGiven position is greater than the length of list\n");
     } else if((*headRef)->next == NULL) {
         oldHead_SLL = (*headRef);
         (*headRef) = NULL;
@@ -179,23 +202,21 @@ void delete_At_Position(struct sll_node **headRef, int pos) {
 }
 
 void traverse_DLL_From_Head(struct dll_node *headRef) {
-    while(headRef != NULL) {
-        printf("%i ", headRef->data);
-        headRef = headRef->next;
+    if(headRef == NULL) {
+        printf("\tList empty\n");
+    } else {
+        printf("\t");
+        while(headRef != NULL) {
+            printf("%i ", headRef->data);
+            headRef = headRef->next;
+        }
+        printf("\n");
     }
-    printf("\n");
-}
-
-void traverse_DLL_From_Tail(struct dll_node *headRef) {
-    while(headRef != NULL) {
-        printf("%i ", headRef->data);
-        headRef = headRef->prev;
-    }
-    printf("\n");
 }
 
 int get_Length_Of_DLL(struct dll_node *headRef) {
     int i = 0;
+
     for(; headRef != NULL; i++) {
         headRef = headRef->next;
     }
@@ -215,7 +236,6 @@ bool search_Node_In_DLL(struct dll_node *headRef, int data) {
 }
 
 int get_Node_Index_In_DLL(struct dll_node *headRef, int data) {
-
     for(int i = 0; headRef != NULL; i++) {
         if(headRef->data == data) {
             return i;
@@ -227,136 +247,144 @@ int get_Node_Index_In_DLL(struct dll_node *headRef, int data) {
 }
 
 struct dll_node *get_Tail_In_DLL(struct dll_node **headRef) {
-    struct dll_node *currentNode = *headRef;
-    if(currentNode == NULL) {
+    currentNode_DLL = *headRef;
+    if(currentNode_DLL == NULL) {
         return NULL;
-    } else if(currentNode->next == NULL) {
-        return currentNode;
+    } else if(currentNode_DLL->next == NULL) {
+        return currentNode_DLL;
     } else {
-        while(currentNode->next != NULL) {
-            currentNode = currentNode->next;
+        while(currentNode_DLL->next != NULL) {
+            currentNode_DLL = currentNode_DLL->next;
         }
 
-        return currentNode;
+        return currentNode_DLL;
     }
 }
 
 void insert_At_Head_DLL(struct dll_node **headRef, int newData) {
-    struct dll_node *newNode = (struct dll_node*) malloc(sizeof(struct dll_node));
+    newNode_DLL = (struct dll_node*) malloc(sizeof(struct dll_node));
 
-    newNode->data = newData;
-    newNode->prev = NULL;
+    newNode_DLL->data = newData;
+    newNode_DLL->prev = NULL;
 
     if(*headRef == NULL) {
-        newNode->next = NULL;
-        *headRef = newNode;
+        newNode_DLL->next = NULL;
+        *headRef = newNode_DLL;
     } else {
-        newNode->next = *headRef;
-        (*headRef)->prev = newNode;
-        *headRef = newNode;
+        newNode_DLL->next = *headRef;
+        (*headRef)->prev = newNode_DLL;
+        *headRef = newNode_DLL;
     }
 }
 
 void insert_At_Tail_DLL(struct dll_node **headRef, int newData) {
-    struct dll_node *newNode = (struct dll_node*) malloc(sizeof(struct dll_node)); 
+    newNode_DLL = (struct dll_node*) malloc(sizeof(struct dll_node)); 
 
-    newNode->data = newData;
-    newNode->next = NULL;
+    newNode_DLL->data = newData;
+    newNode_DLL->next = NULL;
 
     if(*headRef == NULL) {
-        newNode->prev = NULL;
-        *headRef = newNode;
+        newNode_DLL->prev = NULL;
+        *headRef = newNode_DLL;
     } else {
-        struct dll_node *tailNode = *headRef;
+        currentNode_DLL = *headRef;
 
-        while(tailNode->next != NULL) {
-            tailNode = tailNode->next;
+        while(currentNode_DLL->next != NULL) {
+            currentNode_DLL = currentNode_DLL->next;
         }
 
-        tailNode->next = newNode;
-        newNode->prev = tailNode;
+        currentNode_DLL->next = newNode_DLL;
+        newNode_DLL->prev = currentNode_DLL;
     }
 }
 
 void insert_At_Position_DLL(struct dll_node **headRef, int newData, int pos) {
-    struct dll_node *newNode = (struct dll_node*) malloc(sizeof(struct dll_node));
-    newNode->data = newData;
+    newNode_DLL = (struct dll_node*) malloc(sizeof(struct dll_node));
+    newNode_DLL->data = newData;
 
-    if(pos == 0 || *headRef == NULL) {
-        newNode->next = *headRef;
-        newNode->prev = NULL;
-        (*headRef)->prev = newNode;
-        *headRef = newNode;
+    if(pos > get_Length_Of_DLL(*headRef)) {
+        printf("\tGiven position is greater than the length of list\n");
+    } else if(pos == 0 || *headRef == NULL) {
+        newNode_DLL->next = (*headRef);
+        newNode_DLL->prev = NULL;
+        (*headRef) = newNode_DLL;
     } else {
-        struct dll_node *currentNode = *headRef;  
+        currentNode_DLL = *headRef;  
 
-        for(int i = 1; i < pos && currentNode->next != NULL; i++) {
-            currentNode = currentNode->next;
+        for(int i = 1; i < pos && currentNode_DLL->next != NULL; i++) {
+            currentNode_DLL = currentNode_DLL->next;
         }
 
-        newNode->next = currentNode->next;
-        newNode->prev = currentNode;
-        currentNode->next = newNode;
+        newNode_DLL->next = currentNode_DLL->next;
+        newNode_DLL->prev = currentNode_DLL;
+        currentNode_DLL->next = newNode_DLL;
     }
 }
 
 void delete_Head_DLL(struct dll_node **headRef) {
-    struct dll_node *oldHead = (*headRef);
-
     if((*headRef) == NULL) { 
-        printf("Linked list is already empty.\n");
+        printf("\tLinked list is already empty.\n");
     } else if((*headRef)->next == NULL) { 
+        oldHead_DLL = (*headRef);
         (*headRef) = NULL; 
-        free(oldHead);
+        free(oldHead_DLL);
     } else {
+        oldHead_DLL = (*headRef);
         (*headRef) = (*headRef)->next;
         (*headRef)->prev = NULL;
-        free(oldHead);
+        free(oldHead_DLL);
     }
 }
 
 void delete_Tail_DLL(struct dll_node **headRef, struct dll_node **tailRef) {
     if((*headRef) == NULL) {
-        printf("Linked list is already empty.\n");
+        printf("\tLinked list is already empty.\n");
     } else if((*tailRef)->prev == NULL) { 
-        struct dll_node *oldHead = (*headRef);
+        oldHead_DLL = (*headRef);
         (*headRef) = (*tailRef) = NULL;
-        free(oldHead);
+        free(oldHead_DLL);
     } else {
-        struct dll_node *oldTail = (*tailRef);   
+        oldTail_DLL = (*tailRef);   
+
         (*tailRef) = (*tailRef)->prev;
         (*tailRef)->next = NULL;
-        free(oldTail);
+
+        free(oldTail_DLL);
     }
 }
 
 void delete_At_Position_DLL(struct dll_node **headRef, int pos) {
-    struct dll_node *currentNode = *headRef;
+    currentNode_DLL = *headRef;
+    int length = get_Length_Of_DLL(*headRef);
 
-    if((*headRef) == NULL) {
-        printf("Linked list is already empty.\n");
+    if ((*headRef) == NULL) {
+        printf("\tLinked list is already empty.\n");
+    } else if(pos > length) {
+        printf("\tGiven position is greater than the length of list\n");
     } else if((*headRef)->next == NULL) {
-        struct dll_node *oldHead = (*headRef);
+        oldHead_DLL = (*headRef);
         (*headRef) = NULL;
 
-        free(oldHead);
+        free(oldHead_DLL);
     } else if(pos == 0) {
-        (*headRef) = currentNode->next;    
+        oldHead_DLL = currentNode_DLL;
+        (*headRef) = currentNode_DLL->next;    
+        (*headRef)->prev = NULL;
 
-        free(currentNode);
+        free(oldHead_DLL);
     } else {
-        int length = get_Length_Of_DLL(*headRef);
-
-        if(pos > length || pos < 0) {
-            return;
-        } else {
-            for(int i = 1; i < pos; i++) {
-                currentNode = currentNode->next;
-            }
-            struct dll_node *oldNode = currentNode->next; 
-            currentNode->next = oldNode->next;
-            free(oldNode);
+        for(int i = 1; i < pos; i++) {
+            currentNode_DLL = currentNode_DLL->next;
         }
+
+        oldNode_DLL = currentNode_DLL->next; 
+        currentNode_DLL->next = oldNode_DLL->next;
+
+        if(currentNode_DLL->next != NULL) {
+            oldNode_DLL->next->prev = currentNode_DLL;
+        }
+        
+        free(oldNode_DLL);
     }
 }
 
