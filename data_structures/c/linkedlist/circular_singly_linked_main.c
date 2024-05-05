@@ -83,7 +83,6 @@ int main() {
     delete_Before_Node_CSLL(&tail1, 1);
     delete_After_Node_CSLL(&tail1, 1);
 
-
     printf("Normal insert:\n");
     insert_At_Head_CSLL(&tail1, 1);
     traverse_CSLL_From_Tail(tail1);
