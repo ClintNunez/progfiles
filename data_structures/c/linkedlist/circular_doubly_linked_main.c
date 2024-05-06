@@ -14,7 +14,7 @@ int main() {
     insert_At_Head_CDLL(&head, 1);
     traverse_CDLL_From_Head(head);
 
-    printf("Insert at head:\n");
+    printf("Insert at tail:\n");
     insert_At_Tail_CDLL(&head, 5);
     insert_At_Tail_CDLL(&head, 6);
     insert_At_Tail_CDLL(&head, 7);
