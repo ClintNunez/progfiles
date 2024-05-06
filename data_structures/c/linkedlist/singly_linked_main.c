@@ -92,13 +92,13 @@ int main() {
     delete_Tail(&head1);
     delete_At_Position(&head1, 0);
 
-    printf("Insert and delete with position greater than list length:\n");
-    insert_At_Position(&head1, 9, 1);
-    delete_At_Position(&head1, 2);
-
     printf("Normal insert:\n");
     insert_At_Position(&head1, 1, 0);
     traverse_SLL_From_Head(head1);
+
+    printf("Insert and delete with position greater than list length:\n");
+    insert_At_Position(&head1, 9, 2);
+    delete_At_Position(&head1, 2);
 
     printf("Delete single node to make list null:\n");
     delete_Head(&head1);

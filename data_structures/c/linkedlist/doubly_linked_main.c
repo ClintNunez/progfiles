@@ -94,15 +94,14 @@ int main() {
     delete_Tail_DLL(&head1, &tail1);
     delete_At_Position_DLL(&head1, 0);
 
+    printf("Normal insert:\n");
+    insert_At_Position_DLL(&head1, 1, 0);
+    traverse_DLL_From_Head(head1);
+    
     printf("Insert and delete with position greater than list length:\n");
     insert_At_Position_DLL(&head1, 777, 100);
     delete_At_Position_DLL(&head1, 100);
 
-    printf("Normal insert:\n");
-    insert_At_Position_DLL(&head1, 1, 0);
-    traverse_DLL_From_Head(head1);
-
-    
     printf("Delete single node to make list null:\n");
     delete_Head_DLL(&head1);
     traverse_DLL_From_Head(head1);
