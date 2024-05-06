@@ -5,9 +5,9 @@
 #include "custom_linked_list_header.h"
 
 int main() {
-    struct header_node_ll *header = (struct header_node_ll*) malloc(sizeof(struct header_node_ll));
+    struct sll_node *header = (struct sll_node*) malloc(sizeof(struct sll_node));
 
-    header->length = 0;
+    header->data = 0;
 
     printf("Insert at head:\n");
     insert_At_Head_GHLL(&header, 5);
@@ -27,10 +27,10 @@ int main() {
     printf("Insert using a given position:\n");
     insert_At_Position_GHLL(&header, 6, 5);
     insert_At_Position_GHLL(&header, 0, 0);
-    insert_At_Position_GHLL(&header, 100, header->length - 1);
+    insert_At_Position_GHLL(&header, 100, header->data - 1);
     traverse_GHLL_From_Head(header);
 
-    printf("Length of header list: %i\n", header->length);
+    printf("Length of header list: %i\n", header->data);
 
     printf("Search node:\n");
     int e = 3;
@@ -79,14 +79,14 @@ int main() {
     delete_At_Position_GHLL(&header, 0);
     traverse_GHLL_From_Head(header);
 
-    delete_At_Position_GHLL(&header, header->length - 1);
+    delete_At_Position_GHLL(&header, header->data - 1);
     traverse_GHLL_From_Head(header);
 
-    printf("Length of header list: %i\n", header->length);
+    printf("Length of header list: %i\n", header->data);
 
     printf("Test for edge cases:\n");
-    struct header_node_ll *header1 = (struct header_node_ll*) malloc(sizeof(struct header_node_ll));
-    header1->length = 0;
+    struct sll_node *header1 = (struct sll_node*) malloc(sizeof(struct sll_node));
+    header1->data = 0;
     traverse_GHLL_From_Head(header1);
     
     printf("Delete functions on empty list:\n");
@@ -94,13 +94,13 @@ int main() {
     delete_Tail_GHLL(&header1);
     delete_At_Position_GHLL(&header1, 0);
 
-    printf("Insert and delete with position greater than list length:\n");
-    insert_At_Position_GHLL(&header1, 9, 1);
-    delete_At_Position_GHLL(&header1, 2);
-
     printf("Normal insert:\n");
     insert_At_Position_GHLL(&header1, 1, 0);
     traverse_GHLL_From_Head(header1);
+
+    printf("Insert and delete with position greater than list length:\n");
+    insert_At_Position_GHLL(&header1, 9, 2);
+    delete_At_Position_GHLL(&header1, 2);
 
     printf("Delete single node to make list null:\n");
     delete_Head_GHLL(&header1);
