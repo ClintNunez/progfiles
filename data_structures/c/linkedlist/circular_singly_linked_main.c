@@ -14,7 +14,7 @@ int main() {
     insert_At_Head_CSLL(&tail, 1);
     traverse_CSLL_From_Tail(tail);
 
-    printf("Insert at head:\n");
+    printf("Insert at tail:\n");
     insert_At_Tail_CSLL(&tail, 5);
     insert_At_Tail_CSLL(&tail, 6);
     insert_At_Tail_CSLL(&tail, 7);
@@ -55,10 +55,6 @@ int main() {
 
     printf("Delete head:\n");
     delete_Tail_CSLL(&tail);
-    traverse_CSLL_From_Tail(tail);
-
-    printf("Delete using given data:\n");
-    delete_Node_By_Data_CSLL(&tail, 3);
     traverse_CSLL_From_Tail(tail);
 
     printf("Delete node using given data:\n");
