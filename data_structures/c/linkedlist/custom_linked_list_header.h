@@ -89,22 +89,30 @@ void delete_Node_By_Data_CDLL(struct cdll_node **headRef, int flag);
 void delete_Before_Node_CDLL(struct cdll_node **headRef, int flag);
 void delete_After_Node_CDLL(struct cdll_node **headRef, int flag);
 
-struct header_node_sll {
-    int length;
-    struct sll_node *next;
-};
+void traverse_GHLL_From_Head(struct sll_node *headerRef);
 
-void traverse_Header_SLL_From_Head(struct header_node_sll *headerRef);
+bool search_Node_In_GHLL(struct sll_node *headerRef, int data);
+int get_Node_Index_In_GHLL(struct sll_node *headerRef, int data);
 
-bool search_Node_In_Header_SLL(struct header_node_sll *headerRef, int data);
-int get_Node_Index_In_Header_SLL(struct header_node_sll *headerRef, int data);
+void insert_At_Head_GHLL(struct sll_node **headerRef, int newData);
+void insert_At_Tail_GHLL(struct sll_node **headerRef, int newData);
+void insert_At_Position_GHLL(struct sll_node **headerRef, int newData, int pos);
 
-void insert_At_Head_Header_SLL(struct header_node_sll **headerRef, int newData);
-void insert_At_Tail_Header_SLL(struct header_node_sll **headerRef, int newData);
-void insert_At_Position_Header_SLL(struct header_node_sll **headerRef, int newData, int pos);
+void delete_Head_GHLL(struct sll_node **headerRef);
+void delete_Tail_GHLL(struct sll_node **headerRef);
+void delete_At_Position_GHLL(struct sll_node **headerRef, int pos);
 
-void delete_Head_Header_SLL(struct header_node_sll **headerRef);
-void delete_Tail_Header_SLL(struct header_node_sll **headerRef);
-void delete_At_Position_Header_SLL(struct header_node_sll **headerRef, int pos);
+void traverse_CHLL_From_Head(struct sll_node *headerRef);
+
+bool search_Node_In_CHLL(struct sll_node *headerRef, int data);
+
+void insert_At_Head_CHLL(struct sll_node **headerRef, int newData);
+void insert_At_Tail_CHLL(struct sll_node **headerRef, int newData);
+void insert_Before_Node_CHLL(struct sll_node **headerRef, int newData, int flag);
+void insert_After_Node_CHLL(struct sll_node **headerRef, int newData, int flag);
+
+void delete_Head_CHLL(struct sll_node **headerRef);
+void delete_Tail_CHLL(struct sll_node **headerRef);
+void delete_Node_By_Data_CHLL(struct sll_node **headerRef, int flag);
 
 #endif
