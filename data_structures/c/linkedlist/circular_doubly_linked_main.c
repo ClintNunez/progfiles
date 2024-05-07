@@ -61,7 +61,7 @@ int main() {
     delete_Node_By_Data_CDLL(&head, 4);
     traverse_CDLL_From_Head(head);
     
-    printf("Delete befure and after given data:\n");
+    printf("Delete before and after given data:\n");
     delete_Before_Node_CDLL(&head, 3);
     delete_After_Node_CDLL(&head, 3);
     traverse_CDLL_From_Head(head);
@@ -69,33 +69,39 @@ int main() {
     printf("Length of cdll after deletion: %i\n", get_Length_Of_CDLL(head));
 
     printf("Test for edge cases\n");
-    struct cdll_node *tail1 = NULL;
-    traverse_CDLL_From_Head(tail1);
+    struct cdll_node *head1 = NULL;
+    traverse_CDLL_From_Head(head1);
 
     printf("Delete function on empty list:\n");
-    delete_Head_CDLL(&tail1);
-    delete_Tail_CDLL(&tail1);
-    delete_Node_By_Data_CDLL(&tail1, 1);
-    delete_Before_Node_CDLL(&tail1, 1);
-    delete_After_Node_CDLL(&tail1, 1);
+    delete_Head_CDLL(&head1);
+    delete_Tail_CDLL(&head1);
+    delete_Node_By_Data_CDLL(&head1, 1);
+    delete_Before_Node_CDLL(&head1, 1);
+    delete_After_Node_CDLL(&head1, 1);
 
     printf("Deleting a node to make a one element list:\n");
-    insert_At_Head_CDLL(&tail1, 2);
-    insert_At_Head_CDLL(&tail1, 1);
-    traverse_CDLL_From_Head(tail1);
+    insert_At_Head_CDLL(&head1, 2);
+    insert_At_Head_CDLL(&head1, 1);
+    traverse_CDLL_From_Head(head1);
 
-    delete_Node_By_Data_CDLL(&tail1, 1);
-    traverse_CDLL_From_Head(tail1);
+    delete_Node_By_Data_CDLL(&head1, 1);
+    traverse_CDLL_From_Head(head1);
     
-    insert_At_Head_CDLL(&tail1, 1);
-    traverse_CDLL_From_Head(tail1);
+    insert_At_Head_CDLL(&head1, 1);
+    traverse_CDLL_From_Head(head1);
 
-    delete_Node_By_Data_CDLL(&tail1, 2);
-    traverse_CDLL_From_Head(tail1);
+    delete_Before_Node_CDLL(&head1, 2);
+    traverse_CDLL_From_Head(head1);
+
+    insert_At_Head_CDLL(&head1, 1);
+    traverse_CDLL_From_Head(head1);
+
+    delete_After_Node_CDLL(&head1, 2);
+    traverse_CDLL_From_Head(head1);
 
     printf("Delete last node to make list null:\n");
-    delete_Head_CDLL(&tail1);
-    traverse_CDLL_From_Head(tail1);
+    delete_Head_CDLL(&head1);
+    traverse_CDLL_From_Head(head1);
 
     return 0;
 }

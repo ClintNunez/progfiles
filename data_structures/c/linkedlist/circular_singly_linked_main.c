@@ -90,7 +90,13 @@ int main() {
     insert_At_Head_CSLL(&tail1, 1);
     traverse_CSLL_From_Tail(tail1);
 
-    delete_Node_By_Data_CSLL(&tail1, 2);
+    delete_Before_Node_CSLL(&tail1, 2);
+    traverse_CSLL_From_Tail(tail1);
+
+    insert_At_Head_CSLL(&tail1, 1);
+    traverse_CSLL_From_Tail(tail1);
+
+    delete_After_Node_CSLL(&tail1, 2);
     traverse_CSLL_From_Tail(tail1);
 
     printf("Delete last node to make list null:\n");
