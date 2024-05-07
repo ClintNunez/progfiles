@@ -53,7 +53,7 @@ int main() {
     delete_Head_CSLL(&tail);
     traverse_CSLL_From_Tail(tail);
 
-    printf("Delete head:\n");
+    printf("Delete tail:\n");
     delete_Tail_CSLL(&tail);
     traverse_CSLL_From_Tail(tail);
 
