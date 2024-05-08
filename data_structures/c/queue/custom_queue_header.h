@@ -1,0 +1,4 @@
+#ifndef CUSTOM_QUEUE_HEADER
+#define CUSTOM_QUEUE_HEADER
+
+#endif
