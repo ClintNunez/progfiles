@@ -3,6 +3,11 @@
 #include <stdbool.h>
 
 #include "custom_queue_header.h"
+// TODO
+// Consider if setting tails to zero before shift the pointer to the right is needed 
+//  since the condition for looping can stop at the tail instead of looping through all elements of the array
+
+int *currentP;
     
 Array_Queue* new_Array_Queue(int length) {
     Array_Queue *arrayQueue = malloc(sizeof(Array_Queue));
@@ -20,27 +25,12 @@ Array_Queue* new_Array_Queue(int length) {
 }
 
 bool is_Array_Queue_Empty(Array_Queue *arrayQueue) {
-
-    return true;
+    return (arrayQueue->length == 0) ? true : false;
 }
 
 bool is_Array_Queue_Full(Array_Queue *arrayQueue) {
-   return true; 
+    return (arrayQueue->length == arrayQueue->maxLength) ? true : false;
 }
-
-
-int array_Queue_Size(Array_Queue *arrayQueue) {
-    /*
-    int tempP = arrayQueue->head, count = 0;
-    
-    while(tempP != arrayQueue->rear) {
-        tempP++;
-    }
-    */
-    
-    return 0;
-}
-
 
 int peek_Array_Queue(Array_Queue *arrayQueue) {
     return *arrayQueue->head;    
@@ -50,44 +40,144 @@ int rear_Array_Queue(Array_Queue *arrayQueue) {
     return *arrayQueue->rear;    
 }
 
-void enqueue_Array_Queue(Array_Queue *arrayQueue, int data) {
+void print_Array_Queue(Array_Queue *arrayQueue) {
+    int *currentP = arrayQueue->head;    
+    
+    printf("\t");
+    while(currentP != arrayQueue->rear + 1) {
+        printf("%i ", *currentP);
+        currentP++;
+    }
+
+    printf("\n");
+}
+
+void enqueue_Array_Simple_Queue(Array_Queue *arrayQueue, int data) {
     if(arrayQueue->length == 0) {
         *arrayQueue->head = *arrayQueue->rear = data;
         arrayQueue->length++;
-    } else if(array_Queue_Size(arrayQueue) + 1 < arrayQueue->maxLength)  {
+    } else if(arrayQueue->length + 1 <= arrayQueue->maxLength)  {
         arrayQueue->rear++;
         *arrayQueue->rear = data;
+        arrayQueue->length++;
     } else {
-        printf("\tArray at max length\n");
+        printf("\tQueue already full\n");
     }
 }
 
-// shift contents of array instead of shifting the head pointer
-int dequeue_Array_Queue(Array_Queue *arrayQueue) {
-    int front;
+int dequeue_Array_Simple_Queue(Array_Queue *arrayQueue) {
+    int head;
     if(arrayQueue->length - 1 >= 0)  {
-        front = *arrayQueue->head;
-        int *tempP = arrayQueue->head;
+        head = *arrayQueue->head;
+        currentP = arrayQueue->head;
 
-        for(int i = 0; i < arrayQueue->maxLength - 1 && arrayQueue->rear != 0; i++) {
-            *tempP = *(tempP + 1);
-            tempP = tempP + 1;
-        }
-        arrayQueue->rear = arrayQueue->rear - 1;
+        do {
+            *currentP = *(currentP + 1);
+            currentP++;
+        } while(currentP != arrayQueue->rear);
 
+        arrayQueue->rear--;
         arrayQueue->length--;
-        return front;
+
+        return head;
     } else {
-        printf("\tArray at max length\n");
+        printf("\tQueue already empty\n");
     }
 
     return -1;
 }
 
-void print_Array_Queue(Array_Queue *arrayQueue) {
-    int *tempP = arrayQueue->head;    
-    for(int i = 0; i < arrayQueue->maxLength; i++) {
-        printf("%i ", *tempP);
-        tempP = tempP + 1;
+// enqueue in input restricted and simple queue are the same
+void enqueue_Array_DE_IR_Queue(Array_Queue *arrayQueue, int data) {
+    if(arrayQueue->length == 0) {
+        *arrayQueue->head = *arrayQueue->rear = data;
+        arrayQueue->length++;
+    } else if(arrayQueue->length + 1 <= arrayQueue->maxLength)  {
+        arrayQueue->rear++;
+        *arrayQueue->rear = data;
+        arrayQueue->length++;
+    } else {
+        printf("\tQueue already full\n");
     }
+}
+
+int dequeue_Array_DE_IR_Queue(Array_Queue *arrayQueue, bool atHead) {
+    int dequeuedElement;
+    if(arrayQueue->length != 0) {
+        if(atHead) {
+            dequeuedElement = *arrayQueue->head;
+            currentP = arrayQueue->head;
+
+            do {
+                *currentP = *(currentP + 1);
+                currentP++;
+            } while(currentP != arrayQueue->rear);
+
+        } else {
+            dequeuedElement = *arrayQueue->rear;
+        }
+
+        arrayQueue->rear--;
+        arrayQueue->length--;
+
+        return dequeuedElement;
+    } else {
+        printf("\tQueue already empty\n");
+    }
+
+    return -1;
+}
+
+void enqueue_Array_DE_OR_Queue(Array_Queue *arrayQueue, int data, bool atHead) {
+    if(arrayQueue->length == 0) {
+        *arrayQueue->head = *arrayQueue->rear = data;
+        arrayQueue->length++;
+    } else if(arrayQueue->length + 1 <= arrayQueue->maxLength) {
+        if(atHead) {
+            currentP = arrayQueue->rear;
+            int rearElement = *arrayQueue->rear;
+
+            // shift elements of queue to the right
+            for(int i = arrayQueue->length - 1; i > 0; i--) {
+                *currentP = *(currentP - 1);
+                currentP--;
+            }
+
+            *currentP = data;
+
+            arrayQueue->rear++;
+            *arrayQueue->rear = rearElement;
+        } else {
+            arrayQueue->rear++;
+            *arrayQueue->rear = data;
+        }
+        arrayQueue->length++;
+    } else {
+        printf("\tQueue already full\n");
+    }
+}
+
+// enqueue in input restricted and simple queue are the same
+int dequeue_Array_DE_OR_Queue(Array_Queue *arrayQueue) {
+    int head;
+
+    if(arrayQueue->length - 1 >= 0)  {
+        head = *arrayQueue->head;
+        currentP = arrayQueue->head;
+
+        do {
+            *currentP = *(currentP + 1);
+            currentP++;
+        } while(currentP != arrayQueue->rear);
+
+        *arrayQueue->rear = 0;
+        arrayQueue->rear--;
+        arrayQueue->length--;
+
+        return head;
+    } else {
+        printf("\tQueue already empty\n");
+    }
+
+    return -1;
 }
