@@ -2,7 +2,7 @@
 #define CUSTOM_QUEUE_HEADER
 
 typedef struct {
-    int *head, *rear, length, maxLength;
+    int *head, *tail, length, maxLength;
 } Array_Queue;
 
 Array_Queue *new_Array_Queue(int length);
@@ -26,5 +26,22 @@ int dequeue_Array_DE_IR_Queue(Array_Queue *arrayQueue, bool atHead);
 // output restricted
 void enqueue_Array_DE_OR_Queue(Array_Queue *arrayQueue, int data, bool atHead);
 int dequeue_Array_DE_OR_Queue(Array_Queue *arrayQueue);
+
+typedef struct {
+    int *headPointer, *tailPointer, *firstIndex, *lastIndex, length, maxLength;
+} Circular_Array_Queue;
+
+Circular_Array_Queue *new_Circular_Array_Queue(int length);
+
+bool is_Circular_Array_Queue_Empty(Circular_Array_Queue *circularArrayQueue);
+bool is_Circular_Array_Queue_Full(Circular_Array_Queue *circularArrayQueue);
+
+int peek_Circular_Array_Queue(Circular_Array_Queue *circularArrayQueue);
+int rear_Circular_Array_Queue(Circular_Array_Queue *circularArrayQueue);
+
+void print_Circular_Array_Queue(Circular_Array_Queue *circularArrayQueue);
+
+void enqueue_Circular_Array_Queue(Circular_Array_Queue *circularArrayQueue, int data);
+int dequeue_Circular_Array_Queue(Circular_Array_Queue *circularArrayQueue);
 
 #endif
