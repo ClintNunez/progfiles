@@ -2,7 +2,7 @@
 #define CUSTOM_QUEUE_HEADER
 
 typedef struct {
-    int *head, *tail, length, maxLength;
+    int *headPointer, *tailPointer, length, maxLength;
 } Array_Queue;
 
 Array_Queue *new_Array_Queue(int length);
@@ -43,5 +43,27 @@ void print_Circular_Array_Queue(Circular_Array_Queue *circularArrayQueue);
 
 void enqueue_Circular_Array_Queue(Circular_Array_Queue *circularArrayQueue, int data);
 int dequeue_Circular_Array_Queue(Circular_Array_Queue *circularArrayQueue);
+
+typedef struct {
+    int data, priorityLvl;
+} PriorityElement;
+
+typedef struct {
+    PriorityElement *headPointer, *tailPointer;
+    int length, maxLength;
+} Priority_Array_Queue;
+
+Priority_Array_Queue *new_Priority_Array_Queue(int length);
+
+bool is_Priority_Array_Queue_Empty(Priority_Array_Queue *priorityArrayQueue);
+bool is_Priority_Array_Queue_Full(Priority_Array_Queue *priorityArrayQueue);
+
+int peek_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue);
+int rear_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue);
+
+void print_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue);
+
+void enqueue_Priority_Ascending_Array_Queue(Priority_Array_Queue *priorityArrayQueue, int data, int priorityLvl);
+PriorityElement *dequeue_Priority_Ascending_Array_Queue(Priority_Array_Queue *priorityArrayQueue);
 
 #endif

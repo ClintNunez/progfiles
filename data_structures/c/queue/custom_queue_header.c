@@ -10,8 +10,8 @@ Array_Queue* new_Array_Queue(int length) {
     Array_Queue *arrayQueue = malloc(sizeof(Array_Queue));
     int *array = (int*) malloc(sizeof(int) * length);
 
-    arrayQueue->head = array;
-    arrayQueue->tail = array;
+    arrayQueue->headPointer = array;
+    arrayQueue->tailPointer = array;
     arrayQueue->length = 0;
     arrayQueue->maxLength = length;
     
@@ -27,15 +27,15 @@ bool is_Array_Queue_Full(Array_Queue *arrayQueue) {
 }
 
 int peek_Array_Queue(Array_Queue *arrayQueue) {
-    return *arrayQueue->head;    
+    return *arrayQueue->headPointer;    
 }
 
 int rear_Array_Queue(Array_Queue *arrayQueue) {
-    return *arrayQueue->tail;    
+    return *arrayQueue->tailPointer;    
 }
 
 void print_Array_Queue(Array_Queue *arrayQueue) {
-    int *currentP = arrayQueue->head;
+    int *currentP = arrayQueue->headPointer;
     
     printf("\t");
     for(int i = 0; i < arrayQueue->length; i++) {
@@ -48,11 +48,11 @@ void print_Array_Queue(Array_Queue *arrayQueue) {
 
 void enqueue_Array_Simple_Queue(Array_Queue *arrayQueue, int data) {
     if(arrayQueue->length == 0) {
-        *arrayQueue->head = *arrayQueue->tail = data;
+        *arrayQueue->headPointer = *arrayQueue->tailPointer = data;
         arrayQueue->length++;
     } else if(arrayQueue->length + 1 <= arrayQueue->maxLength)  {
-        arrayQueue->tail++;
-        *arrayQueue->tail = data;
+        arrayQueue->tailPointer++;
+        *arrayQueue->tailPointer = data;
         arrayQueue->length++;
     } else {
         printf("\tQueue already full\n");
@@ -60,20 +60,20 @@ void enqueue_Array_Simple_Queue(Array_Queue *arrayQueue, int data) {
 }
 
 int dequeue_Array_Simple_Queue(Array_Queue *arrayQueue) {
-    int head;
+    int headPointer;
     if(arrayQueue->length - 1 >= 0)  {
-        head = *arrayQueue->head;
-        currentP = arrayQueue->head;
+        headPointer = *arrayQueue->headPointer;
+        currentP = arrayQueue->headPointer;
 
         do {
             *currentP = *(currentP + 1);
             currentP++;
-        } while(currentP != arrayQueue->tail);
+        } while(currentP != arrayQueue->tailPointer);
 
-        arrayQueue->tail--;
+        arrayQueue->tailPointer--;
         arrayQueue->length--;
 
-        return head;
+        return headPointer;
     } else {
         printf("\tQueue already empty\n");
     }
@@ -84,11 +84,11 @@ int dequeue_Array_Simple_Queue(Array_Queue *arrayQueue) {
 // enqueue in input restricted and simple queue are the same
 void enqueue_Array_DE_IR_Queue(Array_Queue *arrayQueue, int data) {
     if(arrayQueue->length == 0) {
-        *arrayQueue->head = *arrayQueue->tail = data;
+        *arrayQueue->headPointer = *arrayQueue->tailPointer = data;
         arrayQueue->length++;
     } else if(arrayQueue->length + 1 <= arrayQueue->maxLength)  {
-        arrayQueue->tail++;
-        *arrayQueue->tail = data;
+        arrayQueue->tailPointer++;
+        *arrayQueue->tailPointer = data;
         arrayQueue->length++;
     } else {
         printf("\tQueue already full\n");
@@ -99,19 +99,19 @@ int dequeue_Array_DE_IR_Queue(Array_Queue *arrayQueue, bool atHead) {
     int dequeuedElement;
     if(arrayQueue->length != 0) {
         if(atHead) {
-            dequeuedElement = *arrayQueue->head;
-            currentP = arrayQueue->head;
+            dequeuedElement = *arrayQueue->headPointer;
+            currentP = arrayQueue->headPointer;
 
             do {
                 *currentP = *(currentP + 1);
                 currentP++;
-            } while(currentP != arrayQueue->tail);
+            } while(currentP != arrayQueue->tailPointer);
 
         } else {
-            dequeuedElement = *arrayQueue->tail;
+            dequeuedElement = *arrayQueue->tailPointer;
         }
 
-        arrayQueue->tail--;
+        arrayQueue->tailPointer--;
         arrayQueue->length--;
 
         return dequeuedElement;
@@ -124,12 +124,12 @@ int dequeue_Array_DE_IR_Queue(Array_Queue *arrayQueue, bool atHead) {
 
 void enqueue_Array_DE_OR_Queue(Array_Queue *arrayQueue, int data, bool atHead) {
     if(arrayQueue->length == 0) {
-        *arrayQueue->head = *arrayQueue->tail = data;
+        *arrayQueue->headPointer = *arrayQueue->tailPointer = data;
         arrayQueue->length++;
     } else if(arrayQueue->length + 1 <= arrayQueue->maxLength) {
         if(atHead) {
-            currentP = arrayQueue->tail;
-            int rearElement = *arrayQueue->tail;
+            currentP = arrayQueue->tailPointer;
+            int rearElement = *arrayQueue->tailPointer;
 
             // shift elements of queue to the right
             for(int i = arrayQueue->length - 1; i > 0; i--) {
@@ -139,11 +139,11 @@ void enqueue_Array_DE_OR_Queue(Array_Queue *arrayQueue, int data, bool atHead) {
 
             *currentP = data;
 
-            arrayQueue->tail++;
-            *arrayQueue->tail = rearElement;
+            arrayQueue->tailPointer++;
+            *arrayQueue->tailPointer = rearElement;
         } else {
-            arrayQueue->tail++;
-            *arrayQueue->tail = data;
+            arrayQueue->tailPointer++;
+            *arrayQueue->tailPointer = data;
         }
         arrayQueue->length++;
     } else {
@@ -153,21 +153,21 @@ void enqueue_Array_DE_OR_Queue(Array_Queue *arrayQueue, int data, bool atHead) {
 
 // enqueue in input restricted and simple queue are the same
 int dequeue_Array_DE_OR_Queue(Array_Queue *arrayQueue) {
-    int head;
+    int headPointer;
 
     if(arrayQueue->length - 1 >= 0)  {
-        head = *arrayQueue->head;
-        currentP = arrayQueue->head;
+        headPointer = *arrayQueue->headPointer;
+        currentP = arrayQueue->headPointer;
 
         do {
             *currentP = *(currentP + 1);
             currentP++;
-        } while(currentP != arrayQueue->tail);
+        } while(currentP != arrayQueue->tailPointer);
 
-        arrayQueue->tail--;
+        arrayQueue->tailPointer--;
         arrayQueue->length--;
 
-        return head;
+        return headPointer;
     } else {
         printf("\tQueue already empty\n");
     }
@@ -256,4 +256,94 @@ int dequeue_Circular_Array_Queue(Circular_Array_Queue *circularArrayQueue) {
     }
 
     return -1;
+}
+
+Priority_Array_Queue *new_Priority_Array_Queue(int length) {
+    Priority_Array_Queue *newPriorityArrayQueue = malloc(sizeof(Priority_Array_Queue));
+    PriorityElement *priorityElement = malloc(sizeof * priorityElement * length);
+
+    newPriorityArrayQueue->headPointer = priorityElement;
+    newPriorityArrayQueue->tailPointer = priorityElement;
+    newPriorityArrayQueue->length = 0;
+    newPriorityArrayQueue->maxLength = length;
+
+    return newPriorityArrayQueue;
+}
+
+bool is_Priority_Array_Queue_Empty(Priority_Array_Queue *priorityArrayQueue) {
+    return (priorityArrayQueue->length == 0) ? true : false;
+}
+
+bool is_Priority_Array_Queue_Full(Priority_Array_Queue *priorityArrayQueue) {
+    return (priorityArrayQueue->length == priorityArrayQueue->maxLength) ? true : false;
+}
+
+int peek_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue) {
+    return priorityArrayQueue->headPointer->data;    
+}
+
+int rear_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue) {
+    return priorityArrayQueue->tailPointer->data;    
+}
+
+void print_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue) {
+    PriorityElement *currentP = priorityArrayQueue->headPointer;
+    
+    printf("\t");
+    for(int i = 0; i < priorityArrayQueue->length; i++) {
+        printf("%i ", currentP->data);
+        currentP++;
+    }
+    printf("\n");
+}
+
+void enqueue_Priority_Ascending_Array_Queue(Priority_Array_Queue *priorityArrayQueue, int data, int priorityLvl) {
+    if(priorityArrayQueue->length == 0) {
+        priorityArrayQueue->headPointer->data = data;
+        priorityArrayQueue->headPointer->priorityLvl = priorityLvl;
+        priorityArrayQueue->length++;
+    } else if(priorityArrayQueue->length + 1 <= priorityArrayQueue->maxLength) {
+        PriorityElement *currentElement = priorityArrayQueue->tailPointer + 1; 
+
+        for(int i = priorityArrayQueue->length; i >= 0; i--) {
+            if((currentElement - 1)->priorityLvl <= priorityLvl || currentElement == priorityArrayQueue->headPointer) { 
+                currentElement->data = data;
+                currentElement->priorityLvl = priorityLvl;
+                break;
+            } else {
+                currentElement->data = (currentElement - 1)->data;
+                currentElement->priorityLvl = (currentElement - 1)->priorityLvl;
+                currentElement--;
+            }
+        }
+
+        priorityArrayQueue->length++;
+        priorityArrayQueue->tailPointer++;
+    } else {
+        printf("\tQueue is full\n");
+    }
+}
+
+PriorityElement *dequeue_Priority_Ascending_Array_Queue(Priority_Array_Queue *priorityArrayQueue) {
+    PriorityElement *headPointer;
+    PriorityElement *currentPointer;
+    if(priorityArrayQueue->length - 1 >= 0)  {
+        headPointer = priorityArrayQueue->headPointer;
+        currentPointer = priorityArrayQueue->headPointer;
+
+        do {
+            currentPointer->data = (currentPointer + 1)->data;
+            currentPointer->priorityLvl = (currentPointer + 1)->priorityLvl;
+            currentPointer++;
+        } while(currentPointer != priorityArrayQueue->tailPointer);
+
+        priorityArrayQueue->tailPointer--;
+        priorityArrayQueue->length--;
+    } else {
+        printf("\tQueue already empty\n");
+        headPointer->data = -1;
+        headPointer->priorityLvl = -1;
+    }
+
+    return headPointer;
 }
