@@ -6,15 +6,15 @@
 int main() {
     Priority_Array_Queue *priorirtyArrayQueue = new_Priority_Array_Queue(5);
     
-    enqueue_Priority_Ascending_Array_Queue(priorirtyArrayQueue, 3, 3);
+    enqueue_Priority_Descending_Array_Queue(priorirtyArrayQueue, 3, 3);
     print_Priority_Array_Queue(priorirtyArrayQueue);
-    enqueue_Priority_Ascending_Array_Queue(priorirtyArrayQueue, 2, 2);
+    enqueue_Priority_Descending_Array_Queue(priorirtyArrayQueue, 2, 2);
     print_Priority_Array_Queue(priorirtyArrayQueue);
-    enqueue_Priority_Ascending_Array_Queue(priorirtyArrayQueue, 1, 1);
+    enqueue_Priority_Descending_Array_Queue(priorirtyArrayQueue, 1, 1);
     print_Priority_Array_Queue(priorirtyArrayQueue);
-    enqueue_Priority_Ascending_Array_Queue(priorirtyArrayQueue, 4, 2);
+    enqueue_Priority_Descending_Array_Queue(priorirtyArrayQueue, 4, 2);
     print_Priority_Array_Queue(priorirtyArrayQueue);
-    enqueue_Priority_Ascending_Array_Queue(priorirtyArrayQueue, 6, 5);
+    enqueue_Priority_Descending_Array_Queue(priorirtyArrayQueue, 6, 5);
     print_Priority_Array_Queue(priorirtyArrayQueue);
 
 
@@ -28,6 +28,5 @@ int main() {
 
     head = peek_Priority_Array_Queue(priorirtyArrayQueue), tail = rear_Priority_Array_Queue(priorirtyArrayQueue);
     printf("head: %i, tail: %i\n", head, tail);
-
     return 0;
 }

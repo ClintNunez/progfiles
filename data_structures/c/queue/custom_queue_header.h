@@ -64,6 +64,8 @@ int rear_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue);
 void print_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue);
 
 void enqueue_Priority_Ascending_Array_Queue(Priority_Array_Queue *priorityArrayQueue, int data, int priorityLvl);
-PriorityElement *dequeue_Priority_Ascending_Array_Queue(Priority_Array_Queue *priorityArrayQueue);
+void enqueue_Priority_Descending_Array_Queue(Priority_Array_Queue *priorityArrayQueue, int data, int priorityLvl);
+PriorityElement *dequeue_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue);
+
 
 #endif

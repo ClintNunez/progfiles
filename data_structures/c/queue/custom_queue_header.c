@@ -289,9 +289,9 @@ int rear_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue) {
 void print_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue) {
     PriorityElement *currentP = priorityArrayQueue->headPointer;
     
-    printf("\t");
+    printf("\t(data, prioritylvl): ");
     for(int i = 0; i < priorityArrayQueue->length; i++) {
-        printf("%i ", currentP->data);
+        printf("(%i, %i), ", currentP->data, currentP->priorityLvl);
         currentP++;
     }
     printf("\n");
@@ -324,11 +324,39 @@ void enqueue_Priority_Ascending_Array_Queue(Priority_Array_Queue *priorityArrayQ
     }
 }
 
-PriorityElement *dequeue_Priority_Ascending_Array_Queue(Priority_Array_Queue *priorityArrayQueue) {
-    PriorityElement *headPointer;
+void enqueue_Priority_Descending_Array_Queue(Priority_Array_Queue *priorityArrayQueue, int data, int priorityLvl) {
+    if(priorityArrayQueue->length == 0) {
+        priorityArrayQueue->headPointer->data = data;
+        priorityArrayQueue->headPointer->priorityLvl = priorityLvl;
+        priorityArrayQueue->length++;
+    } else if(priorityArrayQueue->length + 1 <= priorityArrayQueue->maxLength) {
+        PriorityElement *currentElement = priorityArrayQueue->tailPointer + 1; 
+
+        for(int i = priorityArrayQueue->length; i >= 0; i--) {
+            if((currentElement - 1)->priorityLvl >= priorityLvl || currentElement == priorityArrayQueue->headPointer) { 
+                currentElement->data = data;
+                currentElement->priorityLvl = priorityLvl;
+                break;
+            } else {
+                currentElement->data = (currentElement - 1)->data;
+                currentElement->priorityLvl = (currentElement - 1)->priorityLvl;
+                currentElement--;
+            }
+        }
+
+        priorityArrayQueue->length++;
+        priorityArrayQueue->tailPointer++;
+    } else {
+        printf("\tQueue is full\n");
+    }
+}
+
+PriorityElement *dequeue_Priority_Array_Queue(Priority_Array_Queue *priorityArrayQueue) {
+    PriorityElement *headElement;
     PriorityElement *currentPointer;
     if(priorityArrayQueue->length - 1 >= 0)  {
-        headPointer = priorityArrayQueue->headPointer;
+        headElement->data = priorityArrayQueue->headPointer->data;
+        headElement->priorityLvl = priorityArrayQueue->headPointer->priorityLvl;
         currentPointer = priorityArrayQueue->headPointer;
 
         do {
@@ -341,9 +369,9 @@ PriorityElement *dequeue_Priority_Ascending_Array_Queue(Priority_Array_Queue *pr
         priorityArrayQueue->length--;
     } else {
         printf("\tQueue already empty\n");
-        headPointer->data = -1;
-        headPointer->priorityLvl = -1;
+        headElement->data = -1;
+        headElement->priorityLvl = -1;
     }
 
-    return headPointer;
+    return headElement;
 }
