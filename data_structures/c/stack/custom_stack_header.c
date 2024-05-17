@@ -40,6 +40,52 @@ void pushStack(Array_Stack *arrayStack, int data) {
     }
 }
 
+void push_Monotonic_Increasing_Stack(Array_Stack *arrayStack, int data) {
+    if(arrayStack->length == 0) {
+        *(arrayStack->top) = data;
+        arrayStack->length++;
+    } else if(arrayStack->length + 1 <= arrayStack->maxLength) {
+        if(*(arrayStack->top) >= data) {
+            arrayStack->top++;
+            *(arrayStack->top) = data;
+            arrayStack->length++;
+        } else {
+            while(*(arrayStack->top) < data) {
+                    arrayStack->top--;
+                    arrayStack->length--;
+            }
+            arrayStack->top++;
+            *(arrayStack->top) = data;
+            arrayStack->length++;
+        }
+    } else {
+        printf("\tStack is full\n");
+    }
+}
+
+void push_Monotonic_Decreasing_Stack(Array_Stack *arrayStack, int data) {
+    if(arrayStack->length == 0) {
+        *(arrayStack->top) = data;
+        arrayStack->length++;
+    } else if(arrayStack->length + 1 <= arrayStack->maxLength) {
+        if(*(arrayStack->top) <= data) {
+            arrayStack->top++;
+            *(arrayStack->top) = data;
+            arrayStack->length++;
+        } else {
+            while(*(arrayStack->top) > data) {
+                    arrayStack->top--;
+                    arrayStack->length--;
+            }
+            arrayStack->top++;
+            *(arrayStack->top) = data;
+            arrayStack->length++;
+        }
+    } else {
+        printf("\tStack is full\n");
+    }
+}
+
 int peekStack(Array_Stack *arrayStack) {
     return *(arrayStack->top);
 }
@@ -65,3 +111,4 @@ void printStack(Array_Stack *arrayStack) {
         printf("\tStack is empty\n");
     }
 }
+
