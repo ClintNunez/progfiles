@@ -52,17 +52,17 @@ typedef struct {
 
 Priority_QueueLL *new_Priority_QLL();
 
-int head_Priority_QLL(QueueLL *queuell);
-int rear_Priority_QLL(QueueLL *queuell);
+int head_Priority_QLL(Priority_QueueLL *priorityQueueLL);
+int rear_Priority_QLL(Priority_QueueLL *priorityQueueLL);
 
-bool is_Priority_QLL_Empty(QueueLL *queuell);
+bool is_Priority_QLL_Empty(Priority_QueueLL *priorityQueueLL);
 
-void print_Priority_QLL(QueueLL *queuell);
+void print_Priority_QLL(Priority_QueueLL *priorityQueueLL);
 
-void enqueue_Priority_Ascending_QLL(QueueLL *queuell);
-void enqueue_Priority_Descending_QLL(QueueLL *queuell);
+void enqueue_Priority_Ascending_QLL(Priority_QueueLL *priorityQueueLL, int data, int priorityLevel);
+void enqueue_Priority_Descending_QLL(Priority_QueueLL *priorityQueueLL, int data, int priorityLevel);
 
-int dequeue_Priority_QLL(QueueLL *queuell);
+int dequeue_Priority_QLL(Priority_QueueLL *priorityQueueLL);
 
 
 
