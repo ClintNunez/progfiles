@@ -8,13 +8,13 @@ typedef struct node {
 
 typedef struct node_queue{
     Node *nodePtr;
-    struct node_queue *next;
+    node_queue *next;
 } Node_Queue;
 
 Node *new_Node(int data);
 Node_Queue *new_Node_Queue(Node *node);
 
-void insert_Node(Node *root, int data);
+Node *insert_Node(Node *root, int data);
 Node *delete_Deepest_Node(Node *root, int data);
 Node *delete_Node(Node *root, int data);
 
