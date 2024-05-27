@@ -12,12 +12,18 @@ int main(int argc, char **argv) {
     root = insert_Node(root, 4);
     root = insert_Node(root, 5);
 
-    printf("Initialized binary tree:\n");
+    printf("Level Order traversal: ");
     levelOrder_Traversal(root);
+    printf("\nInorder traversal: ");
+    inorder_Traversal(root);
+    printf("\nPreOrder traversal: ");
+    preOrder_Traversal(root);
+    printf("\nPostOrder Order traversal: ");
+    postOrder_Traversal(root);
 
     root = delete_Node(root, 2);
 
-    printf("Traversal after deleting a node:\n");
+    printf("\nLevel order traversal after deleting a node: ");
     levelOrder_Traversal(root);
 
     return 0;

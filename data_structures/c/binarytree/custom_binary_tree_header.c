@@ -148,6 +148,7 @@ Node *delete_Node(Node *root, int key) {
 
     return root;
 }
+
 void levelOrder_Traversal(Node *root) {
     if(root == NULL) {
         printf("\tBinary tree empty\n");
@@ -176,4 +177,29 @@ void levelOrder_Traversal(Node *root) {
     }
 }
 
+void inorder_Traversal(Node *root) {
+    if(root == NULL) {
+        return;
+    } 
+    inorder_Traversal(root->left);
+    printf("%i ", root->data);
+    inorder_Traversal(root->right);
+}
 
+void preOrder_Traversal(Node *root) {
+    if(root == NULL) {
+        return;
+    } 
+    printf("%i ", root->data);
+    preOrder_Traversal(root->left);
+    preOrder_Traversal(root->right);
+}
+
+void postOrder_Traversal(Node *root) {
+    if(root == NULL) {
+        return;
+    } 
+    postOrder_Traversal(root->left);
+    postOrder_Traversal(root->right);
+    printf("%i ", root->data);
+}
