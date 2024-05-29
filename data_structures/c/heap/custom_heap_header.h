@@ -7,18 +7,14 @@ typedef struct heap {
 
 Heap *new_Heap(int length);
 
-void heapify_Up_Max(int length);
-void heapify_Up_Min(int length);
+Heap *insert_Node_Max(Heap *heap_Ptr, int data);
+Heap *insert_Node_Min(Heap *heap_Ptr, int data);
 
-void heapify_Down_Max(int length);
-void heapify_Down_Min(int length);
+Heap *delete_Root_Node_Max(Heap *heap_Ptr, int data);
+Heap *delete_Root_Node_Min(Heap *heap_Ptr, int data);
 
-Heap *insert_Node_Max(Heap *heapPtr, int data);
-Heap *insert_Node_Min(Heap *heapPtr, int data);
+int peek(Heap *heap_Ptr);
 
-Heap *delete_Root_Node_Max(Heap *heapPtr, int data);
-Heap *delete_Root_Node_Min(Heap *heapPtr, int data);
-
-int peek(Heap *heapPtr);
+void print_Heap(Heap *heap_Ptr);
 
 #endif
