@@ -24,49 +24,48 @@ void print_Heap(Heap *heap_Ptr) {
     }
 }
 
-Heap *heapify_Up_Max(Heap *heap_Ptr) {
+Heap *heapify_Up_Max(Heap *heap_Ptr, int current_Index) {
     int *arr = heap_Ptr->root;
-    int current_Index = heap_Ptr->length-1;
+
+    if(current_Index == 0) {
+        return heap_Ptr;
+    }
+
     int parentIndex = (current_Index - 1) / 2;
 
-    while(current_Index != 0) {
-        if(arr[current_Index] > arr[parentIndex]) {
-            int temp = arr[current_Index];
-            arr[current_Index] = arr[parentIndex];
-            arr[parentIndex] = temp;
-            
-            current_Index = parentIndex;
-            parentIndex = (current_Index - 1) / 2;
-        } else {
-            break;
-        }
-    }
+    if(arr[current_Index] > arr[parentIndex]) {
+        int temp = arr[current_Index];
+        arr[current_Index] = arr[parentIndex];
+        arr[parentIndex] = temp;
+
+        current_Index = parentIndex;
+        heapify_Up_Max(heap_Ptr, current_Index);
+    } 
 
     return heap_Ptr;
 }
 
-Heap *heapify_Up_Min(Heap *heap_Ptr) {
+Heap *heapify_Up_Min(Heap *heap_Ptr, int current_Index) {
     int *arr = heap_Ptr->root;
-    int current_Index = heap_Ptr->length-1;
+
+    if(current_Index == 0) {
+        return heap_Ptr;
+    }
+
     int parentIndex = (current_Index - 1) / 2;
 
-    while(current_Index != 0) {
-        if(arr[current_Index] < arr[parentIndex]) {
-            int temp = arr[current_Index];
-            arr[current_Index] = arr[parentIndex];
-            arr[parentIndex] = temp;
-            
-            current_Index = parentIndex;
-            parentIndex = (current_Index - 1) / 2;
-        } else {
-            break;
-        }
-    }
+    if(arr[current_Index] < arr[parentIndex]) {
+        int temp = arr[current_Index];
+        arr[current_Index] = arr[parentIndex];
+        arr[parentIndex] = temp;
+
+        current_Index = parentIndex;
+
+        heapify_Up_Min(heap_Ptr, current_Index);
+    } 
 
     return heap_Ptr;
 }
-
-
 
 Heap *insert_Node_Max(Heap *heap_Ptr, int data) {
     if(heap_Ptr->length == heap_Ptr->max_Length) {
@@ -77,7 +76,7 @@ Heap *insert_Node_Max(Heap *heap_Ptr, int data) {
     heap_Ptr->root[heap_Ptr->length] = data;
     heap_Ptr->length++;
 
-    heap_Ptr = heapify_Up_Max(heap_Ptr);
+    heap_Ptr = heapify_Up_Max(heap_Ptr, heap_Ptr->length - 1);
 
     return heap_Ptr;
 }
@@ -91,7 +90,7 @@ Heap *insert_Node_Min(Heap *heap_Ptr, int data) {
     heap_Ptr->root[heap_Ptr->length] = data;
     heap_Ptr->length++;
 
-    heap_Ptr = heapify_Up_Min(heap_Ptr);
+    heap_Ptr = heapify_Up_Min(heap_Ptr, heap_Ptr->length - 1);
 
     return heap_Ptr;
 }
