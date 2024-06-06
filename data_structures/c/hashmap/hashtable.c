@@ -1,11 +1,9 @@
+#include <assert.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <stddef.h>
 #include <string.h>
 
 #include "hashtable.h"
-
 
 typedef struct {
     const char *key;
@@ -20,7 +18,7 @@ struct hashtable {
 
 #define INITIAL_CAPACITY 16 // must not be zero
 
-Hashtable *create_hashtable() {
+Hashtable *create_hashtable(void) {
     Hashtable *hashtable = malloc(sizeof(Hashtable));
     if(hashtable == NULL) {
         return NULL;
@@ -41,7 +39,6 @@ void destroy_hashtable(Hashtable *hashtable) {
     for(size_t i = 0; i < hashtable->capacity; i++) {
         free((void *)hashtable->hashtable_items[i].key);
     }
-
 
     free(hashtable->hashtable_items);
     free(hashtable);
@@ -65,8 +62,7 @@ void *get_item(Hashtable *hashtable, const char *key) {
     // hashkey
     uint64_t hash = hash_key(key);
     // get index by ANDing capacity - 1
-    size_t index = (size_t)(hash & hashtable->capacity - 1);
-    //size_t index = (size_t)(hash & (uint64_t)(hashtable->capacity - 1));
+    size_t index = (size_t)(hash & (uint64_t)(hashtable->capacity - 1));
     
     // loop through the items
     while(hashtable->hashtable_items[index].key != NULL) {
@@ -75,11 +71,9 @@ void *get_item(Hashtable *hashtable, const char *key) {
             return hashtable->hashtable_items[index].value; 
         }
 
-        // linear probing
-        index++;
-
         // wrap arround if index exceed capacity
-        if(index > hashtable->capacity) {
+        index++;
+        if(index >= hashtable->capacity) {
             index = 0;
         }
     }
@@ -116,7 +110,7 @@ static const char* hashtable_set_item(Hashtable_item *hashtable_items, size_t ca
         (*plength)++;
     }
 
-    hashtable_items[index].key = key;
+    hashtable_items[index].key = (char*)key;
     hashtable_items[index].value = value;
     return key;
 }
@@ -131,7 +125,7 @@ static bool hashtable_expand(Hashtable *hashtable) {
     }
     Hashtable_item *new_hashtable_items = calloc(new_capacity, sizeof(Hashtable_item));
     if (new_hashtable_items == NULL) {
-        return NULL;
+        return false;
     }
 
     // loop through items and move all non empty items to a new array
@@ -151,6 +145,7 @@ static bool hashtable_expand(Hashtable *hashtable) {
 }
 
 const char *set_item(Hashtable *hashtable, const char *key, void *value) {
+    assert(value != NULL);
     if(value == NULL) {
         return NULL;
     }
@@ -164,11 +159,31 @@ const char *set_item(Hashtable *hashtable, const char *key, void *value) {
     return hashtable_set_item(hashtable->hashtable_items, hashtable->capacity, key, value, &hashtable->length);
 }
 
-size_t hashtable_length(Hashtable *hashtable);
+size_t hashtable_length(Hashtable *hashtable) {
+    return hashtable->length;
+}
 
 // make iterator
-Hashtable_iterator hashtable_iterator(Hashtable *hashtable);
+Hashtable_iterator hashtable_iterator(Hashtable *hashtable) {
+    Hashtable_iterator iterator;
+    iterator.hashtable = hashtable;
+    iterator.index = 0;
+    return iterator;
+}
 
 // move iterator
-bool hashtable_iterator_next(Hashtable *hashtable_iterator);
+bool hashtable_iterator_next(Hashtable_iterator *hashtable_iterator) {
+    Hashtable *hashtable = hashtable_iterator->hashtable;
+    while(hashtable_iterator->index < hashtable->capacity) {
+        size_t i = hashtable_iterator->index;
+        hashtable_iterator->index++;
+        if(hashtable->hashtable_items[i].key != NULL) {
+            Hashtable_item hashtable_item = hashtable->hashtable_items[i];
+            hashtable_iterator->key = hashtable_item.key;
+            hashtable_iterator->value = hashtable_item.value;
+            return true;        
+        }
+    }
+    return false;
+}
 

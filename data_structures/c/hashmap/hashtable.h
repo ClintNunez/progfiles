@@ -29,6 +29,6 @@ typedef struct {
 Hashtable_iterator hashtable_iterator(Hashtable *hashtable);
 
 // move iterator
-bool hashtable_iterator_next(Hashtable *hashtable_iterator);
+bool hashtable_iterator_next(Hashtable_iterator *hashtable_iterator);
 
 #endif
