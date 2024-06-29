@@ -1,0 +1,18 @@
+Easy
+- https://www.geeksforgeeks.org/heap-sort/
+- https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-heap/
+- https://www.geeksforgeeks.org/iterative-heap-sort/
+- https://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/
+- https://www.geeksforgeeks.org/heap-sort-for-decreasing-order-using-min-heap/
+Medium
+- https://www.geeksforgeeks.org/connect-n-ropes-minimum-cost/
+- https://www.geeksforgeeks.org/tournament-tree-and-binary-heap/
+- https://www.geeksforgeeks.org/median-of-stream-of-running-integers-using-stl/
+- https://www.geeksforgeeks.org/convert-min-heap-to-max-heap/
+- https://www.geeksforgeeks.org/given-level-order-traversal-binary-tree-check-tree-min-heap/
+Hard
+- https://www.geeksforgeeks.org/a-data-structure-question/
+- https://www.geeksforgeeks.org/difference-maximum-sum-minimum-sum-n-m-elementsin-review/
+- https://www.geeksforgeeks.org/convert-bst-min-heap/
+- https://www.geeksforgeeks.org/merge-two-binary-max-heaps/
+- https://www.geeksforgeeks.org/rearrange-characters-string-no-two-adjacent/

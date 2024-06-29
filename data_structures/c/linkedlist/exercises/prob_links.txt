@@ -1,0 +1,19 @@
+Easy
+- https://www.geeksforgeeks.org/reverse-a-doubly-linked-list/
+- https://www.geeksforgeeks.org/convert-singly-linked-list-circular-linked-list/
+- https://www.geeksforgeeks.org/check-if-a-linked-list-is-circular-linked-list/
+- https://www.geeksforgeeks.org/can-we-reverse-a-linked-list-in-less-than-on/
+- https://www.geeksforgeeks.org/write-a-function-that-counts-the-number-of-times-a-given-int-occurs-in-a-linked-list/
+Medium
+- https://www.geeksforgeeks.org/remove-duplicates-from-a-sorted-linked-list/
+    - https://www.geeksforgeeks.org/remove-duplicates-unsorted-doubly-linked-list/
+- https://www.geeksforgeeks.org/intersection-of-two-sorted-linked-lists/
+- https://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
+- https://www.geeksforgeeks.org/merge-sort-for-doubly-linked-list/
+- https://www.geeksforgeeks.org/split-a-circular-linked-list-into-two-halves/
+Hard
+- https://www.geeksforgeeks.org/write-a-function-to-get-the-intersection-point-of-two-linked-lists/
+- https://www.geeksforgeeks.org/josephus-circle-using-circular-linked-list/
+- https://www.geeksforgeeks.org/priority-queue-using-doubly-linked-list/
+- https://www.geeksforgeeks.org/construct-linked-list-2d-matrix/
+- https://www.geeksforgeeks.org/linked-list-representation-disjoint-set-data-structures/

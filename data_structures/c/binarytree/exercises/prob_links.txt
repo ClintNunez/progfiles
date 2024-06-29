@@ -1,0 +1,19 @@
+Easy
+- https://www.geeksforgeeks.org/foldable-binary-trees/
+- https://www.geeksforgeeks.org/check-two-nodes-cousins-binary-tree/
+- https://www.geeksforgeeks.org/check-weather-given-binary-tree-perfect-not/
+- https://www.geeksforgeeks.org/calculate-depth-full-binary-tree-preorder/
+- https://www.geeksforgeeks.org/construct-tree-inorder-level-order-traversals/
+Medium
+- https://www.geeksforgeeks.org/find-all-possible-trees-with-given-inorder-traversal/
+- https://www.geeksforgeeks.org/given-linked-list-representation-of-complete-tree-convert-it-to-linked-representation/
+- https://www.geeksforgeeks.org/convert-tree-forest-even-nodes/
+- https://www.geeksforgeeks.org/find-largest-subtree-sum-tree/
+- https://www.geeksforgeeks.org/find-distance-between-two-nodes-of-a-binary-tree/
+Hard
+- https://www.geeksforgeeks.org/construct-full-binary-tree-using-preorder-traversal-preorder-traversal-mirror-tree/
+- https://www.geeksforgeeks.org/construct-tree-from-ancestor-matrix/
+- https://www.geeksforgeeks.org/convert-ternary-expression-binary-tree/
+- https://www.geeksforgeeks.org/maximum-spiral-sum-in-binary-tree/
+- https://www.geeksforgeeks.org/find-root-tree-children-id-sum-every-node-given/
+

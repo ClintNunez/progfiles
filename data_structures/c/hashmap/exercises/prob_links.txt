@@ -1,0 +1,19 @@
+Easy
+- https://www.geeksforgeeks.org/find-whether-an-array-is-subset-of-another-array-set-1/
+- https://www.geeksforgeeks.org/count-distinct-elements-in-an-array/
+- https://www.geeksforgeeks.org/count-pairs-difference-equal-k/
+- https://www.geeksforgeeks.org/frequency-of-each-character-in-a-string-using-unordered_map-in-c/
+- https://www.geeksforgeeks.org/find-missing-elements-of-a-range/
+Medium
+- https://www.geeksforgeeks.org/longest-consecutive-subsequence/
+- https://www.geeksforgeeks.org/print-all-pairs-with-given-sum/
+- https://www.geeksforgeeks.org/majority-element/
+- https://www.geeksforgeeks.org/maximum-possible-difference-two-subsets-array/
+- https://www.geeksforgeeks.org/find-itinerary-from-a-given-list-of-tickets/
+Hard
+- https://www.geeksforgeeks.org/lru-cache-implementation/
+- https://www.geeksforgeeks.org/clone-binary-tree-random-pointers/
+- https://www.geeksforgeeks.org/check-if-an-array-can-be-divided-into-pairs-whose-sum-is-divisible-by-k/
+- https://www.geeksforgeeks.org/find-duplicate-subtrees/
+- https://www.geeksforgeeks.org/find-number-of-employees-under-every-manager/
+

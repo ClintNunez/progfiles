@@ -1,0 +1,19 @@
+Easy
+- https://www.geeksforgeeks.org/print-left-rotation-array/
+- https://www.geeksforgeeks.org/sort-array-wave-form-2/
+- https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
+- https://www.geeksforgeeks.org/rearrange-array-maximum-minimum-form/
+- https://www.geeksforgeeks.org/print-distinct-elements-given-integer-array/
+Medium
+- https://www.geeksforgeeks.org/rearrange-array-arri/
+- https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers-publish/
+- https://www.geeksforgeeks.org/find-rotation-count-rotated-sorted-array/
+- https://www.geeksforgeeks.org/k-th-largest-sum-contiguous-subarray/
+- https://www.geeksforgeeks.org/merge-two-sorted-arrays-o1-extra-space/
+Hard
+- https://www.geeksforgeeks.org/find-k-numbers-occurrences-given-array/
+- https://www.geeksforgeeks.org/sparse-table/
+- https://www.geeksforgeeks.org/space-optimization-using-bit-manipulations/
+- https://www.geeksforgeeks.org/construct-array-pair-sum-array/
+- https://www.geeksforgeeks.org/find-maximum-value-of-sum-iarri-with-only-rotations-on-given-array-allowed/
+

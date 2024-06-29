@@ -1,0 +1,18 @@
+Easy
+- https://www.geeksforgeeks.org/convert-infix-expression-to-postfix-expression/
+- https://www.geeksforgeeks.org/prefix-infix-conversion/
+- https://www.geeksforgeeks.org/prefix-postfix-conversion/
+- https://www.geeksforgeeks.org/postfix-prefix-conversion/
+- https://www.geeksforgeeks.org/postfix-to-infix/
+Medium
+- https://www.geeksforgeeks.org/create-mergable-stack/
+- https://www.geeksforgeeks.org/the-stock-span-problem/
+- https://www.geeksforgeeks.org/iterative-tower-of-hanoi/
+- https://www.geeksforgeeks.org/delete-consecutive-words-sequence/
+- https://www.geeksforgeeks.org/check-mirror-n-ary-tree/
+Hard
+- https://www.geeksforgeeks.org/the-celebrity-problem/
+- https://www.geeksforgeeks.org/spaghetti-stack/
+- https://www.geeksforgeeks.org/expression-contains-redundant-bracket-not/
+- https://www.geeksforgeeks.org/iterative-method-to-find-ancestors-of-a-given-binary-tree/
+- https://www.geeksforgeeks.org/stack-permutations-check-if-an-array-is-stack-permutation-of-other/

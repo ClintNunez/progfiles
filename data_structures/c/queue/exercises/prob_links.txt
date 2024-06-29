@@ -1,0 +1,19 @@
+Easy
+- https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+- https://www.geeksforgeeks.org/vertical-order-traversal-of-binary-tree-using-map/
+- https://www.geeksforgeeks.org/print-right-view-binary-tree-2/
+- https://www.geeksforgeeks.org/find-minimum-depth-of-a-binary-tree/
+- https://www.geeksforgeeks.org/implement-stack-using-queue/
+Medium
+- https://www.geeksforgeeks.org/flatten-a-linked-list-with-next-and-child-pointers/
+- https://www.geeksforgeeks.org/find-if-there-is-a-path-between-two-vertices-in-a-given-graph/
+- https://www.geeksforgeeks.org/print-all-nodes-between-two-given-levels-in-binary-tree/
+- https://www.geeksforgeeks.org/islands-in-a-graph-using-bfs/
+- https://www.geeksforgeeks.org/find-first-non-repeating-character-stream-characters/
+Hard
+- https://www.geeksforgeeks.org/flood-fill-algorithm/
+- geeksforgeeks.org/find-shortest-safe-route-in-a-path-with-landmines/
+- https://www.geeksforgeeks.org/count-possible-paths-source-destination-exactly-k-edges/
+- https://www.geeksforgeeks.org/minimum-cost-of-simple-path-between-two-nodes-in-a-directed-and-weighted-graph/
+- https://www.geeksforgeeks.org/minimum-cost-path-in-a-directed-graph-via-given-set-of-intermediate-nodes/
+
